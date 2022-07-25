@@ -8,7 +8,7 @@
                 <div class="col-lg-6">
                     <p class="text-muted small text-uppercase mb-2">New Inspiration 2020</p>
                     <h1 class="h2 text-uppercase mb-3">20% off on new season</h1><a class="btn btn-dark"
-                                                                                    href="shop.blade.php">Browse
+                                                                                    href="{{route('frontend.shop')}}">Browse
                         collections</a>
                 </div>
             </div>

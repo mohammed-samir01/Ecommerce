@@ -182,10 +182,11 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
-
+        Mindscms\Entrust\EntrustServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -209,6 +210,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Entrust'   => Mindscms\Entrust\EntrustFacade::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
