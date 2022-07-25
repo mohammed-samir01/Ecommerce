@@ -28,6 +28,19 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+
+
+    public function username()
+    {
+        return 'username';
+    }
+
+    public function redirectTo(){
+
+        if(auth()->user()->roles()->first()->allowed_route != ''){
+            return $this->redirectTo = auth()->user()->roles()->first()->allowed_route .'/index';
+        }
+    }
     /**
      * Create a new controller instance.
      *
