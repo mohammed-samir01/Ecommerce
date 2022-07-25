@@ -7,7 +7,7 @@
 {{--    <meta name="robots" content="all,follow">--}}<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -75,7 +75,7 @@
                                 <a class="nav-link" href="#">
                                     <i class="far fa-heart mr-1"></i><small class="text-gray"> (0)</small></a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('backend.login')}}"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
                         </ul>
                     </div>
                 </nav>
