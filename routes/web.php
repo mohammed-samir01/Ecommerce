@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
 Route::get('/',[FrontendController::class ,'index'])->name('frontend.index');
 Route::get('/cart',[FrontendController::class ,'cart'])->name('frontend.cart');
 Route::get('/checkout',[FrontendController::class ,'checkout'])->name('frontend.checkout');
