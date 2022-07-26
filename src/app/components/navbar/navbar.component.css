@@ -2,24 +2,26 @@ nav{
     line-height: 3.5rem;
 }
 .brand{
-        font-size: 2rem;
-            font-weight: 300;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700!important;
+        font-family: "Libre Franklin", sans-serif;
+        letter-spacing: 0.1em;
 }
 .brand:hover {
-    color: skyblue;
+    color: #111111;
 }
 .nav-link{
     font-size: 1rem;
-    font-weight: 100;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 600!important;
+        font-family: "Libre Franklin", sans-serif;
+        letter-spacing: 0.1em;
 }
 
 .nav-link:hover {
-    color: skyblue;
+  color: #111111;
 }
 .dropdown-item{
-    line-height: 1.5rem;
+    line-height: 0.9rem;
     width: 100%;
     font-size: 0.8rem;
 }
@@ -35,3 +37,62 @@ nav{
     transform: translateY(0px);
     transition: .2s ease all;
 }
+
+.navbar .dropdown-menu::before {
+    content: '';
+    display: block;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 0.5rem solid skyblue;
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+}
+
+.dropdown-item {
+    padding: 0.375rem 1.5rem;
+    font-weight: 400;
+    color: #212529;
+    background: #fff;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+.dropdown-item:hover{
+    background: #F8F9FA;
+}
+
+@media (min-width: 992px){
+    .navbar-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    }
+    .collapse{
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+}
+
+}
+
+@media (max-width: 1200px){
+    .brand{
+        font-size: 1.1rem;
+        font-weight: 700!important;
+        font-family: "Libre Franklin", sans-serif;
+        letter-spacing: 0.1em;
+}
+.brand:hover {
+    color: #111111;
+}
+.nav-link{
+    font-size: 0.8rem;
+        font-weight: 600!important;
+        font-family: "Libre Franklin", sans-serif;
+        letter-spacing: 0.1em;
+}
+}
+
+

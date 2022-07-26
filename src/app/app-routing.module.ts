@@ -1,26 +1,24 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { HomeComponent } from './components/home/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProductDetailsComponent } from './components/productDetails/product-details/product-details.component';
+import { ShopComponent } from './components/shop/shop/shop.component';
+
+
 
 const routes: Routes = [
-  {
-    path : 'home',
-    component : HomeComponent
-  },
+  {path : '',component : HomeComponent},
+  { path: 'product-details', component: ProductDetailsComponent },
+  { path: 'shop', component: ShopComponent },
+  { path: '**', component: PageNotFoundComponent },
+// { path: '**', component: PageNotFoundComponent },
+// { path: '**', component: PageNotFoundComponent },
+// { path: '**', component: PageNotFoundComponent },
+// { path: '**', component: PageNotFoundComponent },
 
-  // {
-  //   path : '',
-  //   redirectTo : 'home',
-  //   pathMatch : 'full'
-  // },
-{ path: 'page-not-found', component: PageNotFoundComponent },
-  { 
-    path: '**', 
-    pathMatch: 'full', 
-    component: PageNotFoundComponent 
-  },
+
 
 
 ];

@@ -1,0 +1,9 @@
+.container{
+    height:49.8vh;
+}
+.row{
+    height: 100%;
+    flex-direction:column ;
+    align-items: center;
+    justify-content: center;
+}

@@ -13,3 +13,17 @@ a{
     text-decoration: none;
     font-size:0.9rem;
 }
+span{
+    display: none;
+    margin-right: 0.2rem;
+}
+li a:hover{
+    color: white !important;
+    transition: 0.5s all;
+}
+li a:hover span{
+    color: white !important;
+    display: inline-block;
+    transition: 1s all;
+}
+
