@@ -5,8 +5,7 @@
                 <img src="../../../assets/login.jpg" alt="Sample image" width="350px" height="350px"/>
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
-                    <!-- [formGroup]="loginForm" (ngSubmit)="handelFormSubmit()" -->
+                <form [formGroup]="loginForm" (ngSubmit)="handelFormSubmit()">
                     <div>
                         <p class="lead fw-normal mb-0 me-3 mb-5 text-center">Login</p>
                     </div>

@@ -28,6 +28,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { FilesModule } from './shared/files/files.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { FooterComponent } from './components/footer/footer.component';
     PageNotFoundComponent,
     ResourceNotFoundComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    FavoriteComponent,
   ],
   imports: [
     BrowserModule,
