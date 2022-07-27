@@ -20,7 +20,7 @@ class Permission extends EntrustPermission
 
     public function appearedChildren()
     {
-        return $this->hasMany(Permission::class, 'parent', 'id')->where('appear',1);
+        return $this->hasMany(Permission::class, 'parent', 'id')->where('appear', 1);
     }
 
     public static function tree( $level = 1 )

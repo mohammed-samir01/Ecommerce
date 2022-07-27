@@ -33,7 +33,7 @@
 
         @else
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item {{in_array($menu->parent_show,[getParentShowOf($current_page),getParentOf($current_page)]) ? 'active' : null }}">
+            <li class="nav-item {{ in_array($menu->parent_show,[getParentShowOf($current_page),getParentOf($current_page)]) ? 'active' : null }}">
                 <a class="nav-link {{in_array($menu->parent_show,[getParentShowOf($current_page),getParentOf($current_page)]) ? 'collapsed' : null }}"
                    href="#"
                    data-toggle="collapse"
@@ -50,7 +50,7 @@
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             @foreach($menu->appearedChildren as $sub_menu)
-                                <a class="collapse-item{{ getParentOf($current_page) != null && (int)(getParentIdOf($current_page)+1) == $sub_menu->id ? 'active' : null }} "
+                                <a class="collapse-item {{ getParentOf($current_page) != null && (int)(getParentIdOf($current_page)+1) == $sub_menu->id ? 'active' : null }}"
                                    href="{{route('admin.'.$sub_menu->as)}}">{{$sub_menu->display_name}}</a>
                             @endforeach
                         </div>
