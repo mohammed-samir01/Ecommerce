@@ -16,9 +16,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CategoryListComponent } from './components/home/category-list/category-list.component';
 import { CategoryDetailsComponent } from './components/home/category-details/category-details.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { OrderComponent } from './components/order/order.component';
-import { ProductListComponent } from './components/shop/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/productDetails/product-details/product-details.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductFilterPipe } from './pipes/product-filter.pipe';
@@ -40,7 +38,11 @@ import { HeroComponent } from './components/shop/hero/hero.component';
 import { AllCategoryComponent } from './components/shop/all-category/all-category.component';
 import { ShopComponent } from './components/shop/shop/shop.component';
 import { AsideComponent } from './components/shop/aside/aside.component';
-
+import { Ng5SliderModule } from 'ng5-slider';
+import { WomanShirtsCardComponent } from './components/shop/woman-shirts-card/woman-shirts-card.component';
+import { WomanShirtsListComponent } from './components/shop/woman-shirts-list/woman-shirts-list.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { FilterComponent } from './components/shop/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +56,7 @@ import { AsideComponent } from './components/shop/aside/aside.component';
     FooterComponent,
     CategoryListComponent,
     CategoryDetailsComponent,
-    ContactComponent,
     OrderComponent,
-    ProductListComponent,
     ProductDetailsComponent,
     ProductFilterPipe,
     AlertComponent,
@@ -76,7 +76,12 @@ import { AsideComponent } from './components/shop/aside/aside.component';
     HeroComponent,
     AllCategoryComponent,
     ShopComponent,
-    AsideComponent
+    AsideComponent,
+    WomanShirtsCardComponent,
+    WomanShirtsListComponent,
+    CheckoutComponent,
+    FilterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -86,7 +91,8 @@ import { AsideComponent } from './components/shop/aside/aside.component';
     NgxModule,
     FormsModule,
     ReactiveFormsModule,
-    FilesModule
+    FilesModule,
+    Ng5SliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

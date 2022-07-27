@@ -1,6 +1,7 @@
-import { TopTrend } from './../../../interfaces/top-trend';
 import { Component, OnInit } from '@angular/core';
 import  trends  from '../../../../assets/topTrend.json';
+import { TopTrend } from './../../../interfaces/top-trend';
+
 
 @Component({
   selector: 'app-top-trend-list',
