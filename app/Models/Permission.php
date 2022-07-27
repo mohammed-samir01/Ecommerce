@@ -18,7 +18,7 @@ class Permission extends EntrustPermission
         return $this->hasMany(Permission::class, 'parent', 'id');
     }
 
-    public function appeardChildren()
+    public function appearedChildren()
     {
         return $this->hasMany(Permission::class, 'parent', 'id')->where('appear',1);
     }
