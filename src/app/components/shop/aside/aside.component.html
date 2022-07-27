@@ -1,0 +1,101 @@
+<!-- SHOP SIDEBAR-->
+
+        <a routerLink="shop"><h1 class="text-uppercase mb-4"><strong>Categories</strong></h1></a>
+        <div class="cate1">
+            <h3 class="py-2 px-4 bg-dark text-white mb-3"><strong class="text-uppercase">Fashion &amp; Acc</strong></h3>
+            <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal">
+                <li class="mb-2 mx-4"><a class="text-muted" [routerLink]="'WomanClothes'">Women's T-Shirts</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Men's T-Shirts</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Dresses</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Novelty socks</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Women's sunglasses</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Men's sunglasses</a></li>
+            </ul>
+        </div>
+
+        <div class="cate2">
+            <h3 class="py-2 px-4 bg-light mb-3"><strong class="text-uppercase">Health &amp; Beauty</strong></h3>
+            <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal">
+                <li class="mb-2 mx-4"><a class="text-muted" [routerLink]="'WomanClothes'">Shavers</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">bags</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Cosmetic</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Nail Art</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Skin Masks & Peels</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Korean cosmetics</a></li>
+            </ul>
+        </div>
+        
+        <div class="cate3">
+            <h3 class="py-2 px-4 bg-light mb-3"><strong class="text-uppercase">Electronics</strong></h3>
+            <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal">
+                <li class="mb-2 mx-4"><a class="text-muted" [routerLink]="'WomanClothes'">Electronics</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">USB Flash drives</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Headphones</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Portable speakers</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Cell Phone bluetooth headsets</a></li>
+                <li class="mb-2 mx-4"><a class="text-muted" routerLink="">Keyboards</a></li>
+            </ul>
+        </div>
+        
+        <div class="valuerange">
+            <h1 class="text-uppercase mb-4"><strong>Price range</strong></h1>
+            <div class="row mt-2 ">
+                <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" class="my-5  " ></ng5-slider>
+            </div>
+        </div>
+        
+        <div class="show mb-4 ">
+            <h1 class="text-uppercase mb-4"><strong>Show only</strong></h1>
+            <div class="form-check mb-2 d-flex align-items-center mx-4">
+                <input class="form-check-input p-2 me-3" id="customCheck1" type="checkbox">
+                <label class="form-check-label" for="customCheck1">Returns Accepted</label>
+            </div>
+        
+            <div class="form-check mb-2 d-flex align-items-center mx-4">
+                <input class="form-check-input p-2 me-3" id="customCheck2" type="checkbox">
+                <label class="form-check-label" for="customCheck2">Returns Accepted</label>
+            </div>
+        
+            <div class="form-check mb-2 d-flex align-items-center mx-4">
+                <input class="form-check-input p-2 me-3" id="customCheck3" type="checkbox">
+                <label class="form-check-label" for="customCheck3">Completed Items</label>
+            </div>
+        
+            <div class="form-check mb-2 d-flex align-items-center mx-4">
+                <input class="form-check-input p-2 me-3" id="customCheck4" type="checkbox">
+                <label class="form-check-label" for="customCheck4">Sold Items</label>
+            </div>
+        
+            <div class="form-check mb-2 d-flex align-items-center mx-4">
+                <input class="form-check-input p-2 me-3" id="customCheck5" type="checkbox">
+                <label class="form-check-label" for="customCheck5">Deals & Savings</label>
+            </div>
+        
+            <div class="form-check mb-2 d-flex align-items-center mx-4">
+                <input class="form-check-input p-2 me-3" id="customCheck6" type="checkbox">
+                <label class="form-check-label" for="customCheck6">Authorized Seller</label>
+            </div>
+        </div>
+        
+        <div class="buyingFormat mb-4">
+            <h1 class="text-uppercase mb-4"><strong>Buying format</strong></h1>
+            <div class="form-check mx-4">
+                <input class="form-check-input p-2 me-3" id="customRadio1" type="radio" name="customRadio">
+                <label class="form-check-label" for="customRadio1">All Listings</label>
+            </div>
+            <div class="form-check mx-4">
+                <input class="form-check-input p-2 me-3" id="customRadio2" type="radio" name="customRadio">
+                <label class="form-check-label" for="customRadio2">Best Offer</label>
+            </div>
+            <div class="form-check mx-4">
+                <input class="form-check-input p-2 me-3" id="customRadio3" type="radio" name="customRadio">
+                <label class="form-check-label" for="customRadio3">Auction</label>
+            </div>
+            <div class="form-check mx-4">
+                <input class="form-check-input p-2 me-3" id="customRadio4" type="radio" name="customRadio">
+                <label class="form-check-label" for="customRadio4">Buy It Now</label>
+            </div>
+
+
+
+

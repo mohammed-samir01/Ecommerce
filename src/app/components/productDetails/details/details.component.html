@@ -1,0 +1,67 @@
+<div class="row pt-5">
+    <div class="col-lg-6 my-3 h-100">
+        <!-- PRODUCT SLIDER-->
+        <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-sm-0 w-100">
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" >
+                        <img src="../../../../assets/images/product-detail-1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item" *ngFor ="let image of images">
+                        <img src="{{image.img}}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mt-3">
+        <ul class="list-inline">
+            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
+        </ul>
+        <h1 class="h1">Red digital smartwatch</h1>
+        <p class="text-muted lead">$250</p>
+        <p class="text-small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget
+            euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus.
+            Vestibulum ultricies aliquam convallis.</p>
+        <div class="row align-items-stretch mb-4">
+            <div class="col-sm-5 pr-sm-0">
+                <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
+                    <span class="text-uppercase text-gray me-4 no-select" style="letter-spacing: 0.1em;">Quantity</span>
+                    <div class="quantity">
+                        <button class="dec-btn p-0" (click)="minus()"><i class="fas fa-caret-left" ></i></button>
+                        <input class="form-control border-0 shadow-0 p-0" type="text" [value]="quentity">
+                        <button class="inc-btn p-0" (click)="plus()"><i class="fas fa-caret-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 pl-sm-0"><a
+                    class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
+                    href="cart.html">Add to cart</a></div>
+        </div><a class="btn btn-link text-dark p-0 mb-4" href="#"><i class="far fa-heart fa-1x me-2"></i> Add to Favorite
+            list</a><br>
+        <ul class="list-unstyled  d-inline-block">
+            <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase" style="letter-spacing: 0.1em;">SKU:</strong><span
+                    class="ms-2 text-muted">039</span></li>
+            <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase text-dark" style="letter-spacing: 0.1em;">Category:</strong><a
+                    class="reset-anchor ms-2 text-muted" href="#" style="text-decoration: none;">Demo Products</a></li>
+            <li class="px-3 py-2 mb-1 bg-white "><strong class="text-uppercase text-dark" style="letter-spacing: 0.1em;">Tags:</strong><a
+                    class="reset-anchor ms-2 text-muted" href="#" style="text-decoration: none;">Innovation</a></li>
+        </ul>
+    </div>
+</div>
+
+
