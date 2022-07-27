@@ -46,9 +46,7 @@
 
                 @if($menu->appearedChildren && count($menu->appearedChildren) > 0 )
 
-                    <div id="collapse_{{ $menu->route }}"
-                         class="collapse {{in_array($menu->parent_show,[getParentShowOf($current_page),getParentOf($current_page)]) ? 'show' : null }}"
-                         aria-labelledby="heading_{{ $menu->route }}"
+                    <div id="collapse_{{ $menu->route }}" class="collapse {{in_array($menu->parent_show,[getParentShowOf($current_page),getParentOf($current_page)]) ? 'show' : null }}" aria-labelledby="heading_{{ $menu->route }}"
                          data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             @foreach($menu->appearedChildren as $sub_menu)
