@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-class Roles
+class  Roles
 {
     /**
      * Handle an incoming request.

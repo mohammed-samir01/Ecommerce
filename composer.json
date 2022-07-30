@@ -8,14 +8,18 @@
         "php": "^8.0.2",
         "cviebrock/eloquent-sluggable": "^9.0",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
+        "intervention/imagecache": "^2.5",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "mindscms/entrust": "^2.5",
+        "nicolaslopezj/searchable": "^1.13",
         "predis/predis": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",

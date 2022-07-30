@@ -21,7 +21,7 @@
 </head>
 <body class="bg-gradient-primary">
 
-<div class="container">
+<div class="container" style="height: 100vh">
     @yield('content')
 </div>
 
