@@ -24,6 +24,10 @@
     <link href="{{asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{asset('backend/vendor/bootstrap-fileinput/css/fileinput.min.css')}}">
+
     @yield('style')
 
 </head>
@@ -44,7 +48,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @include('partial.backend.flash')
                     @yield('content')
 
                 </div>
@@ -77,6 +81,13 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{asset('backend/js/sb-admin-2.min.js')}}"></script>
+<script src="{{asset('backend/js/custom.js')}}"></script>
+<script src="{{ asset('backend/vendor/bootstrap-fileinput/js/plugins/piexif.min.js') }}"></script>
+<script src="{{ asset('backend/vendor/bootstrap-fileinput/js/plugins/sortable.min.js') }}"></script>
+<script src="{{ asset('backend/vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+<script src="{{ asset('backend/vendor/bootstrap-fileinput/themes/bs5/theme.min.js') }}"></script>
+
+
 
 @yield('script')
 

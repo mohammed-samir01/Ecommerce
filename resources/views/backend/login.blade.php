@@ -1,7 +1,7 @@
 @extends('layouts.admin-auth')
 
 @section('content')
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center h-100">
 
         <div class="col-xl-10 col-lg-12 col-md-9">
 
