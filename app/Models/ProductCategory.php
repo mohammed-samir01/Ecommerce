@@ -9,14 +9,10 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class ProductCategory extends Model
 {
-    use HasFactory , Sluggable ,SearchableTrait;
+    use HasFactory, Sluggable, SearchableTrait;
 
     protected $guarded = [];
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
+
     public function sluggable(): array
     {
         return [
@@ -26,25 +22,16 @@ class ProductCategory extends Model
         ];
     }
 
-    /**
-     * Searchable rules.
-     *
-     * @var array
-     */
     protected $searchable = [
-        /**
-         * Columns and their priority in search results.
-         * Columns with higher values are more important.
-         * Columns with equal values have equal importance.
-         *
-         * @var array
-         */
-
         'columns' => [
             'product_categories.name' => 10,
-        ],
+        ]
     ];
 
+    public function status()
+    {
+        return $this->status ? 'Active' : 'Inactive';
+    }
 
     public function parent()
     {
@@ -58,7 +45,7 @@ class ProductCategory extends Model
 
     public function appearedChildren()
     {
-        return $this->hasMany(ProductCategory::class, 'parent_id', 'id')->where('status',true);
+        return $this->hasMany(ProductCategory::class, 'parent_id', 'id')->where('status', true);
     }
 
     public static function tree( $level = 1 )
@@ -66,15 +53,14 @@ class ProductCategory extends Model
         return static::with(implode('.', array_fill(0, $level, 'children')))
             ->whereNull('parent_id')
             ->whereStatus(true)
-            ->whereSidebarLink(1)
             ->orderBy('id', 'asc')
             ->get();
     }
 
-
-    public function products(){
-
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
+
 
 }

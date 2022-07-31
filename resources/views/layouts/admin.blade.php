@@ -28,6 +28,9 @@
 
     <link rel="stylesheet" href="{{asset('backend/vendor/bootstrap-fileinput/css/fileinput.min.css')}}">
 
+    <link rel="stylesheet" href="{{ asset('backend/vendor/summernote/summernote-bs4.min.css') }}">
+
+
     @yield('style')
 
 </head>
@@ -87,6 +90,7 @@
 <script src="{{ asset('backend/vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
 <script src="{{ asset('backend/vendor/bootstrap-fileinput/themes/bs5/theme.min.js') }}"></script>
 
+<script src="{{ asset('backend/vendor/summernote/summernote-bs4.min.js') }}"></script>
 
 
 @yield('script')
