@@ -79,7 +79,7 @@
       </div>
       
     </div>
-    <div class="col-9">
+    <div class="col-9" *ngIf="!spinner">
       <div class="row">
         <div class="col-lg-4 col-sm-6" *ngFor="let item of  products">
           <div class="product text-center">
@@ -100,6 +100,10 @@
       </div>
     </div>
   </div>
+  <!-- <div class="text-center w-100" *ngIf="spinner">
+    <app-spinner></app-spinner>
+  </div> -->
+
 </div>
 
 

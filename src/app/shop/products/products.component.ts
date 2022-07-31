@@ -10,6 +10,7 @@ export class ProductsComponent implements OnInit {
   categories :any[] =[];
   //product
   products :any[] =[];
+  spinner :boolean= false;
   constructor(private productService : ShopService) { }
 
   ngOnInit(): void {
@@ -21,8 +22,10 @@ export class ProductsComponent implements OnInit {
   }
     //product
   getProducts(){
+     this.spinner=true;
      this.productService.getAllProducts().subscribe((res:any)=>{
-      this.products = res;
+     this.products = res;
+     this.spinner=false;
      })
   }
 getProductCategory(keyword:string){
