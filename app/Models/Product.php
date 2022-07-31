@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Product extends Model
@@ -27,6 +28,23 @@ class Product extends Model
         ];
     }
 
+    protected $searchable = [
+        'columns' => [
+            'products.name' => 10,
+            'products.description' => 10,
+        ]
+    ];
+
+    public function status()
+    {
+        return $this->status ? 'Active' : 'Inactive';
+    }
+
+    public function featured()
+    {
+        return $this->featured ? 'Yes' : 'No';
+    }
+
     public function category()
     {
 
@@ -37,6 +55,12 @@ class Product extends Model
     {
 
         return $this->MorphToMany(Tag::class,'taggable');
+    }
+
+    public function firstmedia(): MorphOne
+    {
+
+        return $this->MorphOne(Media::class,'mediable')->orderBy('file_sort','asc');
     }
 
     public function media(): MorphMany
