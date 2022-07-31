@@ -1,4 +1,3 @@
-// import { TopTrend } from './../../../interfaces/top-trend';
 import { Component, OnInit , Input } from '@angular/core';
 import { TopTrend } from '../../../interfaces/top-trend';
 import { Router } from '@angular/router';
