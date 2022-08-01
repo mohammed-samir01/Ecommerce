@@ -66,7 +66,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
     SharedModule,
     ShopModule,
 

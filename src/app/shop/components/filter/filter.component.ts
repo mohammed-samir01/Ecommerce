@@ -1,7 +1,6 @@
-import { Products } from './../../../interfaces/Products';
-import { Product } from './../../../models/product';
-import { Component, OnInit } from '@angular/core';
-import allProduct  from '../../../../assets/Products.json';
+
+import { Component, OnInit, Input}  from '@angular/core';
+
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -9,9 +8,11 @@ import allProduct  from '../../../../assets/Products.json';
 })
 export class FilterComponent implements OnInit {
 
-  d : Array<Products> = allProduct;
-  count = (this.d).length;
 
+  @Input() numOfProducts : any = 0;
+  @Input() page : any = 0;
+  @Input() tableSize : any = 0;
+  @Input() pagesNumber: number = 0;
   constructor() { }
 
   ngOnInit(): void {

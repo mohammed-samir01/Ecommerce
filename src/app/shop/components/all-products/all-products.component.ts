@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../services/shop.service';
-import { Options , LabelType } from 'ng5-slider';
+
 
 
 @Component({
@@ -12,47 +12,33 @@ export class AllProductsComponent implements OnInit {
 
   Products : any[] = []; 
   Categories : any[]=[];
-  count :number =0;
-  constructor(private service:ShopService) { }
+
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 9;
+  tableSizes: any = [3, 6, 9, 12];
+  pagesNumber: number = 1;
+
+  constructor(private service:ShopService) {
+
+   }
 
   ngOnInit(): void {
-    this.getProducts()
+    this.getProducts();
     this.getAllCate();
-    
   }
 
-  filters : Array<string> = ["Returns Accepted","Returns Accepted","Completed Items","Sold Items","Deals &amp; Savings","Authorized Seller"];
-  formats : Array<string> = ["All Listings","Best Offer","Auction","Buy It Now"];
-
-
-  minValue: number = 1000;
-  maxValue: number = 4000;
-  options: Options = {
-    floor: 0,
-    ceil: 5000,
-    translate: (value: number, label: LabelType): string => {
-      switch (label) {
-        case LabelType.Low:
-          return '$' + value;
-        case LabelType.High:
-          return '$' + value;
-        default:
-          return '$' + value;
-      }
-    }
-  };
 
   getProducts(){
     this.service.getAllProducts().subscribe((res:any) => {
-      this.Products= res;
-      this.count = (this.Products).length;
+    this.Products= res;
+    this.count = (this.Products).length;
     })
   }
 
   getAllCate(){
     this.service.getAllCate().subscribe((res:any) => {
-      this.Categories= res;
-      console.log(this.Categories);
+    this.Categories= res;
     })
   }
 
@@ -64,8 +50,20 @@ export class AllProductsComponent implements OnInit {
 
     getProductsByCate(keyword:string){
     this.service.getProductsByCate(keyword).subscribe((res:any) => {
-      this.Products= res;
-      console.log(this.Products);
+    this.Products= res;
     })
+
+  }
+
+
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getAllCate();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getAllCate();
   }
 }

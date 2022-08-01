@@ -6,12 +6,14 @@ import { NgxModule } from './ngx/ngx.module';
 import { FilesModule } from './files/files.module';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { RouterModule } from '@angular/router';
   exports:[
     NavbarComponent,
     FooterComponent,
+    SpinnerComponent,
     NgxModule,
     FilesModule,
     MaterialModule,
