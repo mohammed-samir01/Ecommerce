@@ -1,0 +1,96 @@
+[
+  {
+    "id": 1,
+    "title": "Women's Colthes",
+    "cate": "FASHION"
+  },
+  {
+    "id": 2,
+    "title": "Men's Colthes",
+    "cate": "FASHION"
+  },
+  {
+    "id": 3,
+    "title": "Women's Shoes",
+    "cate": "FASHION"
+  },
+  {
+    "id": 4,
+    "title": "Men's Shoes",
+    "cate": "FASHION"
+  },
+  {
+    "id": 5,
+    "title": "Women's Sunglasses",
+    "cate": "FASHION"
+  },
+  {
+    "id": 6,
+    "title": "Men's Sunglasses",
+    "cate": "FASHION"
+  },
+  {
+    "id": 7,
+    "title": "Shavers",
+    "cate": "BEAUTY"
+  },
+  {
+    "id": 8,
+    "title": "Bags",
+    "cate": "BEAUTY"
+  },
+    {
+      "id": 9,
+      "title": "Cosmetic",
+      "cate": "BEAUTY"
+    },
+  {
+    "id": 10,
+    "title": "Nail Art",
+    "cate": "BEAUTY"
+  },
+    {
+      "id": 11,
+      "title": "Skin Masks & Peels",
+      "cate": "BEAUTY"
+    },
+  {
+    "id": 12,
+    "title": "USB Flash drives",
+    "cate": "ELECTRONICS"
+  },
+  {
+    "id": 13,
+    "title": "Headphones",
+    "cate": "ELECTRONICS"
+  },
+    {
+      "id": 14,
+      "title": "Portable speakers",
+      "cate": "ELECTRONICS"
+    },
+  {
+    "id": 15,
+    "title": "Cell Phone bluetooth headsets",
+    "cate": "ELECTRONICS"
+  },
+  {
+    "id": 16,
+    "title": "Keyboards",
+    "cate": "ELECTRONICS"
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+

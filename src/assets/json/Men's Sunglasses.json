@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Fashion Oversized Polarized Sunglasses For Men Driver Sunglasses",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/77/269512/1.jpg?2931",
+    "price": "$450",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Sunglasses",
+    "status": "none"
+  },
+  {
+    "id": 2,
+    "title": "Polarized Sunglasses Men/Women Driving Square Frame SunGlasses",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/85/509241/1.jpg?8224",
+    "price": "$199",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Sunglasses",
+    "status": "sale"
+  },
+  {
+    "id": 3,
+    "title": "Skinnydip London rectangular frame sunglasses",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/27/315642/1.jpg?8515",
+    "price": "$300",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Sunglasses",
+    "status": "none"
+  },
+  {
+    "id": 4,
+    "title": "Vegas Men's Sunglasses - V2040",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/64/946912/1.jpg?5492",
+    "price": "$400",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Sunglasses",
+    "status": "none"
+  },
+  {
+    "id": 5,
+    "title": "Men Retro Fashion Aluminum Magnesium Frame UV400 Polarized Sunglasses",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/27/315642/1.jpg?8515",
+    "price": "$145",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Sunglasses",
+    "status": "new"
+  },
+  {
+    "id": 6,
+    "title": "Fashionable Sunglasses -Black ",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/26/886691/1.jpg?2631",
+    "price": "$120",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Sunglasses",
+    "status": "sold"
+  }
+]

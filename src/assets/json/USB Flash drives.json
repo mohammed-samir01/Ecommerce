@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Excepro 3 In 1 OTG USB Flash Drive - 32GB - For PC/IPhone/ Android",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/36/91666/1.jpg?9827",
+    "price": "$350",
+    "category": "ELECTRONICS",
+    "subcategory": "USB Flash drives",
+    "status": "none"
+  },
+  {
+    "id": 2,
+    "title": "Kingston 128GB Exodia USB 3.2 Flash - DTX/128GB",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/69/356802/1.jpg?8671",
+    "price": "$250",
+    "category": "ELECTRONICS",
+    "subcategory": "USB Flash drives",
+    "status": "none"
+  },
+  {
+    "id": 3,
+    "title": "Flash Drive Memory Stick Candy Color USB 2.0 - 64MB",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/24/595332/1.jpg?0310",
+    "price": "$200",
+    "category": "ELECTRONICS",
+    "subcategory": "USB Flash drives",
+    "status": "sale"
+  },
+  {
+    "id": 4,
+    "title": "Sandisk Ultra FIT USB 3.1SDCZ430032GG46",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/31/53978/1.jpg?4638",
+    "price": "$150",
+    "category": "ELECTRONICS",
+    "subcategory": "USB Flash drives",
+    "status": "sold"
+  },
+  {
+    "id": 5,
+    "title": "Eaget Eaget U96 64GB USB 3.0 Metal OTG Flash Drive",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/65/505202/1.jpg?1718",
+    "price": "$120",
+    "category": "ELECTRONICS",
+    "subcategory": "USB Flash drives",
+    "status": "new"
+  }
+]

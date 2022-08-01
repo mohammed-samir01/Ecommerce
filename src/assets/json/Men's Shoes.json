@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Casual Flat Sneakers Shoes For Kids - White",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/45/889122/1.jpg?9787",
+    "price": "$199",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Shoes",
+    "status": "none"
+  },
+  {
+    "id": 2,
+    "title": "Adidas VL COURT 2.0 SHOES VL COURT 2.0 SHOES DA9868",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/95/328512/1.jpg?4575",
+    "price": "$210",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Shoes",
+    "status": "sale"
+  },
+  {
+    "id": 3,
+    "title": "MEGA Shoes Lightweight sports shoes - washable - black/red EVA sole",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/75/604742/1.jpg?8170",
+    "price": "$160",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Shoes",
+    "status": "new"
+  },
+  {
+    "id": 4,
+    "title": "Lace-up easy-to-wear shoes - white color",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/91/313622/1.jpg?6752",
+    "price": "$300",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Shoes",
+    "status": "none"
+  },
+  {
+    "id": 5,
+    "title": "Desert Lace-Up Flat Sneakers - Black",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/11/416862/1.jpg?3109",
+    "price": "$149",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Shoes",
+    "status": "none"
+  },
+  {
+    "id": 6,
+    "title": "Casual Shoes",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/11/416862/1.jpg?3109",
+    "price": "$120",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Shoes",
+    "status": "sold"
+  }
+]

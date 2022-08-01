@@ -1,0 +1,60 @@
+<div class="row mt-5">
+
+    <div class="col-lg-3 order-2 order-lg-1">
+        <app-aside [data]="Categories" (seletedValue)="filter($event)"></app-aside>
+    </div>
+
+    <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
+
+        <app-filter [numOfProducts]="count" [tableSize]="tableSize" [page]="page" [pagesNumber]="pagesNumber">
+        </app-filter>
+
+        <div class="row" >
+            <div class="card col-xl-4 col-lg-4 col-sm-6" *ngFor="let Product of Products | paginate : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+                }; let i = index">
+                <!-- <div class="product text-center">
+                    <div class="position-relative mb-3">
+                        <ng-container [ngSwitch]="true">
+                            <div class="badge text-bg-warning px-3 py-2 fa-1x"
+                                *ngSwitchCase="product.status === 'sale'">
+                                Sale</div>
+                            <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="product.status === 'sold'">
+                                Sold
+                            </div>
+                            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="product.status === 'new'">New
+                            </div>
+                            <div *ngSwitchDefault></div>
+                        </ng-container>
+                        <a class="d-block" routerLink="product-details.html">
+                            <img class="img-fluid" src="{{product.image}}" alt="..."></a>
+
+                        <div class="product-overlay">
+                            <ul class="mb-0 list-inline">
+                                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark"
+                                        routerLink="#"><i class="far fa-heart"></i></a></li>
+                                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark"
+                                        routerLink="cart.html">Add
+                                        to cart</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3> <a class="reset-anchor" routerLink="product-details.html">{{product.title}}</a></h3>
+                    <h4> <a class="reset-anchor" routerLink="product-details.html">{{product.category}}</a></h4>
+                    <p class="small text-muted fa-1x">{{product.price}}</p>
+                </div> -->
+                
+                <app-product-item [Product]="Product"></app-product-item>
+
+            </div>
+
+            <div class="d-flex justify-content-center mt-3">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+
+</div>
