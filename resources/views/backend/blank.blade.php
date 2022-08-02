@@ -112,7 +112,7 @@
                         <h6 class="collapse-header">Login Screens:</h6>
                         <a class="collapse-item" href="login.blade.php">Login</a>
                         <a class="collapse-item" href="register.blade.php">Register</a>
-                        <a class="collapse-item" href="forgot-password.blade.php">Forgot Password</a>
+                        <a class="collapse-item" href="forget-password.blade.php">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="404.html">404 Page</a>
