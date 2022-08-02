@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\ProductCategoriesController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductCouponController;
 use App\Http\Controllers\Backend\ProductReviewController;
+use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +41,11 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::resource('tags', TagController::class);
         Route::resource('product_coupons', ProductCouponController::class);
         Route::resource('product_reviews', ProductReviewController::class);
+        Route::post('/customers/remove-image', [CustomerController::class, 'remove_image'])->name('customers.remove_image');
+        Route::resource('customers', CustomerController::class);
+        Route::post('/supervisors/remove-image', [SupervisorController::class, 'remove_image'])->name('supervisors.remove_image');
+        Route::resource('supervisors', SupervisorController::class);
+
 
 
 
