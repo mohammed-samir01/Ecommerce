@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <livewire:conversations.conversation-list />
                 </div>
             </div>
         </div>

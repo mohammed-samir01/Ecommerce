@@ -10,6 +10,6 @@ class ConversationsController extends Controller
 {
     public function index(){
         $conversations=Conversation::get();
-        return view('conversations.index',compact('conversations'));
+        return view('conversations.index'/* ,compact('conversations') */);
     }
 }
