@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Models\User;
-
+use App\Models\conversation;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -43,6 +44,24 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('123123123'),
             'remember_token'=>Str::random(10),
         ]);
-       
+        conversation::create([
+            'name'=>'clothes',
+            'uuid'=>Str::uuid(),
+            'user_id'=>1,
+
+        ]);
+        conversation::create([
+            'name'=>'food',
+            'uuid'=>Str::uuid(),
+            'user_id'=>1,
+
+        ]);
+        conversation::create([
+            'name'=>'school',
+            'uuid'=>Str::uuid(),
+            'user_id'=>1,
+
+        ]);
+
     }
 }
