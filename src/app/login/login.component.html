@@ -1,0 +1,55 @@
+<section class="vh-auto">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="../../assets/login.png" alt="Sample image" width="350px" height="350px"/>
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form [formGroup]="loginForm" (ngSubmit)="handelFormSubmit()">
+                    <div>
+                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">{{'LOGIN' | translate}}</p>
+                    </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="email" class="form-control form-control-lg" placeholder="{{'Enter a valid email address' | translate}}" formControlName="email" />
+                        <label class="form-label mt-2" for="email">{{"YOUR EMAIL" | translate}}</label>
+                        <div id="email" class="form-text text-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
+                            <small class="text-danger" *ngIf="loginForm.controls['email'].errors?.['required']">{{"REQUIRED" | translate}}</small>
+                            <small class="text-danger" *ngIf="loginForm.controls['email'].errors?.['email']">{{"Email is Not Valid" | translate}}</small>
+                        </div>
+
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" id="password" class="form-control form-control-lg" placeholder="{{'Enter password' | translate}}" formControlName="password" />
+                        <label class="form-label mt-2" for="password">{{"PASSWORD" | translate}}</label>
+                        <div id="password" class="form-text text-danger" *ngIf="loginForm.controls['password'].touched &&loginForm.controls['password'].invalid">
+                            <small class="text-danger" *ngIf="loginForm.controls['password'].errors?.['required']">{{"REQUIRED" | translate}}</small>
+                            <small class="text-danger" *ngIf="loginForm.controls['password'].errors?.['minlength']"> {{"MinLength is 3 characters" | translate}} </small>
+                            <small class="text-danger" *ngIf="loginForm.controls['password'].errors?.['maxlength']"> {{"maxLength is 50" | translate}} </small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label class="form-check-label" for="form2Example3"> {{"Remember me" | translate}} </label>
+                        </div>
+                        <a href="#!" class="text-body"> {{"Forgot password?" | translate}} </a>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem" [disabled]="loginForm.invalid"> {{"LOGIN" | translate}} </button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">
+                            {{"Don't have an account?" | translate}}
+                            <a routerLink="../register" class="link-primary m-2"> {{"REGISTER" | translate}} </a>
+                        </p>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
