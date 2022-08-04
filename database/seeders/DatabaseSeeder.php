@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\conversation;
+use Illuminate\Support\Facades\DB;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,6 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>1,
+            'user_id'=>1,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
         User::create([
             'name'=>'salma shehata',
             'email'=>'salmaemam52@gmail.com',
