@@ -1,5 +1,5 @@
  <div>
-    @forelse($conversations as $conversation)
+@foreach($conversations as $conversation)
 <a class="list-group-item list-group-item-action active text-white rounded-0">
               <div class="media"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
                 <div class="media-body ml-4">
@@ -10,8 +10,8 @@
                 </div>
               </div>
             </a>
-@empty
+
     <p class="text-muted">There is no conversations</p>
-@endforelse
+@endforeach
 </div>
 

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class conversation extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $dates=['last_message_at'];
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }
