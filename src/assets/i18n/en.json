@@ -1,5 +1,23 @@
 {
     "LOGIN":"Login",
     "REGISTER":"Register",
-    "SHOP":"Shop"
+    "SHOP":"Shop",
+
+    "YOUR NAME":"Your name",
+    "YOUR EMAIL":"Your email",
+    "PASSWORD":"Password",
+    "REPEAT YOUR PASSWORD":"Repeat your password",
+
+    "REQUIRED":"Required",
+    "IF YOU HAVE ACCOUNT":"If You Have Account",
+    "LOG IN":"Log in",
+
+    "Enter a valid email address":"Enter a valid email address",
+    "Email is Not Valid":"Email is Not Valid",
+    "Enter password":"Enter password",
+    "MinLength is 3 characters":"MinLength is 3 characters",
+    "maxLength is 50":"maxLength is 50",
+    "Remember me":"Remember me",
+    "Forgot password?":"Forgot password?",
+    "Don't have an account?":"Don't have an account?"
 }

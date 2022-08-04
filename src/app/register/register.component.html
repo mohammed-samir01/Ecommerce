@@ -6,7 +6,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register</p>
+                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">{{'REGISTER' | translate}}</p>
 
                             <form [formGroup]="registerForm" (ngSubmit)="handelFormSubmit()" class="mx-1 mx-md-4">
 
@@ -14,9 +14,9 @@
                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="text" id="fullName" class="form-control" formControlName="fullName">
-                                        <label class="form-label" for="fullName">Your Name</label>
+                                        <label class="form-label" for="fullName">{{"YOUR NAME" | translate}}</label>
                                         <div id="fullName" class="form-text text-danger" *ngIf="registerForm.controls['fullName'].touched && registerForm.controls['fullName'].invalid">
-                                            <small class="text-danger" *ngIf="registerForm.controls['fullName'].errors?.['required']">fullName is required</small>
+                                            <small class="text-danger" *ngIf="registerForm.controls['fullName'].errors?.['required']">{{"REQUIRED" | translate}}</small>
                                             <small class="text-danger" *ngIf="registerForm.controls['fullName'].errors?.['minlength']">Minlength is 3 characters </small>
                                             <small class="text-danger" *ngIf="registerForm.controls['fullName'].errors?.['maxlength']">maxlength is 20</small>
                                             <small class="text-danger" *ngIf="registerForm.controls['fullName'].errors?.['pattern']">Name is Not Valid</small>
@@ -28,9 +28,9 @@
                                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="email" id="email" class="form-control" formControlName="email" />
-                                        <label class="form-label" for="email">Your Email</label>
+                                        <label class="form-label" for="email">{{'YOUR EMAIL' | translate}}</label>
                                         <div id="email" class="form-text text-danger" *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].invalid">
-                                            <small class="text-danger" *ngIf="registerForm.controls['email'].errors?.['required']">email is required</small>
+                                            <small class="text-danger" *ngIf="registerForm.controls['email'].errors?.['required']">{{"REQUIRED" | translate}}</small>
                                             <small class="text-danger" *ngIf="registerForm.controls['email'].errors?.['pattern']">Email is Not Valid</small>
 
                                         </div>
@@ -41,9 +41,9 @@
                                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="password" id="password" class="form-control" formControlName="password" />
-                                        <label class="form-label" for="password">Password</label>
+                                        <label class="form-label" for="password">{{'PASSWORD' | translate}}</label>
                                         <div id="password" class="form-text text-danger" *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].invalid">
-                                            <small class="text-danger" *ngIf="registerForm.controls['password'].errors?.['required']">password is required</small>
+                                            <small class="text-danger" *ngIf="registerForm.controls['password'].errors?.['required']">{{"REQUIRED" | translate}}</small>
                                             <small class="text-danger" *ngIf="registerForm.controls['password'].errors?.['minlength']">Minlength is 6 characters </small>
                                             <small class="text-danger" *ngIf="registerForm.controls['password'].errors?.['maxlength']">maxlength is 20</small>
                                             <small class="text-danger" *ngIf="registerForm.controls['password'].errors?.['pattern']">Password is Not Valid</small>
@@ -55,9 +55,9 @@
                                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                     <div class="form-outline flex-fill mb-0">
                                         <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword" />
-                                        <label class="form-label" for="confirmPassword">Repeat your password</label>
+                                        <label class="form-label" for="confirmPassword">{{'REPEAT YOUR PASSWORD' | translate}}</label>
                                         <div id="confirmPassword" class="form-text text-danger" *ngIf="registerForm.controls['password'].touched && registerForm.controls['confirmPassword'].invalid">
-                                            <small class="text-danger" *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">confirmPassword is required</small>
+                                            <small class="text-danger" *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">{{"REQUIRED" | translate}}</small>
                                             <small class="text-danger" *ngIf="registerForm.controls['confirmPassword'].errors?.['pattern']">Password is Not Match</small>
 
                                         </div>
@@ -65,11 +65,11 @@
                                 </div>
 
                                 <div class="form-check d-flex justify-content-center mb-5">
-                                    <small class="mx-3"> IF You Have Acoount </small> <a routerLink="../login">Log in</a>
+                                    <small class="mx-3"> {{"IF YOU HAVE ACCOUNT" | translate}} </small> <a routerLink="../login">{{"LOG IN" | translate}}</a>
                                 </div>
 
                                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="registerForm.invalid">Register</button>
+                                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="registerForm.invalid">{{'REGISTER' | translate}}</button>
                                 </div>
 
                             </form>

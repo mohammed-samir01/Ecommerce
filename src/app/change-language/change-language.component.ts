@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-change-language',
+  templateUrl: './change-language.component.html',
+  styleUrls: ['./change-language.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class ChangeLanguageComponent implements OnInit {
 
   constructor(public translate: TranslateService) { }
 

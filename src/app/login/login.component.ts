@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
+  // add translate service in constructor
   constructor( public translate: TranslateService ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
