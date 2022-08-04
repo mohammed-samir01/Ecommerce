@@ -23,6 +23,24 @@ class DatabaseSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>1,
+            'user_id'=>2,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>2,
+            'user_id'=>2,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>2,
+            'user_id'=>2,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
         User::create([
             'name'=>'salma shehata',
             'email'=>'salmaemam52@gmail.com',
