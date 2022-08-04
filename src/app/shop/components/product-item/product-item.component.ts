@@ -1,4 +1,4 @@
-
+import { FavoriteService } from './../../../components/favorites/service/favorite.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +8,22 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductItemComponent implements OnInit {
 
+  isFavorite : boolean = false;
   @Input() Product : any =[];
-  constructor() { }
+  constructor(private  favorite : FavoriteService) { }
 
   ngOnInit(): void {
+    // this.removeFromFavorite(this.Product);
   }
 
+  onFavoriteClick(Product :any){
+    this.isFavorite = !this.isFavorite;
+    this.favorite.addToFavorite(Product);
+    console.log(Product);
+  }
+
+  removeFromFavorite(Product :any){
+    this.isFavorite = this.isFavorite;
+    this.favorite.removeFromFavorite(Product);
+  }
 }

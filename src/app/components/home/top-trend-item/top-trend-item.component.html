@@ -10,7 +10,7 @@
             </div>
             <div *ngSwitchDefault></div>
         </ng-container>
-        <a class="d-block" routerLink="product-details.html">
+        <a class="d-block" routerLink="../product-details/{{product.id}}">
             <img class="img-fluid w-100" src="{{product.image}}" alt="..."></a>
 
         <div class="product-overlay">
@@ -22,7 +22,7 @@
             </ul>
         </div>
     </div>
-    <h3> <a class="reset-anchor" routerLink="product-details.html">{{product.title}}</a></h3>
-    <h4> <a class="reset-anchor" routerLink="product-details.html">{{product.category}}</a></h4>
+    <h3> <a class="reset-anchor" routerLink="../product-details/{{product.id}}">{{product.title}}</a></h3>
+    <h4> <a class="reset-anchor" routerLink="../product-details/{{product.id}}">{{product.category}}</a></h4>
     <p class="small text-muted fa-1x">{{product.price}}</p>
 </div>

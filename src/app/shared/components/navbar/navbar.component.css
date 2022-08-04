@@ -12,9 +12,9 @@ nav{
 }
 .nav-link{
     font-size: 1rem;
-        font-weight: 600!important;
-        font-family: "Libre Franklin", sans-serif;
-        letter-spacing: 0.1em;
+    font-weight: 600!important;
+    font-family: "Libre Franklin", sans-serif;
+    letter-spacing: 0.1em;
 }
 
 .nav-link:hover {

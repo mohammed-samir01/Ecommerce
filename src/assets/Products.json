@@ -597,7 +597,7 @@
   },
   {
     "id": 67,
-    "title": "Fire  Lens Sunglasses",
+    "title": "Fire Lens Sunglasses",
     "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/61/157812/1.jpg?8771",
     "price": "$350",
     "category": "FASHION & ACC",
@@ -630,24 +630,6 @@
     "category": "HEALTH & BEAUTY",
     "subcategory": "Cosmetic",
     "status": "new"
-  },
-  {
-    "id": 61,
-    "title": "Swimmer",
-    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/Swimwear_300_x_300.jpg",
-    "price": "$120",
-    "category": "FASHION & ACC",
-    "subcategory": "Men's Shoes",
-    "status": "sold"
-  },
-  {
-    "id": 62,
-    "title": "Vegas Skin Masks & Peels - V2040",
-    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/64/946912/1.jpg?5492",
-    "price": "$400",
-    "category": "HEALTH & BEAUTY",
-    "subcategory": "Skin Masks & Peels",
-    "status": "none"
   },
   {
     "id": 73,
