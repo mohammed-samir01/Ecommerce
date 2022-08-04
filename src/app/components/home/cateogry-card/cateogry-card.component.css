@@ -1,0 +1,29 @@
+.category-item {
+  display: block;
+  position: relative;
+  color: #343a40;
+  transition: all 0.3s;
+}
+
+.category-item img {
+  transition: all 0.3s;
+}
+
+.category-item-title {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.07);
+  font-size: 0.8rem;
+}
+
+.category-item:hover img {
+  opacity: 0.7;
+}

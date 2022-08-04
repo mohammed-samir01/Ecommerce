@@ -1,0 +1,47 @@
+[
+  {
+    "id": 20,
+    "title": "Avon Care.  Peel Off Mask With Aloe & Cucumber",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/41/653151/1.jpg?9417",
+    "price": "$199",
+    "category": "HEALTH & BEAUTY",
+    "subcategory": "Skin Masks & Peels",
+    "status": "sale"
+  },
+  {
+    "id": 30,
+    "title": "Beesline Facial WhiTening Scrub - With Lemon Peel & Vitamin C - 8g",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/49/035042/1.jpg?9600",
+    "price": "$300",
+    "category": "HEALTH & BEAUTY",
+    "subcategory": "Skin Masks & Peels",
+    "status": "none"
+  },
+  {
+    "id": 3,
+    "title": "Vegas Skin Masks & Peels - V2040",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/64/946912/1.jpg?5492",
+    "price": "$400",
+    "category": "HEALTH & BEAUTY",
+    "subcategory": "Skin Masks & Peels",
+    "status": "none"
+  },
+  {
+    "id": 4,
+    "title": "My Way Jamila Purifying Mask Helps Remove Blackheads From the Nose - 30 gm - 2 Pieces + Gift Bag 39*39 cm",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/51/367142/1.jpg?1164",
+    "price": "$145",
+    "category": "HEALTH & BEAUTY",
+    "subcategory": "Skin Masks & Peels",
+    "status": "new"
+  },
+  {
+    "id": 5,
+    "title": "My Way Charcoal Mask to Remove Blackheads - 100 Ml - 2 Pieces ",
+    "image": "https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/36/664561/1.jpg?7409",
+    "price": "$120",
+    "category": "HEALTH & BEAUTY",
+    "subcategory": "Skin Masks & Peels",
+    "status": "sold"
+  }
+]

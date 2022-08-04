@@ -1,0 +1,56 @@
+[
+  {
+    "id": 5,
+    "title": "Dress",
+    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/Dresses_300_x_300.png",
+    "price": "$300",
+    "category": "FASHION & ACC",
+    "subcategory": "Women's Colthes",
+    "status": "none"
+  },
+  {
+    "id": 9,
+    "title": "Sweatshirt",
+    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/300/Mobile_App-(300px-x-300px)-copy-44_2.jpg",
+    "price": "$150",
+    "category": "FASHION & ACC",
+    "subcategory": "Women's Colthes",
+    "status": "none"
+  },
+  {
+    "id": 10,
+    "title": "T-shirt",
+    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/300/Tops-&-Tees.png",
+    "price": "$120",
+    "category": "FASHION & ACC",
+    "subcategory": "Women's Colthes",
+    "status": "new"
+  },
+  {
+    "id": 4,
+    "title": "Pocket",
+    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/300/Skirts.png",
+    "price": "$200",
+    "category": "FASHION & ACC",
+    "subcategory": "Women's Colthes",
+    "status": "none"
+  },
+  {
+    "id": 5,
+    "title": "jean",
+    "image": "https://eg.jumia.is/cms/categories-20/women-fashion/300/Artboard-1-copy-2.png",
+    "price": "$180",
+    "category": "FASHION & ACC",
+    "subcategory": "Women's Colthes",
+    "status": "sale"
+  },
+  {
+    "id": 6,
+    "title": "Cardigan",
+    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/New/Artboard_1.png",
+    "price": "$350",
+    "category": "FASHION & ACC",
+    "subcategory": "Women's Colthes",
+    "status": "new"
+  }
+]

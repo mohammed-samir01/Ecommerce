@@ -1,0 +1,57 @@
+[
+  {
+    "id": 13,
+    "title": "Logitech K400 Plus - Wireless Touch Keyboard Arabic & English",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/04/532161/1.jpg?2066",
+    "price": "$200",
+    "category": "ELECTRONICS",
+    "subcategory": "Keyboards",
+    "status": "none"
+  },
+  {
+    "id": 10,
+    "title": "I-ROCK KEYBOARD + MOUSE I-ROCK BA-90 WIRELESS",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/420252/1.jpg?1789",
+    "price": "$120",
+    "category": "ELECTRONICS",
+    "subcategory": "Keyboards",
+    "status": "new"
+  },
+  {
+    "id": 8,
+    "title": "Logitech MK345 COMFORT WIRELESS KEYBOARD AND MOUSE",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/66/859272/1.jpg?9172",
+    "price": "$350",
+    "category": "ELECTRONICS",
+    "subcategory": "Keyboards",
+    "status": "none"
+  },
+
+  {
+    "id": 60,
+    "title": "Vesta USB Wired Keyboard - For PC & Laptop + Mouse",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/96/325661/1.jpg?3925",
+    "price": "$150",
+    "category": "ELECTRONICS",
+    "subcategory": "Keyboards",
+    "status": "sold"
+  },
+  {
+    "id": 5,
+    "title": "ZERO ZR 2080 USB Keyboard RGB PRO GAMER - Black",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/08/934042/1.jpg?8728",
+    "price": "$139",
+    "category": "ELECTRONICS",
+    "subcategory": "Keyboards",
+    "status": "none"
+  },
+  {
+    "id": 6,
+    "title": "Gigamax Bluetooth Mini Keyboard - White",
+    "image": "https://eg.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/35/553202/1.jpg?6669",
+    "price": "$250",
+    "category": "ELECTRONICS",
+    "subcategory": "Keyboards",
+    "status": "none"
+  }
+]

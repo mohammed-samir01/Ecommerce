@@ -1,0 +1,29 @@
+h6{
+    letter-spacing: 0.1em;
+    font-size:1.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: white;
+}
+li{
+    margin: 1rem 0;
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-size:0.9rem;
+}
+span{
+    display: none;
+    margin-right: 0.2rem;
+}
+li a:hover{
+    color: white !important;
+    transition: 0.5s all;
+}
+li a:hover span{
+    color: white !important;
+    display: inline-block;
+    transition: 1s all;
+}
+

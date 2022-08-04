@@ -1,0 +1,34 @@
+<div class="product text-center">
+    <div class="position-relative mb-3">
+        <ng-container [ngSwitch]="true">
+            <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sale'">
+                Sale</div>
+            <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sold'">
+                Sold
+            </div>
+            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'">New
+            </div>
+            <div *ngSwitchDefault></div>
+        </ng-container>
+        <a class="d-block" routerLink="../product-details/{{Product.id}}">
+            <img class="img-fluid" src="{{Product.image}}" alt="..."></a>
+
+        <div class="product-overlay">
+            <ul class="mb-0 list-inline">
+
+                <li class="list-inline-item m-0 p-0">
+                    <a class="btn btn-sm btn-outline-dark">
+
+                        <i class="fa-heart" [class.far]="!isFavorite" [class.fa]="isFavorite"
+                            (click)="onFavoriteClick(Product)"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" [routerLink]="'cart'">Add
+                        to cart</a></li>
+            </ul>
+        </div>
+    </div>
+    <h4> <a class="reset-anchor" [routerLink]="'product-details'">{{Product.title}}</a></h4>
+    <p class="small text-muted fa-1x">{{Product.price}}</p>
+    <p class="small text-muted fa-1x">{{Product.subcategory}}</p>
+</div>

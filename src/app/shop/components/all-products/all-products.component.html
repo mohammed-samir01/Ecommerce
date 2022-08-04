@@ -1,0 +1,30 @@
+<div class="row mt-5">
+
+    <div class="col-lg-3 order-2 order-lg-1">
+        <app-aside [data]="Categories" (seletedValue)="filter($event)"></app-aside>
+    </div>
+
+    <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
+
+        <app-filter [numOfProducts]="count" [tableSize]="tableSize" [page]="page" [pagesNumber]="pagesNumber">
+        </app-filter>
+
+        <div class="row" >
+            <div class="card col-xl-4 col-md-4 col-sm-6 " *ngFor="let Product of Products | paginate : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+                }; let i = index">
+
+                <app-product-item [Product]="Product"></app-product-item>
+
+            </div>
+
+            <div class="d-flex justify-content-center mt-3">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+
+</div>

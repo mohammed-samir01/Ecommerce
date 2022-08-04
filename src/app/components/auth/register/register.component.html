@@ -1,0 +1,122 @@
+<div class="container-fluid h-custom ">
+    <div class="row d-flex justify-content-center h-100">
+
+        <section class="col-12 py-5 bg-light">
+            <div class="row py-5 px-4 px-lg-5 align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <h1 class="text-uppercase mb-0">Register</h1>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-end">
+                            <li class="breadcrumb-item"><a class="hero" routerLink="">Home</a></li>
+                            <li class="breadcrumb-item text-muted" aria-current="page">Register</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="row justify-content-center my-5">
+            <div class="col-md-12 col-lg-6 col-xl-6">
+                <form class="mx-1 mx-md-4" [formGroup]="signForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-outline my-3">
+                        <label class="form-label my-2" for="fullName">Your Name <span
+                                class="text-danger">*</span></label>
+                        <input type="text" id="fullName" class="form-control form-control-lg"
+                            placeholder="Enter your name" formControlName="fullName"
+                            [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" autofocus>
+
+                        <div id="fullName" class="form-text text-danger" *ngIf="submitted && f.fullName.errors"
+                            class="invalid-feedback">
+                            <h3 class="text-danger" *ngIf="f.fullName.errors.required">
+                                FullName
+                                is required</h3>
+                            <h3 class="text-danger" *ngIf="signForm.controls['fullName'].errors?.['minlength']">
+                                Minlength
+                                is 3 characters </h3>
+                            <h3 class="text-danger" *ngIf="signForm.controls['fullName'].errors?.['pattern']">
+                                Name is
+                                Not Valid</h3>
+                        </div>
+                    </div>
+
+                    <div class="form-outline my-2">
+                        <label class="form-label my-3" for="inputEmail">Email address <span
+                                class="text-danger">*</span></label>
+                        <input id="inputEmail" type="email" class="form-control form-control-lg" formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                            placeholder="Enter a valid email address">
+
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <h3 class="text-danger" *ngIf="f.email.errors.required">E-mail is
+                                required</h3>
+                            <h3 class="text-danger" *ngIf="f.email.errors.email">E-mail not valid
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div class="form-outline my-3">
+                        <label class="form-label mb-3" for="password">Password <span
+                                class="text-danger">*</span></label>
+                        <input type="password" id="password" class="form-control" formControlName="password"
+                            placeholder="Enter your password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+
+                        <div id="password" class="invalid-feedback" *ngIf=" submitted && f.password.errors ">
+                            <h3 class="text-danger" *ngIf="f.password.errors.required">
+                                Password
+                                is required</h3>
+                            <h3 class="text-danger" *ngIf="signForm.controls['password'].errors?.['minlength']">
+                                Minlength
+                                is 8 characters </h3>
+
+                            <h3 class="text-danger" *ngIf="signForm.controls['password'].errors?.['pattern']">
+                                Minimum eight
+                                characters, at least one letter, one number and one special character</h3>
+                        </div>
+                    </div>
+
+                    <div class="form-outline my-3">
+                        <label class="form-label my-2" for="confirmPassword">Repeat your password <span
+                                class="text-danger">*</span></label>
+                        <input type="password" id="confirmPassword" class="form-control"
+                            formControlName="confirmPassword" placeholder="Enter your password again" 
+                            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+
+                        <div id="confirmPassword" class="invalid-feedback"
+                            *ngIf=" submitted && f.confirmPassword.errors">
+                            
+                            <h3 class="text-danger" *ngIf="f.confirmPassword.errors.required">
+                                Confirm Password
+                                is required</h3>
+
+                            <h3 class="text-danger"
+                                *ngIf="signForm.controls['confirmPassword'].errors?.['pattern']">Password
+                                is Not Match</h3>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-dark w-100">
+                            Register
+                        </button>
+                        <h4 class="mt-2 pt-1 mb-0">
+                            If you have account
+                            <a [routerLink]="'../login'" class="link-dark fw-bold m-2">Login</a>
+                        </h4>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+            <div class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent">
+                <img src="../../../../assets/images/Secure login-rafiki.png" alt="Sample image" height="400rem" />
+            </div>
+        </div>
+
+
+    </div>
