@@ -17,30 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('conversation_user')->insert([
-            'conversation_id'=>1,
-            'user_id'=>1,
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-        DB::table('conversation_user')->insert([
-            'conversation_id'=>1,
-            'user_id'=>2,
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-        DB::table('conversation_user')->insert([
-            'conversation_id'=>2,
-            'user_id'=>2,
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-        DB::table('conversation_user')->insert([
-            'conversation_id'=>2,
-            'user_id'=>2,
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
+
         User::create([
             'name'=>'salma shehata',
             'email'=>'salmaemam52@gmail.com',
@@ -86,6 +63,30 @@ class DatabaseSeeder extends Seeder
             'uuid'=>Str::uuid(),
             'user_id'=>1,
 
+        ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>1,
+            'user_id'=>1,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>1,
+            'user_id'=>2,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>2,
+            'user_id'=>2,
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('conversation_user')->insert([
+            'conversation_id'=>2,
+            'user_id'=>2,
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
     }
