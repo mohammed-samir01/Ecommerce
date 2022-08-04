@@ -47,19 +47,19 @@ class DatabaseSeeder extends Seeder
             'remember_token'=>Str::random(10),
         ]);
         conversation::create([
-            'name'=>'clothes',
+            'name'=>'mohammed',
             'uuid'=>Str::uuid(),
             'user_id'=>1,
 
         ]);
         conversation::create([
-            'name'=>'food',
+            'name'=>'emad',
             'uuid'=>Str::uuid(),
             'user_id'=>1,
 
         ]);
         conversation::create([
-            'name'=>'school',
+            'name'=>'hager',
             'uuid'=>Str::uuid(),
             'user_id'=>1,
 
