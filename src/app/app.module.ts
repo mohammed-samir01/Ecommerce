@@ -11,6 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -22,15 +26,30 @@ import { FooterComponent } from './footer/footer.component';
     RegisterComponent,
     FooterComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MdbCheckboxModule
+    MdbCheckboxModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage:"en",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
     ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}
