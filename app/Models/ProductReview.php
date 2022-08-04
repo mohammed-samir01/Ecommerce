@@ -35,4 +35,6 @@ class ProductReview extends Model
     public function status(): string
     {
         return $this->status ? 'Active' : 'Inactive';
-    }}
+    }
+
+}

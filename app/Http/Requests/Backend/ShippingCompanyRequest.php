@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductReviewRequest extends FormRequest
+class ShippingCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,13 @@ class ProductReviewRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    //
+                    'name'          => 'required|max:255',
+                    'code'          => 'required|unique:shipping_companies',
+                    'description'   => 'required',
+                    'fast'          => 'required',
+                    'cost'          => 'required|numeric',
+                    'status'        => 'required',
+                    'countries'     => 'required',
                 ];
             }
             case 'PUT':
@@ -35,16 +41,16 @@ class ProductReviewRequest extends FormRequest
             {
                 return [
                     'name'          => 'required|max:255',
-                    'user_id'       => 'nullable',
-                    'product_id'    => 'required',
-                    'email'         => 'required|email',
-                    'title'         => 'required',
-                    'message'       => 'required',
-                    'rating'        => 'required|numeric',
+                    'code'          => 'required|unique:shipping_companies,code,'.$this->route()->shipping_company->id,
+                    'description'   => 'required',
+                    'fast'          => 'required',
+                    'cost'          => 'required|numeric',
                     'status'        => 'required',
+                    'countries'     => 'required',
                 ];
             }
             default: break;
         }
+
     }
 }

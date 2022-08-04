@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "livewire/livewire": "^2.10",
         "mindscms/entrust": "^2.5",
         "nicolaslopezj/searchable": "^1.13",
         "predis/predis": "^2.0"
