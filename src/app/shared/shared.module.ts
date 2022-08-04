@@ -6,14 +6,14 @@ import { NgxModule } from './ngx/ngx.module';
 import { FilesModule } from './files/files.module';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
-import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HeroComponent } from './components/hero/hero.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    SpinnerComponent,
+    HeroComponent
   ],
   imports: [
     CommonModule,
@@ -25,11 +25,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
   exports:[
     NavbarComponent,
     FooterComponent,
-    SpinnerComponent,
+    HeroComponent,
     NgxModule,
     FilesModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
   ]
 })
 export class SharedModule { }

@@ -10,7 +10,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { HeroComponent } from './components/hero/hero.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
@@ -24,7 +23,6 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     AllProductsComponent,
     ProductDetailsComponent,
     FilterComponent,
-    HeroComponent,
     ShopComponent,
     AsideComponent,
     ProductItemComponent,

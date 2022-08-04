@@ -1,0 +1,11 @@
+<section class="pt-5">
+    <header class="">
+        <h2 class="h5 text-uppercase mb-4">related Products</h2>    
+    </header>
+
+    <div class="row my-5">
+        <div class="col-md-3 mb-4 mb-md-0" *ngFor="let relatedProduct of relatedProducts ; let i = index">
+            <app-related-product-item [relatedProduct]="relatedProduct"></app-related-product-item>
+        </div>
+    </div>
+</section>

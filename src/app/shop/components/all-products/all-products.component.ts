@@ -15,7 +15,7 @@ export class AllProductsComponent implements OnInit {
 
   page: number = 1;
   count: number = 0;
-  tableSize: number = 9;
+  tableSize: number = 12;
   tableSizes: any = [3, 6, 9, 12];
   pagesNumber: number = 1;
 

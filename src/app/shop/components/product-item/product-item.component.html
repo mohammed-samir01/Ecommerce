@@ -10,19 +10,25 @@
             </div>
             <div *ngSwitchDefault></div>
         </ng-container>
-        <a class="d-block" routerLink="Product-details.html">
+        <a class="d-block" routerLink="../product-details/{{Product.id}}">
             <img class="img-fluid" src="{{Product.image}}" alt="..."></a>
 
         <div class="product-overlay">
             <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" routerLink="#"><i
-                            class="far fa-heart"></i></a></li>
-                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" routerLink="cart.html">Add
+
+                <li class="list-inline-item m-0 p-0">
+                    <a class="btn btn-sm btn-outline-dark">
+
+                        <i class="fa-heart" [class.far]="!isFavorite" [class.fa]="isFavorite"
+                            (click)="onFavoriteClick(Product)"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" [routerLink]="'cart'">Add
                         to cart</a></li>
             </ul>
         </div>
     </div>
-    <h3> <a class="reset-anchor" routerLink="product-details.html">{{Product.title}}</a></h3>
-    <h4> <a class="reset-anchor" routerLink="product-details.html">{{Product.category}}</a></h4>
+    <h4> <a class="reset-anchor" [routerLink]="'product-details'">{{Product.title}}</a></h4>
     <p class="small text-muted fa-1x">{{Product.price}}</p>
+    <p class="small text-muted fa-1x">{{Product.subcategory}}</p>
 </div>

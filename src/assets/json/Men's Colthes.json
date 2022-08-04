@@ -1,15 +1,6 @@
 [
   {
-    "id": 1,
-    "title": "Swimmer",
-    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/Swimwear_300_x_300.jpg",
-    "price": "$120",
-    "category": "FASHION & ACC",
-    "subcategory": "Men's Colthe's",
-    "status": "sold"
-  },
-  {
-    "id": 2,
+    "id": 14,
     "title": "Pants",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/300/Pants.png",
     "price": "$200",
@@ -18,7 +9,7 @@
     "status": "sale"
   },
   {
-    "id": 3,
+    "id": 22,
     "title": "Polo T-Shirt",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/Polos_300_x_300.jpg",
     "price": "$250",
@@ -27,7 +18,7 @@
     "status": "none"
   },
   {
-    "id": 4,
+    "id": 26,
     "title": "Shirt",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/300/Casual-Shirts.png",
     "price": "$300",
@@ -36,7 +27,17 @@
     "status": "none"
   },
   {
-    "id": 5,
+    "id": 2,
+    "title": "Swimmer",
+    "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/Swimwear_300_x_300.jpg",
+    "price": "$120",
+    "category": "FASHION & ACC",
+    "subcategory": "Men's Colthe's",
+    "status": "sold"
+  },
+
+  {
+    "id": 33,
     "title": "Short",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/Shorts_300_x_300.jpg",
     "price": "$150",
@@ -45,7 +46,7 @@
     "status": "new"
   },
   {
-    "id": 6,
+    "id": 37,
     "title": "Pants",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/mens/300/Jeans.png",
     "price": "$220",
