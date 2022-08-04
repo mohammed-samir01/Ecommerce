@@ -1,4 +1,5 @@
  <div>
+   
 @foreach($conversations as $conversation)
 <a class="list-group-item list-group-item-action active text-white rounded-0">
               <div class="media"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
