@@ -45,8 +45,8 @@
                     <h4> <a class="reset-anchor" routerLink="product-details.html">{{product.category}}</a></h4>
                     <p class="small text-muted fa-1x">{{product.price}}</p>
                 </div> -->
-                
-                <app-product-item [Product]="Product"></app-product-item>
+
+                <app-product-item [Product]="Product" (item)="addToCart($event)"></app-product-item>
 
             </div>
 

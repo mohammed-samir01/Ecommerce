@@ -4,9 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Ng5SliderModule } from 'ng5-slider';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule}  from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FilterComponent } from './components/filter/filter.component';
@@ -40,6 +39,8 @@ import { ProductItemComponent } from './components/product-item/product-item.com
   ],
   exports:[
     ShopComponent,
+    FormsModule,
+    HeroComponent
   ]
 })
 export class ShopModule { }

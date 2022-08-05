@@ -10,9 +10,9 @@ import { ShopService } from '../../services/shop.service';
 })
 export class AllProductsComponent implements OnInit {
 
-  Products : any[] = []; 
+  Products : any[] = [];
   Categories : any[]=[];
-
+  cartProduct :any []=[];
   page: number = 1;
   count: number = 0;
   tableSize: number = 9;
@@ -66,4 +66,54 @@ export class AllProductsComponent implements OnInit {
     this.page = 1;
     this.getAllCate();
   }
+
+//  addToCart(event :any){
+//   console.log(event)
+//  if("cart" in localStorage){
+//     this.cartProduct = JSON.parse(localStorage.getItem("cart") || '[]')
+//     console.log(this.cartProduct)
+//      let exist = this.cartProduct.find((item) => {
+//       item.item.id == event.item.id
+//       console.log(item.item.id)
+//     })
+//     //  console.log(item.item.id)
+//      console.log(event.item.id)
+//      console.log(exist)
+//      if(exist){
+//       alert('exist')
+//     }
+//      else
+//      {
+//      this.cartProduct.push(event);
+
+//      localStorage.setItem('cart' , JSON.stringify(this.cartProduct));
+//     }
+// }
+//   else{
+//    this.cartProduct.push(event);
+//    localStorage.setItem('cart' , JSON.stringify(this.cartProduct));
+//   }
+
+// }
+// )localStorage.setItem('cart' ,JSON.stringify(event) );
+// )console.log(event);
+addToCart(event:any){
+
+  if("cart" in localStorage){
+    this.cartProduct=JSON.parse(localStorage.getItem("cart")||'[]');
+    let exist=this.cartProduct.find(item=>item.item.id==event.item.id);
+    if(exist){
+      alert("this product is already in your cart")
+    }
+    else{
+      this.cartProduct.push(event);
+      localStorage.setItem("cart",JSON.stringify(this.cartProduct))
+    }
+  }
+  else{
+    this.cartProduct.push(event);
+    localStorage.setItem("cart",JSON.stringify(this.cartProduct))
+  }
+}
+
 }
