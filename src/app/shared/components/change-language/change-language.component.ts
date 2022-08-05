@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
-  selector: 'app-head',
-  templateUrl: './head.component.html',
-  styleUrls: ['./head.component.css']
+  selector: 'app-change-language',
+  templateUrl: './change-language.component.html',
+  styleUrls: ['./change-language.component.css']
 })
-export class HeadComponent implements OnInit {
+export class ChangeLanguageComponent implements OnInit {
 
   constructor(public translate: TranslateService) { }
 

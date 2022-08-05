@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators,FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    public translate: TranslateService) {
 
   }
   
@@ -18,10 +20,10 @@ export class LoginComponent implements OnInit {
   submitted = false;
   
   ngOnInit(): void {
-       this.registerForm = this.formBuilder.group({
+      this.registerForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required,Validators.minLength(8),
-         Validators.maxLength(64),]],
+        Validators.maxLength(64),]],
 
     });
   }

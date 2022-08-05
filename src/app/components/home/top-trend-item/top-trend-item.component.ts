@@ -1,6 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { TopTrend } from '../../../interfaces/top-trend';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-top-trend-item',
   templateUrl: './top-trend-item.component.html',
@@ -17,7 +18,8 @@ export class TopTrendItemComponent implements OnInit {
     "status": "none"
   };
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+  public translate: TranslateService) { }
 
   ngOnInit(): void {
   }

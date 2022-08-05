@@ -26,7 +26,10 @@ import { HeadComponent } from './components/home/head/head.component';
 import { TopTrendListComponent } from './components/home/top-trend-list/top-trend-list.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
-
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     RegisterComponent,
     CartComponent,
     FavoritesComponent,
-
     CategoryListComponent,
     CategoryDetailsComponent,
     ProductFilterPipe,
@@ -58,9 +60,22 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     SharedModule,
     ShopModule,
     ProductDetailsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage:"ar",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}

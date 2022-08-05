@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import  trends  from '../../../../assets/topTrend.json';
 import { TopTrend } from './../../../interfaces/top-trend';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-top-trend-list',
@@ -11,7 +11,8 @@ import { TopTrend } from './../../../interfaces/top-trend';
 export class TopTrendListComponent implements OnInit {
 
   trendProducts : Array<TopTrend> = trends; 
-  constructor() { }
+  constructor(
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
   }

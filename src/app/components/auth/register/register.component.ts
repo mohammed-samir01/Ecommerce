@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators,FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    public translate: TranslateService) {
 
   }
 

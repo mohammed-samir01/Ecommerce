@@ -1,6 +1,6 @@
 import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 import { Options , LabelType } from 'ng5-slider';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
@@ -13,7 +13,7 @@ export class AsideComponent implements OnInit {
 
   @Input() data : any[] = []; 
   @Output() seletedValue = new EventEmitter(); 
-  constructor() { }
+  constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {
   }

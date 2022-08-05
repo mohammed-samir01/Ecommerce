@@ -4,13 +4,13 @@
         <section class="col-12 py-5 bg-light">
             <div class="row py-5 px-4 px-lg-5 align-items-center">
                 <div class="col-lg-6 col-md-6">
-                    <h1 class="text-uppercase mb-0">Login</h1>
+                    <h1 class="text-uppercase mb-0">{{"LOGIN" | translate}}</h1>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a class="hero" routerLink="">Home</a></li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">Login</li>
+                            <li class="breadcrumb-item"><a class="hero" routerLink="">{{"home" | translate}}</a></li>
+                            <li class="breadcrumb-item text-muted" aria-current="page">{{"LOGIN" | translate}}</li>
                         </ol>
                     </nav>
                 </div>
@@ -21,43 +21,35 @@
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             
                 <div class="form-outline my-2">
-                    <label class="form-label my-3" for="inputEmail">Email address <span class="text-danger">*</span></label>
+                    <label class="form-label my-3" for="inputEmail">{{"YOUR EMAIL" | translate}} <span class="text-danger">*</span></label>
                     <input id="inputEmail" type="email" class="form-control form-control-lg" formControlName="email"
-                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter a valid email address"
-                        autofocus>
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="{{'Enter a valid email address' | translate}}" autofocus>
             
                     <div *ngIf=" submitted && f.email.errors" class="invalid-feedback">
-                        <h3 class="text-danger" *ngIf="f.email.errors.required">E-mail is
-                            required</h3>
-                        <h3 class="text-danger" *ngIf="f.email.errors.email">E-mail not valid
-                        </h3>
+                        <h3 class="text-danger" *ngIf="f.email.errors.required"> {{'REQUIRED' | translate}} </h3>
+                        <h3 class="text-danger" *ngIf="f.email.errors.email"> {{'Email is Not Valid' | translate}} </h3>
                     </div>
                 </div>
             
                 <div class="form-outline my-2">
-                    <label class="form-label my-3" for="inputPassword">Password <span class="text-danger">*</span></label>
+                    <label class="form-label my-3" for="inputPassword"> {{'PASSWORD' | translate}} <span class="text-danger">*</span></label>
                     <input id="inputPassword" type="password" formControlName="password"
-                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Enter Password" required
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder=" {{'REPEAT YOUR PASSWORD' | translate}} " required
                         class="form-control form-control-lg"
                         pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <h3 class="text-danger" *ngIf="f.password.errors.required">Password is required</h3>
-                        <h3 class="text-danger" *ngIf="registerForm.controls['password'].errors?.['minlength']">Minlengthis 8
-                            characters
-                        </h3>
-                        <h3 class="text-danger" *ngIf="registerForm.controls['password'].errors?.['pattern']">Minimum eight
-                            characters, at least one letter, one number and one special character
-                        </h3>
+                        <h3 class="text-danger" *ngIf="f.password.errors.required"> {{'REQUIRED' | translate}} </h3>
+                        <h3 class="text-danger" *ngIf="registerForm.controls['password'].errors?.['pattern']"> {{'Minimum eight characters, at least one letter, one number and one special character' | translate}} </h3>
                     </div>
                 </div>
             
                 <div class="text-center text-lg-start mt-4 pt-2">
                     <button type="submit" class="btn btn-dark w-100">
-                        Login
+                        {{'LOGIN' | translate}}
                     </button>
                     <h4 class="mt-2 pt-1 mb-0">
-                        Don't have an account?
-                        <a [routerLink]="'/register'" class="link-dark fw-bold m-2">Register</a>
+                        {{"Don't have an account?" | translate}}
+                        <a [routerLink]="'/register'" class="link-dark fw-bold m-2"> {{'REGISTER' | translate}} </a>
                     </h4>
                 </div>
             </form>

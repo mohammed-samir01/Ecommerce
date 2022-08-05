@@ -7,20 +7,22 @@ import { FilesModule } from './files/files.module';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { HeroComponent } from './components/hero/hero.component';
-
+import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    HeroComponent
+    HeroComponent,
+    ChangeLanguageComponent,
   ],
   imports: [
     CommonModule,
     NgxModule,
     FilesModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    
   ],
   exports:[
     NavbarComponent,
@@ -30,6 +32,8 @@ import { HeroComponent } from './components/hero/hero.component';
     FilesModule,
     MaterialModule,
     RouterModule,
+    
   ]
 })
 export class SharedModule { }
+
