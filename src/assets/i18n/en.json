@@ -28,7 +28,7 @@
 
 
 
-    "New Inspiration 2023":"New Inspiration 2023",
+    "New Inspiration 2022":"New Inspiration 2022",
     "20% off on new season":"20% off on new season",
     "Browse collections":"Browse collections",
 
@@ -48,6 +48,42 @@
     "New":"New",
     "Add to cart":"Add to cart",
 
-    "Categories":"Categories"
+    "Categories":"Categories",
+    "Fashion":"Fashion",
+    "Acc":"Acc",
+    "Health":"Health",
+    "Beauty":"Beauty",
+    "Electronics":"Electronics",
+    "Price range":"Price range",
+    "Show only":"Show only",
+    "Returns Accepted":"Returns Accepted",
+    "Completed Items":"Completed Items",
+    "Sold Items":"Sold Items",
+    "Deals & Savings":"Deals & Savings",
+    "Authorized Seller":"Authorized Seller",
+    "Buying format":"Buying format",
+    "All Listings":"All Listings",
+    "Best Offer":"Best Offer",
+    "Auction":"Auction",
+    "Buy It Now":"Buy It Now",
+
+    "Showing":"Showing",
+    "Products":"Products",
+    "Default sorting":"Default sorting",
+    "Popularity":"Popularity",
+    "Price from Low to High":"Price from Low to High",
+    "Price from High to Low":"Price from High to Low",
+
+    "Product Details":"Product Details",
+    "Pages":"Pages",
+    "Shopping Cart":"Shopping Cart",
+    "Checkout":"Checkout",
+    "Cart":"Cart",
+    "Favorite":"Favorite",
+    "Your favorite list is empty":"Your favorite list is empty",
+    "Add item now":"Add item now",
+    "Error 404 | Page Not Found":"Error 404 | Page Not Found",
+    "Return To Home":"Return To Home"
+
 
 }

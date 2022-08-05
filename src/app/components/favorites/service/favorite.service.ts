@@ -12,7 +12,7 @@ export class FavoriteService {
   
   constructor() { }
 
-   getProducts(){
+  getProducts(){
     return this.productList.asObservable();
   }
 

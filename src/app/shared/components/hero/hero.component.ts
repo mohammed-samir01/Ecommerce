@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
@@ -9,7 +9,7 @@ export class HeroComponent implements OnInit {
 
   
 
-  constructor() { }
+  constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {
   }

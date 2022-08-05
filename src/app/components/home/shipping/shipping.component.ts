@@ -16,7 +16,7 @@ export class ShippingComponent implements OnInit {
     [
       {
       "id": 1,
-      "title": "Free Shipping",
+      "title":  "Free Shipping",
       "desc": "Free Shipping Worldwide",
       "image": "fa fa-duotone fa-truck-fast",
       },

@@ -9,6 +9,10 @@ import { RouterModule } from '@angular/router';
 import { HeroComponent } from './components/hero/hero.component';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -22,7 +26,14 @@ import { ChangeLanguageComponent } from './components/change-language/change-lan
     FilesModule,
     MaterialModule,
     RouterModule,
-    
+    TranslateModule.forRoot({
+      defaultLanguage:"ar",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
   ],
   exports:[
     NavbarComponent,
@@ -32,8 +43,10 @@ import { ChangeLanguageComponent } from './components/change-language/change-lan
     FilesModule,
     MaterialModule,
     RouterModule,
-    
   ]
 })
 export class SharedModule { }
 
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}

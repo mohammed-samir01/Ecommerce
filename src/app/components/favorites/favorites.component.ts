@@ -1,5 +1,6 @@
 import { FavoriteService } from './service/favorite.service';
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -9,7 +10,8 @@ export class FavoritesComponent implements OnInit {
   isFavorite : boolean = false;
   public product :any =[];
 
-  constructor(private favorite : FavoriteService) { }
+  constructor(private favorite : FavoriteService,
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
     this.favorite.getProducts().subscribe(res=>{

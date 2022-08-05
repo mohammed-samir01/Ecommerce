@@ -10,12 +10,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
-
-
-
-
 const routes: Routes = [
-  {path : '',component : HomeComponent},
+  { path: '',component : HomeComponent},
   { path: 'product-details/:id', component: ProductDetailsComponent},
   { path: 'shop', component: ShopComponent},
   { path: 'cart', component: CartComponent},

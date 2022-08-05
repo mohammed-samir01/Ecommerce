@@ -63,8 +63,6 @@
                         <div id="password" class="invalid-feedback" *ngIf=" submitted && f.password.errors ">
                             <h3 class="text-danger" *ngIf="f.password.errors.required">
                                 {{'REQUIRED' | translate}}</h3>
-                            <h3 class="text-danger" *ngIf="signForm.controls['password'].errors?.['minlength']">
-                                {{'MinLength is 8 characters' | translate}} </h3>
 
                             <h3 class="text-danger" *ngIf="signForm.controls['password'].errors?.['pattern']">
                                 {{'Minimum eight characters, at least one letter, one number and one special character' | translate}}</h3>

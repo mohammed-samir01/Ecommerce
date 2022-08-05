@@ -2,11 +2,11 @@
     <div class="position-relative mb-3">
         <ng-container [ngSwitch]="true">
             <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sale'">
-                Sale</div>
+                {{'Sale' | translate}} </div>
             <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sold'">
-                Sold
+                {{'Sold' | translate}}
             </div>
-            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'">New
+            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'"> {{'New' |translate}}
             </div>
             <div *ngSwitchDefault></div>
         </ng-container>
@@ -23,8 +23,7 @@
                             (click)="onFavoriteClick(Product)"></i>
                     </a>
                 </li>
-                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" [routerLink]="'cart'">Add
-                        to cart</a></li>
+                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" [routerLink]="'cart'"> {{'Add to cart' | translate}} </a></li>
             </ul>
         </div>
     </div>

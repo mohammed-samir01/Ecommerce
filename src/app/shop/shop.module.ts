@@ -14,7 +14,9 @@ import { ShopComponent } from './components/shop/shop.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 
-
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -34,10 +36,23 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage:"ar",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
   ],
   exports:[
     ShopComponent,
   ]
 })
 export class ShopModule { }
+
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}

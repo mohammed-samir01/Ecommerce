@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../services/shop.service';
-
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -19,9 +19,9 @@ export class AllProductsComponent implements OnInit {
   tableSizes: any = [3, 6, 9, 12];
   pagesNumber: number = 1;
 
-  constructor(private service:ShopService) {
-
-   }
+  constructor(private service:ShopService,
+    public translate: TranslateService) {
+  }
 
   ngOnInit(): void {
     this.getProducts();

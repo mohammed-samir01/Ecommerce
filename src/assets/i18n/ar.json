@@ -2,7 +2,7 @@
     "home":"الصفحة الرئيسية",
     "LOGIN":"تسجيل الدخول",
     "REGISTER":"إنشاء حساب",
-    "SHOP":"الصفحة الرئيسية",
+    "SHOP":"المتجر",
 
     "YOUR NAME":"أدخل اسمك",
     "NAME":"الإسم",
@@ -20,7 +20,7 @@
     "Name is Not Valid":"الإسم غير متاح",
     "Enter password":"أدخل كلمة المرور",
     "MinLength is 8 characters":"أقل عدد أحرف هو ثمانية",
-    "Minimum eight characters, at least one letter, one number and one special character":"أقل عدد أحرف ثمانية. على الأقل حرف واحد ورقم واحد ورمز واحد",
+    "Minimum eight characters, at least one letter, one number and one special character":"أقل عدد أحرف ثمانية، على الأقل حرف واحد، رقم واحد، رمز واحد",
     "maxLength is 50":"أقصى عدد حروف هو خمسين",
     "Remember me":"تذكرنى",
     "Forgot password?":"نسيت كلمة المرور؟",
@@ -28,7 +28,7 @@
 
 
 
-    "New Inspiration 2023":"أفكار جديدة لعام 2023",
+    "New Inspiration 2022":"أفكار جديدة لعام 2022",
     "20% off on new season":"خصم 20% خلال الموسم الجديد",
     "Browse collections":"تصفح الفئات",
 
@@ -42,10 +42,47 @@
     "Free Shipping":"شحن مجانى",
     "Top trending products":"المنتجات الرائجه",
     "Made your way":"اصنع طريقك",
+
     "Sale":"تخفيض",
     "Sold":"تم البيع",
     "New":"جديد",
     "Add to cart":"أضف إلى السلة",
 
-    "Categories":"الفئات"
+    "Categories":"الفئات",
+    "Fashion":"الموضه",
+    "Acc":"الإكسسوارات",
+    "Health":"الصحة",
+    "Beauty":"التجميل",
+    "Electronics":"الإلكترونيات",
+    "Price range":"نطاق السعر",
+    "Show only":"فقط أظهرلى",
+    "Returns Accepted":"النتجات القابله للإرجاع",
+    "Completed Items":"العناصر الكاملة",
+    "Sold Items":"العناصر المباعه",
+    "Deals & Savings":"عروض التوفير",
+    "Authorized Seller":"بائع موثوق",
+    "Buying format":"نمط الشراء",
+    "All Listings":"جميع القائم",
+    "Best Offer":"أفضل العروض",
+    "Auction":"مزاد علنى",
+    "Buy It Now":"اشتر الآن",
+
+    "Showing":"معروضه",
+    "Products":"منتجات",
+    "Default sorting":"ترتيب افتراضى",
+    "Popularity":"الأكثر شهرة",
+    "Price from Low to High":"من الأقل للأعلى سعرا",
+    "Price from High to Low":"من الأعلى للأقل سعرا",
+
+    "Product Details":"تفاصيل المنتج",
+    "Pages":"الصفحات",
+    "Shopping Cart":"عربة التسوق",
+    "Checkout":"الدفع",
+    "Cart":"العربة",
+    "Favorite":"المفضلة",
+    "Your favorite list is empty":"قائمة المفضلة فارغه",
+    "Add item now":"أضف المنتج الآن",
+    "Error 404 | Page Not Found":"عذرا، الصفحة غير موجوده",
+    "Return To Home":"العودة إلى الصفحة الرئيسية"
+    
 }
