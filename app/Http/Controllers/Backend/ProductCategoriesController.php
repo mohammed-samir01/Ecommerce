@@ -35,6 +35,9 @@ class ProductCategoriesController extends Controller
             ->paginate(\request()->limit_by ?? 10);
 
 
+
+
+
         return view('backend.product_categories.index',compact('categories'));
     }
 

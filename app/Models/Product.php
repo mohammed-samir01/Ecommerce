@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Product extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable,SearchableTrait;
     protected $guarded = [];
 
     /**
@@ -46,6 +47,29 @@ class Product extends Model
         return $this->featured ? 'Yes' : 'No';
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->whereFeatured(true);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->whereStatus(true);
+    }
+
+    public function scopeHasQuantity($query)
+    {
+        return $query->where('quantity','>', 0);
+    }
+
+    public function scopeActiveCategory($query)
+    {
+        return $query->whereHas('category', function ($query){
+
+            $query->whereStatus(1);
+        });
+    }
+
     public function category()
     {
 
@@ -58,7 +82,7 @@ class Product extends Model
         return $this->MorphToMany(Tag::class,'taggable');
     }
 
-    public function firstmedia(): MorphOne
+    public function firstMedia(): MorphOne
     {
 
         return $this->MorphOne(Media::class,'mediable')->orderBy('file_sort','asc');
