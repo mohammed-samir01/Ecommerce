@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-4">
                         <label for="user_id">Customer</label>
-                        <input type="text" value="{{ $productReview->user_id != '' ? $productReview->user->full_name : '' }}" class="form-control" readonly>
+                        <input type="text" value="{{ $productReview->user_id  }}" class="form-control" readonly>
                         <input type="hidden" name="user_id" value="{{ $productReview->user_id ?? '' }}" class="form-control" readonly>
                         @error('user_id')<span class="text-danger">{{ $message }}</span>@enderror
                     </div>

@@ -19,7 +19,6 @@ class ProductReviewSeeder extends Seeder
     {
 
         Schema::disableForeignKeyConstraints();
-
         $faker = Factory::create();
 
         Product::all()->each(function ($product) use ($faker) {

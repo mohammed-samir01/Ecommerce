@@ -46,7 +46,5 @@ class ProductReviewRequest extends FormRequest
             }
             default: break;
         }
-
-
     }
 }

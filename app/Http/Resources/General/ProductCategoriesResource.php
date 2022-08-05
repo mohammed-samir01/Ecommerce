@@ -21,5 +21,6 @@ class ProductCategoriesResource extends JsonResource
             'status'      => $this->status,
             'parent_id'   => $this->parent_id,
         ];
+
     }
 }
