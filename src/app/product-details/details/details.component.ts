@@ -1,7 +1,7 @@
 import { ProductDetailsService } from './../services/product-details.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -12,7 +12,9 @@ export class DetailsComponent implements OnInit {
   id!:any
 
   data : any ={}
-  constructor(private route:ActivatedRoute, private service:ProductDetailsService) { 
+  constructor(private route:ActivatedRoute, 
+    private service:ProductDetailsService,
+    public translate: TranslateService) { 
     
     this.id = this.route.snapshot.paramMap.get("id");
   }

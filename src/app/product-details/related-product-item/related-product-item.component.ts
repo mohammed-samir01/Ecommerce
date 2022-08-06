@@ -1,6 +1,6 @@
 import { Related } from '../../interfaces/related';
 import { Component, OnInit , Input} from '@angular/core';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-related-product-item',
   templateUrl: './related-product-item.component.html',
@@ -16,7 +16,7 @@ export class RelatedProductItemComponent implements OnInit {
     "category": "Electorincs",
     "status": "none"
   };
-  constructor() { }
+  constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {
   }

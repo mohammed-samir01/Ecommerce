@@ -36,7 +36,7 @@
     "Carefully created collections":"مجموعات منتقاه بعنايه",
     "Shoes":"أحذية",
 
-    "Let's be friends!":"لنكن أصدقاء",
+    "Let's be friends!":"انضم إلى مجتمعنا الآن",
     "Subscribe":"اشترك الآن",
 
     "Free Shipping":"شحن مجانى",
@@ -44,9 +44,9 @@
     "Made your way":"اصنع طريقك",
 
     "Sale":"تخفيض",
-    "Sold":"تم البيع",
+    "Sold":"سيتوافر قريبا",
     "New":"جديد",
-    "Add to cart":"أضف إلى السلة",
+    "Add to cart":"أضف إلى العربة",
 
     "Categories":"الفئات",
     "Fashion":"الموضه",
@@ -83,6 +83,32 @@
     "Your favorite list is empty":"قائمة المفضلة فارغه",
     "Add item now":"أضف المنتج الآن",
     "Error 404 | Page Not Found":"عذرا، الصفحة غير موجوده",
-    "Return To Home":"العودة إلى الصفحة الرئيسية"
+    "Return To Home":"العودة إلى الصفحة الرئيسية",
+    "Product description":"وصف المنتج",
+    "Quantity":"الكمية",
+    "Add to Favorite":"أضف إلى المفضلة",
+    "Tags":"الإشارات",
+    "Innovation":"إبداع",
+    "related Products":"منتجات ذات صله",
+    "Customer services":"خدمة العملاء",
+    "Help":"المساعده",
+    "Contact us":"تواصل معنا",
+    "Returns":"المرتجعات",
+    "Refunds":"استرداد الأموال",
+    "Online Stores":"المتاجر الإلكترونيه",
+    "Terms":"الشروط",
+    "Conditions":"الأحكام",
+    "Company":"الشركة",
+    "What We Do":"ماذا نقدم",
+    "Available Services":"الخدمات المتاحه",
+    "Latest Posts":"آخر الأخبار",
+    "FAQs":"أسئلة وأجوبة",
+    "Social media":"وسائل التواصل الإجتماعى",
+    "Twitter":"تويتر",
+    "Instagram":"انستغرام",
+    "Tumblr":"اعرف أكثر عنا",
+    "Facebook":"فيسبوك",
+    "All rights reserved.":"جميع الحقوق محفوظه",
+    "Women's Colthes":"ملابس نسائيه"
     
 }

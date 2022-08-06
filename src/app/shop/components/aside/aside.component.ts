@@ -12,7 +12,8 @@ export class AsideComponent implements OnInit {
   formats : Array<string> = ["All Listings","Best Offer","Auction","Buy It Now"];
 
   @Input() data : any[] = []; 
-  @Output() seletedValue = new EventEmitter(); 
+  @Output() seletedValue = new EventEmitter();
+  
   constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {

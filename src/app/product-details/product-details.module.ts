@@ -7,7 +7,10 @@ import { RelatedProductsComponent } from './related-products/related-products.co
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
-
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 @NgModule({
   declarations: [
     DescReviewComponent,
@@ -19,9 +22,22 @@ import {MatTabsModule} from '@angular/material/tabs';
   imports: [
     CommonModule,
     MatTabsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage:"en",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
   ],
   exports: [
     ProductDetailsComponent
   ]
 })
 export class ProductDetailsModule { }
+
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}

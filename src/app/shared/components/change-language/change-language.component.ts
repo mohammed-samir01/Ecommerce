@@ -8,7 +8,19 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ChangeLanguageComponent implements OnInit {
 
-  constructor(public translate: TranslateService) { }
+  //____________ fix language after refresh ___________//
+  currentLang: string;
+
+  constructor(public translate: TranslateService) {
+    this.currentLang = localStorage.getItem('currentLang') || 'en';
+    this.translate.use(this.currentLang);
+  }
+
+  changeCurrentLang(lang:string) {
+    this.translate.use(lang);
+    localStorage.setItem('currentLang', lang);
+  }
+//______________________________________________________//
 
   ngOnInit(): void {
   }
