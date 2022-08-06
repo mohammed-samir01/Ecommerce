@@ -42,7 +42,7 @@
 
 </head>
 <body>
-    <div id="app" class="page-holder {{ request()->routeIs('frontend.detail') ? 'bg-light' : null }}">
+    <div id="app" class="page-holder {{ request()->routeIs('frontend.product') ? 'bg-light' : null }}">
 
         @include('partial.frontend.header')
 
