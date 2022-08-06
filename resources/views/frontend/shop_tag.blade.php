@@ -19,5 +19,5 @@
         </div>
     </section>
 
-    <livewire:frontend.shop-products-component :slug="$slug" />
+    <livewire:frontend.shop-products-tag-component :slug="$slug" />
 @endsection
