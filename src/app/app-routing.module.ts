@@ -11,9 +11,6 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
 
-
-
-
 const routes: Routes = [
   {path : '',component : HomeComponent},
   { path: 'product-details/:id', component: ProductDetailsComponent},
@@ -23,7 +20,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'favorite', component: FavoritesComponent},
   { path: '**', component: PageNotFoundComponent , pathMatch:'full'},
-
 ];
 
 @NgModule({
