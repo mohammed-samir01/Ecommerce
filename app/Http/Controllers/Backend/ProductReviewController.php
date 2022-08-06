@@ -60,7 +60,7 @@ class ProductReviewController extends Controller
             return redirect('admin/index');
         }
 
-        return view('backend.product_reviews.edit', compact('productReview'));
+        return view('backend.product_reviews.edit', compact('productReview',));
     }
 
     public function update(ProductReviewRequest $request, ProductReview $productReview)
@@ -90,4 +90,5 @@ class ProductReviewController extends Controller
             'alert-type' => 'success'
         ]);
     }
+
 }

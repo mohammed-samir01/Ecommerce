@@ -7,10 +7,14 @@ use App\Http\Resources\General\ProductCategoriesResource;
 use App\Http\Resources\General\ProductResource;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 
 class  GeneralController extends Controller
 {
+
+    use GeneralTrait;
+
     public function get_products()
     {
         $products = Product::when(\request()->keyword != null, function ($query) {

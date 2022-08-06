@@ -12,13 +12,13 @@
                         <a class="nav-link" href="{{route('frontend.shop')}}">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('frontend.detail')}}">Product detail</a>
+                        <a class="nav-link" href="{{route('frontend.product')}}">Product detail</a>
                     </li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                         <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown">
                             <a class="dropdown-item border-0 transition-link" href="{{route('frontend.index')}}">Homepage</a>
                             <a class="dropdown-item border-0 transition-link" href="{{route('frontend.shop')}}">Category</a>
-                            <a class="dropdown-item border-0 transition-link" href="{{route('frontend.detail')}}">Product detail</a>
+                            <a class="dropdown-item border-0 transition-link" href="{{route('frontend.product')}}">Product detail</a>
                             <a class="dropdown-item border-0 transition-link" href="{{route('frontend.cart')}}">Shopping cart</a>
                             <a class="dropdown-item border-0 transition-link" href="{{route('frontend.checkout')}}">Checkout</a>
                         </div>

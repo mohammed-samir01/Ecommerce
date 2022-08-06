@@ -39,4 +39,5 @@ class State extends Model
     public function addresses(): HasMany
     {
         return $this->hasMany(UserAddress::class);
-    }}
+    }
+}

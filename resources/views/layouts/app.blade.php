@@ -36,9 +36,13 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <livewire:styles />
+    @yield('style')
+
 </head>
 <body>
-    <div id="app" class="page-holder {{ request()->routeIs('frontend.detail') ? 'bg-light' : null }}">
+    <div id="app" class="page-holder {{ request()->routeIs('frontend.product') ? 'bg-light' : null }}">
 
         @include('partial.frontend.header')
 
@@ -50,9 +54,10 @@
 
     </div>
 
-        @include('partial.frontend.model')
 
-{{--    <!-- Scripts -->--}}
+    <livewire:frontend.product-modal-shared />
+
+    {{--    <!-- Scripts -->--}}
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- JavaScript files-->
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
@@ -63,5 +68,12 @@
     <script src="{{asset('frontend/vendor/owl.carousel2/owl.carousel.min.js')}}"></script>
     <script src="{{asset('frontend/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js')}}"></script>
     <script src="{{asset('frontend/js/front.js')}}"></script>
+
+    <livewire:scripts />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+
+    @yield('script')
+
 </body>
 </html>

@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <th>Customer Name</th>
-                    <td>{{ $productReview->user_id != '' ? $productReview->user->full_name : '' }}</td>
+                    <td>{{ $productReview->user_id != '' ? $productReview->user->name : '' }}</td>
                     <th>Rating</th>
                     <td>{{ $productReview->rating }}</td>
                 </tr>

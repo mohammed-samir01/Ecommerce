@@ -35,7 +35,7 @@
                         <td>
                             {{ $review->name }}<br>
                             {{ $review->email }}<br>
-                            <small>{!! $review->user_id != '' ? $review->user->full_name : '' !!}</small>
+                            <small>{!! $review->user_id != '' ? $review->user_id : '' !!}</small>
                         </td>
                         <td>
                             {{ $review->title }}

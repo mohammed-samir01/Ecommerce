@@ -41,11 +41,11 @@
                         <tr>
                             <th class="pl-0 border-0" scope="row">
                                 <div class="media align-items-center"><a class="reset-anchor d-block animsition-link"
-                                                                         href="{{route('frontend.detail')}}"><img
+                                                                         href="{{route('frontend.product')}}"><img
                                             src="{{asset('frontend/img/product-detail-3.jpg')}}" alt="..." width="70"/></a>
                                     <div class="media-body ml-3"><strong class="h6"><a
                                                 class="reset-anchor animsition-link"
-                                                href="{{route('frontend.detail')}}">Red digital
+                                                href="{{route('frontend.product')}}">Red digital
                                                 smartwatch</a></strong></div>
                                 </div>
                             </th>
@@ -72,11 +72,11 @@
                         <tr>
                             <th class="pl-0 border-light" scope="row">
                                 <div class="media align-items-center"><a class="reset-anchor d-block animsition-link"
-                                                                         href="{{route('frontend.detail')}}"><img
+                                                                         href="{{route('frontend.product')}}"><img
                                             src="{{asset('frontend/img/product-detail-2.jpg')}}" alt="..." width="70"/></a>
                                     <div class="media-body ml-3"><strong class="h6"><a
                                                 class="reset-anchor animsition-link"
-                                                href="{{route('frontend.detail')}}">Apple
+                                                href="{{route('frontend.product')}}">Apple
                                                 watch</a></strong></div>
                                 </div>
                             </th>
