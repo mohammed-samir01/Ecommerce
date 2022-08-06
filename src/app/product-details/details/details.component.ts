@@ -1,7 +1,11 @@
 import { ProductDetailsService } from './../services/product-details.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
 
+=======
+import { TranslateService } from '@ngx-translate/core';
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -12,7 +16,13 @@ export class DetailsComponent implements OnInit {
   id!:any
 
   data : any ={}
+<<<<<<< HEAD
   constructor(private route:ActivatedRoute, private service:ProductDetailsService) { 
+=======
+  constructor(private route:ActivatedRoute, 
+    private service:ProductDetailsService,
+    public translate: TranslateService) { 
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
     
     this.id = this.route.snapshot.paramMap.get("id");
   }

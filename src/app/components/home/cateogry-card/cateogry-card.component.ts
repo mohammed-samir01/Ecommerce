@@ -1,6 +1,10 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { Category } from '../../../interfaces/category';
+<<<<<<< HEAD
 
+=======
+import { TranslateService } from '@ngx-translate/core';
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 @Component({
   selector: 'app-cateogry-card',
   templateUrl: './cateogry-card.component.html',
@@ -13,7 +17,11 @@ export class CateogryCardComponent implements OnInit {
     "title": "Shoes",
     "image": "../../../assets/images/cat-img-2.jpg"
   };
+<<<<<<< HEAD
   constructor() { }
+=======
+  constructor(public translate: TranslateService) { }
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 
   ngOnInit(): void {
   }

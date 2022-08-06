@@ -12,7 +12,11 @@ export class FavoriteService {
   
   constructor() { }
 
+<<<<<<< HEAD
    getProducts(){
+=======
+  getProducts(){
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
     return this.productList.asObservable();
   }
 

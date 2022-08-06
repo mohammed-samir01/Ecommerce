@@ -26,7 +26,14 @@ import { HeadComponent } from './components/home/head/head.component';
 import { TopTrendListComponent } from './components/home/top-trend-list/top-trend-list.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
+<<<<<<< HEAD
 
+=======
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +42,10 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     RegisterComponent,
     CartComponent,
     FavoritesComponent,
+<<<<<<< HEAD
 
+=======
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
     CategoryListComponent,
     CategoryDetailsComponent,
     ProductFilterPipe,
@@ -58,9 +68,28 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     SharedModule,
     ShopModule,
     ProductDetailsModule,
+<<<<<<< HEAD
+=======
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage:"ar",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+<<<<<<< HEAD
+=======
+
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf

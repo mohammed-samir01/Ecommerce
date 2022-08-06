@@ -10,9 +10,14 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { FavoritesComponent } from './components/favorites/favorites.component';
 
 
+<<<<<<< HEAD
 
 const routes: Routes = [
   {path : '',component : HomeComponent},
+=======
+const routes: Routes = [
+  { path: '',component : HomeComponent},
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
   { path: 'product-details/:id', component: ProductDetailsComponent},
   { path: 'shop', component: ShopComponent},
   { path: 'cart', component: CartComponent},
@@ -20,6 +25,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'favorite', component: FavoritesComponent},
   { path: '**', component: PageNotFoundComponent , pathMatch:'full'},
+<<<<<<< HEAD
+=======
+
+>>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 ];
 
 @NgModule({
