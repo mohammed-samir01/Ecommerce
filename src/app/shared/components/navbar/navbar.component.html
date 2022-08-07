@@ -15,8 +15,12 @@
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link py-0" [routerLink]="'/shop'"> {{'SHOP' | translate}} </a>
             </li>
+            <li class="nav-item" [routerLinkActive]="'active'"><a class="nav-link py-0" routerLink="/cart"><i class="fas fa-dolly-flatbed text-gray"></i> {{'Cart' | translate}} <small
+              class="text-gray">2</small></a>
+            </li>
             <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/product-details"> {{'Product Details' | translate}} </a>
+              <a class="nav-link py-0" routerLink="/favorite"><i class="far fa-heart me-1 text-gray"></i> <small
+                  class="text-gray">{{totalItem}}</small></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown"
@@ -34,12 +38,6 @@
           </ul>
 
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item" [routerLinkActive]="'active'">
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/favorite"><i class="far fa-heart me-1 text-gray"></i> <small
-                  class="text-gray">{{totalItem}}</small></a>
-            </li>
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link py-0" routerLink="/login"> {{'LOGIN' | translate}} </a>
             </li>

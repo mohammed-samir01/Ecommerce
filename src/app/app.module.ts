@@ -30,6 +30,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ProductDetailsModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      defaultLanguage:"ar",
+      defaultLanguage:"en",
       loader: {
       provide:TranslateLoader,
       useFactory:createTranslateLoader,

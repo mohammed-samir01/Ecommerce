@@ -1,5 +1,18 @@
-<app-navbar></app-navbar>
+<div class="content {{storedTheme}}" role="main">
+
+  <app-navbar></app-navbar>
+
+<div class="theme-options">
+  <div class="theme-black" (click)="setTheme('theme-black')"></div>
+  <div class="theme-red" (click)="setTheme('theme-red')"></div>
+  <div class="theme-white" (click)="setTheme('theme-white')"></div>
+  <div class="theme-blue" (click)="setTheme('theme-blue')"></div>
+  <div class="theme-purple" (click)="setTheme('theme-purple')"></div>
+</div>
+
 <div class="container-lg g-1 g-md-2">
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
+
+</div>

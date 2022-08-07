@@ -1,3 +1,7 @@
+section {
+    border-radius: 10px;
+}
+
 .hero{
     background-image:url("../../../../assets/images/hero-banner-alt.jpg");
     background-position: center;

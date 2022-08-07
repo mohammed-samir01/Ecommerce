@@ -1,0 +1,35 @@
+.theme-options {
+    width: fit-content;
+    margin: .5em auto;
+    height: 3em;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.theme-options div {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    display: inline-block;
+    margin: .5em;
+    border-radius: 50%;
+    border: 1px solid #CFD2CF;
+}
+
+.theme-black {
+    background-color: #8879B0;
+}
+.theme-red {
+    background-color: #7B113A;
+}
+.theme-white {
+    background-color: #3AB4F2;
+}
+.theme-blue {
+    background-color: #377D71;
+}
+.theme-purple {
+    background-color: #325288;
+}
