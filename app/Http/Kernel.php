@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AssignGuard;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -69,6 +70,8 @@ class Kernel extends HttpKernel
         'permission' => \Mindscms\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Mindscms\Entrust\Middleware\EntrustAbility::class,
         'checkPassword' => \App\Http\Middleware\CheckPassword::class,
+        'auth.guard'  => AssignGuard::class
+
 
 
 

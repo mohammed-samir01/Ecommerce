@@ -215,6 +215,10 @@ return [
         'Entrust'   => Mindscms\Entrust\EntrustFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
+
+
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
