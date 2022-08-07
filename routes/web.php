@@ -42,7 +42,6 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::get('/account_settings', [BackendController::class, 'account_settings'])->name('account_settings');
         Route::post('/admin/remove-image', [BackendController::class, 'remove_image'])->name('remove_image');
         Route::patch('/account_settings', [BackendController::class, 'update_account_settings'])->name('update_account_settings');
-
         Route::post('/product_categories/remove-image', [ProductCategoriesController::class, 'remove_image'])->name('product_categories.remove_image');
         Route::resource('product_categories', ProductCategoriesController::class);
         Route::post('/products/remove-image', [ProductController::class, 'remove_image'])->name('products.remove_image');
@@ -62,11 +61,6 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::get('cities/get_cities', [CityController::class, 'get_cities'])->name('cities.get_cities');
         Route::resource('cities', CityController::class);
         Route::resource('shipping_companies',ShippingCompanyController::class);
-
-
-
-
-
 
 
 

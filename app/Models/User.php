@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Mindscms\Entrust\Traits\EntrustUserWithPermissionsTrait;
 use Nicolaslopezj\Searchable\SearchableTrait;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements MustVerifyEmail , JWTSubject
 {
@@ -70,6 +70,12 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
         return $this->hasMany(UserAddress::class);
     }
 
+    public function userImage()
+    {
+
+        return $this->user_image != '' ? asset('assets/users/'.$this->user_image) : asset('assets/users/avatar.svg');
+
+    }
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -89,7 +95,6 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
     {
         return [];
     }
-
 
 
 }
