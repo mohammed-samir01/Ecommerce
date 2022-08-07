@@ -16,6 +16,11 @@ class  GeneralController extends Controller
 {
 
     use GeneralTrait;
+    protected $paginationTheme = 'bootstrap';
+    public $paginationLimit = 12;
+    public $slug;
+    public $sortingBy = 'default';
+
 
     public function get_products()
     {
@@ -30,7 +35,10 @@ class  GeneralController extends Controller
 
             if ($products->count() > 0){
 
-                return ProductsResource::collection($products);
+                $products=  ProductsResource::collection($products);
+
+                return $this->returnData('products',$products,'Done');
+
 
             } else {
 
@@ -132,7 +140,7 @@ class  GeneralController extends Controller
 
             return ShopResource::collection($products);
 
-            return $this->returnData('Categories',$products,'Done');
+//            return $this->returnData('Categories',$products,'Done');
 
 
         } else {

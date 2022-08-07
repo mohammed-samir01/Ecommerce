@@ -61,6 +61,7 @@ Route::get('/product/{slug}',[GeneralController::class,'show_product']);
 Route::get('/shop/{slug?}',[GeneralController::class ,'shop']);
 
 
+Route::get('/shoop',[App\Http\Livewire\Frontend\ShopProductsComponent::class ,'render']);
 
 
 
