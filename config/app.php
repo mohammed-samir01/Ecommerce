@@ -198,6 +198,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
 
+
     ],
 
     /*
@@ -216,7 +217,6 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
-        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
 
 
         // 'ExampleClass' => App\Example\ExampleClass::class,

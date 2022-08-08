@@ -13,34 +13,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-Route::get('/verified-middleware-example', function () {
-    return response()->json([
-        'message'=>'MMMMMMMMMMMMMMMMMMMMMMM',
-    ]);
-})->middleware('auth:sanctum');
-
-
-Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
-Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify')->middleware('auth:sanctum');
-
-Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
-Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -53,32 +29,19 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
+
 ############################################# APi ####################################################
 
-Route::get('/all_categories',[GeneralController::class,'get_product_categories']);
 Route::get('/all_products',[GeneralController::class,'get_products']);
 Route::get('/product/{slug}',[GeneralController::class,'show_product']);
-Route::get('/shop/{slug?}',[GeneralController::class ,'shop']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/{slug}/related_products',[GeneralController::class ,'related_products']);
+Route::get('/all_categories',[GeneralController::class,'get_product_categories']);
+Route::get('/featured_products',[GeneralController::class ,'featured_products']);
+Route::get('/all_categories_sub',[GeneralController::class ,'shop_tag']);
+Route::get('/all_tags',[GeneralController::class ,'tags']);
+Route::get('/shop',[GeneralController::class ,'shop']);
+Route::get('/shop/{slug?}',[GeneralController::class ,'show_products_with_categories']);
+Route::get('/shop/tags/{slug}',[GeneralController::class ,'show_products_with_tags']);
 
 
 
@@ -97,15 +60,7 @@ Route::group(['prefix'=>'user','middleware'=>'api','checkPassword'],function (){
 
 });
 
-Route::group(['prefix'=>'user',['middleware'=>'api','auth.guard:user-api'],'checkPassword'],function (){
-
-    Route::post('get-main-categories',[CategoriesController::class,'index']);
-
-});
-
-Route::group(['prefix'=>'user'],function (){
 
 
-});
 
 
