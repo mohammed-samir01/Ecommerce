@@ -22,7 +22,7 @@ class MediaResource extends JsonResource
             'file_sort'       => $this->file_sort,
             'mediable_id'     => $this->mediable_id,
             'mediable_type'   => $this->mediable_type,
-            'url'             => asset('assets/posts/'. $this->file_name),
+            'url'             => asset('assets/products/'. $this->file_name),
         ];
     }
 }
