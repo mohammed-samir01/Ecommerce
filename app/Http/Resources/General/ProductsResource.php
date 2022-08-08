@@ -12,16 +12,17 @@ class ProductsResource extends JsonResource
     {
         return [
 
-                'name'                  => $this->name,
+                'ProductName'            => $this->name,
                 'slug'                  => $this->slug,
                 'description'           => $this->description,
                 'price'                 => $this->price,
                 'quantity'              => $this->quantity,
-                'rating'                => Product::withAvg('reviews', 'rating')->whereSlug($this->slug)->Active()->HasQuantity()->ActiveCategory()->firstOrFail(),
-                'product_category'      => new ProductCategoriesResource($this->category),
+                'rating'                => $this->reviews,
+                'product_category'      => $this->category,
                 'featured'              => $this->featured(),
                 'status'                => $this->status(),
                 'media'                 => MediaResource::collection($this->media),
+                'review'                => ProductReviewResource::collection($this->reviews),
 
         ];
     }
