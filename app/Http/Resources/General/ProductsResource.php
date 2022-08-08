@@ -21,7 +21,6 @@ class ProductsResource extends JsonResource
                 'product_category'      => $this->category,
                 'featured'              => $this->featured(),
                 'status'                => $this->status(),
-//                'photo'                 => $this->firstMedia,
                 'Images'                 => MediaResource::collection($this->media)->first(),
                 'review'                => ProductReviewResource::collection($this->reviews),
 

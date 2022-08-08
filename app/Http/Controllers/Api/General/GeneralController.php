@@ -42,9 +42,7 @@ class  GeneralController extends Controller
 
                 $products=  ProductsResource::collection($products);
 
-//                return $products;
-
-                return response()->json($products);
+                return $products;
 
 
             } else {
@@ -81,6 +79,8 @@ class  GeneralController extends Controller
             $product = new ProductResource($product);
 
             return $this->returnData('Product',$product,'Done');
+
+//            return $product;
 
 
         } else {

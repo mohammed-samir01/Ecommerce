@@ -27,6 +27,18 @@ Route::get('/cart',[FrontendController::class ,'cart'])->name('frontend.cart');
 Route::get('/checkout',[FrontendController::class ,'checkout'])->name('frontend.checkout');
 
 
+
+
+Route::group(['middleware' => ['roles', 'role:customer']], function () {
+
+        Route::get('/checkout/{order_id}/cancelled', [PaymentController::class, 'cancelled'])->name('checkout.cancel');
+        Route::get('/checkout/{order_id}/completed', [PaymentController::class, 'completed'])->name('checkout.complete');
+        Route::get('/checkout/webhook/{order?}/{env?}', [PaymentController::class, 'webhook'])->name('checkout.webhook.ipn');
+
+});
+
+
+
 Auth::routes(['verify'=>true]);
 
 
