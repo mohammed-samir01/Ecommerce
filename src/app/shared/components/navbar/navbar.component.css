@@ -18,11 +18,7 @@ nav{
 }
 
 .nav-link:hover {
-<<<<<<< HEAD
-  color: #111111;
-=======
     color: #111111;
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 }
 .dropdown-item{
     line-height: 0.9rem;
@@ -68,11 +64,7 @@ nav{
 
 ul li.active a{
     color: #111111;
-<<<<<<< HEAD
-    font-size: 1.2rem;
-=======
     font-size: .9rem;
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
     border-bottom:3px solid;
 }
 

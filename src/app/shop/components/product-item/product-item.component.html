@@ -1,3 +1,5 @@
+<app-modal></app-modal>
+
 <div class="product text-center">
     <div class="position-relative mb-3">
         <ng-container [ngSwitch]="true">
@@ -6,12 +8,13 @@
             <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sold'">
                 {{'Sold' | translate}}
             </div>
-            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'"> {{'New' |translate}}
+            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'"> {{'New'
+                |translate}}
             </div>
             <div *ngSwitchDefault></div>
         </ng-container>
         <a class="d-block" routerLink="../product-details/{{Product.id}}">
-            <img class="img-fluid" src="{{Product.image}}" alt="..."></a>
+            <img class="img-fluid" src="../../../../assets/images/products/{{Images[0]}}" alt=""></a>
 
         <div class="product-overlay">
             <ul class="mb-0 list-inline">
@@ -24,10 +27,16 @@
                     </a>
                 </li>
                 <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" [routerLink]="'cart'"> {{'Add to cart' | translate}} </a></li>
+
+                <li class="list-inline-item ">
+                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fas fa-expand"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-    <h4> <a class="reset-anchor" [routerLink]="'product-details'">{{Product.title}}</a></h4>
-    <p class="small text-muted fa-1x">{{Product.price}}</p>
-    <p class="small text-muted fa-1x">{{Product.subcategory}}</p>
+    <h4> <a class="reset-anchor" [routerLink]="'product-details'">{{Product.ProductName}}</a></h4>
+    <p class="small text-muted fa-1x">{{Product.product_category.name}}</p>
+    <p class="small text-muted fa-1x">${{Product.price}}</p>
 </div>

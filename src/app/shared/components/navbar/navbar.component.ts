@@ -1,6 +1,5 @@
 import { FavoriteService } from './../../../components/favorites/service/favorite.service';
 import { Component, OnInit, } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 

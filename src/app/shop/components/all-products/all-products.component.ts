@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShopService } from '../../services/shop.service';
-<<<<<<< HEAD
-
-=======
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 
 
 @Component({
@@ -16,6 +12,7 @@ export class AllProductsComponent implements OnInit {
 
   Products : any[] = []; 
   Categories : any[]=[];
+  Images :any[]=[];
 
   page: number = 1;
   count: number = 0;
@@ -23,15 +20,9 @@ export class AllProductsComponent implements OnInit {
   tableSizes: any = [3, 6, 9, 12];
   pagesNumber: number = 1;
 
-<<<<<<< HEAD
-  constructor(private service:ShopService) {
-
-   }
-=======
   constructor(private service:ShopService,
     public translate: TranslateService) {
   }
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 
   ngOnInit(): void {
     this.getProducts();
@@ -41,8 +32,22 @@ export class AllProductsComponent implements OnInit {
 
   getProducts(){
     this.service.getAllProducts().subscribe((res:any) => {
-    this.Products= res;
-    this.count = (this.Products).length;
+      this.Products = res;
+      console.log(res);
+      this.count    = res.meta.total;
+      // this.Images   = res['data']['media'];
+      
+      for (let i = 0; i < this.Products.length; i++) {
+        this.Images = this.Products[i]['media'];
+
+        for (let index = 0; index < this.Images.length; index++) {
+          const element = this.Images[index]['file_name'];
+          console.log(element);
+        }
+      }
+
+      console.log(this.Products);
+      console.log(res);
     })
   }
 

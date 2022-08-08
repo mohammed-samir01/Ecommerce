@@ -10,13 +10,13 @@
         </app-filter>
 
         <div class="row" >
-            <div class="card col-xl-4 col-md-4 col-sm-6 " *ngFor="let Product of Products | paginate : {
+            <div class="card col-xl-4 col-md-4 col-sm-6 " *ngFor="let Product of Products; let image of Images | paginate : {
                 itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: count
                 }; let i = index">
 
-                <app-product-item [Product]="Product"></app-product-item>
+                <app-product-item [Product]="Product" [Images]="image"></app-product-item>
 
             </div>
 

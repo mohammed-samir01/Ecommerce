@@ -1,11 +1,7 @@
 import { ProductDetailsService } from './../services/product-details.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
-
-=======
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -13,30 +9,24 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DetailsComponent implements OnInit {
 
-  id!:any
+  slug!:any
 
-  data : any ={}
-<<<<<<< HEAD
-  constructor(private route:ActivatedRoute, private service:ProductDetailsService) { 
-=======
+  data : any =[];
+  
+  images : any =[];
+
+
   constructor(private route:ActivatedRoute, 
     private service:ProductDetailsService,
     public translate: TranslateService) { 
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
     
-    this.id = this.route.snapshot.paramMap.get("id");
+    this.slug = this.route.snapshot.paramMap.get("slug");
   }
 
   ngOnInit(): void {
     this.getProduct();
   }
 
-  // images : any =[
-  //   {"img": "../../../../assets/images/product-detail-1.jpg"},
-  //   {"img": "../../../../assets/images/product-detail-2.jpg"},
-  //   {"img": "../../../../assets/images/product-detail-3.jpg"},
-  //   {"img": "../../../../assets/images/product-detail-4.jpg"},
-  // ]
 
   quentity : number = 1;
 
@@ -57,8 +47,10 @@ export class DetailsComponent implements OnInit {
 }
   
   getProduct(){
-    this.service.getProductsByID(this.id).subscribe((res:any)=>{
-      this.data = res;
+    this.service.getSingleProduct(this.slug).subscribe((res:any)=>{
+      this.data = res['Product']['Product'];
+      this.images = res['Product']['Product']['media'];
+
     })
   }
 

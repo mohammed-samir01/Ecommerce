@@ -6,14 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductDetailsService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private httpClient:HttpClient) { }
 
-  getProductsByID(id:any){
-    return this.http.get('https://fakestoreapi.com/products/'+ id)
-  }
-
-  getProductsByCate(keyword:string){
-    return this.http.get('./assets/json/'+keyword+'.json')
-    
+  getSingleProduct(keyword :any){
+    return this.httpClient.get("http://127.0.0.1:8000/api/product/"+keyword);
   }
 }

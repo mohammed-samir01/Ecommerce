@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-<div class="container-lg px-lg-4 g-1 g-md-2">
-  <div class="container-lg px-lg-4 g-1 g-md-2">
-=======
 <div class="px-lg-4 g-1 g-md-2">
   <div class="px-lg-4 g-1 g-md-2">
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
     <nav class="navbar navbar-expand-lg bg-white">
         <a class="navbar-brand brand" routerLink="">Boutique</a>
 
@@ -15,15 +10,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
-<<<<<<< HEAD
-              <a class="nav-link py-0 " routerLink="">Home</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" [routerLink]="'/shop'">Shop</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/product-details">Product Details</a>
-=======
               <a class="nav-link py-0 " routerLink=""> {{'home' | translate}} </a>
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
@@ -31,21 +17,10 @@
             </li>
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link py-0" routerLink="/product-details"> {{'Product Details' | translate}} </a>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-<<<<<<< HEAD
-                Pages
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item transition-link" routerLink="/">Home</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/shop">Category</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/product-details">Product Details</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/cart">Shopping Cart</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/checkout">Checkout</a></li>
-=======
                 {{'Pages' | translate}}
               </a>
               <ul class="dropdown-menu">
@@ -54,38 +29,29 @@
                 <li><a class="dropdown-item transition-link" routerLink="/product-details"> {{'Product Details' | translate}} </a></li>
                 <li><a class="dropdown-item transition-link" routerLink="/cart"> {{'Shopping Cart' | translate}} </a></li>
                 <li><a class="dropdown-item transition-link" routerLink="/checkout"> {{'Checkout' | translate}} </a></li>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
               </ul>
             </li>
           </ul>
 
           <ul class="navbar-nav ms-auto">
+
             <li class="nav-item" [routerLinkActive]="'active'">
-<<<<<<< HEAD
-              <a class="nav-link py-0" routerLink="/cart"><i class="fas fa-dolly-flatbed text-gray"></i> Cart <small
-                  class="text-gray">(2)</small></a>
-=======
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
+              <a class="nav-link py-0" routerLink="/favorite">
+                <i class="far fa-heart me-1 text-gray"></i> 
+                <small class="text-gray">{{totalItem}}</small>
+              </a>
             </li>
+
             <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/favorite"><i class="far fa-heart me-1 text-gray"></i> <small
-                  class="text-gray">{{totalItem}}</small></a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-<<<<<<< HEAD
-              <a class="nav-link py-0" routerLink="/login">Login</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/register">Register</a>
-            </li>
-=======
               <a class="nav-link py-0" routerLink="/login"> {{'LOGIN' | translate}} </a>
             </li>
+
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link py-0" routerLink="/register"> {{'REGISTER' | translate}} </a>
             </li>
+
             <app-change-language></app-change-language>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
+            
           </ul>
         </div>
     </nav>

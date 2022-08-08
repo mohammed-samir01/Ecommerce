@@ -1,10 +1,6 @@
 import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 import { Options , LabelType } from 'ng5-slider';
-<<<<<<< HEAD
-
-=======
 import { TranslateService } from '@ngx-translate/core';
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
@@ -16,14 +12,9 @@ export class AsideComponent implements OnInit {
   formats : Array<string> = ["All Listings","Best Offer","Auction","Buy It Now"];
 
   @Input() data : any[] = []; 
-<<<<<<< HEAD
-  @Output() seletedValue = new EventEmitter(); 
-  constructor() { }
-=======
   @Output() seletedValue = new EventEmitter();
   
   constructor(public translate: TranslateService) { }
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
 
   ngOnInit(): void {
   }

@@ -1,22 +1,13 @@
 <section class="py-5 bg-light">
     <div class="row py-5 px-4 px-lg-5 align-items-center">
         <div class="col-lg-6 col-md-6">
-<<<<<<< HEAD
-            <h1 class="text-uppercase mb-0">Favortie</h1>
-=======
             <h1 class="text-uppercase mb-0"> {{'Favorite' | translate}} </h1>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
         </div>
         <div class="col-lg-6 col-md-6">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-end">
-<<<<<<< HEAD
-                    <li class="breadcrumb-item"><a routerLink="">Home</a></li>
-                    <li class="breadcrumb-item text-muted" aria-current="page">Favortie</li>
-=======
                     <li class="breadcrumb-item"><a routerLink=""> {{'home' | translate}} </a></li>
                     <li class="breadcrumb-item text-muted" aria-current="page">{{'Favorite' | translate}}</li>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
                 </ol>
             </nav>
         </div>
@@ -29,17 +20,10 @@
         <div class="position-relative mb-3">
             <ng-container [ngSwitch]="true">
                 <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'sale'">
-<<<<<<< HEAD
-                    Sale</div>
-                <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'sold'">Sold
-                </div>
-                <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'new'">New
-=======
                     {{'Sale' | translate}}</div>
                 <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'sold'"> {{'Sold' | translate}}
                 </div>
                 <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'new'">  {{'New' | translate}}
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
                 </div>
                 <div *ngSwitchDefault></div>
             </ng-container>
@@ -51,12 +35,7 @@
                     <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark"><i class="fa-heart"
                                 [class.far]="isFavorite" [class.fa]="!isFavorite"
                                 (click)="removeFromFavorite(item)"></i></a></li>
-<<<<<<< HEAD
-                    <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" routerLink="/cart">Add to
-                            cart</a></li>
-=======
                     <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" routerLink="/cart"> {{'Add to cart' | translate}} </a></li>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
                 </ul>
             </div>
         </div>
@@ -72,13 +51,8 @@
     <div class="container my-5">
         <div class="card">
             <img src="../../../assets/images/empty.png" height="250" width="250" alt="">
-<<<<<<< HEAD
-            <h2 class="text-center h2 my-3">Your favorite list is empty</h2>
-            <a class="text-center btn btn-dark  w-25 my-3" [routerLink]="'/shop'">Add item now</a>
-=======
             <h2 class="text-center h2 my-3"> {{'Your favorite list is empty' | translate}} </h2>
             <a class="text-center btn btn-dark  w-25 my-3" [routerLink]="'/shop'"> {{'Add item now' | translate}} </a>
->>>>>>> c89114ba562614ca0ccbefe387d52d22d445dfcf
         </div>
     </div>
 </ng-container>
