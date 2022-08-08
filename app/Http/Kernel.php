@@ -69,7 +69,6 @@ class Kernel extends HttpKernel
         'role' => \Mindscms\Entrust\Middleware\EntrustRole::class,
         'permission' => \Mindscms\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Mindscms\Entrust\Middleware\EntrustAbility::class,
-        'checkPassword' => \App\Http\Middleware\CheckPassword::class,
         'auth.guard'  => AssignGuard::class
 
 
