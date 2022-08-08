@@ -64,9 +64,10 @@ let products = this.cartProduct.map(item=>{
     }
     console.log(this.cartProduct)
     console.log(Model)
-
+    // this.cartservice.setProduct(this.cartProduct)
+    this.cartservice.setProduct(this.cartProduct)
     // setProduct(this.cartProduct)
-    console.log(this.cartservice.setProduct(this.cartProduct))
+
   }
 
 }

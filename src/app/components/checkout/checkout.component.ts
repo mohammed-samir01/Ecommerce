@@ -12,8 +12,11 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     // this.allProducts.push(this.checkservice.allProd)
-   this.allProducts =  this.checkservice.getProduct()
-   console.log(this.allProducts)
+    this.checkservice.getProduct().subscribe(data=>
+      // this.allProducts.push(data)
+    console.log(data)
+   )
+
   }
 
 }
