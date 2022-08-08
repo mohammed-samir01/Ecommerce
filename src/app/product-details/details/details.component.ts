@@ -48,8 +48,8 @@ export class DetailsComponent implements OnInit {
   
   getProduct(){
     this.service.getSingleProduct(this.slug).subscribe((res:any)=>{
-      this.data = res['Product']['Product'];
-      this.images = res['Product']['Product']['media'];
+      this.data = res['Product'];
+      this.images = res['Product']['media'];
 
     })
   }

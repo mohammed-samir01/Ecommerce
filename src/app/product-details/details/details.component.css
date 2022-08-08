@@ -28,3 +28,8 @@ span , strong{
   width: 1.5rem;
   outline: none;
 }
+
+ul li i{
+  color: #111111;
+  font-size: 1rem;
+}
