@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CustomerAddressController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\ProductCategoriesController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProductCouponController;
@@ -24,6 +25,18 @@ Route::get('/shop/tags/{slug}',[FrontendController::class ,'shop_tag'])->name('f
 Route::get('/product/{slug?}',[FrontendController::class ,'product'])->name('frontend.product');
 Route::get('/cart',[FrontendController::class ,'cart'])->name('frontend.cart');
 Route::get('/checkout',[FrontendController::class ,'checkout'])->name('frontend.checkout');
+
+
+
+
+Route::group(['middleware' => ['roles', 'role:customer']], function () {
+
+        Route::get('/checkout/{order_id}/cancelled', [PaymentController::class, 'cancelled'])->name('checkout.cancel');
+        Route::get('/checkout/{order_id}/completed', [PaymentController::class, 'completed'])->name('checkout.complete');
+        Route::get('/checkout/webhook/{order?}/{env?}', [PaymentController::class, 'webhook'])->name('checkout.webhook.ipn');
+
+});
+
 
 
 Auth::routes(['verify'=>true]);
@@ -61,6 +74,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::get('cities/get_cities', [CityController::class, 'get_cities'])->name('cities.get_cities');
         Route::resource('cities', CityController::class);
         Route::resource('shipping_companies',ShippingCompanyController::class);
+        Route::resource('payment_methods',PaymentMethodController::class);
 
 
 

@@ -23,7 +23,7 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
 
-        $token = Auth::attempt($credentials);
+        $token = Auth::guard('api')->attempt($credentials);
         if (!$token) {
             return response()->json([
                 'status' => 'error',
@@ -31,7 +31,8 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = Auth::user();
+//        $user = Auth::user();
+      $user = User::where('email',$request->email)->get();
         return response()->json([
             'status' => 'success',
             'user' => $user,
@@ -57,7 +58,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::login($user);
+//        $token = Auth::login($user);
+        $token = Auth::guard('api');
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',

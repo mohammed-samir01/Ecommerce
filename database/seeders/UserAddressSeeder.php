@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Schema;
 
 class UserAddressSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
 
