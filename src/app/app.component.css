@@ -1,11 +1,10 @@
+/* start of change theme color */
 .theme-options {
     width: fit-content;
-    margin: .5em auto;
+    margin: 3rem auto 0rem auto;
     height: 3em;
     text-align: center;
     box-sizing: border-box;
-    border-radius: 10px;
-    background-color: white;
 }
 
 .theme-options div {
@@ -15,21 +14,25 @@
     display: inline-block;
     margin: .5em;
     border-radius: 50%;
-    border: 1px solid #CFD2CF;
+    border: 1.5px solid #CFD2CF;
 }
 
-.theme-black {
-    background-color: #8879B0;
-}
-.theme-red {
-    background-color: #7B113A;
-}
-.theme-white {
-    background-color: #3AB4F2;
-}
-.theme-blue {
-    background-color: #377D71;
-}
-.theme-purple {
+.theme-navyBlue {
     background-color: #325288;
 }
+.theme-lightBlue {
+    background-color: #3AB4F2;
+}
+/* .theme-lightGreen {
+    background-color: #377D71;
+} */
+.theme-white {
+    background-color: white;
+}
+.theme-burgundy {
+    background: #7B113A;
+}
+.theme-purple {
+    background-color: #8879B0;
+}
+/* end of change theme color */

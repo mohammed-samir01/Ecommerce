@@ -5,29 +5,3 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
-
-/*change theme color*/
-.btn-wrapper {
-    padding: 20px;
-    }
-    
-    .btn {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-    }
-    
-    .btn-default {
-    background-color: #3F51B5 !important;
-    }
-    
-    .btn-purple {
-    background-color: #9C27B0 !important;
-    }
-    
-    .btn-pink {
-    background-color: #E91E63 !important;
-    }
-    
-    .btn-deep-orange {
-    background-color: #FF5722 !important;
-    }

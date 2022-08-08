@@ -1,5 +1,10 @@
 nav{
-    line-height: 3.5rem;
+    line-height: 2rem;
+    height: 3rem;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
 }
 .brand{
         font-size: 1.8rem;
@@ -101,5 +106,3 @@ ul li.active a{
         letter-spacing: 0.1em;
 }
 }
-
-

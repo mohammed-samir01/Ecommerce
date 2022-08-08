@@ -21,6 +21,4 @@ export class NavbarComponent implements OnInit {
       this.totalItem = res.length;
     })
   }
-
-
 }

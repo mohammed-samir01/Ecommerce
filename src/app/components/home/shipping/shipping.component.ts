@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ShippingComponent implements OnInit {
 
   constructor(public translate: TranslateService) {
-    this.translate.get('Free Shipping').subscribe((data:any)=> {
+    this.translate.get('services').subscribe((data:any)=> {
       console.log(data);
     });
   }

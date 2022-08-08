@@ -109,6 +109,12 @@
     "Tumblr":"اعرف أكثر عنا",
     "Facebook":"فيسبوك",
     "All rights reserved.":"جميع الحقوق محفوظه",
-    "Women's Colthes":"ملابس نسائيه"
-    
+
+
+    "services":{
+        "Free Shipping":"شحن مجانى",
+        "Free Shipping Worldwide":"شحن دولى مجانى",
+        "24 x 7 service":"خدمة 24 ساعة على مدار الأسبوع",
+        "Festival offer":"خصومات هائله"
+    }
 }

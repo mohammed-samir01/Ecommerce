@@ -108,7 +108,13 @@
     "Instagram":"Instagram",
     "Tumblr":"Tumblr",
     "Facebook":"Facebook",
-    "All rights reserved.":"All rights reserved."
+    "All rights reserved.":"All rights reserved.",
 
 
+    "services":{
+        "Free Shipping":"Free Shipping",
+        "Free Shipping Worldwide":"Free Shipping Worldwide",
+        "24 x 7 service":"24 x 7 service",
+        "Festival offer":"Festival offer"
+    }
 }

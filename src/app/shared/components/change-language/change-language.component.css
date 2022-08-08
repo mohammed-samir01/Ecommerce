@@ -1,0 +1,18 @@
+span {
+    margin: 0 0.5em;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: gray;
+    border: 1px solid gray;
+}
+
+button:hover {
+    color: black;
+}
+
+button:focus {
+    color: black;
+}

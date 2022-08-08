@@ -13,12 +13,14 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ChangeThemeComponent } from './components/change-theme/change-theme.component';
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     HeroComponent,
     ChangeLanguageComponent,
+    ChangeThemeComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FilesModule,
     MaterialModule,
     RouterModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage:"en",
       loader: {
