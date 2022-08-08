@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(WorldStatusSeeder::class);
         $this->call(UserAddressSeeder::class);
         $this->call(ShippingCompanySeeder::class);
+        $this->call(PaymentMethodSeeder::class);
+
 
 
 

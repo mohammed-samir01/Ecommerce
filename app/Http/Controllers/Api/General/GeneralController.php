@@ -42,7 +42,7 @@ class  GeneralController extends Controller
 
                 $products=  ProductsResource::collection($products);
 
-                return $this->returnData('products',$products,'Done');
+                return $products;
 
 
             } else {
@@ -79,6 +79,8 @@ class  GeneralController extends Controller
             $product = new ProductResource($product);
 
             return $this->returnData('Product',$product,'Done');
+
+//            return $product;
 
 
         } else {
@@ -146,14 +148,18 @@ class  GeneralController extends Controller
 
     public function shop_tag()
     {
-        return ProductCategory::tree();
+//        return ProductCategory::tree();
+
+        return response()->json(ProductCategory::tree());
 
     }
 
 
     public function tags()
     {
-       return Tag::whereStatus(true)->get();
+//       return Tag::whereStatus(true)->get();
+
+       return response()->json(Tag::whereStatus(true)->get());
 
     }
 
@@ -218,7 +224,10 @@ class  GeneralController extends Controller
             ->orderBy($sort_field, $sort_type)
             ->paginate($this->paginationLimit);
 
-        return $products ;
+//        return $products ;
+
+        return response()->json($products);
+
 
     }
 
@@ -257,7 +266,9 @@ class  GeneralController extends Controller
             ->orderBy($sort_field, $sort_type)
             ->paginate($this->paginationLimit);
 
-        return $products;
+//        return $products;
+
+        return response()->json($products);
 
 
     }
@@ -272,11 +283,10 @@ class  GeneralController extends Controller
             $query->whereStatus(true);
         })->inRandomOrder()->Active()->HasQuantity()->take(4)->get();
 
-        return $relatedProducts;
+//        return $relatedProducts;
+
+        return response()->json($relatedProducts);
 
     }
-
-
-
 
 }
