@@ -5,28 +5,49 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^9.19",
-        "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4"
+        "php": "^7.3|^8.0",
+        "beyondcode/laravel-websockets": "^1.12",
+        "carlos-meneses/laravel-mpdf": "^2.1",
+        "cviebrock/eloquent-sluggable": "^8.0",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.5",
+        "intervention/imagecache": "^2.5",
+        "jantinnerezo/livewire-alert": "^2.1",
+        "laravel/framework": "^8.40",
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
+        "league/omnipay": "^3.2",
+        "livewire/livewire": "^2.5",
+        "mindscms/entrust": "^2.5",
+        "mindscms/laravelshoppingcart": "^1.2",
+        "nicolaslopezj/searchable": "^1.13",
+        "omnipay/paypal": "^3.0",
+        "predis/predis": "^1.1",
+        "pusher/pusher-php-server": "^5.0",
+        "realrashid/sweet-alert": "^4.0",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helper/GeneralHelper.php",
+                "App/Helper/ApiHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -37,9 +58,6 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
