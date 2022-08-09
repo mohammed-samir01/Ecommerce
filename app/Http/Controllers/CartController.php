@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\General\CartResource;
 use App\Models\cart;
 use App\Models\User;
 use App\Models\product;
@@ -16,16 +17,10 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   /*  public function display($user_id){
-          $user_cart= cart::all()->where('user_id',$user_id);
-          return $user_cart;
-    } */
+
     public function display(Request $request){
-        /* $user_cart= cart::join('media', 'media.madiable_id', '=', 'product_id.id')
-        ->where('product_id', $request->user_id)
-        ->get(); */
-/*         $user_cart= Product::join('media','media.mediable_id','=','Products.id')->where('Products.id',8)->get();
- */      $user_cart= cart::all()->where('user_id',$request->user_id);
+        $user_cart= cart::join('products','products.id','=','carts.product_id')
+        ->join('media','media.mediable_id','=','carts.product_id')->where('user_id',$request->user_id)->get();
 
         if($user_cart){
             return $user_cart;
@@ -56,7 +51,6 @@ class CartController extends Controller
         }
         else{
             return response()->json([ 'message'=>'this product already in cart']);
-
         }
     }
 
@@ -77,58 +71,5 @@ class CartController extends Controller
         ->delete();
         return cart::all()->where('user_id',$request->user_id);
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request ,cart $cart)
-    {
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(cart $cart)
-    {
-        //
-    }
 }

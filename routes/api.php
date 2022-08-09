@@ -56,6 +56,11 @@ Route::group(['prefix'=>'user','middleware'=>'api','checkPassword'],function (){
     Route::get('/all_products',[GeneralController::class,'get_products']);
     Route::get('/all_categories',[GeneralController::class,'get_product_categories']);
 
+    /*************************cart**************************/
+    Route::post('addtocart','App\Http\Controllers\CartController@addtocart');
+    Route::get('cartuser','App\Http\Controllers\CartController@display');
+
+
 
 
 });
