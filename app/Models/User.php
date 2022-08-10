@@ -87,6 +87,9 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
     {
         return [];
     }
+    public function chat(){
+        return $this->hasOne(chat::class);
+    }
 
 
 }

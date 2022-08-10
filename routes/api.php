@@ -59,10 +59,8 @@ Route::group(['prefix'=>'user','middleware'=>'api','checkPassword'],function (){
     /*************************cart**************************/
     Route::post('addtocart','App\Http\Controllers\CartController@addtocart');
     Route::get('cartuser','App\Http\Controllers\CartController@display');
-
-
-
-
+    Route::put('update','App\Http\Controllers\CartController@update_quantity');
+    Route::delete('deletefromcart','App\Http\Controllers\CartController@deletecartproduct');
 });
 
 

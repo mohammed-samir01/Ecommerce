@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\FrontendController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -82,8 +83,12 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
 
 });
 
-Route::get('cartuser','App\Http\Controllers\CartController@display');
+/* Route::get('cartuser','App\Http\Controllers\CartController@display');
  Route::post('addtocart','App\Http\Controllers\CartController@addtocart');
  Route::get('update','App\Http\Controllers\CartController@update_quantity');
  Route::get('deletefromcart','App\Http\Controllers\CartController@deletecartproduct');
 
+ */
+Route::get('createchat','App\Http\Controllers\ChatController@createchat');
+Route::get('sendmessage','App\Http\Controllers\MessageController@createmessage');
+Route::get('playmessage','App\Http\Controllers\MessageController@playmessage');

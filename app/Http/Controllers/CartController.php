@@ -20,7 +20,8 @@ class CartController extends Controller
 
     public function display(Request $request){
         $user_cart= cart::join('products','products.id','=','carts.product_id')
-        ->join('media','media.mediable_id','=','carts.product_id')->where('user_id',$request->user_id)->get();
+        ->join('media','media.mediable_id','=','carts.product_id')
+        ->where('user_id',$request->user_id)->get();
 
         if($user_cart){
             return $user_cart;
