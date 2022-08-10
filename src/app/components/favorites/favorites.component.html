@@ -1,39 +1,59 @@
-<div class="container py-5">
-  <div class="row">
-    <app-hero></app-hero>
-  </div>
-  <div class="row py-5" >
-    <div class="col-3" >
-      <div class="product text-center">
+<section class="py-5 bg-light">
+    <div class="row py-5 px-4 px-lg-5 align-items-center">
+        <div class="col-lg-6 col-md-6">
+            <h1 class="text-uppercase mb-0"> {{'Favorite' | translate}} </h1>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a routerLink=""> {{'home' | translate}} </a></li>
+                    <li class="breadcrumb-item text-muted" aria-current="page">{{'Favorite' | translate}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<ng-container *ngIf="true">
+<div class="col-xl-3 col-lg-3 col-sm-6 my-5" *ngFor="let item of product">
+    <div class="product text-center">
         <div class="position-relative mb-3">
-            <!-- <ng-container >
-                <div class="badge text-bg-warning px-3 py-2 fa-1x">
-                    Sale</div>
-                <div class="badge text-bg-danger px-3 py-2 fa-1x" >
-                    Sold
+            <ng-container [ngSwitch]="true">
+                <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'sale'">
+                    {{'Sale' | translate}}</div>
+                <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'sold'"> {{'Sold' | translate}}
                 </div>
-                <div class="badge text-bg-info px-3 py-2 fa-1x" >new
+                <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="item.status === 'new'">  {{'New' | translate}}
                 </div>
-                <div ></div>
-            </ng-container> -->
-            <a class="d-block" routerLink="Product-details.html">
-                <img class="img-fluid" src="" alt="..."></a>
+                <div *ngSwitchDefault></div>
+            </ng-container>
+            <a class="d-block" [routerLink]="'../product-details/{{product.id}}'">
+                <img class="img-fluid w-100" src="{{item.image}}" alt="..."></a>
 
             <div class="product-overlay">
                 <ul class="mb-0 list-inline">
-                    <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" ><i class="fa-solid fa-heart"></i></a></li>
-                    <li class="list-inline-item mx-2 p-0" >
-                      <a class="btn btn-sm btn-dark" >Add to cart</a>
-                    </li>
-
-
+                    <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark"><i class="fa-heart"
+                                [class.far]="isFavorite" [class.fa]="!isFavorite"
+                                (click)="removeFromFavorite(item)"></i></a></li>
+                    <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" routerLink="/cart"> {{'Add to cart' | translate}} </a></li>
                 </ul>
             </div>
         </div>
-        <h3> <a class="reset-anchor" routerLink="product-details.html"></a></h3>
-        <h4> <a class="reset-anchor" routerLink="product-details.html"></a></h4>
-        <p class="small text-muted fa-1x"></p>
+        <h3> <a class="reset-anchor" routerLink="../product-details/{{product.id}}">{{item.title}}</a></h3>
+        <h4> <a class="reset-anchor" routerLink="../product-details/{{product.id}}">{{item.category}}</a></h4>
+        <p class="small text-muted fa-1x">{{item.price}}</p>
     </div>
-    </div>
-  </div>
 </div>
+</ng-container>
+
+
+<ng-container *ngIf="false">
+    <div class="container my-5">
+        <div class="card">
+            <img src="../../../assets/images/empty.png" height="250" width="250" alt="">
+            <h2 class="text-center h2 my-3"> {{'Your favorite list is empty' | translate}} </h2>
+            <a class="text-center btn btn-dark  w-25 my-3" [routerLink]="'/shop'"> {{'Add item now' | translate}} </a>
+        </div>
+    </div>
+</ng-container>
+

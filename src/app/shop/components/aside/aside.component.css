@@ -7,6 +7,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 a{
   text-decoration: none;
 }
+strong{
+  font-size: 12px;
+  font-weight: 600;
+}
 .cate{
     transition: all 0.3s;
     text-decoration: none;

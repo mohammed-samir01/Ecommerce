@@ -1,28 +1,31 @@
-
-import { Component,  EventEmitter,  Input, OnInit, Output  } from '@angular/core';
-
+import { FavoriteService } from './../../../components/favorites/service/favorite.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-  @Output() item = new EventEmitter()
+
+  isFavorite : boolean = false;
+  
   @Input() Product : any =[];
-  addBoolean:boolean=false
-  amount:number =0
-  constructor() { }
+  constructor(private  favorite : FavoriteService,
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
+    // this.removeFromFavorite(this.Product);
   }
-add(){
 
-  this.item.emit({item:this.Product , quantity:this.amount});
+  onFavoriteClick(Product :any){
+    this.isFavorite = !this.isFavorite;
+    this.favorite.addToFavorite(Product);
+    console.log(Product);
+  }
 
-}
-addCart(){
- this.item.emit({item:this.Product});
-//  console.log(this.Product);
-}
-
+  removeFromFavorite(Product :any){
+    this.isFavorite = this.isFavorite;
+    this.favorite.removeFromFavorite(Product);
+  }
 }

@@ -4,17 +4,19 @@ import { CommonModule } from '@angular/common';
 import { Ng5SliderModule } from 'ng5-slider';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule}  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { HeroComponent } from './components/hero/hero.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 
-
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -23,7 +25,6 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     AllProductsComponent,
     ProductDetailsComponent,
     FilterComponent,
-    HeroComponent,
     ShopComponent,
     AsideComponent,
     ProductItemComponent,
@@ -35,12 +36,23 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      defaultLanguage:"en",
+      loader: {
+      provide:TranslateLoader,
+      useFactory:createTranslateLoader,
+      deps:[HttpClient]
+      }
+    })
   ],
   exports:[
     ShopComponent,
-    FormsModule,
-    HeroComponent
   ]
 })
 export class ShopModule { }
+
+export function createTranslateLoader(http:HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
+}

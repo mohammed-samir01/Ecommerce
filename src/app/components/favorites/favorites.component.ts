@@ -1,19 +1,34 @@
+import { FavoriteService } from './service/favorite.service';
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from 'src/app/models/cart-item';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
-  cartProduct :any[]=[]
-  constructor() { }
+  isFavorite : boolean = false;
+  public product :any =[];
+
+  constructor(private favorite : FavoriteService,
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
-    this.addFav()
+    this.favorite.getProducts().subscribe(res=>{
+      this.product = res;
+      console.log(res);
+    })
   }
-  addFav(){
-    console.log()
+
+  onFavoriteClick(item :any){
+    this.isFavorite = !this.isFavorite;
+
   }
+
+  removeFromFavorite(item :any){
+    
+    this.isFavorite = this.isFavorite;
+    this.favorite.removeFromFavorite(item);
+  }
+ 
 }

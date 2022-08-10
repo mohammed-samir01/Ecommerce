@@ -1,6 +1,6 @@
+import { FavoriteService } from './../../../components/favorites/service/favorite.service';
 import { Component, OnInit, } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -10,10 +10,16 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  totalItem :number = 0;
+  
+  constructor(private favorite :FavoriteService,
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
+    this.favorite.getProducts().subscribe(res=>{
+      this.totalItem = res.length;
+    })
   }
 
-  
+
 }

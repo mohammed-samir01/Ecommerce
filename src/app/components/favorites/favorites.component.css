@@ -82,10 +82,36 @@ h3 a , h4 a{
     font-size: 1rem;
 }
 
-img{
+/* img{
     height: 15rem;
-}
+} */
 
 .card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: none;
+}
+h2{
+  color: #111;
+}
+
+h1 {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #111111;
+    font-size: 1.9rem;
+    letter-spacing: 0.1em;
+}
+
+section a{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #111111;
+}
+li{
+    font-size: 1.2rem;
 }

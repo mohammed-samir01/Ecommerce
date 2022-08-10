@@ -1,0 +1,32 @@
+
+h1{
+    color: #111;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+label{
+    font-size: 1rem;
+}
+input{
+    font-size: 0.8rem;
+}
+
+
+
+a.hero{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #111111;
+}
+li{
+    font-size: 1.2rem;
+}
+
+
+@media (max-width: 992px) {
+    .imgParent {
+        display: none !important;
+    }
+} 
+
+

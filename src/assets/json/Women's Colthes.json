@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 5,
     "title": "Dress",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/Dresses_300_x_300.png",
     "price": "$300",
@@ -9,7 +9,7 @@
     "status": "none"
   },
   {
-    "id": 2,
+    "id": 9,
     "title": "Sweatshirt",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/300/Mobile_App-(300px-x-300px)-copy-44_2.jpg",
     "price": "$150",
@@ -18,7 +18,7 @@
     "status": "none"
   },
   {
-    "id": 3,
+    "id": 10,
     "title": "T-shirt",
     "image": "https://eg.jumia.is/cms/categories-20/fashion/icons/women/300/Tops-&-Tees.png",
     "price": "$120",

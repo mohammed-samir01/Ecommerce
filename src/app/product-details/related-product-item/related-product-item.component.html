@@ -1,0 +1,30 @@
+<app-modal></app-modal>
+
+<div class="product text-center">
+    <div class="position-relative mb-3">
+
+        <ng-container [ngSwitch]="true">
+            <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="relatedProduct.status === 'sale'">
+                {{'Sale' | translate}} </div>
+            <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="relatedProduct.status === 'sold'"> {{'Sold'
+                | translate}}
+            </div>
+            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="relatedProduct.status === 'new'"> {{'New' |
+                translate}}
+            </div>
+            <div *ngSwitchDefault></div>
+        </ng-container>
+        <a class="d-block" routerLink="product-details.html">
+            <img class="img-fluid w-100" src="{{relatedProduct.image}}" alt="..."></a>
+
+        <div class="product-overlay">
+            <ul class="mb-0 list-inline">
+                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" routerLink="#"><i
+                            class="far fa-heart"></i></a></li>
+                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" routerLink="cart.html"> {{'Add to cart' | translate}} </a></li>
+                <li class="list-inline-item ">
+                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="fas fa-expand"></i>
+                    </a>
+                </li>
+            </ul>

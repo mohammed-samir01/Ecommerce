@@ -1,0 +1,51 @@
+<!-- /* Start Shipping */ -->
+
+<section class="py-5 bg-light">
+    <div class="row text-center">
+        <div class="col-lg-4 mb-3 mb-lg-0" *ngFor="let service of services">
+            <div class="media d-flex justify-content-center align-content-center">
+                <i [class]="service.image"></i>
+                <div class="media-body text-left ms-3">
+                    <h6 class="text-uppercase mb-1">{{service.title}}</h6>
+                    <p class="text-small mb-0 text-muted">{{service.desc}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- /* End Shipping */ -->
+
+
+
+
+<!-- /* Start Newsletter */ -->
+
+
+    <section class="py-5">
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <h5 class="text-uppercase"> {{"Let's be friends!" | translate}} </h5>
+                </div>
+                <div class="col-lg-6">
+                    <form action="#">
+                        <div class="input-group mb-3 ">
+                            <input class="form-control  py-2" type="email"
+                                placeholder=" {{'Enter a valid email address' | translate}} "
+                                aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-dark btn-block py-2" id="button-addon2" type="submit"> {{'Subscribe'
+                                    | translate}} </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- /* End Newsletter */ -->
+

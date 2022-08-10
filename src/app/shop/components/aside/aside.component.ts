@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
 import { Options , LabelType } from 'ng5-slider';
-
+import { TranslateService } from '@ngx-translate/core';
+import { ShopService } from '../../services/shop.service';
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
@@ -11,11 +12,15 @@ export class AsideComponent implements OnInit {
   filters : Array<string> = ["Returns Accepted","Returns Accepted","Completed Items","Sold Items","Deals &amp; Savings","Authorized Seller"];
   formats : Array<string> = ["All Listings","Best Offer","Auction","Buy It Now"];
 
-  @Input() data : any[] = []; 
-  @Output() seletedValue = new EventEmitter(); 
-  constructor() { }
+  @Input() data : any[] = [];
+ public cat :any[]=[]
+  @Output() seletedValue = new EventEmitter();
+
+  constructor(public translate: TranslateService
+    ,private shopservice: ShopService) { }
 
   ngOnInit(): void {
+    
   }
 
   filterData(event:any){
