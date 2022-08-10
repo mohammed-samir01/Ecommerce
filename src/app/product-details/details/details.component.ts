@@ -1,7 +1,6 @@
-import { ProductDetailsService } from './../services/product-details.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -9,49 +8,48 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DetailsComponent implements OnInit {
 
-  slug!:any
 
-  data : any =[];
-  
-  images : any =[];
+  @Input() data: any = [];
+
+  @Input() images: any = [];
+
+  @Input() currentRate: number = 0;
+
+  @Input() DefaultImage: string = "";
+
+  quentity: number = 1;
+
+  i = 1;
 
 
-  constructor(private route:ActivatedRoute, 
-    private service:ProductDetailsService,
-    public translate: TranslateService) { 
-    
-    this.slug = this.route.snapshot.paramMap.get("slug");
+
+  constructor(
+    public translate: TranslateService) {
+
   }
 
   ngOnInit(): void {
-    this.getProduct();
+
   }
 
-
-  quentity : number = 1;
-
-  i=1;
-
-  plus(){
-    if(this.i !=100){
+  plus() {
+    if (this.i != 100) {
       this.i++;
-      this.quentity=this.i;
+      this.quentity = this.i;
     }
-}
-
-  minus(){
-    if(this.i !=0){
-      this.i--;
-      this.quentity=this.i;
-    }
-}
-  
-  getProduct(){
-    this.service.getSingleProduct(this.slug).subscribe((res:any)=>{
-      this.data = res['Product'];
-      this.images = res['Product']['media'];
-
-    })
   }
+
+  minus() {
+    if (this.i != 0) {
+      this.i--;
+      this.quentity = this.i;
+    }
+  }
+
+  imageClick(img: any) {
+    this.DefaultImage = img;
+  }
+
+
 
 }

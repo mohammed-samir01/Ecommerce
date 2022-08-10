@@ -15,9 +15,6 @@
             <li class="nav-item" [routerLinkActive]="'active'">
               <a class="nav-link py-0" [routerLink]="'/shop'"> {{'SHOP' | translate}} </a>
             </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/product-details"> {{'Product Details' | translate}} </a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -26,7 +23,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item transition-link" routerLink="/">{{'home' | translate}}</a></li>
                 <li><a class="dropdown-item transition-link" routerLink="/shop"> {{'Categories' | translate}} </a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/product-details"> {{'Product Details' | translate}} </a></li>
                 <li><a class="dropdown-item transition-link" routerLink="/cart"> {{'Shopping Cart' | translate}} </a></li>
                 <li><a class="dropdown-item transition-link" routerLink="/checkout"> {{'Checkout' | translate}} </a></li>
               </ul>

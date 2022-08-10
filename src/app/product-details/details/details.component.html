@@ -3,61 +3,26 @@
         <!-- PRODUCT SLIDER-->
 
         <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-sm-0 w-100">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-
-                    <div class="carousel-item active" *ngFor="let image of images">
-                        <img src="../../../assets/images/products/{{image.image_name}}" class="d-block w-100" alt="...">
-                    </div>
+            <div class="row gallrey">
+                <div class="col-3 left" >
+                    <img src="../../../assets/images/products/{{image.image_name}}" (click)="imageClick(image.image_name)" *ngFor="let image of images ; let i = index">
+                </div>
+                <div class="col-8 right">
+                    <img src="../../../assets/images/products/{{DefaultImage}} ">
 
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
+
         </div>
 
     </div>
-    <div class="col-lg-6 mt-3">{{data.rating}}
-        <ng-container [ngSwitch]="true">
-            <ul *ngSwitchCase=" data.rating === 1.0000 ">
-                <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star text-warning"></i></li>
-            </ul>
-            <!-- <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="relatedProduct.status === 'sold'"> {{'Sold'
-                        | translate}}
-                    </div>
-                    <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="relatedProduct.status === 'new'"> {{'New' |
-                        translate}}
-                    </div> -->
-            <ul *ngSwitchDefault>
-                <li class="list-inline-item"><i class="fa-duotone fa-star-sharp-half-stroke"></i></li>
-                <li class="list-inline-item"><i class="fa-duotone fa-star-sharp-half-stroke"></i></li>
-                <li class="list-inline-item"><i class="fa-duotone fa-star-sharp-half-stroke"></i></li>
-                <li class="list-inline-item"><i class="fa-duotone fa-star-sharp-half-stroke"></i></li>
-                <li class="list-inline-item"><i class="fa-duotone fa-star-sharp-half-stroke"></i></li>
-            </ul>
-        </ng-container>
-        <!-- <ul class="list-inline">
-            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
-            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
-            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
-            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
-            <li class="list-inline-item"><i class="fas fa-star text-warning"></i></li>
-        </ul> -->
+    <div class="col-lg-6 mt-3">
 
-        <h2>{{data.name}}</h2>
-        <h3 class="text-muted lead">${{data.price}}</h3>
+        <ngb-rating [(rate)]="currentRate" [readonly]="true" [max]="5" class="p-0 my-3" style="font-size: 1.5rem;">
+        </ngb-rating>
+
+        <h1>{{data.name}}</h1>
+        <h2 class="text-muted lead">${{data.price}}</h2>
         <p class="text-small mb-4">{{data.description}}</p>
 
         <div class="row align-items-stretch mb-4">
@@ -106,3 +71,4 @@
         </ul>
     </div>
 </div>
+

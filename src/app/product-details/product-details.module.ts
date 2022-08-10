@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
 import { CommonModule } from '@angular/common';
 import { DescReviewComponent } from './desc-review/desc-review.component';
 import { DetailsComponent } from './details/details.component';
@@ -9,6 +11,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { ShopModule } from './../shop/shop.module';
 import { SharedModule } from '../shared/shared.module';
+import { BarRatingModule } from "ngx-bar-rating";
 
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,9 +27,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   ],
   imports: [
     CommonModule,
+    NgbModule,
     MatTabsModule,
     ShopModule,
     SharedModule,
+    BarRatingModule,
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage:"en",
@@ -38,7 +43,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     })
   ],
   exports: [
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    BarRatingModule,
+    NgbModule
   ]
 })
 export class ProductDetailsModule { }

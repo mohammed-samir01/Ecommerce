@@ -39,10 +39,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    ProductDetailsModule,
     SharedModule,
     ShopModule,
     HomeModule,
-    ProductDetailsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage:"en",

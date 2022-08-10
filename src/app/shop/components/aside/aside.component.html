@@ -1,36 +1,20 @@
 <a [routerLink]="'/shop'">
     <h1 class="text-uppercase mb-4" id="cate"><strong> {{'Categories' | translate}} </strong></h1>
 </a>
-<div class="cate1">
-    <h3 class="py-2 px-4 bg-dark text-white mb-3"><strong class="text-uppercase"> {{'Fashion' | translate}} &amp; {{'Acc' | translate}} </strong></h3>
-    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let item of data">
-        <li class="mb-2 mx-4" *ngIf="item.cate === 'FASHION'">
-            <input class="text-muted cate" readonly value="{{item.title}}" (click)="filterData($event)">
+<div class="cate1" *ngFor="let Category of Categories">
+    <h3 class="py-2 px-4 bg-dark text-white mb-3">
+        <strong class="text-uppercase"> {{Category.name}} </strong>
+    </h3>
+    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let subCategory of Category.children">
+        <li class="mb-2 mx-4">
+            <input class="text-muted cate" readonly value="{{subCategory.name}}" (click)="filterData($event)">
         </li>
     </ul>
 </div>
 
-<div class="cate2">
-    <h3 class="py-2 px-4 bg-light mb-3"><strong class="text-uppercase"> {{'Health' | translate}} &amp; {{'Beauty' | translate}} </strong></h3>
-    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let item of data">
-        <li class="mb-2 mx-4" *ngIf="item.cate === 'BEAUTY'">
-            <input value="{{item.title}}" class="text-muted cate" readonly (click)="filterData($event)"
-                value="{{item.title}}">
-        </li>
-    </ul>
-</div>
 
-<div class="cate3">
-    <h3 class="py-2 px-4 bg-light mb-3"><strong class="text-uppercase"> {{'Electronics' | translate}} </strong></h3>
-    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let item of data">
-        <li class="mb-2 mx-4" *ngIf="item.cate === 'ELECTRONICS'">
-            <input value="{{item.title}}" class="text-muted cate" readonly (click)="filterData($event)"
-                value="{{item.title}}">
-        </li>
-    </ul>
-</div>
 
-<div class="valuerange">
+<!-- <div class="valuerange">
     <h1 class="text-uppercase mb-4"><strong> {{'Price range' | translate}} </strong></h1>
     <div class="row mt-2 ">
         <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" class="my-5  ">
@@ -85,4 +69,4 @@
         <input class="form-check-input p-2 me-3" id="customRadio4" type="radio" name="customRadio">
         <label class="form-check-label" for="customRadio4"> {{'Buy It Now' | translate}} </label>
     </div>
-</div>
+</div> -->
