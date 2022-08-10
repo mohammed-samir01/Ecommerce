@@ -28,28 +28,3 @@ span , strong{
   width: 1.5rem;
   outline: none;
 }
-ul{
-  padding: 0;
-}
-ul li i{
-  color: #111111;
-  font-size: 1rem;
-}
-
-.gallrey .left{
-  display: flex;
-  flex-direction: column;
-  width: 20%;;
-}
-.gallrey .left img{
-  width: 100%;
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
-.gallrey .right {
-  width: 80%;
-}
-.gallrey .right img{
-  width: 100%;
-  height: 100%;
-}

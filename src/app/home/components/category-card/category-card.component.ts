@@ -9,11 +9,11 @@ import { HomeService } from '../../service/home.service';
 })
 export class CategoryCardComponent implements OnInit {
 
-  @Input() category : any= [];
-
+  @Input() category : any = [];
   constructor(public homeService : HomeService) { }
 
   ngOnInit(): void {
+    
   }
 
 

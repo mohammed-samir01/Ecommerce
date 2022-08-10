@@ -6,13 +6,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HomeService {
- 
+
   constructor(public translate: TranslateService, private httpClient: HttpClient) { }
-  
-  getAllCategory(){
+  getCategory(){
   return this.httpClient.get("http://127.0.0.1:8000/api/all_categories");
   }
-  
+
   getTopTrendsProducts(){
     return this.httpClient.get("http://127.0.0.1:8000/api/featured_products");
   }

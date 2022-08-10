@@ -1,26 +1,21 @@
 <a [routerLink]="'/shop'">
     <h1 class="text-uppercase mb-4" id="cate"><strong> {{'Categories' | translate}} </strong></h1>
 </a>
-<div class="cate1" *ngFor="let Category of Categories">
-    <h3 class="py-2 px-4 bg-dark text-white mb-3">
-        <strong class="text-uppercase"> {{Category.name}} </strong>
-    </h3>
-    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let subCategory of Category.children">
-        <li class="mb-2 mx-4">
-            <input class="text-muted cate" readonly value="{{subCategory.name}}" (click)="filterData($event)">
+<div class="cate1">
+  <h3 class="py-2 px-4 bg-light mb-3" *ngFor="let item of data"><strong class="text-uppercase">{{item.title}}</strong>
+    
+    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let sub of item.children">
+        <li class="mb-2 mx-4" >
+            <input class="text-muted cate" readonly value="{{sub.name}}" (click)="filterData($event)">
         </li>
     </ul>
+  </h3>
 </div>
 
 
 
-<!-- <div class="valuerange">
-    <h1 class="text-uppercase mb-4"><strong> {{'Price range' | translate}} </strong></h1>
-    <div class="row mt-2 ">
-        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" class="my-5  ">
-        </ng5-slider>
-    </div>
-</div>
+
+
 
 <div class="show mb-4 ">
     <h1 class="text-uppercase mb-4"><strong> {{'Show only' | translate}} </strong></h1>
@@ -69,4 +64,4 @@
         <input class="form-check-input p-2 me-3" id="customRadio4" type="radio" name="customRadio">
         <label class="form-check-label" for="customRadio4"> {{'Buy It Now' | translate}} </label>
     </div>
-</div> -->
+</div>

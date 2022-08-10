@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { ProductDetailsService } from './../services/product-details.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -8,48 +9,49 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DetailsComponent implements OnInit {
 
+  id!:any
 
-  @Input() data: any = [];
-
-  @Input() images: any = [];
-
-  @Input() currentRate: number = 0;
-
-  @Input() DefaultImage: string = "";
-
-  quentity: number = 1;
-
-  i = 1;
-
-
-
-  constructor(
-    public translate: TranslateService) {
-
+  data : any ={}
+  constructor(private route:ActivatedRoute, 
+    private service:ProductDetailsService,
+    public translate: TranslateService) { 
+    
+    this.id = this.route.snapshot.paramMap.get("id");
   }
 
   ngOnInit(): void {
-
+    this.getProduct();
   }
 
-  plus() {
-    if (this.i != 100) {
+  // images : any =[
+  //   {"img": "../../../../assets/images/product-detail-1.jpg"},
+  //   {"img": "../../../../assets/images/product-detail-2.jpg"},
+  //   {"img": "../../../../assets/images/product-detail-3.jpg"},
+  //   {"img": "../../../../assets/images/product-detail-4.jpg"},
+  // ]
+
+  quentity : number = 1;
+
+  i=1;
+
+  plus(){
+    if(this.i !=100){
       this.i++;
-      this.quentity = this.i;
+      this.quentity=this.i;
     }
-  }
+}
 
-  minus() {
-    if (this.i != 0) {
+  minus(){
+    if(this.i !=0){
       this.i--;
-      this.quentity = this.i;
+      this.quentity=this.i;
     }
+}
+  
+  getProduct(){
+    this.service.getProductsByID(this.id).subscribe((res:any)=>{
+      this.data = res;
+    })
   }
-
-  imageClick(img: any) {
-    this.DefaultImage = img;
-  }
-
-
 
 }

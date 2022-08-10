@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../../service/home.service';
-
+// import  category  from '../../../../assets/category.json';
+// import { Category } from '../../../interfaces/category';
+import {HomeService} from '../../service/home.service'
 
 @Component({
   selector: 'app-category-list',
@@ -11,16 +12,16 @@ export class CategoryListComponent implements OnInit {
 
   categories :any[]=[];
 
-  constructor(private homeService :HomeService) { }
+  constructor(private homeservices :HomeService) { }
 
   ngOnInit(): void {
-    this.getAllCategory();
+    this.getCategory();
   }
-
-  getAllCategory(){
-    this.homeService.getAllCategory().subscribe((res:any) => {
+  getCategory(){
+    this.homeservices.getCategory().subscribe((res:any) => {
     this.categories = res['Categories']
-    console.log(this.categories);
+    // console.log(res['Categories']['name']);
+    console.log(this.categories)
    
     })
   }

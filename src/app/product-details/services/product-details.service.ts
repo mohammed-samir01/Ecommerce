@@ -2,16 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductDetailsService {
-  constructor(private httpClient: HttpClient) {}
 
-  getSingleProduct(keyword: any) {
-    return this.httpClient.get('http://127.0.0.1:8000/api/product/' + keyword);
+  constructor(private http:HttpClient) { }
+
+  getProductsByID(id:any){
+    return this.http.get('https://fakestoreapi.com/products/'+ id)
   }
 
-  getRelatedProduct(keyword: any) {
-    return this.httpClient.get('http://127.0.0.1:8000/api/'+ keyword +'/related_products' );
+  getProductsByCate(keyword:string){
+    return this.http.get('./assets/json/'+keyword+'.json')
+
+  }
+  getRelatedProduct(keyword :any){
+    return this.http.get("http://127.0.0.1:8000/api/"+keyword+"/related_products");
   }
 }

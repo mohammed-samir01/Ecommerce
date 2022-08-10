@@ -9,10 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class ProductItemComponent implements OnInit {
 
   isFavorite : boolean = false;
-
+  
   @Input() Product : any =[];
-  @Input() Images : any =[];
-
   constructor(private  favorite : FavoriteService,
     public translate: TranslateService) { }
 

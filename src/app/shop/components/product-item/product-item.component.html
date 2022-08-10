@@ -2,19 +2,9 @@
 
 <div class="product text-center">
     <div class="position-relative mb-3">
-        <ng-container [ngSwitch]="true">
-            <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sale'">
-                {{'Sale' | translate}} </div>
-            <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sold'">
-                {{'Sold' | translate}}
-            </div>
-            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'"> {{'New'
-                |translate}}
-            </div>
-            <div *ngSwitchDefault></div>
-        </ng-container>
-        <a class="d-block" routerLink="../product-details/{{Product.id}}">
-            <img class="img-fluid" src="../../../../assets/images/products/{{Images[0]}}" alt=""></a>
+
+        <a class="d-block" routerLink="../product-details/{{Product.slug}}">
+            <img class="img-fluid" src="../../../../assets/images/Products/{{Product.Images.image_name}}" alt=""></a>
 
         <div class="product-overlay">
             <ul class="mb-0 list-inline">
@@ -36,7 +26,7 @@
             </ul>
         </div>
     </div>
-    <h4> <a class="reset-anchor" [routerLink]="'product-details'">{{Product.ProductName}}</a></h4>
+    <h4> <a class="reset-anchor" routerLink="../product-details/{{Product.slug}}">{{Product.ProductName}}</a></h4>
     <p class="small text-muted fa-1x">{{Product.product_category.name}}</p>
     <p class="small text-muted fa-1x">${{Product.price}}</p>
 </div>

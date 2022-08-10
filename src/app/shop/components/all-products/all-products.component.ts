@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Input, OnInit } from '@angular/core';
 import { ShopService } from '../../services/shop.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -9,6 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./all-products.component.css'],
 })
 export class AllProductsComponent implements OnInit {
+@Input() Products :any =[]
+@Input() count :number = 0
+@Input() to :number =0
+@Input() perPge :number =0
   @Input() Categories: any = [];
 
   Products: any[] = [];
@@ -22,11 +26,11 @@ export class AllProductsComponent implements OnInit {
 
   constructor(
     private service: ShopService,
-    public translate: TranslateService
-  ) {}
+    public translate: TranslateService,
+    public translate: TranslateService ) {}
 
   ngOnInit(): void {
-    this.getProducts();
+
     this.getAllCate();
   }
 
@@ -54,6 +58,7 @@ export class AllProductsComponent implements OnInit {
   getAllCate() {
     this.service.getAllCategories().subscribe((res: any) => {
       // this.Categories = res;
+    console.log(res);
     });
   }
 
@@ -73,9 +78,11 @@ export class AllProductsComponent implements OnInit {
     this.page = event;
     this.getAllCate();
   }
+
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
     this.getAllCate();
   }
+
 }

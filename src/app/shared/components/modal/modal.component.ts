@@ -8,9 +8,11 @@ import { HomeService } from 'src/app/home/service/home.service';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() Product : any  =[];
-  @Input() index!  : number; 
+  Product : any  =[];
+  slug : any =""; 
+
   constructor( private homeService:HomeService) { 
+
   }
 
   ngOnInit(): void {
@@ -43,5 +45,8 @@ export class ModalComponent implements OnInit {
   close(){
     this.modal = !this.modal
   }
+
+
+
 
 }

@@ -10,25 +10,20 @@ import { TranslateService } from '@ngx-translate/core';
 export class TopTrendItemComponent implements OnInit {
 
   @Input() Product : any =[];
-  @Input() index!: number;
 
   constructor(private router:Router,
   public translate: TranslateService) { }
 
   ngOnInit(): void {
-    console.log(this.index);
-    // this.onclick(this.index);
   }
 
 
-  goToProductDetails(id:number){
+    goToProductDetails(id:number){
       this.router.navigate(['/product-details',this.Product.id]);
-  }
-    
-  // onclick(index :any){
-  //   // return this.Product
-  //   console.log(index);
-  // }
+    }
+
+    // onclick(){}
+
 
 }
 

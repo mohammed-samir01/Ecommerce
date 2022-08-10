@@ -1,5 +1,5 @@
 import { Products } from './../../../interfaces/Products';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HomeService } from './../../service/home.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,10 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class TopTrendListComponent implements OnInit {
 
   TopTrend :any [] = []
+  Products : any  =[];
+  slug : any =""; 
 
-
-  constructor(private homeService:HomeService) {
-        
+  constructor(private route : ActivatedRoute,private homeService:HomeService) {
+        this.slug = this.route.snapshot.paramMap.get("slug");
+        console.log(this.slug);
    }
 
   ngOnInit(): void {
@@ -26,25 +28,16 @@ export class TopTrendListComponent implements OnInit {
     this.homeService.getTopTrendsProducts().subscribe((res:any) => {
       this.TopTrend = res['Featured_Products'];
       console.log(res['Featured_Products']);
-
-      // for (let i = 0; i < this.TopTrend.length; i++) {
-      //   const element = this.TopTrend[i]['slug'];
-      //   console.log(element);
-      // }
+    
     })
   }
 
-
 // getSingleProduct(){
 //     this.homeService.getSingleProduct(this.slug).subscribe((res:any) => {
-//       this.Products = res;
+//       this.Product = res;
 //       console.log(res['product']['product']);
 //     });
 //   }
 
-  //   onclick(index :any){
-  //   // return this.Product
-  //   console.log(index);
-  // }
 
 }
