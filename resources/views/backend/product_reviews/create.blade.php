@@ -3,13 +3,13 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex">
-            <h6 class="m-0 font-weight-bold text-primary">Create category</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Create Review</h6>
             <div class="ml-auto">
                 <a href="{{ route('admin.product_categories.index') }}" class="btn btn-primary">
                     <span class="icon text-white-50">
                         <i class="fa fa-home"></i>
                     </span>
-                    <span class="text">Categories</span>
+                    <span class="text">Reviews</span>
                 </a>
             </div>
         </div>

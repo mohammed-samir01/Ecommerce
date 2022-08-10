@@ -41,13 +41,22 @@ class FrontendController extends Controller
     }
 
 
-    public function cart(){
+    public function cart()
+    {
 
         return view('frontend.cart');
 
     }
 
-    public function checkout(){
+    public function wishlist()
+    {
+
+        return view('frontend.wishlist');
+
+    }
+
+    public function checkout()
+    {
 
         return view('frontend.checkout');
 

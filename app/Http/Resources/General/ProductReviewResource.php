@@ -6,12 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductReviewResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
+
     public function toArray($request)
     {
         return [
@@ -23,6 +18,8 @@ class ProductReviewResource extends JsonResource
             'message'       => $this->message,
             'status'        => $this->status,
             'rating'        => $this->rating,
+            'user_image'    => $this->userImage,
+            'creates-at'    => $this->created_at->format('d M Y'),
         ];
     }
 }
