@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,17 +25,17 @@ Route::get('/shop/{slug?}',[FrontendController::class ,'shop'])->name('frontend.
 Route::get('/shop/tags/{slug}',[FrontendController::class ,'shop_tag'])->name('frontend.shop_tag');
 Route::get('/product/{slug?}',[FrontendController::class ,'product'])->name('frontend.product');
 Route::get('/cart',[FrontendController::class ,'cart'])->name('frontend.cart');
-Route::get('/checkout',[FrontendController::class ,'checkout'])->name('frontend.checkout');
-
+Route::get('/wishlist',[FrontendController::class ,'wishlist'])->name('frontend.wishlist');
 
 
 
 Route::group(['middleware' => ['roles', 'role:customer']], function () {
+        Route::get('/checkout',[FrontendController::class ,'checkout'])->name('frontend.checkout');
+        Route::post('/checkout/payment', [PaymentController::class, 'checkout_now'])->name('checkout.payment');
 
         Route::get('/checkout/{order_id}/cancelled', [PaymentController::class, 'cancelled'])->name('checkout.cancel');
         Route::get('/checkout/{order_id}/completed', [PaymentController::class, 'completed'])->name('checkout.complete');
         Route::get('/checkout/webhook/{order?}/{env?}', [PaymentController::class, 'webhook'])->name('checkout.webhook.ipn');
-
 });
 
 
@@ -75,8 +76,6 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::resource('cities', CityController::class);
         Route::resource('shipping_companies',ShippingCompanyController::class);
         Route::resource('payment_methods',PaymentMethodController::class);
-
-
 
     });
 

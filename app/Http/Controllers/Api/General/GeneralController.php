@@ -7,6 +7,7 @@ use App\Http\Resources\General\FeaturedProductsResource;
 use App\Http\Resources\General\ProductCategoriesResource;
 use App\Http\Resources\General\ProductResource;
 use App\Http\Resources\General\ProductsResource;
+use App\Http\Resources\General\RelatedProductsResource;
 use App\Http\Resources\General\ShopResource;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -285,7 +286,9 @@ class  GeneralController extends Controller
 
 //        return $relatedProducts;
 
-        return response()->json($relatedProducts);
+//        return response()->json($relatedProducts);
+
+        return RelatedProductsResource::collection($relatedProducts);
 
     }
 

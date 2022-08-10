@@ -23,7 +23,8 @@
         "nicolaslopezj/searchable": "^1.13",
         "omnipay/paypal": "^3.0",
         "php-open-source-saver/jwt-auth": "^1.4",
-        "predis/predis": "^2.0"
+        "predis/predis": "^2.0",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
