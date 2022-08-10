@@ -8,8 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { ShopModule } from './shop/shop.module';
 import { ProductDetailsModule } from './product-details/product-details.module';
 import { HomeModule } from './home/home.module';
-import { ProductDetailsModule } from './product-details/product-details.module';
-import { HomeModule } from './home/home.module';
+
 
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
@@ -20,10 +19,6 @@ import { ProductFilterPipe } from './pipes/product-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
-import { HttpClient } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -65,9 +60,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 })
 export class AppModule { }
 
-export function createTranslateLoader(http:HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json')
-}
+
 
 export function createTranslateLoader(http:HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')

@@ -1,61 +1,48 @@
 <div class="px-lg-4 g-1 g-md-2">
   <div class="px-lg-4 g-1 g-md-2">
     <nav class="navbar navbar-expand-lg bg-white">
-        <a class="navbar-brand brand" routerLink="">Boutique</a>
+      <a class="navbar-brand brand" routerLink="">Boutique</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link py-0 " routerLink=""> {{'home' | translate}} </a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" [routerLink]="'/shop'"> {{'SHOP' | translate}} </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{'Pages' | translate}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item transition-link" routerLink="/">{{'home' | translate}}</a></li>
+              <li><a class="dropdown-item transition-link" routerLink="/shop"> {{'Categories' | translate}} </a></li>
+              <li><a class="dropdown-item transition-link" routerLink="/cart"> {{'Shopping Cart' | translate}} </a></li>
+              <li><a class="dropdown-item transition-link" routerLink="/checkout"> {{'Checkout' | translate}} </a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" routerLink="/favorite">
+              <i class="far fa-heart me-1 text-gray"></i>
+              <small class="text-gray">{{totalItem}}</small>
+            </a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" routerLink="/login"> {{'LOGIN' | translate}} </a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" routerLink="/register"> {{'REGISTER' | translate}} </a>
+          </li>
+          <app-change-language></app-change-language>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
-              <a class="nav-link py-0 " routerLink=""> {{'home' | translate}} </a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" [routerLink]="'/shop'"> {{'SHOP' | translate}} </a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/product-details"> {{'Product Details' | translate}} </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                {{'Pages' | translate}}
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item transition-link" routerLink="/">{{'home' | translate}}</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/shop"> {{'Categories' | translate}} </a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/product-details"> {{'Product Details' | translate}} </a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/cart"> {{'Shopping Cart' | translate}} </a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/checkout"> {{'Checkout' | translate}} </a></li>
-              </ul>
-            </li>
-          </ul>
-
-          <ul class="navbar-nav ms-auto">
-
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/favorite">
-                <i class="far fa-heart me-1 text-gray"></i> 
-                <small class="text-gray">{{totalItem}}</small>
-              </a>
-            </li>
-
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/login"> {{'LOGIN' | translate}} </a>
-            </li>
-
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/register"> {{'REGISTER' | translate}} </a>
-            </li>
-
-            <app-change-language></app-change-language>
-            
-          </ul>
-        </div>
+        </ul>
+      </div>
     </nav>
   </div>
-
 </div>
-

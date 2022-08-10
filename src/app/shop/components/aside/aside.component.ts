@@ -9,7 +9,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class AsideComponent implements OnInit {
   @Input() Categories: any = [];
 
-
   filters: Array<string> = [
     'Returns Accepted',
     'Returns Accepted',
@@ -28,7 +27,6 @@ export class AsideComponent implements OnInit {
   @Output() seletedValue = new EventEmitter();
 
   constructor(public translate: TranslateService) {}
-
   ngOnInit(): void {}
 
   filterData(event: any) {
@@ -37,6 +35,7 @@ export class AsideComponent implements OnInit {
 
   minValue: number = 1000;
   maxValue: number = 4000;
+
   options: Options = {
     floor: 0,
     ceil: 5000,
@@ -49,6 +48,6 @@ export class AsideComponent implements OnInit {
         default:
           return '$' + value;
       }
-    },
+    }
   };
 }

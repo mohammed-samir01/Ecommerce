@@ -11,11 +11,13 @@ export class ProductItemComponent implements OnInit {
   isFavorite : boolean = false;
   
   @Input() Product : any =[];
+
+  @Input() Images :any =[];
+
   constructor(private  favorite : FavoriteService,
     public translate: TranslateService) { }
 
   ngOnInit(): void {
-    // this.removeFromFavorite(this.Product);
   }
 
   onFavoriteClick(Product :any){

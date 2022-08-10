@@ -5,26 +5,20 @@
     </div>
 
     <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
-
-        <app-filter [count]="count" [tableSize]="tableSize" [perPge]="perPge"  [to]="to" [page]="page" [pagesNumber]="pagesNumber">
+        <app-filter [count]="count" [tableSize]="tableSize" [page]="page" [pagesNumber]="pagesNumber">
         </app-filter>
-
-        <div class="row" >
-            <div class="card col-xl-4 col-md-4 col-sm-6 " *ngFor="let Product of Products | paginate : {
-                itemsPerPage: perPge,
+        <div class="row">
+            <div class="card col-xl-4 col-md-4 col-sm-6 " *ngFor="let Product of Products; let image of Images | paginate : {
+                itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: count
                 }; let i = index">
-
-                <app-product-item [Product]="Product"></app-product-item>
-
+                <app-product-item [Product]="Product" [Images]="image"></app-product-item>
             </div>
-
             <div class="d-flex justify-content-center mt-3">
                 <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                 </pagination-controls>
             </div>
         </div>
     </div>
-
 </div>
