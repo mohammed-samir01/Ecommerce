@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="card">
+        <div class="chat-list" id="chat-list" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <ng-container *ngFor = "let item of chatMessages">
+                <div class="chat-item" [ngClass] ="{'right': item?.user?.id == currentUser.id, 'left': item?.user?.id != currentUser.id}">
+                    <img id="avatar" [src] = "item?.user?.profileImageUrl">
+                    <p id="message-body">{{item?.message}}</p>
+                    <span id="time-details">{{item?.created_at | date: 'shortTime'}}</span>
+                </div>
+            </ng-container>
+        </div>
+        <div class="chat-footer">
+            <textarea id="chat-textarea" [(ngModel)]="chatInputMessage"></textarea>
+            <button id="send-button" (click)="send()" [disabled]="chatInputMessage?.length ! <= 0">Send</button>
+        </div>
+    </div>
+</div>

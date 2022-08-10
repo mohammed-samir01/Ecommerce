@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ChangeThemeComponent } from './components/change-theme/change-theme.component';
+import { LiveChatComponent } from './components/live-chat/live-chat.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -21,9 +23,11 @@ import { ChangeThemeComponent } from './components/change-theme/change-theme.com
     HeroComponent,
     ChangeLanguageComponent,
     ChangeThemeComponent,
+    LiveChatComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     NgxModule,
     FilesModule,
     MaterialModule,

@@ -23,9 +23,6 @@
 .theme-lightBlue {
     background-color: #3AB4F2;
 }
-/* .theme-lightGreen {
-    background-color: #377D71;
-} */
 .theme-white {
     background-color: white;
 }
@@ -36,3 +33,24 @@
     background-color: #8879B0;
 }
 /* end of change theme color */
+
+/* start of chat button */
+a {
+    text-decoration: none;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: rebeccapurple;
+    color: white;
+    position: fixed;
+    left: 92vw;
+    top: 87.5vh;
+    transition: .25s;
+}
+a:hover {
+    opacity: 0.6;
+}
+/* end of chat button */
