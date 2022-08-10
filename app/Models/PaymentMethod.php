@@ -32,4 +32,9 @@ class PaymentMethod extends Model
         return $this->sandbox ? 'Sandbox' : 'Live';
     }
 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }

@@ -55,19 +55,24 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
-    public function reviews(): HasMany
-    {
-        return $this->hasMany(ProductReview::class);
-    }
-
     public function status(): string
     {
         return $this->status ? 'Active' : 'Inactive';
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
     public function addresses(): HasMany
     {
         return $this->hasMany(UserAddress::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 
     public function userImage()
@@ -76,6 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
         return $this->user_image != '' ? asset('assets/users/'.$this->user_image) : asset('assets/users/avatar.svg');
 
     }
+
 
     public function getJWTIdentifier()
     {
