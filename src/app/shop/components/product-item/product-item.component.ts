@@ -1,6 +1,7 @@
 import { FavoriteService } from './../../../components/favorites/service/favorite.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -9,9 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class ProductItemComponent implements OnInit {
 
   isFavorite : boolean = false;
-  
+   products :any []=[]
   @Input() Product : any =[];
   constructor(private  favorite : FavoriteService,
+    private cartservic : CartService,
     public translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -27,5 +29,11 @@ export class ProductItemComponent implements OnInit {
   removeFromFavorite(Product :any){
     this.isFavorite = this.isFavorite;
     this.favorite.removeFromFavorite(Product);
+  }
+
+  addCart(prod : any){
+   this.products = prod
+   console.log(this.products)
+   this.cartservic.addToCart(prod)
   }
 }
