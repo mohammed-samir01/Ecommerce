@@ -30,13 +30,13 @@ class CartController extends Controller
     {
        $price=product::all()->where('id',$request->product_id);
         foreach($price as $p){
-            $price=$p['price'];
+             $price=$p['price'];
         }
-        if(blank(cart::all()->where('user_id',$request->user_id)->where('product_id',$request->product_id))){
+         if(blank(cart::all()->where('user_id',$request->user_id)->where('product_id',$request->product_id))){
             cart::create([
                 'user_id'=>$request->user_id,
                 'product_id'=>$request->product_id,
-                'price'=>$price
+                'cart_price'=>$price
             ]);
             return cart::all()->where('user_id',$request->user_id);
         }
@@ -53,7 +53,7 @@ class CartController extends Controller
 
         cart::where('user_id',$request->user_id)
         ->where('product_id',$request->product_id)
-        ->update(['quantity'=>$request->quantity,'price'=>$price*$request->quantity]);
+        ->update(['cart_quantity'=>$request->quantity,'cart_price'=>$price*$request->quantity]);
          return cart::all()->where('user_id',$request->user_id)->where('product_id',$request->product_id);
     }
     public function deletecartproduct(Request $request){

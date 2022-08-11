@@ -12,7 +12,10 @@ use Laravel\Ui\Presets\React;
 class MessageController extends Controller
 {
     public function playmessage(Request $request){
-        return message::where('chat_id',$request->chat_id)->orderBy('id', 'DESC')->get();
+       /*  $messge= message::where('chat_id',$request->chat_id)->orderBy('id', 'DESC')->get();
+
+        return  response()->json(['message'=> $messge]); */
+        return message::where('chat_id',$request->chat_id)->get();
     }
 
 
@@ -26,7 +29,7 @@ class MessageController extends Controller
     }
     public function editmessage(Request $request){
         message::where('id',$request->id)->update([
-            'content'=>$request->content
+            'content'=>$request->content,
         ]);
         return message::where('chat_id',$request->chat_id)->orderBy('id', 'DESC')->get();
     }
