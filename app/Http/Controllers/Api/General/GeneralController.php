@@ -225,9 +225,9 @@ class  GeneralController extends Controller
             ->orderBy($sort_field, $sort_type)
             ->paginate($this->paginationLimit);
 
-//        return $products ;
+        return $products ;
 
-        return response()->json($products);
+        //return response()->json($products);
 
 
     }
@@ -267,9 +267,9 @@ class  GeneralController extends Controller
             ->orderBy($sort_field, $sort_type)
             ->paginate($this->paginationLimit);
 
-//        return $products;
+        return $products;
 
-        return response()->json($products);
+//        return response()->json($products);
 
 
     }

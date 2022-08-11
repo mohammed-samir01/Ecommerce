@@ -1,38 +1,34 @@
 <?php
 
-use App\Http\Controllers\Api\CategoriesController;
-use App\Http\Controllers\Api\EmailVerificationController;
 use App\Http\Controllers\Api\General\GeneralController;
-use App\Http\Controllers\Api\NewPasswordController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
-    Route::post('forgetPassword', 'forgetPassword');
-    Route::post('resetPassword', 'resetPassword');
-    Route::post('logout', 'logout');
+    Route::post('verify_user', 'verifyUser');
+    Route::post('reset_password', 'resetPassword');
+    Route::post('recover', 'recover');
     Route::post('refresh', 'refresh');
     Route::get('me', 'me');
 
 });
 
+Route::group(['middleware' => ['jwt.auth']], function() {
+    Route::get('logout', 'AuthController@logout');
+
+});
 
 
-############################################# APi ####################################################
+
+############################################# APi ######################################################################
 
 Route::get('/all_products',[GeneralController::class,'get_products']);
 Route::get('/product/{slug}',[GeneralController::class,'show_product']);
@@ -46,23 +42,15 @@ Route::get('/shop/{slug?}',[GeneralController::class ,'show_products_with_catego
 Route::get('/shop/tags/{slug}',[GeneralController::class ,'show_products_with_tags']);
 
 
+##################################### All Routes | Api Here Must Be Api Authenticated ###################################
 
-
-
-// All Routes | Api Here Must Be Api Authenticated
-
-Route::group(['prefix'=>'user','middleware'=>'api','checkPassword'],function (){
-
-    Route::post('get-main-categories',[CategoriesController::class,'index'])->middleware(['auth.guard:user-api']);
-    Route::get('/shop/{slug?}',[FrontendController::class ,'shop'])->name('frontend.shop');
-    Route::get('/all_products',[GeneralController::class,'get_products']);
-    Route::get('/all_categories',[GeneralController::class,'get_product_categories']);
-
+Route::group(['middleware' => ['roles', 'role:customer']], function () {
 
 
 });
 
 
-
-
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
