@@ -2,6 +2,34 @@ $background: white;
 $primary: rebeccapurple;
 $shadow: black;
 
+// head of page//
+section {
+    border-radius: 10px;
+    width: 80vw;
+    margin: 0 auto;
+    filter: drop-shadow(1px 1px 6px $shadow);
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #111111;
+    font-size: 1.9rem;
+    letter-spacing: 0.1em;
+}
+
+a{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #111111;
+}
+li{
+    font-size: 1.2rem;
+}
+//end of style for head of page//
+
 .container {
     display: flex;
     justify-content: center;
@@ -10,10 +38,11 @@ $shadow: black;
 }
 
 .card {
-    height: 500px;
-    width: 500px;
+    height: 80vh;
+    width: 100vw;
     background-color: $background;
     margin: 10px auto;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     filter: drop-shadow(1px 1px 6px $shadow);
@@ -33,6 +62,7 @@ $shadow: black;
         #message-body {
             margin: auto 8px;
             padding: 8px 16px;
+            max-width: 80%;
             border-radius: 10px;
             background-color: $primary;
             color: white;

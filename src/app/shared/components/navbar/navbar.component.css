@@ -5,7 +5,7 @@ nav{
     top: 0;
     z-index: 1000;
     width: 100%;
-    box-shadow: 0 2px 20px gray;
+    box-shadow: 0 2px 10px gray;
 }
 .brand{
         font-size: 1.8rem;

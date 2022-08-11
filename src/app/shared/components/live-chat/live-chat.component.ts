@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-live-chat',
@@ -8,16 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class LiveChatComponent implements OnInit {
   chatInputMessage: string = "";
 
+  serviceCustomers = {
+    name: 'Marina',
+    id: 2,
+    profileImageUrl: '../../../../assets/chat&goToTop/profileChat1.png'
+  }
   currentUser = {
     name: 'Muhammad',
     id: 1,
-    profileImageUrl: '../../../../assets/chat/profileChat2.png'
+    profileImageUrl: '../../../../assets/chat&goToTop/profileChat2.png'
   }
-  user1 = {
-    name: 'Fatema',
-    id: 2,
-    profileImageUrl: '../../../../assets/chat/profileChat1.png'
-  }
+
 
   chatMessages : {
     user: any,
@@ -25,13 +27,13 @@ export class LiveChatComponent implements OnInit {
     created_at: number
   } [] = [
     {
-      user: this.currentUser,
-      message: "hello, how are you?",
+      user: this.serviceCustomers,
+      message: "Hello, how can i help you?",
       created_at: Date.now()
     },
     {
-      user: this.user1,
-      message: "iam fine thank you.",
+      user: this.currentUser,
+      message: "Hello, i have a problem with order ...",
       created_at: Date.now()
     }
   ];
@@ -46,7 +48,7 @@ export class LiveChatComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(public translate: TranslateService) { }
   ngOnInit(): void {
   }
 }

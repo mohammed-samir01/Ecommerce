@@ -6,7 +6,6 @@
     text-align: center;
     box-sizing: border-box;
 }
-
 .theme-options div {
     width: 2em;
     height: 2em;
@@ -16,7 +15,6 @@
     border-radius: 50%;
     border: 1.5px solid #CFD2CF;
 }
-
 .theme-navyBlue {
     background-color: #325288;
 }
@@ -32,25 +30,48 @@
 .theme-purple {
     background-color: #8879B0;
 }
-/* end of change theme color */
+
+/* rightCorner */
+.rightCorner {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    position: fixed;
+    left: 92.5vw;
+    top: 75vh;
+}
 
 /* start of chat button */
 a {
     text-decoration: none;
-    width: fit-content;
-    height: fit-content;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rebeccapurple;
+    color: white;
+    transition: all 1.5s 0 ease;
+}
+
+/* go to up button */
+.goToUp {
+    width: 50px;
+    height: 50px;
     padding: 10px;
     margin: 5px;
     border-radius: 50%;
-    text-align: center;
     background-color: rebeccapurple;
-    color: white;
-    position: fixed;
-    left: 92vw;
-    top: 87.5vh;
-    transition: .25s;
+    transition: all .25s 0 ease-out;
 }
-a:hover {
-    opacity: 0.6;
+a:hover,
+.goToUp:hover {
+    opacity: 0.7;
 }
-/* end of chat button */

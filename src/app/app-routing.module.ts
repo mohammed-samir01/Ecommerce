@@ -8,18 +8,19 @@ import { ShopComponent } from './shop/components/shop/shop.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { LiveChatComponent } from './shared/components/live-chat/live-chat.component';
 
 
 const routes: Routes = [
-  { path: '',component : HomeComponent},
+  { path: '', component: HomeComponent},
   { path: 'product-details/:id', component: ProductDetailsComponent},
   { path: 'shop', component: ShopComponent},
   { path: 'cart', component: CartComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'favorite', component: FavoritesComponent},
-  { path: '**', component: PageNotFoundComponent , pathMatch:'full'},
-
+  { path: 'live-chat', component: LiveChatComponent },
+  { path: '**', component: PageNotFoundComponent , pathMatch:'full'}
 ];
 
 @NgModule({
