@@ -89,6 +89,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
  Route::get('deletefromcart','App\Http\Controllers\CartController@deletecartproduct');
 
  */
-Route::get('createchat','App\Http\Controllers\ChatController@createchat');
+/* Route::get('createchat','App\Http\Controllers\ChatController@createchat');
 Route::get('sendmessage','App\Http\Controllers\MessageController@createmessage');
 Route::get('playmessage','App\Http\Controllers\MessageController@playmessage');
+Route::get("editmessage", 'App\Http\Controllers\MessageController@editmessage');
+Route::get("deletemessage", 'App\Http\Controllers\MessageController@deletemessage');
+
+ */

@@ -12,11 +12,6 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function display(Request $request){
         $user_cart= cart::join('products','products.id','=','carts.product_id')
@@ -31,11 +26,6 @@ class CartController extends Controller
 
 
   }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function addtocart(Request $request)
     {
        $price=product::all()->where('id',$request->product_id);
@@ -72,5 +62,4 @@ class CartController extends Controller
         ->delete();
         return cart::all()->where('user_id',$request->user_id);
     }
-
 }
