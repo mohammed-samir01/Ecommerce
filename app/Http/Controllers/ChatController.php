@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->auth();
+    }
     public function displaychat(Request $request){
         return chat::where('user_id',$request->user_id)->get();
     }

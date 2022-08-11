@@ -62,12 +62,12 @@ Route::group(['prefix'=>'user','middleware'=>'api','checkPassword'],function (){
     Route::put('update','App\Http\Controllers\CartController@update_quantity');
     Route::delete('deletefromcart','App\Http\Controllers\CartController@deletecartproduct');
     /**************************chat************************* */
-    /* Route::post('createchat','App\Http\Controllers\ChatController@createchat');
+    Route::post('createchat','App\Http\Controllers\ChatController@createchat');
     Route::post('sendmessage','App\Http\Controllers\MessageController@createmessage');
     Route::get('playmessage','App\Http\Controllers\MessageController@playmessage');
-    Route::update("editmessage", 'App\Http\Controllers\MessageController@editmessage');
+    Route::put("editmessage", 'App\Http\Controllers\MessageController@editmessage');
     Route::delete("deletemessage", 'App\Http\Controllers\MessageController@deletemessage');
- */
+
 });
 
 

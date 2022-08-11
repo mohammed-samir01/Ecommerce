@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Models\chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::group(['middleware' => ['roles', 'role:customer']], function () {
         Route::get('/checkout/webhook/{order?}/{env?}', [PaymentController::class, 'webhook'])->name('checkout.webhook.ipn');
 
 });
+
 
 
 
