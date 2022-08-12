@@ -1,0 +1,62 @@
+section,
+main {
+    border-radius: 10px;
+}
+h1{
+    color: #111;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+a.hero{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #111111;
+}
+li{
+    font-size: 1.2rem;
+}
+/* end of header */
+
+main {
+    width: 80vw;
+    height: fit-content;
+    padding: 10px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+main {
+    width: 80vw;
+    height: fit-content;
+    padding: 10px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+p {
+    font-size: larger;
+}
+input {
+    all: unset;
+    width: 20vw;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+button {
+    width: 20vw;
+    margin: 5px;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+}
+button:hover {
+    font-size: larger;
+}

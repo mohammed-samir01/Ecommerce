@@ -88,9 +88,8 @@
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="submit" class="btn btn-dark w-100">
-                            {{'REGISTER' | translate}}
-                        </button>
+                        <button type="submit" class="btn btn-dark w-100" [routerLink]="'../verify-register'">
+                            {{'REGISTER' | translate}}</button>
                         <h4 class="mt-2 pt-1 mb-0">
                             {{'IF YOU HAVE ACCOUNT' | translate}}
                             <a [routerLink]="'../login'" class="link-dark fw-bold m-2"> {{'LOGIN' | translate}} </a>
@@ -106,6 +105,5 @@
                 <img src="../../../../assets/images/Secure login-rafiki.png" alt="Sample image" height="400rem" />
             </div>
         </div>
-
-
     </div>
+</div>

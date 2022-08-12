@@ -42,7 +42,7 @@
     z-index: 1000;
     position: fixed;
     left: 92.5vw;
-    top: 75vh;
+    top: 77vh;
 }
 
 /* start of chat button */
@@ -58,20 +58,22 @@ a {
     border-radius: 50%;
     background-color: rebeccapurple;
     color: white;
-    transition: all 1.5s 0 ease;
+    transition: 0.25s;
 }
 
 /* go to up button */
 .goToUp {
-    width: 50px;
-    height: 50px;
-    padding: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
     margin: 5px;
     border-radius: 50%;
     background-color: rebeccapurple;
-    transition: all .25s 0 ease-out;
+    transition: 0.25s;
 }
-a:hover,
+a:hover {
+    font-size: larger;
+}
 .goToUp:hover {
-    opacity: 0.7;
+    padding: 0px;
 }
