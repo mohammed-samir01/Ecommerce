@@ -88,7 +88,21 @@ Route::post('register-token',[App\Http\Controllers\Api\Frontend\AuthController::
 Route::delete('delete-token',[App\Http\Controllers\Api\Frontend\AuthController::class, 'removeToken']);
 
 
+// after auth
 Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder'])->middleware('auth:api');
+// Route::get('apply-coupon-one',[App\Http\Controllers\Api\Frontend\MainController::class, 'applyCoupon'])->middleware('auth:api');
+Route::get('apply-coupon',[App\Http\Controllers\Api\Frontend\MainController::class, 'applyCoupon'])->middleware('auth:api');
+
+Route::post('fav-products',[App\Http\Controllers\Api\Frontend\MainController::class, 'favProducts'])->middleware('auth:api');
+
+Route::get('show-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'showCart'])->middleware('auth:api');
+Route::delete('delete-cart-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteProduct'])->middleware('auth:api');
+Route::put('update-quantity',[App\Http\Controllers\Api\Frontend\MainController::class, 'updateQuantity'])->middleware('auth:api');
+Route::post('add-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addToCart'])->middleware('auth:api');
+
+
+
+
 
 
 

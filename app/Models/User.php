@@ -73,6 +73,10 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
+    public function products(){
+        return $this->BelongsToMany(Product::class);
+    }
+
     public function status(): string
     {
         return $this->status ? 'Active' : 'Inactive';
