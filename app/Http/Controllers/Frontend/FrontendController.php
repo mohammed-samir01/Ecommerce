@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+
+
     public function index(){
 
         $product_categories = ProductCategory::whereStatus(1)->whereNull('parent_id')->get();

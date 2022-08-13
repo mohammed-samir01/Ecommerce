@@ -58,6 +58,10 @@
     <livewire:frontend.product-modal-shared />
 
     {{--    <!-- Scripts -->--}}
+    <livewire:scripts />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- JavaScript files-->
     <script src="{{asset('frontend/vendor/jquery/jquery.min.js')}}"></script>
@@ -68,11 +72,6 @@
     <script src="{{asset('frontend/vendor/owl.carousel2/owl.carousel.min.js')}}"></script>
     <script src="{{asset('frontend/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js')}}"></script>
     <script src="{{asset('frontend/js/front.js')}}"></script>
-
-    <livewire:scripts />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <x-livewire-alert::scripts />
-    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     @yield('script')
 
 </body>

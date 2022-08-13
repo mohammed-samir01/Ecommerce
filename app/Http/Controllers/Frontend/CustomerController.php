@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\ProfileRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class CustomerController extends Controller
 {
+
+
     public function dashboard()
     {
         return view('frontend.customer.index');
