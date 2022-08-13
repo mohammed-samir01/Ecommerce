@@ -227,7 +227,7 @@ class  GeneralController extends Controller
 
         return $products ;
 
-        //return response()->json($products);
+//        return response()->json($products);
 
 
     }

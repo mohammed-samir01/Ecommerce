@@ -12,16 +12,16 @@ class ProductsResource extends JsonResource
     {
         return [
 
-                'ProductName'            => $this->name,
+                'name'                  => $this->name,
                 'slug'                  => $this->slug,
                 'description'           => $this->description,
                 'price'                 => $this->price,
                 'quantity'              => $this->quantity,
                 'rating'                => $this->reviews,
-                'product_category'      => $this->category,
+                'category'              => $this->category,
                 'featured'              => $this->featured(),
                 'status'                => $this->status(),
-                'Images'                 => MediaResource::collection($this->media)->first(),
+                'first_media'           => MediaResource::collection($this->media)->first(),
                 'review'                => ProductReviewResource::collection($this->reviews),
 
         ];
