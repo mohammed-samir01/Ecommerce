@@ -11,7 +11,7 @@ class ProductReviewResource extends JsonResource
     {
         return [
 
-            'Product_name'  => $this->product->name,
+            'name'          => $this->product->name,
             'User_name'     => $this->name,
             'email'         => $this->email,
             'title'         => $this->title,
