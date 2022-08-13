@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CustomerAddressController;
 use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Backend\ProductCategoriesController;
 use App\Http\Controllers\Backend\ProductController;
@@ -38,12 +39,15 @@ Route::group(['middleware' => ['roles', 'role:customer']], function () {
         Route::get('/addresses', [FrontendCustomerController::class, 'addresses'])->name('customer.addresses');
         Route::get('/orders', [FrontendCustomerController::class, 'orders'])->name('customer.orders');
 
+Route::group(['middleware'=>'check_cart'],function (){
+    Route::get('/checkout',[PaymentController::class ,'checkout'])->name('frontend.checkout');
+    Route::post('/checkout/payment', [PaymentController::class, 'checkout_now'])->name('checkout.payment');
+    Route::get('/checkout/{order_id}/cancelled', [PaymentController::class, 'cancelled'])->name('checkout.cancel');
+    Route::get('/checkout/{order_id}/completed', [PaymentController::class, 'completed'])->name('checkout.complete');
+    Route::get('/checkout/webhook/{order?}/{env?}', [PaymentController::class, 'webhook'])->name('checkout.webhook.ipn');
 
-        Route::get('/checkout',[PaymentController::class ,'checkout'])->name('frontend.checkout');
-        Route::post('/checkout/payment', [PaymentController::class, 'checkout_now'])->name('checkout.payment');
-        Route::get('/checkout/{order_id}/cancelled', [PaymentController::class, 'cancelled'])->name('checkout.cancel');
-        Route::get('/checkout/{order_id}/completed', [PaymentController::class, 'completed'])->name('checkout.complete');
-        Route::get('/checkout/webhook/{order?}/{env?}', [PaymentController::class, 'webhook'])->name('checkout.webhook.ipn');
+});
+
 });
 
 
@@ -77,6 +81,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::resource('customer_addresses', CustomerAddressController::class);
         Route::post('/supervisors/remove-image', [SupervisorController::class, 'remove_image'])->name('supervisors.remove_image');
         Route::resource('supervisors', SupervisorController::class);
+        Route::resource('orders', OrderController::class);
         Route::resource('countries', CountryController::class);
         Route::get('states/get_states', [StateController::class, 'get_states'])->name('states.get_states');
         Route::resource('states', StateController::class);
