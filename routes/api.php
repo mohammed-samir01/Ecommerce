@@ -18,13 +18,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('recover', 'recover');
     Route::post('refresh', 'refresh');
     Route::get('me', 'me');
+    Route::get('logout', 'logout');
 
 });
 
-Route::group(['middleware' => ['jwt.auth']], function() {
-    Route::get('logout', 'AuthController@logout');
-
-});
+//Route::group(['middleware' => ['jwt.auth']], function() {
+//    Route::get('logout', 'AuthController@logout');
+//
+//});
 
 
 
@@ -44,8 +45,28 @@ Route::get('/shop/tags/{slug}',[GeneralController::class ,'show_products_with_ta
 
 ##################################### All Routes | Api Here Must Be Api Authenticated ###################################
 
-Route::group(['middleware' => ['roles', 'role:customer']], function () {
+################################### Cart,Wishlist  And  Orders ###########################################################
 
+//Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder'])->middleware('auth:api');
+//Route::get('apply-coupon',[App\Http\Controllers\Api\Frontend\MainController::class, 'applyCoupon'])->middleware('auth:api');
+//Route::post('fav-products',[App\Http\Controllers\Api\Frontend\MainController::class, 'favProducts'])->middleware('auth:api');
+//Route::get('show-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'showCart'])->middleware('auth:api');
+//Route::delete('delete-cart-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteProduct'])->middleware('auth:api');
+//Route::put('update-quantity',[App\Http\Controllers\Api\Frontend\MainController::class, 'updateQuantity'])->middleware('auth:api');
+//Route::post('add-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addToCart'])->middleware('auth:api');
+
+
+
+
+Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
+
+    Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder']);
+    Route::get('apply-coupon',[App\Http\Controllers\Api\Frontend\MainController::class, 'applyCoupon']);
+    Route::post('fav-products',[App\Http\Controllers\Api\Frontend\MainController::class, 'favProducts']);
+    Route::get('show-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'showCart']);
+    Route::delete('delete-cart-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteProduct']);
+    Route::put('update-quantity',[App\Http\Controllers\Api\Frontend\MainController::class, 'updateQuantity']);
+    Route::post('add-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addToCart']);
 
 });
 

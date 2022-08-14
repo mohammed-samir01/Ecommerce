@@ -21,10 +21,10 @@ class AuthController extends Controller
 
     use GeneralTrait;
 
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth:api', ['except' => ['login','register']]);
+//    }
 
     /**
      * API Login, on success return JWT Auth token
@@ -46,9 +46,16 @@ class AuthController extends Controller
 
         $validator = Validator::make($input, $rules);
 
+        $token = Auth::guard('api')->attempt($input);
+
         if($validator->fails()) {
             $error = $validator->messages()->toJson();
-            return response()->json(['success'=> false, 'error'=> $error]);
+            return response()->json([
+                'success'=> false,
+                'error'=> $error,
+                'token'=> $token,
+
+            ]);
         }
 
         $credentials = [
@@ -103,6 +110,7 @@ class AuthController extends Controller
         $validator = Validator::make($input, $rules);
 
         if($validator->fails()) {
+
             $error = $validator->messages()->toJson();
             return response()->json(['success'=> false, 'error'=> $error]);
         }
@@ -175,7 +183,7 @@ class AuthController extends Controller
     }
 
 
-//    // reset password
+      // reset password
 
     public function resetPassword(Request $request)
     {
@@ -217,16 +225,15 @@ class AuthController extends Controller
      *
      * @param Request $request
      */
-    public function logout(Request $request) {
-        $this->validate($request, ['token' => 'required']);
 
-        try {
-            JWTAuth::invalidate($request->input('token'));
-            return response()->json(['success' => true]);
-        } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return response()->json(['success' => false, 'error' => 'Failed to logout, please try again.'], 500);
-        }
+    public function logout(Request $request) {
+
+        Auth::logout();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Successfully logged out',
+            ]);
+
     }
 
 

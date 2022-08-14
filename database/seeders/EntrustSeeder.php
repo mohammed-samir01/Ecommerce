@@ -64,24 +64,11 @@ class EntrustSeeder extends Seeder
 
         $customer->attachRole($customerRole);
 
+        /*
+         * Create 1000 fake users with their addresses.
+         */
 
-        for ($i = 1 ; $i <= 20 ; $i++){
-
-            $random_customer = User::create([
-                'first_name'        => $faker->firstName,
-                'last_name'         => $faker->lastName,
-                'username'          => $faker->userName,
-                'email'             => $faker->unique()->safeEmail,
-                'email_verified_at' => now(),
-                'mobile'            => '8465'.$faker->numberBetween(1000000,9999999),
-                'password'          => bcrypt('123123123'),
-                'status'            => 1,
-                'remember_token'    => Str::random(10)
-            ]);
-
-            $random_customer->attachRole($customerRole);
-
-        }
+        User::factory()->count(1000)->hasAddresses(1)->create();
 
 
         $manageMain = Permission::create([
