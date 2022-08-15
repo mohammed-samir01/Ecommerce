@@ -23,6 +23,22 @@
     "Don't have an account?":"Don't have an account?",
 
 
+    "Email verification":"Email verification",
+    "A code was sent to your Email, check your mail and insert the code here to complete registration":"A code was sent to your Email, check your mail and insert the code here to complete registration",
+    "Insert code here":"Insert code here",
+    "Verify":"Verify",
+
+
+    "Reset password":"Reset password",
+    "Insert your Email, Then click send code":"Insert your Email, Then click send code",
+    "Code is Not Valid":"Code is Not Valid",
+    "Send code":"Send code",
+
+
+    "New password":"New password",
+    "Submit":"Submit",
+
+
     "SHOP":"Shop",
     "New Inspiration 2022":"New Inspiration 2022",
     "20% off on new season":"20% off on new season",

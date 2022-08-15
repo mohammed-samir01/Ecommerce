@@ -3,29 +3,29 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-verify-reset',
-  templateUrl: './verify-reset.component.html',
-  styleUrls: ['./verify-reset.component.css']
+  selector: 'app-verify-register',
+  templateUrl: './verify-register.component.html',
+  styleUrls: ['./verify-register.component.css']
 })
-export class VerifyResetComponent implements OnInit {
+export class VerifyRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, public translate: TranslateService) { }
 
-  verifyResetForm: any = FormGroup;
+  verifyRegisterForm: any = FormGroup;
   submitted = false;
 
 
   ngOnInit(): void {
-    this.verifyResetForm = this.formBuilder.group({
+    this.verifyRegisterForm = this.formBuilder.group({
       code: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
     });
   }
 
-  get f() { return this.verifyResetForm.controls }
+  get f() { return this.verifyRegisterForm.controls }
 
 
   onSubmit() {
     this.submitted = true;
-    if (this.verifyResetForm.invalid) {
+    if (this.verifyRegisterForm.invalid) {
       return;
     }
     if(this.submitted) {

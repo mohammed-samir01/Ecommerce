@@ -18,7 +18,7 @@
 
         <main>
             <h3> {{'A code was sent to your Email, check your mail and insert the code here to complete registration' | translate}} </h3>
-            <form [formGroup]="verifyResetForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="verifyRegisterForm" (ngSubmit)="onSubmit()">
                 <input id="code" type="number" autofocus placeholder="{{'Insert code here' | translate}}" 
                 formControlName="code" class="form-control form-control-lg"
                 [ngClass]="{ 'is-invalid': submitted && f.code.errors }" autofocus>

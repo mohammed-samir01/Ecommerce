@@ -33,6 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { VerifyResetComponent } from './components/auth/verify-reset/verify-reset.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
+import { VerifyRegisterComponent } from './components/auth/verify-register/verify-register.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { NewPasswordComponent } from './components/auth/new-password/new-passwor
     ResetPasswordComponent,
     VerifyResetComponent,
     NewPasswordComponent,
+    VerifyRegisterComponent,
   ],
   imports: [
     BrowserModule,

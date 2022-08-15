@@ -2,6 +2,7 @@
     "Register":"إنشاء حساب",
     "Home":"الصفحة الرئيسية",
     "required":"مطلوب",
+    "REQUIRED":"مطلوب",
     "firstName":"الإسم الأول",
     "lastName":"الإسم الأخير",
     "userName":"اسم المستخدم",
@@ -15,37 +16,31 @@
     "LOGIN":"تسجيل الدخول",
 
 
-
-    
-
-
-    "SHOP":"المتجر",
-
-
-
-
-
-
-    "YOUR NAME":"أدخل اسمك",
-    "NAME":"الإسم",
-    "REPEAT YOUR PASSWORD":"كرر كلمة السر",
-
-    "REQUIRED":"مطلوب",
-    "Password is Not Match":"الباسوورد غير متطابق",
     "LOG IN":"سجل الدخول",
-
     "Enter a valid email address":"أدخل بريد إلكترونى متاح",
-    "Name is Not Valid":"الإسم غير متاح",
     "Enter password":"أدخل كلمة المرور",
-    "MinLength is 8 characters":"أقل عدد أحرف هو ثمانية",
-    "Minimum eight characters, at least one letter, one number and one capital character":"أقل عدد أحرف ثمانية، على الأقل حرف واحد، حرف كابيتال واحد، رقم واحد",
-    "maxLength is 50":"أقصى عدد حروف هو خمسين",
-    "Remember me":"تذكرنى",
     "Forgot password?":"نسيت كلمة المرور؟",
     "Don't have an account?":"ليس لديك حساب؟",
 
 
+    "Email verification":"التحقق من البريد الإلكترونى",
+    "A code was sent to your Email, check your mail and insert the code here to complete registration":"تم إرسال رمز تحقق إلى بريدك الإلكترونى، تحقق من بريدك الإلكترونى، ثم أعد كتابة الرمز هنا لإكمال عملية التسجيل",
+    "Insert code here":"اكتب الرمز هنا",
+    "Verify":"تحقق",
 
+
+    "Reset password":"إعادة ضبط كلمة المرور",
+    "Insert your Email, Then click send code":"أدخل البريد الإلكترونى، ثم اضغط أرسل الكود",
+    "Code is Not Valid":"الكود غير صحيح",
+    "Send code":"أرسل الكود",
+
+    
+    "New password":"كلمة مرور جديدة",
+    "Submit":"إرسال",
+    
+
+
+    "SHOP":"المتجر",
     "New Inspiration 2022":"أفكار جديدة لعام 2022",
     "20% off on new season":"خصم 20% خلال الموسم الجديد",
     "Browse collections":"تصفح الفئات",

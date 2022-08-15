@@ -1,5 +1,4 @@
-section,
-main {
+section {
     border-radius: 10px;
 }
 h1{
@@ -15,18 +14,7 @@ a.hero{
 li{
     font-size: 1.2rem;
 }
-/* end of header */
 
-main {
-    width: 80vw;
-    height: fit-content;
-    padding: 10px;
-    margin: 10px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 main {
     width: 80vw;
     height: fit-content;
@@ -42,9 +30,11 @@ p {
 }
 input {
     all: unset;
+    font-size: 0.8rem;
     width: 20vw;
-    margin: 5px;
+    margin: 1em;
     padding: 10px;
+    border: 1.5px solid black;
     border-radius: 5px;
     background-color: white;
 }
@@ -54,7 +44,6 @@ button {
     padding: 10px;
     border: 0;
     border-radius: 5px;
-    background-color: blue;
     color: white;
 }
 button:hover {
