@@ -13,12 +13,15 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
-    Route::post('verify_user', 'verifyUser');
+    Route::post('verifyAccount','verifyAccount');
+    Route::post('forgetPassword','forgetPassword');
+    Route::post('updatePassword/{id}','updatePassword');
     Route::post('reset_password', 'resetPassword');
     Route::post('recover', 'recover');
     Route::post('refresh', 'refresh');
-    Route::get('me', 'me');
+    Route::get('user-profile', 'userProfile');
     Route::get('logout', 'logout');
+
 
 });
 
