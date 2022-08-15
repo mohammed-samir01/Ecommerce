@@ -31,7 +31,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { VerifyRegisterComponent } from './components/auth/verify-register/verify-register.component';
 import { VerifyResetComponent } from './components/auth/verify-reset/verify-reset.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
 
@@ -56,7 +55,6 @@ import { NewPasswordComponent } from './components/auth/new-password/new-passwor
     TopTrendListComponent,
     CheckoutComponent,
     ResetPasswordComponent,
-    VerifyRegisterComponent,
     VerifyResetComponent,
     NewPasswordComponent,
   ],

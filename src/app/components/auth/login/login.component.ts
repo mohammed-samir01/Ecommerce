@@ -1,49 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators,FormBuilder } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
 
+  constructor(private formBuilder: FormBuilder, public translate: TranslateService) { }
   
-  constructor(private formBuilder: FormBuilder,
-    public translate: TranslateService) {
-
-  }
-  
-  registerForm:any =  FormGroup;
+  loginForm:any =  FormGroup;
   submitted = false;
   
   ngOnInit(): void {
-      this.registerForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required,Validators.minLength(8),
-        Validators.maxLength(64),]],
-
-    });
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]] });
   }
 
-  
 
+  get f() { return this.loginForm.controls }
 
-    get f() { return this.registerForm.controls; }
   onSubmit() {
-    
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-        return;
-    }
-    //True if all the fields are filled
-    if(this.submitted)
-    {
-      alert("Great!!");
-    }
-  
+  this.submitted = true;
+  if (this.loginForm.invalid) {
+      return;
   }
+  if(this.submitted) {
+    alert("Done");
+  }
+}
 }

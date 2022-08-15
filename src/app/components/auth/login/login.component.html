@@ -9,7 +9,7 @@
                 <div class="col-lg-6 col-md-6">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a class="hero" routerLink="">{{"home" | translate}}</a></li>
+                            <li class="breadcrumb-item"><a class="hero" routerLink="">{{"Home" | translate}}</a></li>
                             <li class="breadcrumb-item text-muted" aria-current="page">{{"LOGIN" | translate}}</li>
                         </ol>
                     </nav>
@@ -18,7 +18,7 @@
         </section>
         
         <div class="col-md-12 col-lg-6 my-5">
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             
                 <div class="form-outline my-2">
                     <label class="form-label my-3" for="inputEmail">{{"YOUR EMAIL" | translate}} <span class="text-danger">*</span></label>
@@ -34,32 +34,29 @@
                 <div class="form-outline my-2">
                     <label class="form-label my-3" for="inputPassword"> {{'PASSWORD' | translate}} <span class="text-danger">*</span></label>
                     <input id="inputPassword" type="password" formControlName="password"
-                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder=" {{'REPEAT YOUR PASSWORD' | translate}} " required
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder=" {{'Enter password' | translate}} " required
                         class="form-control form-control-lg"
                         pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <h3 class="text-danger" *ngIf="f.password.errors.required"> {{'REQUIRED' | translate}} </h3>
-                        <h3 class="text-danger" *ngIf="registerForm.controls['password'].errors?.['pattern']"> {{'Minimum eight characters, at least one letter, one number and one special character' | translate}} </h3>
+                        <h3 class="text-danger" *ngIf="loginForm.controls['password'].errors?.['pattern']"> {{'Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character' | translate}} </h3>
                     </div>
                 </div>
             
                 <div class="text-center text-lg-start mt-4 pt-2">
-                    <button type="submit" class="btn btn-dark w-100">
-                        {{'LOGIN' | translate}}
-                    </button>
-                    <h4 class="mt-2 pt-1 mb-0">
-                        {{"Don't have an account?" | translate}}
-                        <a [routerLink]="'/register'" class="link-dark fw-bold m-2"> {{'REGISTER' | translate}} </a>
-                        <a [routerLink]="'../reset-password'" class="link-dark fw-bold m-2"> {{'Forgot password' | translate}} </a>
+                    <button type="submit" class="btn btn-dark w-100">{{'LOGIN' | translate}}</button>
+                    
+                    <h4 class="mt-2 pt-1 mb-0"> {{"Don't have an account?" | translate}}
+                        <a [routerLink]="'/register'" class="link-dark fw-bold m-2"> {{'Register' | translate}} </a>
+                        <a class="link-dark fw-bold m-2"> {{'Forgot password?' | translate}} </a>
                     </h4>
                 </div>
             </form>
         </div>
 
         <div class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent">
-            <img src="../../../../assets/images/Mobile login-pana.png" alt="Sample image" height="400rem" />
+            <img src="../../../../assets/images/Secure login-rafiki.png" alt="Sample image" height="400rem" />
         </div>
-
     </div>
 
 

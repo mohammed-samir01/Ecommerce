@@ -13,8 +13,6 @@ input{
     font-size: 0.8rem;
 }
 
-
-
 a.hero{
     font-size: 1.2rem;
     text-decoration: none;
@@ -24,6 +22,9 @@ li{
     font-size: 1.2rem;
 }
 
+a {
+    text-decoration: none;
+}
 
 @media (max-width: 992px) {
     .imgParent {

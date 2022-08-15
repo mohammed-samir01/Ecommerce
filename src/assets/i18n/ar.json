@@ -1,26 +1,44 @@
 {
-    "home":"الصفحة الرئيسية",
+    "Register":"إنشاء حساب",
+    "Home":"الصفحة الرئيسية",
+    "required":"مطلوب",
+    "firstName":"الإسم الأول",
+    "lastName":"الإسم الأخير",
+    "userName":"اسم المستخدم",
+    "invalid":"غير متاح",
+    "YOUR EMAIL":"البريد الإلكترونى",
+    "PASSWORD":"كلمة المرور",
+    "Email is Not Valid":"البريد الإلكترونى غير متاح",
+    "Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character":"أقل عدد أحرف ثمانية، أكثر عدد أربعة وعشرون حرف. على الأقل حرف كابيتال واحد، رقم واحد، رمز واحد",
+    "confirm Password":"أعد كتابة كلمة المرور",
+    "IF YOU HAVE ACCOUNT":"لديك حساب؟",
     "LOGIN":"تسجيل الدخول",
-    "REGISTER":"إنشاء حساب",
+
+
+
+    
+
+
     "SHOP":"المتجر",
+
+
+
+
+
 
     "YOUR NAME":"أدخل اسمك",
     "NAME":"الإسم",
-    "YOUR EMAIL":"البريد الإلكترونى",
-    "PASSWORD":"كلمة السر",
     "REPEAT YOUR PASSWORD":"كرر كلمة السر",
 
     "REQUIRED":"مطلوب",
-    "IF YOU HAVE ACCOUNT":"لديك حساب؟",
     "Password is Not Match":"الباسوورد غير متطابق",
     "LOG IN":"سجل الدخول",
 
     "Enter a valid email address":"أدخل بريد إلكترونى متاح",
-    "Email is Not Valid":"البريد الإلكترونى غير متاح",
     "Name is Not Valid":"الإسم غير متاح",
     "Enter password":"أدخل كلمة المرور",
     "MinLength is 8 characters":"أقل عدد أحرف هو ثمانية",
-    "Minimum eight characters, at least one letter, one number and one special character":"أقل عدد أحرف ثمانية، على الأقل حرف واحد، رقم واحد، رمز واحد",
+    "Minimum eight characters, at least one letter, one number and one capital character":"أقل عدد أحرف ثمانية، على الأقل حرف واحد، حرف كابيتال واحد، رقم واحد",
     "maxLength is 50":"أقصى عدد حروف هو خمسين",
     "Remember me":"تذكرنى",
     "Forgot password?":"نسيت كلمة المرور؟",

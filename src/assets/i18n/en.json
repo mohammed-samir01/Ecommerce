@@ -1,33 +1,29 @@
 {
-    "home":"Home",
-    "LOGIN":"Login",
-    "REGISTER":"Register",
-    "SHOP":"Shop",
-
-    "YOUR NAME":"Your name",
-    "NAME":"Name",
+    "Register":"Register",
+    "Home":"Home",
+    "required":"Required",
+    "REQUIRED":"Required",
+    "firstName":"firstName",
+    "lastName":"lastName",
+    "userName":"userName",
+    "invalid":"invalid",
     "YOUR EMAIL":"Your email",
     "PASSWORD":"Password",
-    "REPEAT YOUR PASSWORD":"Repeat your password",
-
-    "REQUIRED":"Required",
-    "IF YOU HAVE ACCOUNT":"If You Have Account",
-    "Password is Not Match":"Password is Not Match",
-    "LOG IN":"Log in",
-
-    "Enter a valid email address":"Enter a valid email address",
     "Email is Not Valid":"Email is Not Valid",
-    "Name is Not Valid":"Name is Not Valid",
+    "Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character":"Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character",
+    "confirm Password":"confirm Password",
+    "IF YOU HAVE ACCOUNT":"If You Have Account",
+    "LOGIN":"Login",
+
+
+    "LOG IN":"Log in",
+    "Enter a valid email address":"Enter a valid email address",
     "Enter password":"Enter password",
-    "MinLength is 8 characters":"MinLength is 8 characters",
-    "Minimum eight characters, at least one letter, one number and one special character":"Minimum eight characters, at least one letter, one number and one special character",
-    "maxLength is 50":"maxLength is 50",
-    "Remember me":"Remember me",
     "Forgot password?":"Forgot password?",
     "Don't have an account?":"Don't have an account?",
 
 
-
+    "SHOP":"Shop",
     "New Inspiration 2022":"New Inspiration 2022",
     "20% off on new season":"20% off on new season",
     "Browse collections":"Browse collections",
@@ -111,6 +107,7 @@
     "All rights reserved.":"All rights reserved.",
     "Send":"Send",
     "Chat":"Chat",
+    
 
 
     "services":{
