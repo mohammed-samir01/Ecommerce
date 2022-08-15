@@ -16,13 +16,11 @@ return new class extends Migration
         Schema::create('user_verifications', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('token');
+            $table->string('verification_code');
 
         });
 
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_verified')->default(0);
-        });    }
+    }
 
     /**
      * Reverse the migrations.
@@ -33,8 +31,5 @@ return new class extends Migration
     {
         Schema::dropIfExists("user_verifications");
 
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_verified');
-        });
     }
 };

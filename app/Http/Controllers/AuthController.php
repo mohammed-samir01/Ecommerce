@@ -21,10 +21,10 @@ class AuthController extends Controller
 
     use GeneralTrait;
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth:api', ['except' => ['login','register']]);
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login','register']]);
+    }
 
     /**
      * API Login, on success return JWT Auth token
@@ -49,7 +49,7 @@ class AuthController extends Controller
         $token = Auth::guard('api')->attempt($input);
 
         if($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->messages();
             return response()->json([
                 'success'=> false,
                 'error'=> $error,
@@ -61,7 +61,6 @@ class AuthController extends Controller
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
-            'is_verified' => 1
         ];
 
         try {
@@ -111,7 +110,7 @@ class AuthController extends Controller
 
         if($validator->fails()) {
 
-            $error = $validator->messages()->toJson();
+            $error = $validator->messages();
             return response()->json(['success'=> false, 'error'=> $error]);
         }
 
@@ -127,7 +126,7 @@ class AuthController extends Controller
 
         //mail verification
         $verification_code =random_int(100000, 999999); //Generate verification code
-        DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
+        DB::table('user_verifications')->insert(['user_id'=>$user->id,'verification_code'=>$verification_code]);
         $subject = "Please verify your email address.";
         $name = $request->username;
         $email = $request->email;
@@ -155,30 +154,76 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function verifyUser($verification_code)
-    {
-        $check = DB::table('user_verifications')->where('token',$verification_code)->first();
 
-        if(!is_null($check)){
-            $user = User::find($check->user_id);
+    public function verifyAccount(Request $request ){
 
-            if($user->is_verified == 1){
-                return response()->json([
-                    'success'=> true,
-                    'message'=> 'Account already verified..'
-                ]);
-            }
 
-            $user->update(['is_verified' => 1]);
-            DB::table('user_verifications')->where('token',$verification_code)->delete();
+        // validation
+        $rules =[
+            'email'              => 'required |email',
+            'verification_code' => 'required',
+        ];
+        $input = $request->only('email', 'verification_code');
+        $validator = Validator::make($input, $rules);
+
+        if($validator->fails()) {
+            $error = $validator->messages();
+            return response()->json([
+                'success'=> false,
+                'error'=> $error,
+            ]);
+        }
+
+        $user_id= DB::table('users')->where('email', $request->email)->value('id');
+        $check_verify = DB::table('user_verifications')->where('user_id', $user_id)->value('verification_code');
+        if($check_verify==$request->verification_code && $check_verify!=null && $user_id!=null) {
+            DB::table('users')
+                ->where('id', $user_id)  // find your user by their email
+                ->update(array('email_verified_at' => now()));  // update the record in the DB.
 
             return response()->json([
-                'success'=> true,
-                'message'=> 'You have successfully verified your email address.'
+                'message'=>'account has been verified successfully',
+                'check_verify'=>$check_verify,
+                'user_id'=>$user_id
             ]);
         }
 
         return response()->json(['success'=> false, 'error'=> "Verification code is invalid."]);
+    }
+
+
+
+    public function forgetpassword(Request $request ){
+
+        $user_id= DB::table('users')->where('email', $request->email)->value('id');
+        if($user_id!=null){
+            $subject = "forget your password";
+            $email=$request->email;
+            Mail::send('password', ['user_id' =>$user_id ],
+                function($mail) use ( $subject,$email,$user_id){
+                    $mail->from('Halabsa@ecommerce.com');
+                    $mail->to($email);
+                    $mail->subject($subject);
+                });
+            return response()->json([
+
+                'user_id'=>$user_id
+            ]);
+
+        }
+        return response()->json([
+
+            'message'=>'your email was wrong ,please try again'
+        ]);
+
+    }
+
+    public function updatepassword(Request $request, $id){
+
+        $user= User::find($id);
+        $user->password=Hash::make($request->password);
+        $user->save();
+        return response()->json('success');
 
     }
 
@@ -267,7 +312,13 @@ class AuthController extends Controller
         ]);
     }
 
-    public function me()
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function userProfile()
     {
         return response()->json([
             'status' => 'success',
@@ -286,6 +337,23 @@ class AuthController extends Controller
             ]
         ]);
     }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function createNewToken($token){
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
+        ]);
+    }
+
 
 
 }
