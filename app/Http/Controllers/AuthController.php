@@ -21,10 +21,10 @@ class AuthController extends Controller
 
     use GeneralTrait;
 
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth:api', ['except' => ['login','register','verifyAccount','forgetpassword']]);
+//    }
 
     /**
      * API Login, on success return JWT Auth token
@@ -130,6 +130,8 @@ class AuthController extends Controller
         $subject = "Please verify your email address.";
         $name = $request->username;
         $email = $request->email;
+        $token = Auth::guard('api')->attempt($input);
+
         Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
             function($mail) use ($email, $name, $subject){
                 $mail->from('Halabsa@ecommerce.com',"From User/Company Name Goes Here");
@@ -138,8 +140,9 @@ class AuthController extends Controller
             });
 
         return response()->json([
-            'status' => 'success',
+            'status'  => 'success',
             'message' =>'Your account registered successfully, Please check your email to activate your account.',
+            'token'   => $token,
             'user' => $user,
 
         ]);
@@ -207,7 +210,9 @@ class AuthController extends Controller
                 });
             return response()->json([
 
-                'user_id'=>$user_id
+                'user_id'=>$user_id,
+                'Message' => 'Check Your Email',
+
             ]);
 
         }
@@ -353,7 +358,6 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
-
 
 
 }
