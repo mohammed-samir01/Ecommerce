@@ -198,6 +198,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
 
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+
 
     ],
 
