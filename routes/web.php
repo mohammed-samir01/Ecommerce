@@ -85,4 +85,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
 
 });
 
+Route::get('chats','App\Http\Controllers\ChatController@adminrender')->name('chat');
+Route::get('messages/{id}',function($id){return view('chat',compact('id'));})->name('messages');
 
+Route::get('test','App\Http\Controllers\ChatController@adminrender');

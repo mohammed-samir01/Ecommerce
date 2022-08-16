@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-    
+
     public function displaychat(Request $request){
         return chat::where('user_id',$request->user_id)->get();
+    }
+    public function adminrender(){
+
+        $chats=chat::join('users','users.id','=','chats.user_id')
+        ->get(['chats.*',
+               'users.first_name',
+                'users.user_image']);
+        return  view('test',compact('chats')) ;
+
     }
 
     public function createchat(Request $request){

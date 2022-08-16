@@ -8,7 +8,7 @@
         "php": "^8.0.2",
         "cviebrock/eloquent-sluggable": "^9.0",
         "doctrine/dbal": "^3.4",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.4",
         "intervention/image": "^2.7",
         "intervention/imagecache": "^2.5",
         "jantinnerezo/livewire-alert": "^2.2",
