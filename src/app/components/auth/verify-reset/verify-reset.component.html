@@ -1,0 +1,29 @@
+<section class="col-12 py-5 bg-light">
+    <div class="row py-5 px-4 px-lg-5 align-items-center">
+        <div class="col-lg-6 col-md-6">
+            <h1 class="text-uppercase mb-0"> {{'email verification' | translate}} </h1>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a class="hero" routerLink="">{{'home' | translate}}</a></li>
+                    <li class="breadcrumb-item text-muted" aria-current="page">{{'Email verification' | translate}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<div class="container w-100 d-flex justify-content-center">
+    <section class="row my-5 w-50 align-items-center justify-content-center">
+
+        <p class="mt-4 text-center h6">A code was sent to your Email, check your mail and insert the code here.</p>
+
+        <form [formGroup]="verfiyForm" (ngSubmit)="onSubmit()" class="w-75">
+            <input type="text" class="form-control my-4 d-block" id="verify" placeholder="Insert code here"
+                formControlName="verify" autofocus required>
+            <button type="submit" class="btn btn-dark w-100  mt-3 mb-4 d-block">Go to new password</button>
+        </form>
+
+    </section>
+</div>

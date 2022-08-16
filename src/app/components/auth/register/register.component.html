@@ -1,111 +1,290 @@
-<div class="container-fluid h-custom ">
-    <div class="row d-flex justify-content-center h-100">
+<div class="container-lg g-1 g-md-2">
 
-        <section class="col-12 py-5 bg-light">
-            <div class="row py-5 px-4 px-lg-5 align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <h1 class="text-uppercase mb-0"> {{'REGISTER' | translate}} </h1>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a class="hero" routerLink="">{{'home' | translate}}</a></li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">{{'REGISTER' | translate}}</li>
-                        </ol>
-                    </nav>
-                </div>
+    <section class="col-12 py-5 bg-light">
+      <div class="row py-5 px-4 px-lg-5 align-items-center">
+        <div class="col-lg-6 col-md-6">
+          <h1 class="text-uppercase mb-0">{{ "REGISTER" | translate }}</h1>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end">
+              <li class="breadcrumb-item">
+                <a class="hero" routerLink="">{{ "home" | translate }}</a>
+              </li>
+              <li class="breadcrumb-item text-muted" aria-current="page">
+                {{ "REGISTER" | translate }}
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <div class="row justify-content-center my-5">
+      <div class="col-md-12 col-lg-6 col-xl-6">
+        <!-- <div class="error" *ngIf="result" >
+                <h2 class="text-danger" *ngFor="let error of result">
+                    {{error}}
+                </h2>
+                </div> -->
+        <form
+          class="mx-1 mx-md-4"
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div class="form-outline my-3">
+            <label class="form-label my-2" for="first_name">
+              {{ "Firstname" | translate }}
+              <span class="text-danger">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="first_name"
+              placeholder=" {{ 'Enter your first name' | translate }} "
+              class="form-control form-control-lg"
+              minlength="3"
+              maxlength="32"
+              pattern="[a-zA-Z ]*"
+              formControlName="first_name"
+              [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
+              autofocus
+            />
+
+            <div
+              class="form-text text-danger"
+              *ngIf="submitted && f.first_name.errors"
+              class="invalid-feedback"
+            >
+              <h3 class="text-danger" *ngIf="f.first_name.errors.required">
+                {{ "Required" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.first_name.errors.minlength">
+                {{ "Minimum length is 3 characters" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.first_name.errors.pattern">
+                {{ "First name is not valid" | translate }}
+              </h3>
             </div>
-        </section>
+          </div>
 
+          <div class="form-outline my-3">
+            <label class="form-label my-2" for="last_name">
+              {{ "Lastname" | translate }} <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              id="last_name"
+              placeholder=" {{ 'Enter your last name' | translate }} "
+              class="form-control form-control-lg"
+              pattern="[a-zA-Z ]*"
+              minlength="3"
+              maxlength="32"
+              formControlName="last_name"
+              [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
+            />
 
-        <div class="row justify-content-center my-5">
-            <div class="col-md-12 col-lg-6 col-xl-6">
-                <form class="mx-1 mx-md-4" [formGroup]="signForm" (ngSubmit)="onSubmit()">
-
-                    <div class="form-outline my-3">
-                        <label class="form-label my-2" for="fullName"> {{'NAME' | translate}} <span
-                                class="text-danger">*</span></label>
-                        <input type="text" id="fullName" class="form-control form-control-lg"
-                            placeholder=" {{'YOUR NAME' | translate}} " formControlName="fullName"
-                            [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" autofocus>
-
-                        <div class="form-text text-danger" *ngIf="submitted && f.fullName.errors"
-                            class="invalid-feedback">
-                            <h3 class="text-danger" *ngIf="f.fullName.errors.required">
-                                {{'REQUIRED' | translate}}</h3>
-                            <h3 class="text-danger" *ngIf="signForm.controls['fullName'].errors?.['minlength']">
-                                {{'MinLength is 8 characters' | translate}} </h3>
-                            <h3 class="text-danger" *ngIf="signForm.controls['fullName'].errors?.['pattern']">
-                                {{'Name is Not Valid' | translate}} </h3>
-                        </div>
-                    </div>
-
-                    <div class="form-outline my-2">
-                        <label class="form-label my-3" for="inputEmail"> {{'YOUR EMAIL' | translate}} <span
-                                class="text-danger">*</span></label>
-                        <input id="inputEmail" type="email" class="form-control form-control-lg" formControlName="email"
-                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                            placeholder=" {{'Enter a valid email address' | translate}} ">
-
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <h3 class="text-danger" *ngIf="f.email.errors.required"> {{'REQUIRED' | translate}} </h3>
-                            <h3 class="text-danger" *ngIf="f.email.errors.email"> {{'Email is Not Valid' | translate}}
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="form-outline my-3">
-                        <label class="form-label mb-3" for="password"> {{'PASSWORD' | translate}} <span
-                                class="text-danger">*</span></label>
-                        <input type="password" id="password" class="form-control" formControlName="password"
-                            placeholder=" {{'REPEAT YOUR PASSWORD' | translate}} "  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-
-                        <div  class="invalid-feedback" *ngIf=" submitted && f.password.errors ">
-                            <h3 class="text-danger" *ngIf="f.password.errors.required">
-                                {{'REQUIRED' | translate}}</h3>
-
-                            <h3 class="text-danger" *ngIf="signForm.controls['password'].errors?.['pattern']">
-                                {{'Minimum eight characters, at least one letter, one number and one special character' | translate}}</h3>
-                        </div>
-                    </div>
-
-                    <div class="form-outline my-3">
-                        <label class="form-label my-2" for="confirmPassword"> {{'REPEAT YOUR PASSWORD' | translate}} <span
-                                class="text-danger">*</span></label>
-                        <input type="password" id="confirmPassword" class="form-control"
-                            formControlName="confirmPassword" placeholder=" {{'REPEAT YOUR PASSWORD' | translate}} " 
-                            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-
-                        <div class="invalid-feedback"
-                            *ngIf=" submitted && f.confirmPassword.errors">
-                            
-                            <h3 class="text-danger" *ngIf="f.confirmPassword.errors.required">
-                                {{'REQUIRED' | translate}}</h3>
-
-                            <h3 class="text-danger"
-                                *ngIf="signForm.controls['confirmPassword'].errors?.['pattern']"> {{'Password is Not Match' | translate}} </h3>
-                        </div>
-                    </div>
-
-                    <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="submit" class="btn btn-dark w-100">
-                            {{'REGISTER' | translate}}
-                        </button>
-                        <h4 class="mt-2 pt-1 mb-0">
-                            {{'IF YOU HAVE ACCOUNT' | translate}}
-                            <a [routerLink]="'../login'" class="link-dark fw-bold m-2"> {{'LOGIN' | translate}} </a>
-                        </h4>
-                    </div>
-                </form>
-
-
-
+            <div
+              class="form-text text-danger"
+              *ngIf="submitted && f.last_name.errors"
+              class="invalid-feedback"
+            >
+              <h3 class="text-danger" *ngIf="f.last_name.errors.required">
+                {{ "Required" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.last_name.errors.minlength">
+                {{ "Minimum length is 3 characters" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.last_name.errors.pattern">
+                {{ "Last name is not valid" | translate }}
+              </h3>
             </div>
+          </div>
 
-            <div class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent">
-                <img src="../../../../assets/images/Secure login-rafiki.png" alt="Sample image" height="400rem" />
+          <div class="form-outline my-3">
+            <label class="form-label my-2" for="username">
+              {{ "Username" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              id="username"
+              placeholder=" {{ 'Enter your username' | translate }} "
+              class="form-control form-control-lg"
+              pattern="^[a-z0-9_-]{8,15}$"
+              minlength="3"
+              maxlength="32"
+              formControlName="username"
+              [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+            />
+
+            <div
+              class="form-text text-danger"
+              *ngIf="submitted && f.username.errors"
+              class="invalid-feedback"
+            >
+              <h3 class="text-danger" *ngIf="f.username.errors.required">
+                {{ "Required" | translate }}
+              </h3>
+              <h3
+                class="text-danger"
+                *ngIf="registerForm.controls['username'].errors?.['minLength']"
+              >
+                {{ "Minimum length is 8 characters" | translate }}
+              </h3>
+              <h3
+                class="text-danger"
+                *ngIf="registerForm.controls['username'].errors?.['pattern']"
+              >
+                {{ "Name is not valid" | translate }}
+              </h3>
+            </div>
+          </div>
+
+          <div class="form-outline my-2">
+            <label class="form-label my-3" for="email">
+              {{ "Your email" | translate }}
+              <span class="text-danger">*</span>
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              class="form-control form-control-lg"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              placeholder=" {{ 'Enter your email address' | translate }} "
+            />
+
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <h3 class="text-danger" *ngIf="f.email.errors.required">
+                {{ "Required" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.email.errors.email">
+                {{ "Email is not valid" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.email.errors.pattern">
+                {{ "Email must be this (example@example.com)" | translate }}
+              </h3>
+            </div>
+          </div>
+
+          <div class="form-outline my-2">
+            <label class="form-label my-3" for="mobile">
+              {{ "Your Mobile" | translate }}
+              <span class="text-danger">*</span>
+            </label>
+            <input
+              id="mobile"
+              type="text"
+              class="form-control form-control-lg"
+              maxlength="11"
+              minlength="11"
+              formControlName="mobile"
+              [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+              placeholder=" {{ 'Enter your mobile number' | translate }} "
+            />
+
+            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+              <h3 class="text-danger" *ngIf="f.mobile.errors.required">
+                {{ "Required" | translate }}
+              </h3>
+              <h3 class="text-danger" *ngIf="f.mobile.errors.pattern">
+                {{
+                  "Number Only , Minimum length is 11 characters and starts with 010 or 011 or 012"
+                    | translate
+                }}
+              </h3>
+            </div>
+          </div>
+
+        <div class="form-outline my-2">
+            <label class="form-label my-3" for="Password">
+              {{ "Password" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              id="Password"
+              type="password"
+            placeholder=" {{ 'Enter your password' | translate }} "
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              class="form-control form-control-lg"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            />
+            <div
+              *ngIf="submitted && f.password.errors"
+              class="invalid-feedback"
+            >
+              <h3 class="text-danger" *ngIf="f.password.errors.required">
+                {{ "required" | translate }}
+              </h3>
+              <h3
+                class="text-danger"
+                *ngIf="registerForm.controls['password'].errors?.['pattern']"
+              >
+                {{
+                  "Minimum 8 characters, Max 64 characters. at least one letter, one number and one special character"
+                    | translate
+                }}
+              </h3>
             </div>
         </div>
 
+          <div class="form-outline my-3">
+            <label class="form-label my-2" for="password_confirmation">
+              {{ "Confirm Password" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              type="password"
+              id="password_confirmation"
+              class="form-control form-control-lg"
+              formControlName="password_confirmation"
+              minlength="8"
+              maxlength="64"
+              placeholder=" {{ 'Repeat your password' | translate }} "
+              [ngClass]="{
+                'is-invalid': submitted && f.password_confirmation.errors
+              }"
+            />
 
+            <div
+              *ngIf="submitted && f.password_confirmation.errors"
+              class="invalid-feedback"
+            >
+              <h3 *ngIf="f.password_confirmation.errors.required">
+                {{ "Required" | translate }}
+              </h3>
+              <h3 *ngIf="f.password_confirmation.errors.mustMatch">
+                Passwords must match
+              </h3>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="submit" class="btn btn-dark w-100">
+              {{ "Register" | translate }}
+            </button>
+
+            <h3 class="mt-2 pt-1 mb-0">
+              {{ "If you haven’t account" | translate }}
+              <a [routerLink]="'../login'" class="link-dark fw-bold m-2">
+                {{ "Login" | translate }}
+              </a>
+            </h3>
+          </div>
+        </form>
+      </div>
+
+      <div
+        class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent"
+      >
+        <img
+          src="../../../../assets/images/Sign up-amico.png"
+          alt="Sample image"
+          height="400rem"
+        />
+      </div>
     </div>
+</div>

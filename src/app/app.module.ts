@@ -4,61 +4,71 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { ShopModule } from './shop/shop.module';
 import { ProductDetailsModule } from './product-details/product-details.module';
 import { HomeModule } from './home/home.module';
+import { CartsModule } from './carts/carts.module';
+import { AuthModule } from './components/auth/auth.module';
 
-
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { CartComponent } from './components/cart/cart.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductFilterPipe } from './pipes/product-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+
+import { AuthInterceptor } from './components/auth/services/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    CartComponent,
     FavoritesComponent,
     ProductFilterPipe,
     PageNotFoundComponent,
-    CheckoutComponent
   ],
   imports: [
+    ProductDetailsModule,
+    SharedModule,
+    ShopModule,
+    HomeModule,
+    CartsModule,
+    CommonModule,
+    AuthModule,
+    ToastNoAnimationModule.forRoot(),
+
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ProductDetailsModule,
-    SharedModule,
-    ShopModule,
-    HomeModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      defaultLanguage:"en",
-      loader: {
-      provide:TranslateLoader,
-      useFactory:createTranslateLoader,
-      deps:[HttpClient]
-      }
-    })
-
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 
 
 

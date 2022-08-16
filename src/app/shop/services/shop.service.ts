@@ -1,32 +1,60 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
+import { BehaviorSubject } from 'rxjs';
+import { tap, concatMap, scan } from 'rxjs/operators';
+// import { FavoriteService } from './../../../components/favorites/service/favorite.service';
+
+import {
+  HttpClient,
+  HttpResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopService {
-  rest_api: string = 'http://127.0.0.1:8000/api/all_products';
-
   constructor(private httpClient: HttpClient) {}
 
   getAllProducts() {
-    return this.httpClient.get(`${this.rest_api}`);
+        const params = new HttpParams()
+          .set('cateName', '')
+          .set('pagenum', 'g');
+    return this.httpClient.get('http://127.0.0.1:8000/api/all_products?page=');
   }
 
   getAllCategories() {
     return this.httpClient.get('http://127.0.0.1:8000/api/all_categories');
   }
 
-  getProductsByCate(keyword: string) {
-    return this.httpClient.get('./assets/json/' + keyword + '.json');
+  getProductsByCategories(keyword: string, num?: number) {
+    console.log(keyword);
+    return this.httpClient.get('http://127.0.0.1:8000/api/shop/' + keyword);
+  }
+
+  //pagi test
+
+  getProductsByCategoriesPagination(num?: number) {
+    return this.httpClient.get('http://127.0.0.1:8000/api/shop/?page=' + num);
+  }
+
+  getAllTags() {
+    return this.httpClient.get('http://127.0.0.1:8000/api/all_tags');
+  }
+
+  getProductsByTags(keyword: string) {
+    console.log(keyword);
+    return this.httpClient.get(
+      'http://127.0.0.1:8000/api/shop/tags/' + keyword
+    );
   }
 
   getSubCategories() {
     return this.httpClient.get('http://127.0.0.1:8000/api/all_categories_sub');
   }
 
-  // addData(data:any): Observable<any> {
-  //   let api_url = this.rest_api;
-  //   return this.httpClient.post(api_url,data).pipe(catchError(this.handleError));
-  // }
-}
+  //add to cart
+  addToCart(product_id:any){
+    return this.httpClient.post('http://127.0.0.1:8000/api/add-to-cart',product_id)
+}}

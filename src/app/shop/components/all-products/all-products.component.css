@@ -57,12 +57,7 @@
   transform: none;
 }
 
-.product .badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 999;
-}
+
 h3 a , h4 a{
     text-decoration: none;
     color: black;
@@ -89,3 +84,10 @@ img{
 .card{
   border: none;
 }
+
+.ngx-pagination .current{
+
+ background-color: #111 !important;
+}
+
+

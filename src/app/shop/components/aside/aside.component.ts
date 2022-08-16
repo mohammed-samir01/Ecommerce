@@ -1,6 +1,11 @@
 import { Component, OnInit ,Input, Output, EventEmitter } from '@angular/core';
-import { Options , LabelType } from 'ng5-slider';
+// import { Options , LabelType } from 'ng5-slider';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute } from '@angular/router';
+import { ShopService } from '../../services/shop.service';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
@@ -9,45 +14,67 @@ import { TranslateService } from '@ngx-translate/core';
 export class AsideComponent implements OnInit {
   @Input() Categories: any = [];
 
-  filters: Array<string> = [
-    'Returns Accepted',
-    'Returns Accepted',
-    'Completed Items',
-    'Sold Items',
-    'Deals &amp; Savings',
-    'Authorized Seller',
-  ];
-  formats: Array<string> = [
-    'All Listings',
-    'Best Offer',
-    'Auction',
-    'Buy It Now',
-  ];
+  @Input() Tags: any = [];
 
-  @Output() seletedValue = new EventEmitter();
+  @Output() ProductByCategory = new EventEmitter();
 
-  constructor(public translate: TranslateService) {}
-  ngOnInit(): void {}
+  @Output() ProductByTags = new EventEmitter();
 
-  filterData(event: any) {
-    this.seletedValue.emit(event);
+
+  constructor(
+    private route: ActivatedRoute,
+    private shopservice: ShopService,
+    public translate: TranslateService,
+    public router: Router
+  ) {}
+
+  ngOnInit(): void {
+    console.log(this.Categories);
+    console.log(this.Tags);
   }
 
-  minValue: number = 1000;
-  maxValue: number = 4000;
+  filterDataByCate(event: any) {
+    this.ProductByCategory.emit(event);
+  }
 
-  options: Options = {
-    floor: 0,
-    ceil: 5000,
-    translate: (value: number, label: LabelType): string => {
-      switch (label) {
-        case LabelType.Low:
-          return '$' + value;
-        case LabelType.High:
-          return '$' + value;
-        default:
-          return '$' + value;
-      }
-    }
-  };
+  filterDataByTags(event: any) {
+    this.ProductByTags.emit(event);
+  }
+
+
+  // minValue: number = 1000;
+  // maxValue: number = 4000;
+
+  // options: Options = {
+  //   floor: 0,
+  //   ceil: 5000,
+  //   translate: (value: number, label: LabelType): string => {
+  //     switch (label) {
+  //       case LabelType.Low:
+  //         return '$' + value;
+  //       case LabelType.High:
+  //         return '$' + value;
+  //       default:
+  //         return '$' + value;
+  //     }
+  //   },
+  // };
+
+  // filters: Array<string> = [
+  //   'Returns Accepted',
+  //   'Returns Accepted',
+  //   'Completed Items',
+  //   'Sold Items',
+  //   'Deals &amp; Savings',
+  //   'Authorized Seller',
+  // ];
+  // formats: Array<string> = [
+  //   'All Listings',
+  //   'Best Offer',
+  //   'Auction',
+  //   'Buy It Now',
+  // ];
 }
+
+
+

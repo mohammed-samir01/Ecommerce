@@ -6,7 +6,6 @@ import { NgxModule } from './ngx/ngx.module';
 import { FilesModule } from './files/files.module';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
-import { HeroComponent } from './components/hero/hero.component';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 import { ModalComponent } from './components/modal/modal.component';
 
@@ -18,7 +17,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   declarations: [
     NavbarComponent,
     FooterComponent,
-    HeroComponent,
     ChangeLanguageComponent,
     ModalComponent,
   ],
@@ -40,7 +38,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   exports:[
     NavbarComponent,
     FooterComponent,
-    HeroComponent,
     ModalComponent,
     NgxModule,
     FilesModule,

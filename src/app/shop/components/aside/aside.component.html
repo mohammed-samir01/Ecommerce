@@ -1,18 +1,22 @@
-<a [routerLink]="'/shop'">
+<a [routerLink]="'../shop'">
     <h1 class="text-uppercase mb-4" id="cate"><strong> {{'Categories' | translate}} </strong></h1>
 </a>
-<div class="cate1" *ngFor="let Category of Categories">
+<div class="cate" *ngFor="let Category of Categories">
     <h3 class="py-2 px-4 bg-dark text-white mb-3">
         <strong class="text-uppercase"> {{Category.name}} </strong>
     </h3>
-    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" *ngFor="let subCategory of Category.children">
-        <li class="mb-2 mx-4">
-            <input class="text-muted cate" readonly value="{{subCategory.name}}" (click)="filterData($event)">
+    <ul class="list-unstyled text-muted pl-lg-4 font-weight-normal" >
+        <li class="mb-2 mx-4" *ngFor="let subCategory of Category.children">
+            <input class="text-muted cate" readonly value="{{subCategory.name}}" (click)="filterDataByCate(subCategory.slug)" >
         </li>
     </ul>
 </div>
-
-
+<ul class="list-unstyled text-muted pl-lg-4 font-weight-normal mt-4">
+    <h1 class="text-uppercase mb-2" id="cate"><strong> {{'Tags' | translate}} </strong></h1>
+        <li class="mb-2 mx-4" *ngFor="let Tag of Tags">
+        <input class="text-muted cate" readonly value="{{Tag.name}}" (click)="filterDataByTags(Tag.slug)">
+    </li>
+</ul>
 
 <!-- <div class="valuerange">
     <h1 class="text-uppercase mb-4"><strong> {{'Price range' | translate}} </strong></h1>

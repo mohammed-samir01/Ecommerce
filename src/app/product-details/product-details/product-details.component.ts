@@ -27,8 +27,6 @@ export class ProductDetailsComponent implements OnInit {
 
   RelatedProducts: any = [];
 
-  // RelatedImages: any = [];
-  // RImages : any =[];
 
   constructor(
     private route: ActivatedRoute,
@@ -57,15 +55,11 @@ export class ProductDetailsComponent implements OnInit {
 
   getRelatedProduct() {
     this.service.getRelatedProduct(this.slug).subscribe((result: any) => {
-      this.RelatedProducts = result['Product'];
-
-      // for (let i = 0; i < this.RelatedProducts.length; i++) {
-      //   const items = this.RelatedProducts[i]['media'][0];
-      //   return items
-      // }
-      // this.RelatedImages = this.items;
+      this.RelatedProducts = result['data'];
+      console.log(result['data']);
     });
   }
+
 
   //   for (this.i = 0; this.i < this.Categories.length; this.i++) {
   //   this.Children.push(this.Categories[this.i]['children']);
