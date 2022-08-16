@@ -6,7 +6,7 @@ button {
     background-color: transparent;
     border: none;
     color: gray;
-    border: 1px solid gray;
+    border: 0 solid gray;
 }
 
 button:hover {

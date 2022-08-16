@@ -22,7 +22,6 @@ export class ChangeLanguageComponent implements OnInit {
   }
 //______________________________________________________//
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

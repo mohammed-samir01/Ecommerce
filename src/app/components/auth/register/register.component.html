@@ -1,120 +1,249 @@
-<div class="container-fluid h-custom ">
-    <div class="row d-flex justify-content-center h-100">
+<div class="container-fluid h-custom">
+  <div class="row d-flex justify-content-center h-100">
+    <section class="col-12 py-5 bg-light">
+      <div class="row py-5 px-4 px-lg-5 align-items-center">
+        <div class="col-lg-6 col-md-6">
+          <h1 class="text-uppercase mb-0">{{ "Register" | translate }}</h1>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end">
+              <li class="breadcrumb-item">
+                <a class="hero" routerLink="">{{ "Home" | translate }}</a>
+              </li>
+              <li class="breadcrumb-item text-muted" aria-current="page">
+                {{ "Register" | translate }}
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
 
-        <section class="col-12 py-5 bg-light">
-            <div class="row py-5 px-4 px-lg-5 align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <h1 class="text-uppercase mb-0"> {{'Register' | translate}} </h1>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-end">
-                            <li class="breadcrumb-item"><a class="hero" routerLink="">{{'Home' | translate}}</a></li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">{{'Register' | translate}}</li>
-                        </ol>
-                    </nav>
-                </div>
+    <div class="ccol-md-12 col-lg-6 my-5">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- first_name input -->
+        <div class="form-outline my-2">
+          <div class="form-outline flex-fill mb-0">
+            <label for="first_name" class="form-label">
+              {{ "first_name" | translate }} <span class="text-danger">*</span>
+            </label>
+            <input
+              id="first_name"
+              type="text"
+              class="form-control"
+              formControlName="first_name"
+              [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
+              autofocus
+              minlength="3"
+              maxlength="20"
+            />
+            <div
+              id="first_name"
+              class="form-text text-danger"
+              *ngIf="submitted && f.first_name.errors"
+              class="invalid-feedback"
+            >
+              <h4 class="text-danger" *ngIf="f.first_name.errors.required">
+                {{ "required" | translate }}
+              </h4>
+              <h4 class="text-danger" *ngIf="f.first_name.errors.first_name">
+                {{ "invalid" | translate }}
+              </h4>
             </div>
-        </section>
-
-        <div class="ccol-md-12 col-lg-6 my-5">
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
-                <!-- firstName input -->
-                <div class="form-outline my-2">
-                    <div class="form-outline flex-fill mb-0">
-                        <label for="firstName" class="form-label"> {{'firstName' | translate}} <span class="text-danger">*</span> </label>
-                        <input id="firstName" type="text" class="form-control" formControlName="firstName"
-                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" autofocus minlength="3" maxlength="20">
-                        <div id="firstName" class="form-text text-danger" *ngIf=" submitted && f.firstName.errors" class="invalid-feedback">
-                            <h4 class="text-danger" *ngIf="f.firstName.errors.required"> {{'required' | translate}} </h4>
-                            <h4 class="text-danger" *ngIf="f.firstName.errors.firstName"> {{'invalid' | translate}} </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- lastName input -->
-                <div class="form-outline my-2">
-                    <div class="form-outline flex-fill mb-0">
-                        <label for="lastName" class="form-label"> {{'lastName' | translate}} <span class="text-danger">*</span> </label>
-                        <input id="lastName" type="text" class="form-control" formControlName="lastName"
-                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" minlength="3" maxlength="20">
-                        <div id="lastName" class="form-text text-danger" *ngIf=" submitted && f.lastName.errors" class="invalid-feedback">
-                            <h4 class="text-danger" *ngIf="f.lastName.errors.required"> {{'required' | translate}} </h4>
-                            <h4 class="text-danger" *ngIf="f.lastName.errors.lastName"> {{'invalid' | translate}} </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- userName input -->
-                <div class="form-outline my-2">
-                    <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="userName"> {{'userName' | translate}} <span class="text-danger">*</span> </label>
-                        <input type="text" id="userName" class="form-control" formControlName="userName"
-                        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" minlength="3" maxlength="20">
-                        <div id="userName" class="form-text text-danger" *ngIf=" submitted && f.userName.errors" class="invalid-feedback">
-                            <h4 class="text-danger" *ngIf="f.userName.errors.required"> {{'required' | translate}} </h4>
-                            <h4 class="text-danger" *ngIf="f.userName.errors.userName"> {{'invalid' | translate}} </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- email input -->
-                <div class="form-outline my-2">
-                    <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="email"> {{'YOUR EMAIL' | translate}} <span class="text-danger">*</span> </label>
-                        <input type="email" id="email" class="form-control" formControlName="email"
-                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                        <div id="email" class="form-text text-danger" *ngIf=" submitted && f.email.errors" class="invalid-feedback">
-                            <h4 class="text-danger" *ngIf="f.email.errors.required">{{'required' | translate}}</h4>
-                            <h4 class="text-danger" *ngIf="f.email.errors.email"> {{'Email is Not Valid' | translate}} </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- password input -->
-                <div class="form-outline my-2">
-                    <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="Password"> {{'PASSWORD' | translate}} <span class="text-danger">*</span></label>
-                        <input id="Password" type="password" formControlName="password"
-                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                            class="form-control form-control-lg"
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
-                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                            <h4 class="text-danger" *ngIf="f.password.errors.required"> {{'required' | translate}} </h4>
-                            <h4 class="text-danger" *ngIf="registerForm.controls['password'].errors?.['pattern']"> {{'Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character' | translate}} </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- confirm password input -->
-                <div class="form-outline my-2">
-                    <div class="form-outline flex-fill mb-0">
-                        <label class="form-label" for="confirmPassword"> {{'confirm Password' | translate}} <span class="text-danger">*</span></label>
-                        <input id="confirmPassword" type="password" formControlName="confirmPassword"
-                            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
-                            class="form-control form-control-lg"
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
-                        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-                            <h4 class="text-danger" *ngIf="f.confirmPassword.errors.required"> {{'required' | translate}} </h4>
-                            <h4 class="text-danger" *ngIf="registerForm.controls['confirmPassword'].errors?.['pattern']"> {{'Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character' | translate}} </h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- submit button -->
-                <div class="text-center text-lg-start mt-4 pt-2">
-                    <button type="submit" class="btn btn-dark w-100">{{'Register' | translate}}</button>
-                </div>
-
-                <h4 class="mt-2 pt-1 mb-0"> {{'IF YOU HAVE ACCOUNT' | translate}} <a routerLink="../login" class="link-dark fw-bold m-2"> {{'LOGIN' | translate}} </a> </h4>
-
-            </form>
+          </div>
         </div>
 
-        <div class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent">
-            <img src="../../../../assets/images/secure register-pana.png" alt="Sample image" height="400rem" />
+        <!-- last_name input -->
+        <div class="form-outline my-2">
+          <div class="form-outline flex-fill mb-0">
+            <label for="last_name" class="form-label">
+              {{ "last_name" | translate }} <span class="text-danger">*</span>
+            </label>
+            <input
+              id="last_name"
+              type="text"
+              class="form-control"
+              formControlName="last_name"
+              [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
+              minlength="3"
+              maxlength="20"
+            />
+            <div
+              id="last_name"
+              class="form-text text-danger"
+              *ngIf="submitted && f.last_name.errors"
+              class="invalid-feedback"
+            >
+              <h4 class="text-danger" *ngIf="f.last_name.errors.required">
+                {{ "required" | translate }}
+              </h4>
+              <h4 class="text-danger" *ngIf="f.last_name.errors.last_name">
+                {{ "invalid" | translate }}
+              </h4>
+            </div>
+          </div>
         </div>
 
+        <!-- userName input -->
+        <div class="form-outline my-2">
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="username">
+              {{ "username" | translate }} <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              formControlName="username"
+              [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+              minlength="3"
+              maxlength="20"
+            />
+            <div
+              id="username"
+              class="form-text text-danger"
+              *ngIf="submitted && f.username.errors"
+              class="invalid-feedback"
+            >
+              <h4 class="text-danger" *ngIf="f.username.errors.required">
+                {{ "required" | translate }}
+              </h4>
+              <h4 class="text-danger" *ngIf="f.username.errors.username">
+                {{ "invalid" | translate }}
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- email input -->
+        <div class="form-outline my-2">
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="email">
+              {{ "YOUR EMAIL" | translate }} <span class="text-danger">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            />
+            <div
+              id="email"
+              class="form-text text-danger"
+              *ngIf="submitted && f.email.errors"
+              class="invalid-feedback"
+            >
+              <h4 class="text-danger" *ngIf="f.email.errors.required">
+                {{ "required" | translate }}
+              </h4>
+              <h4 class="text-danger" *ngIf="f.email.errors.email">
+                {{ "Email is Not Valid" | translate }}
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- password input -->
+        <div class="form-outline my-2">
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="Password">
+              {{ "PASSWORD" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              id="Password"
+              type="password"
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              class="form-control form-control-lg"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+            />
+            <div
+              *ngIf="submitted && f.password.errors"
+              class="invalid-feedback"
+            >
+              <h4 class="text-danger" *ngIf="f.password.errors.required">
+                {{ "required" | translate }}
+              </h4>
+              <h4
+                class="text-danger"
+                *ngIf="registerForm.controls['password'].errors?.['pattern']"
+              >
+                {{
+                  "Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character"
+                    | translate
+                }}
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- confirm password input -->
+        <div class="form-outline my-2">
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="password_confirmation">
+              {{ "confirm Password" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              id="password_confirmation"
+              type="password"
+              formControlName="password_confirmation"
+              [ngClass]="{
+                'is-invalid': submitted && f.password_confirmation.errors
+              }"
+              class="form-control form-control-lg"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+            />
+            <div
+              *ngIf="submitted && f.password_confirmation.errors"
+              class="invalid-feedback"
+            >
+              <h4
+                class="text-danger"
+                *ngIf="f.password_confirmation.errors.required"
+              >
+                {{ "required" | translate }}
+              </h4>
+              <h4
+                class="text-danger"
+                *ngIf="registerForm.controls['password_confirmation'].errors?.['pattern']"
+              >
+                {{
+                  "Minimum 8 characters, Max 24 characters. at least one letter, one number and one special character"
+                    | translate
+                }}
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <!-- submit button -->
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <button type="submit" class="btn btn-dark w-100">
+            {{ "Register" | translate }}
+          </button>
+        </div>
+
+        <h4 class="mt-2 pt-1 mb-0">
+          {{ "IF YOU HAVE ACCOUNT" | translate }}
+          <a routerLink="../login" class="link-dark fw-bold m-2">
+            {{ "LOGIN" | translate }}
+          </a>
+        </h4>
+      </form>
     </div>
+
+    <div
+      class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent"
+    >
+      <img
+        src="../../../../assets/images/secure register-pana.png"
+        alt="Sample image"
+        height="400rem"
+      />
+    </div>
+  </div>
 </div>

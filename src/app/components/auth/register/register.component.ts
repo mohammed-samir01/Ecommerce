@@ -15,18 +15,18 @@ export class RegisterComponent implements OnInit {
 
   checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => {
     let pass = group.get('password')?.value;
-    let confirmPass = group.get('confirmPassword')?.value
+    let confirmPass = group.get('password_confirmation')?.value
     return pass === confirmPass ? null : { notSame: true }
   }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      first_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      last_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]],
-      confirmPassword: [''] },{validator: this.checkPasswords});
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]],
+      password_confirmation: [''] },{validator: this.checkPasswords});
   }
 
   get f() { return this.registerForm.controls }

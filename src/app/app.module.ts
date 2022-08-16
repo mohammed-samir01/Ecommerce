@@ -34,6 +34,9 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { VerifyResetComponent } from './components/auth/verify-reset/verify-reset.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
 import { VerifyRegisterComponent } from './components/auth/verify-register/verify-register.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { AddressesComponent } from './components/user/addresses/addresses.component';
+import { OrdersComponent } from './components/user/orders/orders.component';
 
 
 @NgModule({
@@ -59,6 +62,9 @@ import { VerifyRegisterComponent } from './components/auth/verify-register/verif
     VerifyResetComponent,
     NewPasswordComponent,
     VerifyRegisterComponent,
+    ProfileComponent,
+    AddressesComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

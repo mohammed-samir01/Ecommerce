@@ -6,13 +6,6 @@ h1 {
   font-size: 1.8rem;
   font-weight: 600;
 }
-label {
-  font-size: 1rem;
-}
-input {
-  font-size: 0.8rem;
-}
-
 a.hero {
   font-size: 1.2rem;
   text-decoration: none;
@@ -21,11 +14,9 @@ a.hero {
 li {
   font-size: 1.2rem;
 }
-
 a {
   text-decoration: none;
 }
-
 @media (max-width: 992px) {
   .imgParent {
     display: none !important;
