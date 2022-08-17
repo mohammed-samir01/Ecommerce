@@ -30,8 +30,10 @@ class UserController extends Controller
         $user = auth()->user();
         $data['first_name'] = $request->first_name;
         $data['last_name'] = $request->last_name;
-        $data['email'] = $request->email;
-        $data['mobile'] = $request->mobile;
+        $data['email']     = $request->email;
+        $data['mobile']    = $request->mobile;
+        $data['username']  = $request->username;
+
 
         if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
             $data['password'] = bcrypt($request->password);
