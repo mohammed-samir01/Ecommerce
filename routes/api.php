@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-
-
 ############################################# APi ######################################################################
 
                                      ########## General APIS ###########
@@ -56,15 +54,30 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::delete('delete-fav-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteFavProduct']);
     Route::post('add-fav-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addFavToCart']);
 
-    Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
-    Route::patch('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
-    Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
-    Route::get('logout', [AuthController::class,'logout']);
-    Route::post('refresh',[AuthController::class, 'refresh']);
-
 });
 
 
 Route::middleware('auth:api')->group(function (){
 });
 
+
+
+############################################## Dashboard User ############################################################
+
+Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
+
+    Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
+    Route::patch('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
+    Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
+
+    Route::post('add-user-address',[App\Http\Controllers\Api\Frontend\MainController::class, 'addUserAddress']);
+    Route::get('get-user-addresses',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserAddresses']);
+    Route::get('get-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserOrders']);
+    Route::delete('delete-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrders']);
+    Route::delete('delete-user-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrder']);
+
+
+    Route::get('logout', [AuthController::class,'logout']);
+    Route::post('refresh',[AuthController::class, 'refresh']);
+
+});

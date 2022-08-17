@@ -56,7 +56,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return response()->json(['errors'=>false,'message'=>'Profile updated'],200);
+        return response()->json(['success'=>true,'message'=>'Profile updated'],200);
     }
 
 
@@ -70,7 +70,7 @@ class UserController extends Controller
         }
         $user->user_image = null;
         $user->save();
-        return response()->json(['errors'=>false,'message'=>'Profile image deleted'],200);
+        return response()->json(['success'=>true,'message'=>'Profile image deleted'],200);
 
     }
 
