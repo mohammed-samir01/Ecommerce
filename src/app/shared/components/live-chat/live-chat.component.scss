@@ -7,7 +7,6 @@ section {
     border-radius: 10px;
     width: 80vw;
     margin: 0 auto;
-    filter: drop-shadow(1px 1px 6px $shadow);
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -45,7 +44,6 @@ li{
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    filter: drop-shadow(1px 1px 6px $shadow);
     padding: 8px;
 }
 
@@ -64,7 +62,6 @@ li{
             padding: 8px 16px;
             max-width: 80%;
             border-radius: 10px;
-            background-color: $primary;
             color: white;
         }
         #avatar {
@@ -87,6 +84,7 @@ li{
         #message-body {
             margin-left: -10px;
             margin-top: 15px;
+            background-color: #111;
         }
     }
     .right {
@@ -96,6 +94,8 @@ li{
         #message-body {
             margin-right: -10px;
             margin-top: 15px;
+            background-color: #f8f9fa;
+            color: #111;
             
         }
     }
@@ -109,14 +109,13 @@ li{
         flex: 1;
         margin: 0 8px;
         padding: 8px;
-        box-shadow: 0 0 8px $shadow;
         border-radius: 10px;
     }
     #send-button {
-        border: 0px;
-        box-shadow: 0 0 8px $shadow;
-        background-color: $background;
-        color: $primary;
+        width: 10%;
+        border: 2px solid black;
+        background-color: #111;
+        color: #f8f9fa;
         padding: 0 8px;
         border-radius: 10px;
     }

@@ -44,6 +44,20 @@
     left: 92.5vw;
     top: 77vh;
 }
+@media all and (orientation: portrait) {
+    .rightCorner {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1000;
+        position: fixed;
+        left: 85vw;
+        top: 77vh;
+    }
+}
 
 /* start of chat button */
 a {
@@ -56,8 +70,8 @@ a {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: rgb(0, 89, 255);
-    color: white;
+    background-color: #111;
+    color: #f8f9fa;
     transition: 0.25s;
 }
 
@@ -68,11 +82,8 @@ a {
     padding: 5px;
     margin: 5px;
     border-radius: 50%;
-    background-color: rgb(0, 89, 255);
+    background-color: #f8f9fa;
     transition: 0.25s;
-}
-a:hover {
-    font-size: larger;
 }
 .goToUp:hover {
     padding: 0px;
