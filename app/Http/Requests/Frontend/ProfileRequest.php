@@ -26,6 +26,7 @@ class ProfileRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'username'      => 'required|max:20|unique:users',
             'email' => ['required', 'string', 'email', 'unique:users,email,'.auth()->id()],
             'mobile' => ['required', 'numeric', 'unique:users,email,'.auth()->id()],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],

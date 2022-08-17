@@ -1,36 +1,39 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileRequest;
+use App\Http\Resources\General\UsersResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
 
-
-    public function dashboard()
+    public function userProfile()
     {
-        return view('frontend.customer.index');
-    }
 
-    public function profile()
-    {
-        return view('frontend.customer.profile');
+        $user = Auth::user();
+        return response()->json([
+            'status' => 'success',
+            'user' => new UsersResource($user)
+        ]);
     }
 
     public function update_profile(ProfileRequest $request)
     {
+
         $user = auth()->user();
         $data['first_name'] = $request->first_name;
         $data['last_name'] = $request->last_name;
-        $data['email'] = $request->email;
-        $data['mobile'] = $request->mobile;
+        $data['email']     = $request->email;
+        $data['mobile']    = $request->mobile;
+        $data['username']  = $request->username;
+
 
         if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
             $data['password'] = bcrypt($request->password);
@@ -53,10 +56,9 @@ class CustomerController extends Controller
 
         $user->update($data);
 
-        toast('Profile updated', 'success');
-        return back();
-
+        return response()->json(['success'=>true,'message'=>'Profile updated'],200);
     }
+
 
     public function remove_profile_image()
     {
@@ -68,18 +70,8 @@ class CustomerController extends Controller
         }
         $user->user_image = null;
         $user->save();
-        toast('Profile image deleted', 'success');
-        return back();
+        return response()->json(['success'=>true,'message'=>'Profile image deleted'],200);
+
     }
 
-
-    public function addresses()
-    {
-        return view('frontend.customer.addresses');
-    }
-
-    public function orders()
-    {
-        return view('frontend.customer.orders');
-    }
 }
