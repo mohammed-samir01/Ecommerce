@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\ProfileRequest;
 use App\Models\Cart;
+use App\Models\City;
 use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
+use App\Models\State;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class MainController extends Controller
 {
@@ -80,67 +87,6 @@ class MainController extends Controller
 
 
 
-//    public function applyCoupon(Request $request){
-//        // validation
-//        $rules= [
-//            'code'=>'required|exists:product_coupons,code',
-//            'shipping_company_id' =>'required|exists:shipping_companies,id',
-//
-//        ];
-//        $validator = validator()->make($request->all(),$rules);
-//        if($validator->fails()){
-//            $error = $validator->errors()->first();
-//            return responseJson(0,'fail',['data'=>$error]);
-//        }
-//
-//        $startDate =ProductCoupon::where('code',$request->code)->first()->start_date;
-//        $startDateAfterEdit =date_create($startDate);
-//
-//        $expireDate =ProductCoupon::where('code',$request->code)->first()->expire_date;
-//        $expireDateAfterEdit =date_create($expireDate);
-//
-//        $nowDate = date_create("now");
-//
-//        if($nowDate >= $startDateAfterEdit  && $nowDate <= $expireDateAfterEdit ){
-//
-//
-//            $code_value = ProductCoupon::where('code',$request->code)->first()->value;    //dicount_value
-//            $pureCost = 0;
-//
-//            $products = Cart::where('user_id',$request->user()->id)->get();
-//            foreach($products as $p){
-//                $product = Product::find($p['product_id']);
-//                $pureCost += $p['quantity'] * $product->price;
-//            }
-//
-//            $coupon = ProductCoupon::where('code',$request->code)->first();
-//
-//            if($pureCost >= $coupon->greater_than && $coupon->used_times+1 <= $coupon->use_times){
-//
-//                $code_type = ProductCoupon::where('code',$request->code)->first()->type;
-//
-//                if($code_type == 'percentage'){
-//                    $discount = $pureCost*($code_value/100);
-//
-//                }else{
-//                    $discount = $pureCost - $code_value;
-//                }
-//
-//                $subTotal = $pureCost;
-//                $tax =($subTotal-$discount)*(15/100);
-//                $shipping = ShippingCompany::find($request->shipping_company_id)->first()->cost;
-//                $total = ($subTotal + $tax + $shipping) - $discount;
-//
-//                return responseJson(1,'success',['subTotal' => $subTotal,'total'=>$total,'discount'=>$discount,'shipping'=>$shipping]);
-//            }else{
-//                return responseJson(0,'fail',['data' =>'this code is used and finished or your products price is smaller than the min price']);
-//            }
-//
-//        }else{
-//            return responseJson(0,'faild',['data'=>'your coupon may be not started or has been expired']);
-//        }
-//
-//    }
 
     //**********************************create order**********************************
     public function createOrder(Request $request){
@@ -430,5 +376,93 @@ class MainController extends Controller
 
     }
 
+    //***********get user Addresses***********
+    public function getUserAddresses(Request $request){
+        $addresses = $request->user()->addresses()->get();
+        if(count($addresses) > 0 ){
+            return responseJson(1,'success',['data'=>$addresses]);
+        }else{
+            return responseJson(0,'fail',['data'=>'you have not addresses']);
+        }
+    }
+
+    //***********add user Addresses***********
+    public function addUserAddress(Request $request){
+        // validation
+        $rules =[
+            'address' =>'required',
+            'address2' =>'required',
+            'city_id'=>'required',
+            'mobile' =>'required'
+        ];
+
+        $validator = validator()->make($request->all(),$rules);
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+            return responseJson(0,'fail',['data'=>$error]);
+        }
+
+
+        $state_id = City::find($request->city_id)->state_id;
+        $country_id = State::find($state_id)->country_id;
+        UserAddress::create([
+            'user_id'=>$request->user()->id,
+            'address'=>$request->address,
+            'address2' =>$request->address2,
+            'city_id'=>$request->city_id,
+            'country_id'=>$country_id,
+            'mobile' =>$request->mobile,
+            'state_id' =>$state_id
+        ]);
+
+
+        return responseJson(1,'success',['data'=> 'address added successfully']);
+
+    }
+
+    //***********get user orders***********
+    public function getUserOrders(Request $request){
+        $orders = $request->user()->orders()->get();
+        if(count($orders) > 0){
+            return responseJson(1,'success', ['data'=>$orders]);
+        }else{
+            return responseJson(0,'fail',['data'=>'you did not make any orders']);
+        }
+    }
+
+    //***********delete user orders***********
+    public function deleteUserOrders(Request $request){
+        $orders = $request->user()->orders()->get();
+        if(count($orders) > 0){
+            $request->user()->orders()->delete();
+            return responseJson(1,'success', ['data'=>'deleted successfully']);
+        }else{
+            return responseJson(0,'fail',['data'=>'you did not make any orders']);
+        }
+
+    }
+
+    //***********delete user one order***********
+    public function deleteUserOrder(Request $request){
+        // validation
+        $rules = [
+            'order_id'=>'required'
+        ];
+        $validator = validator()->make($request->all(),$rules);
+        if($validator->fails()){
+            $error = $validator->errors()->first();
+            return responseJson(0,'fail',['data'=>$error]);
+        }
+
+
+        $order = $request->user()->orders()->where('id',$request->order_id)->first();
+        if($order){
+            $order->delete();
+            return responseJson(1,'success', ['data'=>'deleted successfully']);
+        }else{
+            return responseJson(0,'fail',['data'=>'order_id does not exist']);
+        }
+
+    }
 
 }

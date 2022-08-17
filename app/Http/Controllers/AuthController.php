@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Resources\General\UsersResource;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class AuthController extends Controller
 
 //    public function __construct()
 //    {
-//        $this->middleware('auth:api', ['except' => ['login','register','verifyAccount','forgetpassword']]);
+//        $this->middleware('auth:api', ['except' => ['login','register','verifyAccount','forgetpassword','updatepassword']]);
 //    }
 
     /**
@@ -34,7 +35,6 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-
         // validation
 
         $rules =[
@@ -58,13 +58,20 @@ class AuthController extends Controller
             ]);
         }
 
+        $user_verify = DB::table('users')->where('email', $request->email)->value('email_verified_at');
+
+        if (!$user_verify) {
+            return response()->json(['success' => false, 'error' => 'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'], 401);
+
+        }
+
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
 
         try {
-            // attempt to verify the credentials and create a token for the user
+            // attempt to verify the credentials and create a token for the     user
             if (! $token = JWTAuth::attempt($credentials)) {
                 return response()->json(['success' => false, 'error' => 'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'], 401);
             }
@@ -74,7 +81,7 @@ class AuthController extends Controller
         }
 
         // all good so return the token
-        return response()->json(['success' => true, 'data'=> [ 'token' => $token ]]);
+        return response()->json(['success' => true, 'token' => $token ]);
 
     }
 
@@ -223,15 +230,38 @@ class AuthController extends Controller
 
     }
 
-    public function updatepassword(Request $request, $id){
+    public function updatePassword(Request $request, $id){
+
+        $rules =  [
+            'password' => ['string', 'min:8']
+        ];
+
+        $input = $request->only(
+            'password',
+        );
+
+        $validator = Validator::make($input, $rules);
+
+        if($validator->fails()) {
+
+            $error = $validator->messages();
+            return response()->json(['success'=> false, 'error'=> $error]);
+        }
 
         $user= User::find($id);
-        $user->password=Hash::make($request->password);
-        $user->save();
-        return response()->json('success');
+
+
+        if (!empty($request->password) && !Hash::check($request->password, $user->password)) {
+
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return response()->json('success');
+        }else{
+
+            return response()->json('Error');
+        }
 
     }
-
 
       // reset password
 
@@ -323,13 +353,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function userProfile()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-        ]);
-    }
+
 
     public function refresh()
     {
@@ -342,22 +366,5 @@ class AuthController extends Controller
             ]
         ]);
     }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function createNewToken($token){
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
-        ]);
-    }
-
 
 }

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "beyondcode/laravel-websockets": "^1.13",
         "cviebrock/eloquent-sluggable": "^9.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
@@ -25,7 +26,9 @@
         "php-open-source-saver/jwt-auth": "^1.4",
         "predis/predis": "^2.0",
         "realrashid/sweet-alert": "^5.1",
-        "srmklive/paypal": "~1.0"
+        "srmklive/paypal": "~1.0",
+        "pusher/pusher-php-server": "^5.0",
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
