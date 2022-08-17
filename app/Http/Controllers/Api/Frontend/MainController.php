@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\ProfileRequest;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class MainController extends Controller
 {
@@ -429,6 +433,5 @@ class MainController extends Controller
         }
 
     }
-
 
 }

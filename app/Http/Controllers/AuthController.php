@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Resources\General\UsersResource;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -323,13 +324,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function userProfile()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-        ]);
-    }
+
 
     public function refresh()
     {

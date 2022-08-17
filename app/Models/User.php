@@ -79,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail , JWTSubject
     public function userImage()
     {
 
-        return $this->user_image != '' ? asset('assets/users/'.$this->user_image) : asset('assets/users/avatar.svg');
+        return $this->user_image != '' ? $this->user_image : 'avatar.svg';
 
     }
 

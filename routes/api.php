@@ -3,12 +3,18 @@
 use App\Http\Controllers\Api\General\GeneralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Frontend\CustomerController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
+
+
+############################################# APi ######################################################################
+
+                                     ########## General APIS ###########
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -19,17 +25,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('reset_password', 'resetPassword');
     Route::post('recover', 'recover');
     Route::post('refresh', 'refresh');
-    Route::get('user-profile', 'userProfile');
     Route::get('logout', 'logout');
 
-
 });
 
-Route::middleware('auth:api')->group(function (){
-
-});
-
-############################################# APi ######################################################################
 
 Route::get('/all_products',[GeneralController::class,'get_products']);
 Route::get('/product/{slug}',[GeneralController::class,'show_product']);
@@ -43,11 +42,10 @@ Route::get('/shop/{slug?}',[GeneralController::class ,'show_products_with_catego
 Route::get('/shop/tags/{slug}',[GeneralController::class ,'show_products_with_tags']);
 
 
-##################################### All Routes | Api Here Must Be Api Authenticated ###################################
+                      ############## All Routes | Api Here Must Be Api Authenticated ###################
+
 
 ################################### Cart,Wishlist  And  Orders ###########################################################
-
-
 Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
 
     Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder']);
@@ -61,7 +59,14 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::delete('delete-fav-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteFavProduct']);
     Route::post('add-fav-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addFavToCart']);
 
+
 });
 
 
+Route::middleware('auth:api')->group(function (){
+    Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
+    Route::patch('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
+    Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
+
+});
 
