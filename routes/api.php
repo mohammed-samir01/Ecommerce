@@ -17,15 +17,12 @@ use Illuminate\Support\Facades\Route;
                                      ########## General APIS ###########
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
+    Route::post('login', 'login');                            //verified
     Route::post('register', 'register');
     Route::post('verifyAccount','verifyAccount');
     Route::post('forgetPassword','forgetPassword');
     Route::post('updatePassword/{id}','updatePassword');
-    Route::post('reset_password', 'resetPassword');
-    Route::post('recover', 'recover');
-    Route::post('refresh', 'refresh');
-    Route::get('logout', 'logout');
+    Route::post('recover','recover');
 
 });
 
@@ -59,14 +56,15 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::delete('delete-fav-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteFavProduct']);
     Route::post('add-fav-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addFavToCart']);
 
+    Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
+    Route::patch('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
+    Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
+    Route::get('logout', [AuthController::class,'logout']);
+    Route::post('refresh',[AuthController::class, 'refresh']);
 
 });
 
 
 Route::middleware('auth:api')->group(function (){
-    Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
-    Route::patch('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
-    Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
-
 });
 
