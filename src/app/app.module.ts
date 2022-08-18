@@ -37,6 +37,7 @@ import { VerifyRegisterComponent } from './components/auth/verify-register/verif
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { AddressesComponent } from './components/user/addresses/addresses.component';
 import { OrdersComponent } from './components/user/orders/orders.component';
+import { UserPageComponent } from './components/user/user-page/user-page.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { OrdersComponent } from './components/user/orders/orders.component';
     ProfileComponent,
     AddressesComponent,
     OrdersComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { LiveChatComponent } from './shared/components/live-chat/live-chat.component';
+import { UserPageComponent } from './components/user/user-page/user-page.component';
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'user', component: UserPageComponent},
   { path: 'favorite', component: FavoritesComponent},
   { path: 'live-chat', component: LiveChatComponent },
   { path: '**', component: PageNotFoundComponent , pathMatch:'full'}

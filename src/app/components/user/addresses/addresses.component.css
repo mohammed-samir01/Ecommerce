@@ -22,3 +22,11 @@ a {
     display: none !important;
   }
 }
+
+#addButton {
+  background-color: #dcb14a;
+  border: 0;
+  color: #111;
+  padding: 10px 20px;
+  font-size: larger;
+}

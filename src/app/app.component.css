@@ -15,20 +15,20 @@
     border-radius: 50%;
     border: 1.5px solid #CFD2CF;
 }
-.theme-navyBlue {
-    background-color: #325288;
+.theme-yellow {
+    background-color: #feda39b9;
 }
 .theme-lightBlue {
-    background-color: #3AB4F2;
+    background-color: #72dcff;
 }
 .theme-white {
     background-color: white;
 }
-.theme-burgundy {
-    background: #7B113A;
+.theme-lightGreen {
+    background: #5dd2d6;
 }
-.theme-purple {
-    background-color: #8879B0;
+.theme-pink {
+    background-color: #ff95ed;
 }
 
 /* rightCorner */
