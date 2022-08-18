@@ -13,10 +13,9 @@ import { VerifyRegisterComponent } from './verify-register/verify-register.compo
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { VerifyResetComponent } from './verify-reset/verify-reset.component';
-import { MeComponent } from './me/me.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, VerifyRegisterComponent, NewPasswordComponent, ResetPasswordComponent, VerifyResetComponent, MeComponent],
+  declarations: [LoginComponent, RegisterComponent, VerifyRegisterComponent, NewPasswordComponent, ResetPasswordComponent, VerifyResetComponent],
   imports: [
     CommonModule,
      AppRoutingModule,

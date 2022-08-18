@@ -1,6 +1,6 @@
 import { Login } from './../../../models/login';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ValidationErrors } from '@angular/forms';
 import {
   FormBuilder,
@@ -22,19 +22,21 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 export class ResetPasswordComponent implements OnInit {
   resetForm: any = FormGroup;
   submitted = false;
-  result :any;
-  id :any; 
-
+  result: any;
+  id: any;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     public translate: TranslateService,
     public router: Router,
+    private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
+    // console.log(this.activatedRoute.snapshot.params['id']);
+
     this.resetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
@@ -56,24 +58,20 @@ export class ResetPasswordComponent implements OnInit {
 
     let reset = new Login(data.email, null);
 
-    this.authService.forgetPassword(reset)
-      .subscribe((res) => {
-        this.result = res;
-        console.log(res);
+    this.authService.forgetPassword(reset).subscribe((res) => {
+      this.result = res;
+      console.log(res);
 
-        if(this.result.status == true ){
-          console.log(this.result.email);
-          localStorage.setItem(
-            'email',
-            JSON.stringify(this.resetForm.value, null, 4)
-          );
-          this.toastrService.success(this.result.message);
-        }
-        else{
-          this.toastrService.error(this.result.message);
-        };
-
-      })
-
+      if (this.result.status == false) {
+        this.toastrService.error(this.result.message);
+      } else {
+        console.log(this.result.email);
+        localStorage.setItem(
+          'email',
+          JSON.stringify(this.resetForm.value, null, 4)
+        );
+        this.toastrService.success("Please Check Your Email");
+      }
+    });
   }
 }

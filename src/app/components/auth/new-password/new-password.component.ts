@@ -12,7 +12,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -24,22 +24,21 @@ export class NewPasswordComponent implements OnInit {
   NewPassForm: any = FormGroup;
   submitted = false;
 
-  email: any = '';
-  result: any ;
-
+  id!: number;
+  result: any;
 
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     public translate: TranslateService,
     public router: Router,
+    private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService
-  ) {
-    this.email = localStorage.getItem('email');
-    this.email = JSON.parse(this.email);
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params['id'];
+    console.log(this.id);
     this.NewPassForm = this.formBuilder.group(
       {
         password: [
@@ -76,40 +75,22 @@ export class NewPasswordComponent implements OnInit {
 
     let data = this.NewPassForm.value;
 
-    // let pass = new Password(data.password, data.confirmation_password);
 
-    let password = data.password  
-    // let confirmation_password = data.confirmation_password;
+    let password = data.password;
 
-    this.authService.newPassword(password  , this.email.email).subscribe((res) => {
+    this.authService.newPassword(this.id, password).subscribe((res) => {
       this.result = res;
       console.log(res);
-      //   this.token = this.result.token;
 
-      //   if (this.result.success == false) {
-      //     console.log(this.result.error.username);
 
-      //     console.log(this.result.error.username[0]);
 
-      //     if (this.result.error.username) {
-      //       this.toastrService.error(this.result.error['username']);
-      //     }
-
-      //     if (this.result.error.email) {
-      //       this.toastrService.error(this.result.error.email);
-      //     }
-
-      //     if (this.result.error.mobile) {
-      //       this.toastrService.error(this.result.error.mobile);
-      //     }
-      //   } else {
-      //     localStorage.setItem('token', this.token);
-      //     localStorage.setItem('status', this.result.status);
-
-      //     this.router.navigate(['/verify']);
-      //     this.toastrService.info(this.result.message);
-      //     console.log(user);
-      //   }
+      if (this.result == 'success') {
+          this.router.navigate(['/login']);
+          this.toastrService.success("Password Sucessfully Changed");
+      }
+      else {
+            this.toastrService.error("err");
+        }
     });
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.NewPassForm.value, null, 4));
   }

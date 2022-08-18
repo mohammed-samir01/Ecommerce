@@ -23,19 +23,10 @@ export class ShopComponent implements OnInit {
 
   Images: any = [];
 
-  ProductsLength: number = 0;
-
-  //pagination
+  page : any
 
   Meta: any = [];
 
-  // count: number = 0;
-
-  // to: number = 0;
-
-  // perPge: number = 0;
-
-  //Product By Category
   CategoryName: any = [];
 
   constructor(
@@ -48,6 +39,7 @@ export class ShopComponent implements OnInit {
     //   this.CategoryName = data['CategoryName'];
     //   console.log(this.CategoryName);
     // });
+
     this.getProducts();
   }
 
@@ -59,9 +51,11 @@ export class ShopComponent implements OnInit {
 
   getProducts() {
     this.shopservice.getAllProducts().subscribe((res: any) => {
-      this.Products = res['data'];
-      this.ProductsLength = res['data'].length;
-      this.Meta = [res.meta.total, res.meta.current_page, res.meta.from, res.meta.to, res.meta.per_page]
+      this.Products = res.data;
+      this.Meta = res.meta
+      console.log(this.Products);
+      console.log(this.Meta);
+      console.log(res);
 
       for (let i = 0; i < this.Products.length; i++) {
         this.Images = this.Products[i]['media'];

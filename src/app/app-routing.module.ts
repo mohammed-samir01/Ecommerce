@@ -14,10 +14,7 @@ import { VerifyRegisterComponent } from './components/auth/verify-register/verif
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
 import { VerifyResetComponent } from './components/auth/verify-reset/verify-reset.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { MeComponent } from './components/auth/me/me.component';
-
-
-
+import { UserPageComponent } from './user/components/user-page/user-page.component';
 
 
 
@@ -33,7 +30,7 @@ const routes: Routes = [
   { path: 'new-password/:id', component: NewPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'reset-verify', component: VerifyResetComponent },
-  { path: 'me', component: MeComponent },
+  { path: 'profile-page', component: UserPageComponent },
 
   { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
 ];

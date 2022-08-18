@@ -27,7 +27,6 @@ export class ProductDetailsComponent implements OnInit {
 
   RelatedProducts: any = [];
 
-
   constructor(
     private route: ActivatedRoute,
     private service: ProductDetailsService,
@@ -40,6 +39,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.getRelatedProduct();
+    this.getSingleProductOfRalated();
   }
 
   getProduct() {
@@ -48,7 +48,7 @@ export class ProductDetailsComponent implements OnInit {
       this.images = res['Product']['media'];
       this.Reviews = res['Product']['Reviews'];
       this.currentRate = res['Product']['rating'];
-      this.DefaultImage = this.images[0]['image_name'];
+      this.DefaultImage = this.images[0]['file_name'];
       this.ReviewsLength = res['Product']['Reviews'].length;
     });
   }
@@ -60,20 +60,13 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-
-  //   for (this.i = 0; this.i < this.Categories.length; this.i++) {
-  //   this.Children.push(this.Categories[this.i]['children']);
-
-  //   // for (this.j = 0; this.j < this.elem.length; this.j++) {
-  //   //   this.element.push(this.elem[this.j]);
-  //   // }
-  // }
-
-  // Children: any = [];
-
-  // i: number = 0;
-
-  // j: number = 0;
-
-  // element: any = [];
+  getSingleProductOfRalated() {
+    this.service.getSingleProduct(this.slug).subscribe((res: any) => {
+      console.log(res);
+      this.data = res['Product'];
+      this.images = res['Product']['media'];
+      this.currentRate = res['Product']['rating'];
+      this.DefaultImage = this.images[0]['file_name'];
+    });
+  }
 }

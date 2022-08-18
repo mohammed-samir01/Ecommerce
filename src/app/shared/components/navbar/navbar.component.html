@@ -37,11 +37,11 @@
           </li>
 
           <li *ngIf="isLoggedIn" class="nav-item dropdown">
-            <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
               {{'Username' | translate}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item transition-link" routerLink="/me"><i class="fa fa-user me-3"></i> {{'Profile' | translate}}</a></li>
+              <li><a class="dropdown-item transition-link" routerLink="/profile-page"><i class="fa fa-user me-3"></i> {{'Profile' | translate}}</a></li>
               <li><a class="dropdown-item transition-link" (click)="onLogOut()"> <i class="fa fa-right-from-bracket me-3"></i> {{'Logout' | translate}} </a></li>
             </ul>
           </li>

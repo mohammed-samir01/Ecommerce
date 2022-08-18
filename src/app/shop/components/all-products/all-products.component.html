@@ -1,33 +1,66 @@
 <div class="row my-5">
+  <div class="col-lg-3 order-2 order-lg-1">
+    <app-aside
+      [Categories]="Categories"
+      [Tags]="Tags"
+      (ProductByCategory)="goProducts($event)"
+      (getAllProducts)="getAllProducts()"
+      (ProductByFilters)="ProductByFilters()"
+      (ProductByTags)="getProductsByTags($event)"
+    ></app-aside>
+  </div>
+  <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
+    <app-filter [Meta]="Meta"> </app-filter>
 
-    <div class="col-lg-3 order-2 order-lg-1">
-        <app-aside [Categories]="Categories" [Tags]="Tags" (ProductByCategory)="goProducts($event)" 
-            (ProductByTags)="getProductsByTags($event)"></app-aside>
+    <div class="row">
+      <div
+        class="card col-xl-4 col-md-4 col-sm-6"
+        *ngFor="
+          let Product of Products
+            | paginate
+              : {
+                  itemsPerPage: Meta.per_page,
+                  currentPage: Meta.current_page,
+                  totalItems: Meta.total
+                };
+          let i = index
+        "
+      >
+        <app-product-item
+          [Product]="Product"
+          (item)="addToCart($event)"
+        ></app-product-item>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3" *ngIf="Meta.total == 1000">
+        <pagination-controls
+          class="h6"
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="goToSpecificPage($event)"
+        >
+          <!-- (pageChange) = "goToSpecificPageBasedOnCate($event)" -->
+        </pagination-controls>
+      </div>
+      <div class="d-flex justify-content-end mt-3" *ngIf="Meta.total < 100 && 200 > Meta.total ">
+        <pagination-controls
+          class="h6"
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="goToSpecificPageBasedOnCate($event)"
+        >
+        </pagination-controls>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3" *ngIf="Meta.total > 100 && Meta.total < 500">
+        <pagination-controls
+          class="h6"
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="goToSpecificPageBasedOnTag($event)"
+        >
+        </pagination-controls>
+      </div>
     </div>
-    <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
-
-        <app-filter [Meta]="Meta">
-            <!-- [count]="count" [tableSize]="tableSize" [perPge]="perPge" [to]="to" [page]="page"
-            [pagesNumber]="pagesNumber" -->
-        </app-filter>
-
-
-        <div class="row">
-            <div class="card col-xl-4 col-md-4 col-sm-6 "
-                *ngFor="let Product of Products | paginate : {itemsPerPage: Meta[4], currentPage: Meta[1], totalItems: Meta[0] }; let i = index"> 
-
-                <app-product-item [Product]="Product" (item)="addToCart($event)"></app-product-item>
-            </div>
-
-            <div class="d-flex justify-content-end mt-3">
-                <pagination-controls class="h6" previousLabel="Prev" nextLabel="Next" (pageChange)="goToSpecificPage($event)">
-                    <!-- (pageChange)="goToSpecificPage($event)" -->
-                    <!-- (pageChange)="onTableDataChange($event)"  -->
-                    
-                </pagination-controls>
-            </div>
-
-
-        </div>
-    </div>
+  </div>
 </div>

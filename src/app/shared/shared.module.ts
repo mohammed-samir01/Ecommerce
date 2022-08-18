@@ -8,6 +8,7 @@ import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,16 +27,17 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FilesModule,
     MaterialModule,
     RouterModule,
+    NgbModule,
     TranslateModule.forRoot({
-      defaultLanguage:"en",
+      defaultLanguage: 'en',
       loader: {
-      provide:TranslateLoader,
-      useFactory:createTranslateLoader,
-      deps:[HttpClient]
-      }
-    })
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
-  exports:[
+  exports: [
     NavbarComponent,
     FooterComponent,
     ModalComponent,
@@ -43,9 +45,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FilesModule,
     MaterialModule,
     RouterModule,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
 
 export function createTranslateLoader(http:HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')

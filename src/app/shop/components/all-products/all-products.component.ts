@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../../services/shop.service';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-all-products',
@@ -27,15 +26,12 @@ export class AllProductsComponent implements OnInit {
 
   cartProducts: any[] = [];
 
-  // @Input() count: number = 0;
+  data: any = {};
 
-  // @Input() perPge: number = 0;
-
-  // @Input() to: number = 0;
-  // page: number = 1;
-  // tableSize: number = 12;
-  // tableSizes: any = [3, 6, 9, 12];
-  // pagesNumber: number = 1;
+  page: number = 1;
+  tableSize: number = 12;
+  tableSizes: any = [3, 6, 9, 12];
+  pagesNumber: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,69 +42,92 @@ export class AllProductsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  goProducts(keyword: any) {
-    this.router.navigate(['/shop'], {
-      queryParams: { CategoryName: keyword } || 0,
+  getAllProducts() {
+    this.shopservice.getAllProducts().subscribe((res) => {
+      this.data = res;
+      this.Products = this.data.data;
+      this.Meta = this.data.meta;
+      console.log(res);
+      console.log(this.Products);
     });
+  }
+
+  goProducts(keyword: any) {
     this.getProductsByCategories(keyword);
   }
 
   getProductsByCategories(keyword: any) {
     this.shopservice.getProductsByCategories(keyword).subscribe((res: any) => {
-      this.Products = res['data'];
-      this.Meta = [res.total, res.current_page, res.from, res.to, res.per_page];
+      this.Products = res.data;
+      this.data = {
+        total: res.total,
+        current_page: res.current_page,
+        from: res.from,
+        to: res.to,
+        per_page: res.per_page,
+      };
+      this.Meta = this.data;
+      sessionStorage.setItem('categoryName', keyword);
     });
   }
 
-  goProductsByTags(keyword: any, num?: number) {
-    this.router.navigate(['/shop'], {
-      queryParams: { CategoryName: keyword, page: num } || 0,
-    });
-    this.getProductsByTags(keyword);
-  }
-
-  getProductsByTags(kayword: any) {
-    this.shopservice.getProductsByTags(kayword).subscribe((res: any) => {
-      this.Products = res['data'];
-      this.Meta = [res.total, res.current_page, res.from, res.to, res.per_page];
+  getProductsByTags(keyword: any) {
+    this.shopservice.getProductsByTags(keyword).subscribe((res: any) => {
+      this.Products = res.data;
+      this.data = {
+        total: res.total,
+        current_page: res.current_page,
+        from: res.from,
+        to: res.to,
+        per_page: res.per_page,
+      };
+      this.Meta = this.data;
+      sessionStorage.setItem('tagName', keyword);
     });
   }
 
   goToSpecificPage(num: any) {
-    this.router.navigate(['/shop'], {
-      queryParams: { page: num || 1 },
+    localStorage.setItem('page', num);
+    this.shopservice.getAllProducts(num).subscribe((res) => {
+      this.data = res;
+      this.Products = this.data.data;
+      this.Meta = this.data.meta;
+      console.log(this.Meta.current_page);
     });
-    this.getProductsByCategoriesPage(num);
   }
 
-  getProductsByCategoriesPage(num: any) {
-    this.shopservice
-      .getProductsByCategoriesPagination(num)
-      .subscribe((res: any) => {
-        this.Products = res['data'];
-        this.Meta = [
-          res.total,
-          res.current_page,
-          res.from,
-          res.to,
-          res.per_page,
-        ];
-      });
+  goToSpecificPageBasedOnCate(num: any) {
+    this.shopservice.getProductsByCategoriesPyPage(num).subscribe((res) => {
+      this.data = res;
+      this.Products = this.data.data;
+      this.Meta = {
+        total: this.data.total,
+        current_page: this.data.current_page,
+        from: this.data.from,
+        to: this.data.to,
+        per_page: this.data.per_page,
+      };
+    });
   }
 
-  // onTableDataChange(event: any) {
-  //   this.Meta[1] = event;
-  //   this.Products;
-  //   this.router.navigate(['/shop'], {
-  //         queryParams: { page: event } || 0,
-  //       });
-  //       this.getProductsByCategories(event);
-  // }
-  // onTableSizeChange(event: any): void {
-  //   this.Meta[4] = event.target.value;
-  //   this.Meta[1] = 1;
-  //   this.Products;
-  // }
+  goToSpecificPageBasedOnTag(num: any) {
+    this.shopservice.getProductsByTagsPyPage(num).subscribe((res) => {
+      this.data = res;
+      this.Products = this.data.data;
+      this.Meta = {
+        total: this.data.total,
+        current_page: this.data.current_page,
+        from: this.data.from,
+        to: this.data.to,
+        per_page: this.data.per_page,
+      };
+      console.log(res);
+    });
+  }
+
+  ProductByFilters() {
+    this.shopservice;
+  }
 
   addToCart(event: any) {
     if ('cart' in localStorage) {

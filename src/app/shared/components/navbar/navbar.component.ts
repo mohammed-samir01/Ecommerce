@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit {
         window.location.reload();
       });
       localStorage.removeItem('token');
+      localStorage.clear();
     });
   }
 }

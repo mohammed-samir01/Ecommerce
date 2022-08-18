@@ -59,35 +59,31 @@ export class LoginComponent implements OnInit {
 
     let data = this.loginForm.value;
 
-    // let user = new User(
-    //   null,
-    //   null,
-    //   null,
-    //   data.email,
-    //   null,
-    //   data.password,
-    //   null
-    // );
-
         let login = new Login(
           data.email,
           data.password,
         );
 
-    this.authService.loginAuth(login).subscribe((res) => {
+    let email = data.email
+    let password = data.password
+    this.authService.loginAuth(data.email, data.password).subscribe((res) => {
       this.result = res;
       console.log(this.result);
 
-      if(this.result.success == true){
-      this.toastrService.success(" Success ");
-      this.router.navigateByUrl('/').then(() => {
-        window.location.reload();
-      });
-      let token = this.result.data.token;
-      localStorage.setItem("token" , token)
-      }
-      else{
-      this.toastrService.error(" this.result.error ");
+      if (this.result.success == false) {
+                this.toastrService.error(
+          'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'
+        );
+      } else {
+        console.log(res);
+        this.toastrService.success('Login Sucessfully');
+        this.router.navigateByUrl('/').then(() => {
+          window.location.reload();
+          localStorage.removeItem('data');
+        });
+        let token = this.result.data.token;
+        localStorage.setItem('token', token);
+        console.log(res);
       }
     });
   }

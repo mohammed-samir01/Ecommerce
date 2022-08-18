@@ -15,29 +15,41 @@ import {
   providedIn: 'root',
 })
 export class ShopService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
 
-  getAllProducts() {
-        const params = new HttpParams()
-          .set('cateName', '')
-          .set('pagenum', 'g');
-    return this.httpClient.get('http://127.0.0.1:8000/api/all_products?page=');
+  }
+
+  getAllProducts(page?: any) {
+    // const params = new HttpParams().set('pagenum', num);
+    return this.httpClient.get(
+      'http://127.0.0.1:8000/api/all_products?page=' + page
+    );
   }
 
   getAllCategories() {
     return this.httpClient.get('http://127.0.0.1:8000/api/all_categories');
   }
 
-  getProductsByCategories(keyword: string, num?: number) {
-    console.log(keyword);
+  getProductsByCategories(keyword: string) {
     return this.httpClient.get('http://127.0.0.1:8000/api/shop/' + keyword);
   }
 
-  //pagi test
-
-  getProductsByCategoriesPagination(num?: number) {
-    return this.httpClient.get('http://127.0.0.1:8000/api/shop/?page=' + num);
+  getProductsByCategoriesPyPage(page: any) {
+    let params = new HttpParams().set('page', page);
+    let keyword = sessionStorage.getItem('categoryName');
+    return this.httpClient.get(
+      'http://127.0.0.1:8000/api/shop/' + keyword + '?' + params
+    );
   }
+
+  getProductsByTagsPyPage(page: any) {
+    let params = new HttpParams().set('page', page);
+    let keyword = sessionStorage.getItem('tagName');
+    return this.httpClient.get(
+      'http://127.0.0.1:8000/api/shop/' + keyword + '?' + params
+    );
+  }
+  //pagi test
 
   getAllTags() {
     return this.httpClient.get('http://127.0.0.1:8000/api/all_tags');
@@ -55,6 +67,16 @@ export class ShopService {
   }
 
   //add to cart
-  addToCart(product_id:any){
-    return this.httpClient.post('http://127.0.0.1:8000/api/add-to-cart',product_id)
-}}
+  addToCart(product_id: any) {
+    let params = new HttpParams().set('product_id', product_id);
+    return this.httpClient.post(
+      'http://127.0.0.1:8000/api/add-to-cart',
+      params
+    );
+  }
+
+  getProductsByFilters(keyword: string) {
+    console.log(keyword);
+    return this.httpClient.get('http://127.0.0.1:8000/api/shop/' + keyword);
+  }
+}

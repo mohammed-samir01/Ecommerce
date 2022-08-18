@@ -1,0 +1,60 @@
+<section class="my-5">
+  <form     [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-4">
+        <img src="../../../../assets/images/users/avatar.svg" alt="full_name" class="img-thumbnail" width="120" />
+        <div class="mt-2">
+          <a class="btn btn-sm btn-outline-danger">Remove image</a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group">
+        <label class="text-small text-uppercase my-1" for="first_name">First name</label>
+        <input class="form-control" name="first_name" type="text" value="" placeholder="Enter your first name" />
+        <span class="text-danger"> </span>
+      </div>
+
+      <div class="col-lg-6 form-group">
+        <label class="text-small text-uppercase my-1" for="last_name">Last name</label>
+        <input class="form-control" name="last_name" type="text" value="" placeholder="Enter your last name" />
+        <span class="text-danger"> </span>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="email">Email address</label>
+        <input class="form-control" name="email" type="email" value="" placeholder="e.g. Jason@example.com" />
+        <span class="text-danger"></span>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="mobile">Mobile number</label>
+        <input class="form-control" name="mobile" type="tel" value="" placeholder="e.g. 966512345678" />
+        <span class="text-danger"></span>
+      </div>
+      <div class="col-lg-6 form-group">
+        <label class="text-small text-uppercase d-flex my-1 justify-content-between"
+          for="password"><span>Password</span>
+          <small class="ml-auto text-danger"> (Optional) </small></label>
+        <input class="form-control" name="password" type="password" />
+        <span class="text-danger"></span>
+      </div>
+      <div class="col-lg-6 form-group">
+        <label class="text-small text-uppercase d-flex my-1 justify-content-between"
+          for="password_confirmation"><span>Re-Password</span>
+          <small class="ml-auto text-danger"> (Optional) </small></label>
+        <input class="form-control" name="password_confirmation" type="password" />
+        <span class="text-danger"> </span>
+      </div>
+      <div class="col-lg-12 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="user_image">Image</label>
+        <input class="form-control" name="user_image" type="file" />
+        <span class="text-danger"> </span>
+      </div>
+      <div class="col-lg-12 form-group">
+        <button class="btn btn-dark" type="submit">Update profile</button>
+      </div>
+    </div>
+  </form>
+  <!-- ORDER SUMMARY-->
+  <div class="col-lg-4"></div>
+</section>

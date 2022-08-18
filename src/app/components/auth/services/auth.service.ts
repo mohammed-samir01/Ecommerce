@@ -16,12 +16,13 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  // loginAuth(user: User) {
-  //   return this.httpClient.post('http://127.0.0.1:8000/api/login', user);
+  // loginAuth(log: Login) {
+  //   return this.httpClient.post('http://127.0.0.1:8000/api/login', log);
   // }
 
-  loginAuth(log: Login) {
-    return this.httpClient.post('http://127.0.0.1:8000/api/login', log);
+  loginAuth(email, password) {
+    let params = new HttpParams().set('email', email).set('password', password);
+    return this.httpClient.post('http://127.0.0.1:8000/api/login', params );
   }
 
   registerAuth(user: User) {
@@ -46,15 +47,12 @@ export class AuthService {
     );
   }
 
- newPassword(password: any , email  : any) {
-  
-  let params = new HttpParams()
-    .set('password', password)
-    .set('confirmation_password', password)
-    .set('email', email);
-    return this.httpClient.put('http://127.0.0.1:8000/api/updatePassword', {
-      params,
-    });
+  newPassword(id: any, password: any) {
+    let params = new HttpParams()
+      .set('id', id)
+      .set('password', password);
+    return this.httpClient.post('http://127.0.0.1:8000/api/updatePassword/'+id , params 
+    );
   }
 
   isLoggedIn() {

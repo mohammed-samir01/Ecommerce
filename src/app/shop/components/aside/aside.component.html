@@ -1,5 +1,5 @@
 <a [routerLink]="'../shop'">
-    <h1 class="text-uppercase mb-4" id="cate"><strong> {{'Categories' | translate}} </strong></h1>
+    <h1 class="text-uppercase mb-4" id="cate" (click)="allProducts()"><strong> {{'Categories' | translate}} </strong></h1>
 </a>
 <div class="cate" *ngFor="let Category of Categories">
     <h3 class="py-2 px-4 bg-dark text-white mb-3">

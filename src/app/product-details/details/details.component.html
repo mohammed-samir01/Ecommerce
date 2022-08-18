@@ -5,7 +5,7 @@
         <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-sm-0 w-100">
             <div class="row gallrey">
                 <div class="col-3 left" >
-                    <img src="../../../assets/images/products/{{image.image_name}}" alt="product image" (click)="imageClick(image.image_name)" *ngFor="let image of images ; let i = index">
+                    <img src="../../../assets/images/products/{{image.file_name}}" alt="product image" (click)="imageClick(image.file_name)" *ngFor="let image of images ; let i = index">
                 </div>
                 <div class="col-8 right">
                     <img src="../../../assets/images/products/{{DefaultImage}}" alt="product default image">

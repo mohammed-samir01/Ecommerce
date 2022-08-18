@@ -1,8 +1,8 @@
 import { FavoriteService } from './../../../components/favorites/service/favorite.service';
-import { Component, Input, OnInit , Output , EventEmitter  } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ShopService } from '../../services/shop.service';
-// import { ClassShop } from '../../class-shop';
+import { ProductDetailsService } from './../../../product-details/services/product-details.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartsService } from 'src/app/carts/services/cart.service';
 @Component({
@@ -17,36 +17,53 @@ export class ProductItemComponent implements OnInit {
 
   @Input() Images: any = [];
 
-  productCart :any[] = []
+  productCart: any[] = [];
 
   @Output() item = new EventEmitter();
+
+  result :any;
+
+  data :any
+
+  cart : any = []
+
+  singleProduct :any=[]
+  productData: any;
 
   constructor(
     private favorite: FavoriteService,
     public translate: TranslateService,
     private shop: ShopService,
+    private productDetails: ProductDetailsService,
     private toastr: ToastrService,
     private cartservice: CartsService
   ) {}
 
   ngOnInit(): void {}
 
+
+  getSingleProductDetails(keyword :any){
+    this.productDetails.getSingleProduct(keyword).subscribe(res=>{
+      this.productData = res
+      this.singleProduct = this.productData.Product;
+      console.log(this.singleProduct);
+    })
+  }
+
   add(product: any) {
-    this.cartservice.getCart().subscribe((res) => {
-      this.productCart.push(res);
-    });
-    for (let i = 0; i < this.productCart.length; i++) {
-      if (product === this.productCart[i].id) {
-        this.toastr.error('this product exist');
+    this.shop.addToCart(product).subscribe((res) => {
+
+      this.cart.push(product);
+      console.log(this.cart);
+      this.result = res;
+      this.data = this.result.data;
+      console.log(this.result);
+      if (this.result.status == 0) {
+        this.toastr.error(this.data.data);
       } else {
-        this.toastr.success('product add successfully');
-        this.shop.addToCart(product).subscribe((res) => {
-          console.log(res);
-        });
+        this.toastr.success(this.data.messsage);
       }
-    }
-    console.log(this.Product);
-    // this.item.emit({ item: this.Product, quantity: 1 });
+    });
   }
 
   onFavoriteClick(Product: any) {
@@ -60,5 +77,3 @@ export class ProductItemComponent implements OnInit {
     this.favorite.removeFromFavorite(Product);
   }
 }
-
-

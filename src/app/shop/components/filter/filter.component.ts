@@ -1,4 +1,4 @@
-import { Component, OnInit, Input}  from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter}  from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-filter',
@@ -8,16 +8,29 @@ import { TranslateService } from '@ngx-translate/core';
 export class FilterComponent implements OnInit {
   @Input() Meta: any = [];
 
-  // @Input() count :number = 0
-  // @Input() to :number =0
-  // @Input() perPge :number =0
-  // @Input() page : any = 0;
-  // @Input() tableSize : any = 0;
-  // @Input() pagesNumber: number = 0;
+  @Output() ProductByFilters = new EventEmitter();
+
+  Filters = [
+    'Default Sorting',
+    'Popularity',
+    'Price from Low to High',
+    'Price from High to Low',
+  ];
+
+  // FiltersSlug = [
+  //   'DefaultSorting',
+  //   'Popularity',
+  //   'PriceFromLowToHigh',
+  //   'PriceFromHighToLow',
+  // ];
 
   constructor(public translate: TranslateService) {}
 
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
+  }
+
+  filterDataByFilter(event: any) {
+    this.ProductByFilters.emit(event);
   }
 }

@@ -16,10 +16,11 @@ export class AsideComponent implements OnInit {
 
   @Input() Tags: any = [];
 
+  @Output() getAllProducts = new EventEmitter();
+
   @Output() ProductByCategory = new EventEmitter();
 
   @Output() ProductByTags = new EventEmitter();
-
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,10 @@ export class AsideComponent implements OnInit {
     console.log(this.Tags);
   }
 
+  allProducts() {
+    this.getAllProducts.emit();
+  }
+
   filterDataByCate(event: any) {
     this.ProductByCategory.emit(event);
   }
@@ -40,7 +45,6 @@ export class AsideComponent implements OnInit {
   filterDataByTags(event: any) {
     this.ProductByTags.emit(event);
   }
-
 
   // minValue: number = 1000;
   // maxValue: number = 4000;

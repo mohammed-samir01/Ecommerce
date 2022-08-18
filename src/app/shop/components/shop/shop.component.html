@@ -3,7 +3,7 @@
         <app-hero></app-hero>
 
         <app-all-products [Products]="Products" [Tags]="Tags" [Categories]="Categories" 
-        [ProductsLength]="ProductsLength" [Meta]="Meta">
+        [Meta]="Meta" (AllProducts)="getProducts()">
         <!-- [count]="count" [perPge]="perPge" [to]="to" -->
         </app-all-products>
 

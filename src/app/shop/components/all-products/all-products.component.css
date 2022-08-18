@@ -85,9 +85,19 @@ img{
   border: none;
 }
 
-.ngx-pagination .current{
+:host /deep/ .ngx-pagination {
+  padding-left: 0px;
+}
 
- background-color: #111 !important;
+:host /deep/.ngx-pagination .current,
+.btn-info {
+  background: #111 !important;
+
+}
+
+:host /deep/.ngx-pagination .current:hover {
+  background: #E6E6E6 !important;
+  color: #111;
 }
 
 

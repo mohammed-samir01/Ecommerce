@@ -1,4 +1,5 @@
-<app-modal></app-modal>
+<app-modal [singleProduct]="singleProduct"></app-modal>
+
 
 <div class="product text-center">
     <div class="position-relative mb-3">
@@ -23,15 +24,15 @@
 
 
                 <li class="list-inline-item ">
-                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        <i class="fas fa-expand"></i>
+                    <a class="btn btn-sm btn-outline-dark" (click)="getSingleProductDetails(Product.slug)">
+                        <i class="fas fa-expand" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
     <h4> <a class="reset-anchor" routerLink="../product-details/{{Product.slug}}">{{Product.name}}</a></h4>
-    <!-- <p class="small text-muted fa-1x">{{Product.category.name}}</p> -->
+    <p class="small text-muted fa-1x">{{Product.product_id}}</p>
     <!-- <p class="small text-muted fa-1x">{{Product.tags.name}}</p> -->
     <p class="small text-muted fa-1x">${{Product.price}}</p>
 </div>

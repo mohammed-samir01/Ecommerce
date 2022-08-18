@@ -11,6 +11,7 @@ import { ProductDetailsModule } from './product-details/product-details.module';
 import { HomeModule } from './home/home.module';
 import { CartsModule } from './carts/carts.module';
 import { AuthModule } from './components/auth/auth.module';
+import { UserModule } from './user/user.module';
 
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -25,7 +26,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 import { AuthInterceptor } from './components/auth/services/auth.interceptor';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +39,9 @@ import { AuthInterceptor } from './components/auth/services/auth.interceptor';
     ShopModule,
     HomeModule,
     CartsModule,
-    CommonModule,
     AuthModule,
+    UserModule,
+    CommonModule,
     ToastNoAnimationModule.forRoot(),
 
     TranslateModule.forRoot({
