@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Frontend\CustomerController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\Frontend\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +44,8 @@ Route::get('/shop/tags/{slug}',[GeneralController::class ,'show_products_with_ta
 Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
 
     Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder']);
+    Route::get('/checkout/{order_id}/cancel', [App\Http\Controllers\Api\Frontend\MainController::class, 'cancel']);
+    Route::get('/checkout/{order_id}/complete', [App\Http\Controllers\Api\Frontend\MainController::class, 'complete']);
     Route::get('apply-coupon',[App\Http\Controllers\Api\Frontend\MainController::class, 'applyCoupon']);
     Route::get('show-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'showCart']);
     Route::delete('delete-cart-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteProduct']);
@@ -54,6 +55,10 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::get('get-fav',[App\Http\Controllers\Api\Frontend\MainController::class, 'getFav']);
     Route::delete('delete-fav-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteFavProduct']);
     Route::post('add-fav-to-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'addFavToCart']);
+    Route::get('countries',[App\Http\Controllers\Api\Frontend\MainController::class, 'countries']);
+    Route::get('states/{country_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'states']);
+    Route::get('cities/{state_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'cities']);
+
 
 });
 
@@ -71,6 +76,7 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::post('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
     Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
     Route::post('add-user-address',[App\Http\Controllers\Api\Frontend\MainController::class, 'addUserAddress']);
+    Route::delete('delete-user-address/{address_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserAddress']);
     Route::get('get-user-addresses',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserAddresses']);
     Route::put('update-user-address/{address_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'updateUserAddress']);
     Route::get('get-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserOrders']);

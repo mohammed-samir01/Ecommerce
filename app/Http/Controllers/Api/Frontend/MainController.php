@@ -6,17 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileRequest;
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Order;
+use App\Models\OrderTransaction;
 use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
 use App\Models\State;
+use App\Models\User;
 use App\Models\UserAddress;
+use App\Notifications\Frontend\Customer\OrderCreatedNotification;
+use App\Notifications\Frontend\Customer\OrderThanksNotification;
 use App\Services\OmnipayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Meneses\LaravelMpdf\Facades\LaravelMpdf as PDF;
+use function Clue\StreamFilter\fun;
 
 class MainController extends Controller
 {
@@ -107,7 +114,7 @@ class MainController extends Controller
         }
 
 
-        if ($request->payment_method_id = 1 ){
+        if ($request->payment_method_id == 1 ){
 
             $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
 
@@ -119,12 +126,12 @@ class MainController extends Controller
                 'shipping' => $shippingCost,
             ]);
 
-            // cash or visa
-//            if('payment_method_id' == 1){
-//                $order->order_status = 0;
-//            }else{
-//                $order->order_status = 1;
-//            }
+//             cash or visa
+            if('payment_method_id' == 1){
+                $order->order_status = 1;
+            }else{
+                $order->order_status =2 ;
+            }
 
             $pureCost = 0;  //cost without shipping , tax , discount
             $discount = 0;
@@ -184,14 +191,14 @@ class MainController extends Controller
             $order->tax = $tax;
             $order->save();
 
-            // make cart empty after creating the order
-            Cart::where('user_id',$request->user()->id)->delete();
+//            // make cart empty after creating the order
+//            Cart::where('user_id',$request->user()->id)->delete();
 
             $omniPay = new OmnipayService('PayPal_Express');
             $response = $omniPay->purchase([
                 'amount' => $order->total,
                 'transactionId' => $order->ref_id,
-//                'currency' => $order->currency,
+                'currency' => $order->currency,
                 'cancelUrl' => $omniPay->getCancelUrl($order->id),
                 'returnUrl' => $omniPay->getReturnUrl($order->id),
             ]);
@@ -203,7 +210,7 @@ class MainController extends Controller
 //            toast($response->getMessage(), 'error');
 //            return redirect()->route('frontend.index');
 
-            return responseJson(1,'success paypal',['order'=>$order,'discount'=>$discount]);
+            return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
 
         }else{
@@ -286,12 +293,101 @@ class MainController extends Controller
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
 
-            return responseJson(1,'success cash',['order'=>$order,'discount'=>$discount]);
+            return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
 
         }
 
     }
+
+
+    //********************************** Canceled Payment **********************************
+
+    public function cancel($order_id)
+    {
+        $order = Order::find($order_id);
+        $order->update([
+            'order_status' => Order::CANCELED
+        ]);
+        $order->products()->each(function ($order_product) {
+            $product = Product::whereId($order_product->pivot->product_id)->first();
+            $product->update([
+                'quantity' => $product->quantity + $order_product->pivot->quantity
+            ]);
+        });
+
+        return responseJson(200,'success');
+
+         redirect()->back();
+
+//        toast('You have cancelled your order payment!', 'error');
+//        return redirect()->route('frontend.index');
+
+    }
+
+    //********************************** Completed Payment **********************************
+
+    public function complete($order_id)
+    {
+        $order = Order::with('products', 'user', 'payment_method')->find($order_id);
+
+        $omniPay = new OmnipayService('PayPal_Express');
+        $response = $omniPay->complete([
+            'amount' => $order->total,
+            'transactionId' => $order->ref_id,
+            'currency' => $order->currency,
+            'cancelUrl' => $omniPay->getCancelUrl($order->id),
+            'returnUrl' => $omniPay->getReturnUrl($order->id),
+            'notifyUrl' => $omniPay->getNotifyUrl($order->id),
+        ]);
+
+        if ($response->isSuccessful()) {
+            $order->update(['order_status' => Order::PAYMENT_COMPLETED]);
+            $order->transactions()->create([
+                'transaction' => OrderTransaction::PAYMENT_COMPLETED,
+                'transaction_number' => $response->getTransactionReference(),
+                'payment_result' => 'success'
+            ]);
+
+            if (session()->has('coupon')) {
+                $coupon = ProductCoupon::whereCode(session()->get('coupon')['code'])->first();
+                $coupon->increment('used_times');
+            }
+
+
+            session()->forget([
+                'coupon',
+                'saved_customer_address_id',
+                'saved_shipping_company_id',
+                'saved_payment_method_id',
+                'shipping',
+            ]);
+
+            User::whereHas('roles', function($query) {
+                $query->whereIn('name', ['admin', 'supervisor']);
+            })->each(function ($admin, $key) use ($order) {
+                $admin->notify(new OrderCreatedNotification($order));
+            });
+
+
+            $data = $order->toArray();
+            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
+            $pdf = PDF::loadView('layouts.invoice', $data);
+            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
+            $pdf->save($saved_file);
+
+            $customer = User::find($order->user_id);
+            $customer->notify(new OrderThanksNotification($order, $saved_file));
+
+
+            return responseJson(200,'success');
+
+
+//            toast('Your recent payment is successful with reference code: ' . $response->getTransactionReference(), 'success');
+//            return redirect()->route('frontend.index');
+        }
+    }
+
 
     //**********************************fav products**********************************
     public function toggleFav(Request $request){
@@ -538,7 +634,20 @@ class MainController extends Controller
         return responseJson(1,'success',['data'=> 'address updated successfully']);
     }
 
+
+    //***********delete user address***********
+
+    public function deleteUserAddress($id)
+    {
+        $address = auth()->user()->addresses()->where('id', $id);
+
+        $address->delete();
+
+        return responseJson(1,'Deleted Successfully',['address'=>$id]);
+    }
+
     //***********get user orders***********
+
     public function getUserOrders(Request $request){
         $orders = $request->user()->orders()->get();
         if(count($orders) > 0){
@@ -594,4 +703,36 @@ class MainController extends Controller
         return responseJson(1,'success',['data'=>$order]);
     }
 
+
+    public function countries()
+    {
+        $countries = Country::all();
+//      $countries = Country::whereStatus(true)->get();
+//        $this->states = $this->country_id != '' ? State::whereStatus(true)->whereCountryId($this->country_id)->get() : [];
+//        $this->cities = $this->state_id != '' ? City::whereStatus(true)->whereStateId($this->state_id)->get() : [];
+//
+//
+//        return  [
+//            'addresses' => auth()->user()->addresses,
+//            'countries' => $this->countries,
+//            'states' => $this->states,
+//            'cities' => $this->cities,];
+
+        return response()->json($countries);
+    }
+
+
+    public function states($country_id)
+    {
+       $state =  State::whereCountryId($country_id)->get();
+
+       return response()->json($state);
+    }
+
+    public function cities($state_id)
+    {
+        $city =  City::whereStateId($state_id)->get();
+
+        return response()->json($city);
+    }
 }
