@@ -9,9 +9,11 @@ use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\User;
 use App\Notifications\Frontend\Customer\OrderCreatedNotification;
+use App\Notifications\Frontend\Customer\OrderThanksNotification;
 use App\Services\OmnipayService;
 use App\Services\OrderService;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Meneses\LaravelMpdf\Facades\LaravelMpdf as PDF;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -64,8 +66,8 @@ class PaymentController extends Controller
     public function completed($order_id)
     {
         $order = Order::with('products', 'user', 'payment_method')->find($order_id);
-        $omniPay = new OmnipayService('PayPal_Express');
 
+        $omniPay = new OmnipayService('PayPal_Express');
         $response = $omniPay->complete([
             'amount' => $order->total,
             'transactionId' => $order->ref_id,
@@ -105,23 +107,18 @@ class PaymentController extends Controller
             });
 
 
-//            $data = $order->toArray();
-//            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
-//            $pdf = PDF::loadView('layouts.invoice', $data);
-//            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
-//            $pdf->save($saved_file);
-//
-//            $customer = User::find($order->user_id);
-//            $customer->notify(new OrderThanksNotification($order, $saved_file));
+            $data = $order->toArray();
+            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
+            $pdf = PDF::loadView('layouts.invoice', $data);
+            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
+            $pdf->save($saved_file);
+
+            $customer = User::find($order->user_id);
+            $customer->notify(new OrderThanksNotification($order, $saved_file));
 
 
             toast('Your recent payment is successful with reference code: ' . $response->getTransactionReference(), 'success');
             return redirect()->route('frontend.index');
-        }else
-        {
-            toast('Your payment is Failed' , 'error');
-            return redirect()->route('frontend.index');
-
         }
     }
 

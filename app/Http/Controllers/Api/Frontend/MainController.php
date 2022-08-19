@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileRequest;
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
@@ -420,6 +421,17 @@ class MainController extends Controller
 
     }
 
+
+    //***********update user Addresses***********
+
+    public function updateUserAddress(Request $request,$address_id){
+
+
+        $userAddress = UserAddress::find($address_id);
+        $userAddress->update($request->all());
+        return responseJson(1,'success',['data'=> 'address updated successfully']);
+    }
+
     //***********get user orders***********
     public function getUserOrders(Request $request){
         $orders = $request->user()->orders()->get();
@@ -463,6 +475,17 @@ class MainController extends Controller
             return responseJson(0,'fail',['data'=>'order_id does not exist']);
         }
 
+    }
+
+    //***********show user order ***********
+
+
+    public function showUserOrder(Request $request,$order_id){
+
+
+
+        $order = Order::find($order_id);
+        return responseJson(1,'success',['data'=>$order]);
     }
 
 }

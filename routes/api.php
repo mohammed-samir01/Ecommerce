@@ -72,11 +72,11 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
 
     Route::post('add-user-address',[App\Http\Controllers\Api\Frontend\MainController::class, 'addUserAddress']);
     Route::get('get-user-addresses',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserAddresses']);
+    Route::put('update-user-address/{address_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'updateUserAddress']);
     Route::get('get-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserOrders']);
     Route::delete('delete-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrders']);
     Route::delete('delete-user-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrder']);
-
-
+    Route::get('show-user-order/{order_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'showUserOrder']);
     Route::get('logout', [AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class, 'refresh']);
 

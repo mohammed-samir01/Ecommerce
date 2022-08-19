@@ -33,26 +33,6 @@
     <link rel="stylesheet" href="{{asset('frontend/css/style.default.css')}}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
-
-
-
-    <style>
-        .navbar-nav .nav-item .nav-link .badge-counter {
-            position: absolute;
-            transform: scale(0.7);
-            transform-origin: top right;
-            right: 0.50rem;
-            margin-top: -0.50rem;
-            border-radius: 100%;
-            margin-right: -3px;
-        }
-
-        .withoutAfter::after {
-            display: none !important;
-        }
-
-    </style>
-
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
