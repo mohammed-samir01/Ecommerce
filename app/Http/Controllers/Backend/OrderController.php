@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderTransaction;
 use App\Models\User;
 //use App\Notifications\Backend\Orders\OrderNotification;
+use App\Notifications\Backend\Orders\OrderNotification;
 use App\Services\OmnipayService;
 use Illuminate\Http\Request;
 
@@ -112,7 +113,7 @@ class OrderController extends Controller
                     'payment_result' => 'success'
                 ]);
 
-//                $customer->notify(new OrderNotification($order));
+                $customer->notify(new OrderNotification($order));
 
                 return back()->with([
                     'message' => 'Refunded updated successfully',
@@ -131,7 +132,7 @@ class OrderController extends Controller
                 'payment_result'=> null,
             ]);
 
-//            $customer->notify(new OrderNotification($order));
+            $customer->notify(new OrderNotification($order));
 
             return back()->with([
                 'message' => 'updated successfully',
