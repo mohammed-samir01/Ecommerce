@@ -12,6 +12,7 @@ use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
 use App\Models\State;
 use App\Models\UserAddress;
+use App\Services\OmnipayService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -91,6 +92,7 @@ class MainController extends Controller
 
     //**********************************create order**********************************
     public function createOrder(Request $request){
+
         // validation
         $rules=[
             'user_address_id' => 'required',
@@ -105,85 +107,189 @@ class MainController extends Controller
         }
 
 
-        $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
+        if ($request->payment_method_id = 1 ){
 
-        // store order
-        $order = $request->user()->orders()->create([
-            'user_address_id' => $request->user_address_id,
-            'shipping_company_id' => $request->shipping_company_id,
-            'payment_method_id'=> $request->payment_method_id,
-            'shipping' => $shippingCost,
-        ]);
+            $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
 
-        // cash or visa
-        if('payment_method_id' == 1){
-            $order->order_status = 0;
-        }else{
-            $order->order_status = 1;
-        }
+            // store order
+            $order = $request->user()->orders()->create([
+                'user_address_id' => $request->user_address_id,
+                'shipping_company_id' => $request->shipping_company_id,
+                'payment_method_id'=> $request->payment_method_id,
+                'shipping' => $shippingCost,
+            ]);
 
-        $pureCost = 0;  //cost without shipping , tax , discount
-        $discount = 0;
+            // cash or visa
+//            if('payment_method_id' == 1){
+//                $order->order_status = 0;
+//            }else{
+//                $order->order_status = 1;
+//            }
 
-        $products = Cart::where('user_id',$request->user()->id)->get();
-        foreach($products as $p){
-            $product = Product::find($p['product_id']);
-            $readyProduct = $product->id;
+            $pureCost = 0;  //cost without shipping , tax , discount
+            $discount = 0;
 
-            $order->products()->attach($readyProduct);
-            $pureCost += $p['quantity'] * $product->price;
-        }
+            $products = Cart::where('user_id',$request->user()->id)->get();
+            foreach($products as $p){
+                $product = Product::find($p['product_id']);
+                $readyProduct = $product->id;
 
-
-        if($request->has('coupon_id')){
-            $productCoupon = ProductCoupon::find($request->coupon_id);
-
-            if($productCoupon){
-
-                $startDate =$productCoupon->start_date;
-                $startDateAfterEdit =date_create($startDate);
-
-                $expireDate =$productCoupon->expire_date;
-                $expireDateAfterEdit =date_create($expireDate);
-
-                $nowDate = date_create("now");
+                $order->products()->attach($readyProduct);
+                $pureCost += $p['quantity'] * $product->price;
+            }
 
 
-                if($nowDate >= $startDateAfterEdit  && $nowDate <= $expireDateAfterEdit && $pureCost >= $productCoupon->greater_than && $productCoupon->used_times+1 <= $productCoupon->use_times){
-                    $productCoupon->used_times += 1 ;
-                    $productCoupon->save();
+            if($request->has('coupon_id')){
+                $productCoupon = ProductCoupon::find($request->coupon_id);
+
+                if($productCoupon){
+
+                    $startDate =$productCoupon->start_date;
+                    $startDateAfterEdit =date_create($startDate);
+
+                    $expireDate =$productCoupon->expire_date;
+                    $expireDateAfterEdit =date_create($expireDate);
+
+                    $nowDate = date_create("now");
 
 
-                    $code_type = $productCoupon->type;
+                    if($nowDate >= $startDateAfterEdit  && $nowDate <= $expireDateAfterEdit && $pureCost >= $productCoupon->greater_than && $productCoupon->used_times+1 <= $productCoupon->use_times){
+                        $productCoupon->used_times += 1 ;
+                        $productCoupon->save();
 
-                    if($code_type == 'percentage'){
-                        $discount = $pureCost*($productCoupon->value/100);
-                        $order->discount = $discount;
 
-                    }else{
-                        $discount =  $productCoupon->value;
-                        $order->discount = $discount;
+                        $code_type = $productCoupon->type;
+
+                        if($code_type == 'percentage'){
+                            $discount = $pureCost*($productCoupon->value/100);
+                            $order->discount = $discount;
+
+                        }else{
+                            $discount =  $productCoupon->value;
+                            $order->discount = $discount;
+                        }
+
+                        $coupon_code = $productCoupon->code;
+                        $order->discount_code =$coupon_code;
+
                     }
-
-                    $coupon_code = $productCoupon->code;
-                    $order->discount_code =$coupon_code;
-
                 }
             }
+
+            $tax = ($pureCost-$discount)*(15/100);
+            $total_cost = ($pureCost + $tax + $shippingCost) - $discount;
+
+            $order->subtotal = $pureCost + $tax + $shippingCost;
+            $order->total = $total_cost;
+            $order->tax = $tax;
+            $order->save();
+
+            // make cart empty after creating the order
+            Cart::where('user_id',$request->user()->id)->delete();
+
+            $omniPay = new OmnipayService('PayPal_Express');
+            $response = $omniPay->purchase([
+                'amount' => $order->total,
+                'transactionId' => $order->ref_id,
+//                'currency' => $order->currency,
+                'cancelUrl' => $omniPay->getCancelUrl($order->id),
+                'returnUrl' => $omniPay->getReturnUrl($order->id),
+            ]);
+
+            if ($response->isRedirect()) {
+                $response->redirect();
+            }
+
+//            toast($response->getMessage(), 'error');
+//            return redirect()->route('frontend.index');
+
+            return responseJson(1,'success paypal',['order'=>$order,'discount'=>$discount]);
+
+
+        }else{
+
+            $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
+
+            // store order
+            $order = $request->user()->orders()->create([
+                'user_address_id' => $request->user_address_id,
+                'shipping_company_id' => $request->shipping_company_id,
+                'payment_method_id'=> $request->payment_method_id,
+                'shipping' => $shippingCost,
+            ]);
+
+            // cash or visa
+            if('payment_method_id' == 1){
+                $order->order_status = 0;
+            }else{
+                $order->order_status = 1;
+            }
+
+            $pureCost = 0;  //cost without shipping , tax , discount
+            $discount = 0;
+
+            $products = Cart::where('user_id',$request->user()->id)->get();
+            foreach($products as $p){
+                $product = Product::find($p['product_id']);
+                $readyProduct = $product->id;
+
+                $order->products()->attach($readyProduct);
+                $pureCost += $p['quantity'] * $product->price;
+            }
+
+
+            if($request->has('coupon_id')){
+                $productCoupon = ProductCoupon::find($request->coupon_id);
+
+                if($productCoupon){
+
+                    $startDate =$productCoupon->start_date;
+                    $startDateAfterEdit =date_create($startDate);
+
+                    $expireDate =$productCoupon->expire_date;
+                    $expireDateAfterEdit =date_create($expireDate);
+
+                    $nowDate = date_create("now");
+
+
+                    if($nowDate >= $startDateAfterEdit  && $nowDate <= $expireDateAfterEdit && $pureCost >= $productCoupon->greater_than && $productCoupon->used_times+1 <= $productCoupon->use_times){
+                        $productCoupon->used_times += 1 ;
+                        $productCoupon->save();
+
+
+                        $code_type = $productCoupon->type;
+
+                        if($code_type == 'percentage'){
+                            $discount = $pureCost*($productCoupon->value/100);
+                            $order->discount = $discount;
+
+                        }else{
+                            $discount =  $productCoupon->value;
+                            $order->discount = $discount;
+                        }
+
+                        $coupon_code = $productCoupon->code;
+                        $order->discount_code =$coupon_code;
+
+                    }
+                }
+            }
+
+            $tax = ($pureCost-$discount)*(15/100);
+            $total_cost = ($pureCost + $tax + $shippingCost) - $discount;
+
+            $order->subtotal = $pureCost + $tax + $shippingCost;
+            $order->total = $total_cost;
+            $order->tax = $tax;
+            $order->save();
+
+            // make cart empty after creating the order
+            Cart::where('user_id',$request->user()->id)->delete();
+
+            return responseJson(1,'success cash',['order'=>$order,'discount'=>$discount]);
+
+
         }
-
-        $tax = ($pureCost-$discount)*(15/100);
-        $total_cost = ($pureCost + $tax + $shippingCost) - $discount;
-
-        $order->subtotal = $pureCost + $tax + $shippingCost;
-        $order->total = $total_cost;
-        $order->tax = $tax;
-        $order->save();
-
-        // make cart empty after creating the order
-        Cart::where('user_id',$request->user()->id)->delete();
-
-        return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
     }
 
