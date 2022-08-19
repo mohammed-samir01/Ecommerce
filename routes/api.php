@@ -67,7 +67,7 @@ Route::middleware('auth:api')->group(function (){
 Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
 
     Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
-    Route::patch('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
+    Route::post('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
     Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
 
     Route::post('add-user-address',[App\Http\Controllers\Api\Frontend\MainController::class, 'addUserAddress']);

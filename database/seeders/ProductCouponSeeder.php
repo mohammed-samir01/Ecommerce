@@ -17,7 +17,7 @@ class ProductCouponSeeder extends Seeder
     public function run()
     {
         ProductCoupon::create([
-            'code'              => 'SAMI200',
+            'code'              => 'King200',
             'type'              => 'fixed',
             'value'             => 200,
             'description'       => 'Discount 200 SAR on your sales on website',

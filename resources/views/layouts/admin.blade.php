@@ -8,7 +8,7 @@
     <meta name="author" content="Hooksha">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{assert('favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
     <title>{{ config('app.name', 'Laravel') }}Dashboard</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" href="{{ asset('backend/vendor/summernote/summernote-bs4.min.css') }}">
 
-
+    <livewire:styles />
     @yield('style')
 
 </head>
@@ -73,15 +73,13 @@
 </div>
 
 {{--    <!-- Scripts -->--}}
+<livewire:scripts />
 <script src="{{ asset('js/app.js') }}"></script>
-
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="{{asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="{{asset('backend/js/sb-admin-2.min.js')}}"></script>
 <script src="{{asset('backend/js/custom.js')}}"></script>
