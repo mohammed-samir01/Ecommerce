@@ -83,6 +83,8 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::delete('delete-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrders']);
     Route::delete('delete-user-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrder']);
     Route::get('show-user-order/{order_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'showUserOrder']);
+    Route::get('shipping-compines',[App\Http\Controllers\Api\Frontend\MainController::class, 'shippingCompines']);
+    Route::get('payment-methods',[App\Http\Controllers\Api\Frontend\MainController::class, 'paymentMethods']);
     Route::get('logout', [AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class, 'refresh']);
 

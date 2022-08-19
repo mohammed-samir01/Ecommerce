@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Order;
 use App\Models\OrderTransaction;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
@@ -730,6 +731,19 @@ class MainController extends Controller
     {
         $city =  City::whereStateId($state_id)->get();
         return  $this->returnData('Cities',$city,'Success',200);
+
+    }
+    public function shippingCompines()
+    {
+        $shipping_compines =  ShippingCompany::all();
+        return  $this->returnData('Shipping_compines',$shipping_compines,'Success',200);
+
+    }
+
+    public function paymentMethods()
+    {
+        $payment_methods =  PaymentMethod::all();
+        return  $this->returnData('payment_methods',$payment_methods,'Success',200);
 
     }
 }
