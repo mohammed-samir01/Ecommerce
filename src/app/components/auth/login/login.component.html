@@ -1,116 +1,118 @@
 <div class="container-lg g-1 g-md-2">
-
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row justify-content-center">
-        <section class="col-12 py-5 bg-light">
+      <section class="col-12 py-5 bg-light">
         <div class="row py-5 px-4 px-lg-5 align-items-center">
-            <div class="col-lg-6 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <h1 class="text-uppercase mb-0">{{ "LOGIN" | translate }}</h1>
-            </div>
-            <div class="col-lg-6 col-md-6">
+          </div>
+          <div class="col-lg-6 col-md-6">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-end">
+              <ol class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item">
-                    <a class="hero" routerLink="">{{ "home" | translate }}</a>
+                  <a class="hero" routerLink="">{{ "home" | translate }}</a>
                 </li>
                 <li class="breadcrumb-item text-muted" aria-current="page">
-                    {{ "LOGIN" | translate }}
+                  {{ "LOGIN" | translate }}
                 </li>
-                </ol>
+              </ol>
             </nav>
-            </div>
+          </div>
         </div>
-        </section>
+      </section>
 
-        <div class="col-md-12 col-lg-6 mt-4">
+      <div class="col-md-12 col-lg-6 mt-4">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-outline my-2">
+          <div class="form-outline my-2">
             <label class="form-label my-3" for="inputEmail"
-                >{{ "YOUR EMAIL" | translate }}
-                <span class="text-danger">*</span></label
+              >{{ "YOUR EMAIL" | translate }}
+              <span class="text-danger">*</span></label
             >
             <input
-                id="inputEmail"
-                type="email"
-                class="form-control form-control-lg"
-                formControlName="email"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                placeholder="{{ 'Enter a valid email address' | translate }}"
-                autofocus
+              id="inputEmail"
+              type="email"
+              class="form-control form-control-lg"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              placeholder="{{ 'Enter a valid email address' | translate }}"
+              autofocus
             />
 
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <h3 class="text-danger" *ngIf="f.email.errors.required">
+              <h3 class="text-danger" *ngIf="f.email.errors.required">
                 {{ "Required" | translate }}
-                </h3>
-                <h3 class="text-danger" *ngIf="f.email.errors.email">
+              </h3>
+              <h3 class="text-danger" *ngIf="f.email.errors.email">
                 {{ "Email is Not Valid" | translate }}
-                </h3>
+              </h3>
             </div>
-            </div>
+          </div>
 
-            <div class="form-outline my-2">
+          <div class="form-outline my-2">
             <label class="form-label my-3" for="inputPassword">
-                {{ "PASSWORD" | translate }}
-                <span class="text-danger">*</span></label
+              {{ "PASSWORD" | translate }}
+              <span class="text-danger">*</span></label
             >
             <input
-                id="inputPassword"
-                type="password"
-                formControlName="password"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                placeholder=" {{ 'Your password' | translate }} "
-                required
-                class="form-control form-control-lg"
-                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+              id="inputPassword"
+              type="password"
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              placeholder=" {{ 'Your password' | translate }} "
+              required
+              class="form-control form-control-lg"
+              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
             />
 
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <h3 class="text-danger" *ngIf="f.password.errors.required">
+            <div
+              *ngIf="submitted && f.password.errors"
+              class="invalid-feedback"
+            >
+              <h3 class="text-danger" *ngIf="f.password.errors.required">
                 {{ "REQUIRED" | translate }}
-                </h3>
-                <h3
+              </h3>
+              <h3
                 class="text-danger"
                 *ngIf="loginForm.controls['password'].errors?.['pattern']"
-                >
+              >
                 {{
-                    "Minimum eight characters, at least one letter, one number and one special character"
+                  "Minimum eight characters, at least one letter, one number and one special character"
                     | translate
                 }}
-                </h3>
+              </h3>
             </div>
-            </div>
+          </div>
 
-            <div class="text-center text-lg-start mt-4 pt-2">
+          <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" class="btn btn-dark w-100">
-                {{ "LOGIN" | translate }}
+              {{ "LOGIN" | translate }}
             </button>
             <div class="d-flex justify-content-between">
-                <div class="my-4 d-inline-block">
+              <div class="my-4 d-inline-block">
                 {{ "Don't have an account?" | translate }}
                 <a [routerLink]="'/register'" class="link-dark fw-bold ms-2">
-                    {{ "REGISTER" | translate }}
+                  {{ "REGISTER" | translate }}
                 </a>
-                </div>
-                <div class="my-4 d-inline-block">
+              </div>
+              <div class="my-4 d-inline-block">
                 <a [routerLink]="'/reset-password'" class="link-dark fw-bold">
-                    {{ "Forgot Password ?" | translate }}
+                  {{ "Forgot Password ?" | translate }}
                 </a>
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         </form>
-        </div>
+      </div>
 
-        <div
+      <div
         class="col-md-12 col-lg-6 col-xl-6 d-flex align-items-center justify-content-center imgParent"
-        >
+      >
         <img
-            src="../../../../assets/images/Fingerprint-bro.png"
-            alt="Sample image"
-            height="390rem"
+          src="../../../../assets/images/Fingerprint-bro.png"
+          alt="Sample image"
+          height="390rem"
         />
-        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </div>

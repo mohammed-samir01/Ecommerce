@@ -62,15 +62,12 @@ export class ResetPasswordComponent implements OnInit {
       this.result = res;
       console.log(res);
 
-      if (this.result.status == false) {
-        this.toastrService.error(this.result.message);
+      if (this.result.user_id) {
+        this.toastrService.success(this.result.Message);
+
       } else {
-        console.log(this.result.email);
-        localStorage.setItem(
-          'email',
-          JSON.stringify(this.resetForm.value, null, 4)
-        );
-        this.toastrService.success("Please Check Your Email");
+
+        this.toastrService.error(this.result.message);
       }
     });
   }

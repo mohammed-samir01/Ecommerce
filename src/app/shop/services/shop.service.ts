@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 import { tap, concatMap, scan } from 'rxjs/operators';
-// import { FavoriteService } from './../../../components/favorites/service/favorite.service';
 
 import {
   HttpClient,

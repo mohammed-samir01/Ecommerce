@@ -1,24 +1,3 @@
-<!-- HERO SECTION-->
-<!-- <section class="col-12 py-5 bg-light">
-      <div class="row py-5 px-4 px-lg-5 align-items-center">
-        <div class="col-lg-6 col-md-6">
-          <h1 class="text-uppercase mb-0">Addresses</h1>
-        </div>
-        <div class="col-lg-6 col-md-6">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-end">
-              <li class="breadcrumb-item">
-                <a class="hero" routerLink="">Home</a>
-              </li>
-              <li class="breadcrumb-item text-muted" aria-current="page">
-                Addresses
-              </li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </section> -->
-
 <section class="my-5">
   <div class="d-flex justify-content-between">
     <h2 class="h5 text-uppercase mb-4">Addresses</h2>
@@ -29,8 +8,8 @@
     </div>
   </div>
 
-  <form>
-    <input type="hidden" wire:model="address_id" class="form-control" />
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <!-- <input type="hidden" wire:model="address_id" class="form-control" /> -->
 
     <div class="row">
       <div class="col-lg-8 form-group my-3">
@@ -39,73 +18,134 @@
         >
         <input
           class="form-control"
-          wire:model="address_title"
           type="text"
-          placeholder="Enter your address title"
+          formControlName="address_title"
         />
-        <span class="text-danger"> </span>
       </div>
+
       <div class="col-lg-4 form-group">
         <label class="text-small text-uppercase my-1">&nbsp;</label>
         <div class="form-check mt-4">
           <input
             class="form-check-input"
             id="default_address"
-            wire:model="default_address"
             type="checkbox"
+            formControlName="default_address"
           />
           <label class="form-check-label" for="default_address"
             >Default address?</label
           >
         </div>
       </div>
+
       <div class="col-lg-6 form-group my-3">
         <label class="text-small text-uppercase my-1" for="first_name"
           >First name</label
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="first_name"
           type="text"
-          placeholder="Enter your first name"
-        />
-        <span class="text-danger"> </span>
+            formControlName="first_name"
+            [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
+            minlength="3"
+            maxlength="32"
+            pattern="[a-zA-Z ]*"
+                    />
+        <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.first_name.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.first_name.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.first_name.errors.minlength">
+            {{ "Minimum length is 3 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.first_name.errors.pattern">
+            {{ "First name is not valid" | translate }}
+          </h3>
+        </div>      
       </div>
+
       <div class="col-lg-6 form-group my-3">
         <label class="text-small text-uppercase my-1" for="last_name"
           >Last name</label
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="last_name"
           type="text"
-          placeholder="Enter your last name"
+          formControlName="last_name"
+          pattern="[a-zA-Z ]*"
+          minlength="3"
+          maxlength="32"
+          [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
         />
-        <span class="text-danger"> </span>
+        <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.last_name.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.last_name.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.last_name.errors.minlength">
+            {{ "Minimum length is 3 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.last_name.errors.pattern">
+            {{ "Last name is not valid" | translate }}
+          </h3>
+        </div>
       </div>
+
       <div class="col-lg-6 form-group my-3">
         <label class="text-small text-uppercase my-1" for="email"
           >Email address</label
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="email"
           type="email"
-          placeholder="e.g. Jason@example.com"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
         />
-        <span class="text-danger"></span>
+
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.email.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.email.errors.email">
+            {{ "Email is not valid" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.email.errors.pattern">
+            {{ "Email must be this (example@example.com)" | translate }}
+          </h3>
+        </div>
       </div>
+
       <div class="col-lg-6 form-group my-3">
         <label class="text-small text-uppercase my-1" for="mobile"
           >Mobile number</label
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="mobile"
           type="tel"
-          placeholder="e.g. 966512345678"
+          formControlName="mobile"
+          maxlength="11"
+          minlength="11"
+          [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
         />
-        <span class="text-danger"></span>
+
+                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.mobile.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.mobile.errors.pattern">
+            {{
+              "Number Only , Minimum length is 11 characters and starts with 010 or 011 or 012"
+                | translate
+            }}
+          </h3>
+        </div>
       </div>
 
       <div class="col-lg-6 form-group my-3">
@@ -114,48 +154,46 @@
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="address"
           type="text"
-          placeholder="Enter your first name"
+          formControlName="address"
         />
-        <span class="text-danger"></span>
       </div>
+
       <div class="col-lg-6 form-group my-3">
         <label class="text-small text-uppercase my-1" for="address2"
           >address2</label
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="address2"
           type="text"
-          placeholder="Enter your last name"
+          formControlName="address2"
         />
-        <span class="text-danger"></span>
       </div>
+
       <div class="col-lg-4 form-group my-3">
         <label class="text-small text-uppercase my-1" for="country_id"
           >Country</label
         ><span class="text-danger p-1">*</span>
-        <select class="form-control" wire:model="country_id">
+        <select class="form-control" formControlName="country_id">
           <option value="">Select Country</option>
           <option value="country">country</option>
         </select>
-        <span class="text-danger"> </span>
       </div>
+
       <div class="col-lg-4 form-group my-3">
         <label class="text-small text-uppercase my-1" for="state_id"
           >State</label
         ><span class="text-danger p-1">*</span>
-        <select class="form-control" wire:model="state_id">
+        <select class="form-control" formControlName="state_id">
           <option value="">Select State</option>
           <option value="state">state</option>
         </select>
-        <span class="text-danger"></span>
       </div>
+
       <div class="col-lg-4 form-group my-3">
         <label class="text-small text-uppercase my-1" for="city_id">City</label
         ><span class="text-danger p-1">*</span>
-        <select class="form-control" wire:model="city_id">
+        <select class="form-control" formControlName="city_id">
           <option value="">Select City</option>
           <option value="city">city</option>
         </select>
@@ -168,24 +206,23 @@
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="zip_code"
           type="text"
-          placeholder="Enter your first name"
-        />
-        <span class="text-danger"></span>
+          formControlName="zip_code"
+          />
       </div>
+
       <div class="col-lg-6 form-group my-3">
         <label class="text-small text-uppercase my-1" for="po_box"
           >P.O.Box</label
         ><span class="text-danger p-1">*</span>
         <input
           class="form-control"
-          wire:model="po_box"
+          formControlName="po_box"
           type="text"
           placeholder="Enter your last name"
         />
-        <span class="text-danger"></span>
       </div>
+
       <div class="col-lg-12 form-group my-3">
         <button class="btn btn-dark" type="submit">Add Address</button>
       </div>
@@ -197,19 +234,36 @@
       <table class="table">
         <thead>
           <tr class="h6">
-            <th>Address title</th>
-            <th>Default</th>
-            <th class="col-2">Action</th>
+            <th class="text-center">Address title</th>
+            <th class="text-center">Default</th>
+            <th class="text-center col-2">Action</th>
           </tr>
         </thead>
         <tbody>
-          <!-- <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr> -->
-          <tr>
-            <td colspan="3">No addresses found</td>
+          <tr *ngIf="usrAddresses.status == 0">
+            <td colspan="3" class="text-center h6">{{ data }}</td>
+          </tr>
+          <tr *ngFor="let item of usrAddresses.data.data">
+            <td class="text-center">{{ item.address_title }}</td>
+            <td class="text-center" *ngIf="item.default_address == 1">
+              Default Address
+            </td>
+            <td class="text-center">
+              <div class="btn-group btn-group-sm">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                >
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button (click) ="removeAddress()"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

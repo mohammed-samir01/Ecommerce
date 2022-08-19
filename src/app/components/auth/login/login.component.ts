@@ -11,7 +11,6 @@ import { Login } from './../../../models/login';
 import { AuthService } from '../services/auth.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { User } from './../../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +47,7 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-  
+
   onSubmit() {
     this.submitted = true;
 
@@ -59,33 +58,26 @@ export class LoginComponent implements OnInit {
 
     let data = this.loginForm.value;
 
-        let login = new Login(
-          data.email,
-          data.password,
-        );
+    let login = new Login(data.email, data.password);
 
-    let email = data.email
-    let password = data.password
+    let email = data.email;
+    let password = data.password;
     this.authService.loginAuth(data.email, data.password).subscribe((res) => {
       this.result = res;
-      console.log(this.result);
 
-      if (this.result.success == false) {
-                this.toastrService.error(
-          'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'
-        );
-      } else {
-        console.log(res);
+      if (this.result.success == true) {
         this.toastrService.success('Login Sucessfully');
         this.router.navigateByUrl('/').then(() => {
           window.location.reload();
           localStorage.removeItem('data');
         });
-        let token = this.result.data.token;
+        let token = this.result.token;
+        console.log(token);
         localStorage.setItem('token', token);
         console.log(res);
+      } else {
+        this.toastrService.error(this.result.error);
       }
     });
   }
-
 }

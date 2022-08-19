@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { createTranslateLoader } from '../app.module';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -24,6 +24,7 @@ import { UserPageComponent } from './components/user-page/user-page.component';
     HttpClientModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -35,4 +36,5 @@ import { UserPageComponent } from './components/user-page/user-page.component';
   ],
   exports: [UserPageComponent],
 })
+
 export class UserModule {}
