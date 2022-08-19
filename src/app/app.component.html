@@ -1,3 +1,8 @@
 <app-navbar></app-navbar>
   <router-outlet></router-outlet>
+
+  <div class="rightCorner d-flex">
+    <a routerLink="/live-chat"> {{'Chat' | translate}} </a>
+  </div>
+
 <app-footer *ngIf="isLoggedIn"></app-footer>

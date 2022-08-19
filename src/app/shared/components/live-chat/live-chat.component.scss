@@ -1,0 +1,122 @@
+$background: white;
+$primary: rebeccapurple;
+$shadow: black;
+
+// head of page//
+section {
+    border-radius: 10px;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1.2;
+    color: #111111;
+    font-size: 1.9rem;
+    letter-spacing: 0.1em;
+}
+
+a{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #111111;
+}
+li{
+    font-size: 1.2rem;
+}
+//end of style for head of page//
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}
+
+.card {
+    height: 80vh;
+    width: 100vw;
+    background-color: $background;
+    margin: 10px auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.chat-list {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    .chat-item {
+        max-width: 80%;
+        margin: 8px 0;
+        display: flex;
+        flex-direction: row;
+        #message-body {
+            margin: auto 8px;
+            padding: 8px 16px;
+            max-width: 80%;
+            border-radius: 10px;
+            color: white;
+        }
+        #avatar {
+            background-color: $background;
+            height: 30px;
+            width: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+            z-index: 1;
+            border: 5px solid $background;
+        }
+        #time-details {
+            margin: auto 0;
+            padding-top: 16px;
+        }
+    }
+    .left {
+        margin-right: auto;
+        margin-left: 8px;
+        #message-body {
+            margin-left: -10px;
+            margin-top: 15px;
+            background-color: #111;
+        }
+    }
+    .right {
+        margin-left: auto;
+        margin-right: 8px;
+        flex-direction: row-reverse;
+        #message-body {
+            margin-right: -10px;
+            margin-top: 15px;
+            background-color: #f8f9fa;
+            color: #111;
+            
+        }
+    }
+}
+
+.chat-footer {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    #chat-textarea {
+        flex: 1;
+        margin: 0 8px;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    #send-button {
+        width: 10%;
+        border: 2px solid black;
+        background-color: #111;
+        color: #f8f9fa;
+        padding: 0 8px;
+        border-radius: 10px;
+    }
+}

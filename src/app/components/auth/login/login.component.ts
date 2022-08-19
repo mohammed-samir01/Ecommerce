@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/').then(() => {
         window.location.reload();
       });
-      let token = this.result.data.token;
+      let token = this.result.token;
       localStorage.setItem("token" , token)
       }
       else{

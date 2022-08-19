@@ -15,6 +15,7 @@ import { NewPasswordComponent } from './components/auth/new-password/new-passwor
 import { VerifyResetComponent } from './components/auth/verify-reset/verify-reset.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { MeComponent } from './components/auth/me/me.component';
+import { LiveChatComponent } from './shared/components/live-chat/live-chat.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent },
   { path: 'favorite', component: FavoritesComponent },
+  { path: 'live-chat', component: LiveChatComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verify', component: VerifyRegisterComponent },

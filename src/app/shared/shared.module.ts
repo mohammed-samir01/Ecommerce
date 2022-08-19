@@ -8,20 +8,25 @@ import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LiveChatComponent } from './components/live-chat/live-chat.component';
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     ChangeLanguageComponent,
     ModalComponent,
+    LiveChatComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    HttpClientModule,
     NgxModule,
     FilesModule,
     MaterialModule,

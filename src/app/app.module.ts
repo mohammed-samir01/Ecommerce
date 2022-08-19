@@ -25,6 +25,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 import { AuthInterceptor } from './components/auth/services/auth.interceptor';
+import { LiveChatComponent } from './shared/components/live-chat/live-chat.component';
 
 @NgModule({
   declarations: [
