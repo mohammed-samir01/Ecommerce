@@ -18,6 +18,7 @@ use App\Models\UserAddress;
 use App\Notifications\Frontend\Customer\OrderCreatedNotification;
 use App\Notifications\Frontend\Customer\OrderThanksNotification;
 use App\Services\OmnipayService;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,7 @@ use function Clue\StreamFilter\fun;
 class MainController extends Controller
 {
 
+    use GeneralTrait;
 
     //**********************************apply coupon**********************************
 
@@ -110,7 +112,7 @@ class MainController extends Controller
         $validator = validator()->make($request->all(),$rules);
         if($validator->fails()){
             $error = $validator->errors()->first();
-            return responseJson(0,'faild',['data'=>$error]);
+            return responseJson(0,'failed',['data'=>$error]);
         }
 
 
@@ -198,7 +200,7 @@ class MainController extends Controller
             $response = $omniPay->purchase([
                 'amount' => $order->total,
                 'transactionId' => $order->ref_id,
-                'currency' => $order->currency,
+                'currency' => 'USD',
                 'cancelUrl' => $omniPay->getCancelUrl($order->id),
                 'returnUrl' => $omniPay->getReturnUrl($order->id),
             ]);
@@ -209,6 +211,9 @@ class MainController extends Controller
 
 //            toast($response->getMessage(), 'error');
 //            return redirect()->route('frontend.index');
+
+            // make cart empty after creating the order
+            Cart::where('user_id',$request->user()->id)->delete();
 
             return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
@@ -316,7 +321,7 @@ class MainController extends Controller
             ]);
         });
 
-        return responseJson(200,'success');
+        return responseJson(200,'success','Cancel');
 
          redirect()->back();
 
@@ -379,9 +384,9 @@ class MainController extends Controller
             $customer = User::find($order->user_id);
             $customer->notify(new OrderThanksNotification($order, $saved_file));
 
+            return responseJson(200,'success','Complete');
 
-            return responseJson(200,'success');
-
+            redirect()->back();
 
 //            toast('Your recent payment is successful with reference code: ' . $response->getTransactionReference(), 'success');
 //            return redirect()->route('frontend.index');
@@ -706,33 +711,25 @@ class MainController extends Controller
 
     public function countries()
     {
-        $countries = Country::all();
-//      $countries = Country::whereStatus(true)->get();
-//        $this->states = $this->country_id != '' ? State::whereStatus(true)->whereCountryId($this->country_id)->get() : [];
-//        $this->cities = $this->state_id != '' ? City::whereStatus(true)->whereStateId($this->state_id)->get() : [];
-//
-//
-//        return  [
-//            'addresses' => auth()->user()->addresses,
-//            'countries' => $this->countries,
-//            'states' => $this->states,
-//            'cities' => $this->cities,];
 
-        return response()->json($countries);
+        $countries = Country::all();
+        return  $this->returnData('Cities',$countries,'Success',200);
+
     }
 
 
     public function states($country_id)
     {
-       $state =  State::whereCountryId($country_id)->get();
 
-       return response()->json($state);
+        $state =  State::whereCountryId($country_id)->get();
+        return  $this->returnData('Cities',$state,'Success',200);
+
     }
 
     public function cities($state_id)
     {
         $city =  City::whereStateId($state_id)->get();
+        return  $this->returnData('Cities',$city,'Success',200);
 
-        return response()->json($city);
     }
 }
