@@ -218,7 +218,7 @@ class AuthController extends Controller
             return response()->json([
 
                 'user_id'=>$user_id,
-                'Message' => 'Check Your Email',
+                'message' => 'Check Your Email',
 
             ]);
 
