@@ -22,7 +22,7 @@ class ShowOrderResource extends JsonResource
             'total' => $this->total,
             'order_status' => $this->order_status,
             'created_at' => $this->created_at,
-            'products' => $this->products->pluck('name','price'),
+                'products' => $this->products->pluck('name','price'),
             'price' => $this->price,
             'quantity' => $this->quantity,
         ];

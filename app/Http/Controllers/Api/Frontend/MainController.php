@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileRequest;
+use App\Http\Resources\CartResource;
 use App\Http\Resources\Customer\ShowOrderResource;
 use App\Models\Cart;
 use App\Models\City;
@@ -487,17 +488,16 @@ class MainController extends Controller
     //********************************** show cart **********************************
     public function showCart(Request $request){
 
-        $user_cart= Cart::
-//        join('products','products.id','=','carts.product_id')
-            join('media','media.mediable_id','=','carts.product_id')
-            ->where('user_id',$request->user()->id)->get();
 
-        if(count($user_cart) > 0){
+        $products = Cart::where('user_id',$request->user()->id)->get();
+        $cart = CartResource::collection($products);
 
-            return responseJson(1,'success',['data'=>$user_cart]);
+        if(count($cart) > 0){
+
+            return $this->returnData('Products',$cart,'Success');
         }else{
 
-            return responseJson(0,'fail',['data'=>'cart is empty']);
+            return $this->returnError('200','Cart Is Empty') ;
         }
 
     }
