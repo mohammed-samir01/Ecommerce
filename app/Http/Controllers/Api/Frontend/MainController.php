@@ -482,7 +482,7 @@ class MainController extends Controller
 
     //**********************************cart**********************************
 
-    //**********************************show cart**********************************
+    //********************************** show cart **********************************
     public function showCart(Request $request){
 
         $user_cart= Cart::
@@ -501,7 +501,8 @@ class MainController extends Controller
     }
 
 
-    //**********************************add to cart**********************************
+    //********************************** add to cart **********************************
+
     public function addToCart(Request $request)
     {
         // validation
@@ -536,7 +537,8 @@ class MainController extends Controller
         }
     }
 
-    //**********************************update cart quantity**********************************
+    //********************************** update cart quantity **********************************
+
     public function updateQuantity(Request $request){
         // validation
         $rules=[
@@ -564,7 +566,8 @@ class MainController extends Controller
 
 
 
-    //**********************************delete cart cart **********************************
+    //********************************** delete cart cart **********************************
+
     public function deleteProduct(Request $request){
         // validation
         $rules = ['product_id' => 'required'];
@@ -585,7 +588,8 @@ class MainController extends Controller
 
     }
 
-    //***********get user Addresses***********
+    //*********** get user Addresses ***********
+
     public function getUserAddresses(Request $request){
         $addresses = $request->user()->addresses()->get();
         if(count($addresses) > 0 ){
@@ -595,7 +599,23 @@ class MainController extends Controller
         }
     }
 
-    //***********add user Addresses***********
+    ########################## get user Address #################################
+
+    public function getUserAddress(Request $request,$address_id){
+
+        $userAddress = UserAddress::find($address_id);
+
+        if($userAddress){
+
+            return $this->returnData('userAddress',$userAddress,'Success');
+        }else{
+
+            return $this->returnData('userAddress','Not Found User Address','Success');
+        }
+    }
+
+    //*********** add user Addresses***********
+
     public function addUserAddress(Request $request){
         // validation
         $rules =[
@@ -630,7 +650,7 @@ class MainController extends Controller
     }
 
 
-    //***********update user Addresses***********
+    //*********** update user Addresses***********
 
     public function updateUserAddress(Request $request,$address_id){
 
@@ -664,6 +684,7 @@ class MainController extends Controller
     }
 
     //***********delete user orders***********
+
     public function deleteUserOrders(Request $request){
         $orders = $request->user()->orders()->get();
         if(count($orders) > 0){
@@ -676,6 +697,7 @@ class MainController extends Controller
     }
 
     //***********delete user one order***********
+
     public function deleteUserOrder(Request $request){
         // validation
         $rules = [
@@ -698,17 +720,18 @@ class MainController extends Controller
 
     }
 
-    //***********show user order ***********
+
+    ########################## show user Order ##################################
 
 
     public function showUserOrder(Request $request,$order_id){
 
-
-
-        $order = Order::find($order_id);
+        $order = Order::with('products')->find($order_id);
         return responseJson(1,'success',['data'=>$order]);
     }
 
+
+    ########################## show countries ##################################
 
     public function countries()
     {
@@ -719,6 +742,9 @@ class MainController extends Controller
     }
 
 
+    ########################## show states ##################################
+
+
     public function states($country_id)
     {
 
@@ -727,18 +753,28 @@ class MainController extends Controller
 
     }
 
+    ########################## show cities ##################################
+
     public function cities($state_id)
     {
         $city =  City::whereStateId($state_id)->get();
         return  $this->returnData('Cities',$city,'Success',200);
 
     }
+
+
+    ########################## show shipping Compinies  ########################
+
+
     public function shippingCompines()
     {
         $shipping_compines =  ShippingCompany::all();
         return  $this->returnData('Shipping_compines',$shipping_compines,'Success',200);
 
     }
+
+  ########################## show paymentMethods  ################################
+
 
     public function paymentMethods()
     {

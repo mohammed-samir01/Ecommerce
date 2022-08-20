@@ -74,10 +74,12 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
 
     Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
     Route::post('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
+    Route::post('update_image_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile_image']);
     Route::delete('profile/remove-image', [App\Http\Controllers\Api\Frontend\UserController::class, 'remove_profile_image']);
     Route::post('add-user-address',[App\Http\Controllers\Api\Frontend\MainController::class, 'addUserAddress']);
     Route::delete('delete-user-address/{address_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserAddress']);
     Route::get('get-user-addresses',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserAddresses']);
+    Route::get('get-user-address/{address_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserAddress']);
     Route::put('update-user-address/{address_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'updateUserAddress']);
     Route::get('get-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'getUserOrders']);
     Route::delete('delete-user-orders',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteUserOrders']);
