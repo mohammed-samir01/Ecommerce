@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileRequest;
+use App\Http\Resources\CartResource;
+use App\Http\Resources\Customer\ShowOrderResource;
 use App\Models\Cart;
 use App\Models\City;
 use App\Models\Country;
@@ -23,6 +25,7 @@ use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf as PDF;
 use function Clue\StreamFilter\fun;
@@ -485,17 +488,16 @@ class MainController extends Controller
     //********************************** show cart **********************************
     public function showCart(Request $request){
 
-        $user_cart= Cart::
-//        join('products','products.id','=','carts.product_id')
-            join('media','media.mediable_id','=','carts.product_id')
-            ->where('user_id',$request->user()->id)->get();
 
-        if(count($user_cart) > 0){
+        $products = Cart::where('user_id',$request->user()->id)->get();
+        $cart = CartResource::collection($products);
 
-            return responseJson(1,'success',['data'=>$user_cart]);
+        if(count($cart) > 0){
+
+            return $this->returnData('Products',$cart,'Success');
         }else{
 
-            return responseJson(0,'fail',['data'=>'cart is empty']);
+            return $this->returnError('200','Cart Is Empty') ;
         }
 
     }
@@ -607,7 +609,7 @@ class MainController extends Controller
 
         if($userAddress){
 
-            return $this->returnData('userAddress',$userAddress,'Success');
+            return $this->returnData('userAddress',$userAddress,'edit');
         }else{
 
             return $this->returnData('userAddress','Not Found User Address','Success');
@@ -617,35 +619,57 @@ class MainController extends Controller
     //*********** add user Addresses***********
 
     public function addUserAddress(Request $request){
+
         // validation
-        $rules =[
-            'address' =>'required',
-            'address2' =>'required',
-            'city_id'=>'required',
-            'mobile' =>'required'
+        $rules = [
+            'address_title' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'mobile' => 'required|numeric',
+            'address' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+            'zip_code' => 'required|numeric|min:10000|max:99999',
+            'po_box' => 'required|numeric|min:1000|max:9999',
         ];
 
         $validator = validator()->make($request->all(),$rules);
-        if($validator->fails()){
-            $error = $validator->errors()->first();
-            return responseJson(0,'fail',['data'=>$error]);
+
+        if($validator->fails()) {
+            $error = $validator->messages();
+            return response()->json([
+                'success'=> false,
+                'error'=> $error,
+            ]);
         }
 
-
-        $state_id = City::find($request->city_id)->state_id;
-        $country_id = State::find($state_id)->country_id;
-        UserAddress::create([
-            'user_id'=>$request->user()->id,
-            'address'=>$request->address,
-            'address2' =>$request->address2,
-            'city_id'=>$request->city_id,
-            'country_id'=>$country_id,
-            'mobile' =>$request->mobile,
-            'state_id' =>$state_id
+        $address =  auth()->user()->addresses()->create([
+                    "address_title" => $request->address_title,
+                    "default_address" => $request->default_address,
+                    "first_name" => $request->first_name,
+                    "last_name" => $request->last_name,
+                    "email" => $request->email,
+                    "mobile" => $request->mobile,
+                    "address" => $request->address,
+                    "address2" => $request->address2,
+                    "country_id" => $request->country_id,
+                    "state_id" => $request->state_id,
+                    "city_id" => $request->city_id,
+                    "zip_code" => $request->zip_code,
+                    "po_box" => $request->po_box,
         ]);
 
+        if ($request->default_address) {
 
-        return responseJson(1,'success',['data'=> 'address added successfully']);
+            auth()->user()->addresses()->where('id', '!=', $address->id)->update([
+                'default_address' => false
+            ]);
+        }
+
+      return  $this->returnData('message',$address,'address added successfully');
+
 
     }
 
@@ -726,7 +750,10 @@ class MainController extends Controller
 
     public function showUserOrder(Request $request,$order_id){
 
-        $order = Order::with('products')->find($order_id);
+        $order = Order::with('products','transactions')->find($order_id);
+
+//        return new ShowOrderResource($order);
+
         return responseJson(1,'success',['data'=>$order]);
     }
 
