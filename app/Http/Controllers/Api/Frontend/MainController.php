@@ -617,40 +617,42 @@ class MainController extends Controller
     }
 
     //*********** add user Addresses***********
+    public $address_id = '';
+    public $address_title = '';
+    public $default_address = '';
+    public $first_name = '';
+    public $last_name = '';
+    public $email = '';
+    public $mobile = '';
+    public $address = '';
+    public $address2 = '';
+    public $countries;
+    public $states = [];
+    public $cities = [];
+    public $country_id;
+    public $state_id;
+    public $city_id;
+    public $zip_code = '';
+    public $po_box = '';
 
     public function addUserAddress(Request $request){
 
         // validation
-        $rules =[
-            'address_title' =>'required',
+        $rules = [
+            'address_title' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
-            'mobile' => 'required',
+            'email' => 'required|email',
+            'mobile' => 'required|numeric',
             'address' => 'required',
-            'address2' => 'required',
             'country_id' => 'required',
             'state_id' => 'required',
             'city_id' => 'required',
-            'zip_code' => 'required',
-            'po_box' => 'required',
+            'zip_code' => 'required|numeric|min:10000|max:99999',
+            'po_box' => 'required|numeric|min:1000|max:9999',
         ];
-        $input = $request->only(
-            'address_title',
-                 'default_address',
-                'first_name',
-                'last_name',
-                'email',
-                'mobile',
-                'address',
-                'address2',
-                'country_id',
-                'state_id',
-                'city_id',
-                'zip_code',
-                'po_box',
-        );
-        $validator = Validator::make($input, $rules);
+
+        $validator = validator()->make($request->all(),$rules);
 
         if($validator->fails()) {
             $error = $validator->messages();
@@ -660,7 +662,7 @@ class MainController extends Controller
             ]);
         }
 
-        $address = UserAddress::create([
+        $address =  auth()->user()->addresses()->create([
                     "address_title" => $request->address_title,
                     "default_address" => $request->default_address,
                     "first_name" => $request->first_name,
@@ -677,12 +679,14 @@ class MainController extends Controller
         ]);
 
         if ($request->default_address) {
+
             auth()->user()->addresses()->where('id', '!=', $address->id)->update([
                 'default_address' => false
             ]);
         }
 
-        return responseJson(1,'success',['data'=> 'address added successfully']);
+      return  $this->returnData('message',$address,'address added successfully');
+
 
     }
 
