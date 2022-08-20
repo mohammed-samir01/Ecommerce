@@ -617,23 +617,6 @@ class MainController extends Controller
     }
 
     //*********** add user Addresses***********
-    public $address_id = '';
-    public $address_title = '';
-    public $default_address = '';
-    public $first_name = '';
-    public $last_name = '';
-    public $email = '';
-    public $mobile = '';
-    public $address = '';
-    public $address2 = '';
-    public $countries;
-    public $states = [];
-    public $cities = [];
-    public $country_id;
-    public $state_id;
-    public $city_id;
-    public $zip_code = '';
-    public $po_box = '';
 
     public function addUserAddress(Request $request){
 
