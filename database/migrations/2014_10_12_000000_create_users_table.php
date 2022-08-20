@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('user_image')->nullable();
             $table->unsignedBigInteger('status')->default(0);
             $table->rememberToken();
+            $table->boolean('receive_emails')->default(true);
             $table->timestamps();
         });
     }
