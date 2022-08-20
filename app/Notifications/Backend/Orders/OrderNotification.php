@@ -36,15 +36,6 @@ class OrderNotification extends Notification implements ShouldQueue
         return ['database', 'broadcast'];
     }
 
-
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
-
     public function toDatabase($notifiable)
     {
         return [
