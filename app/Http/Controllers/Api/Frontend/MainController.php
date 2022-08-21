@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\ProfileRequest;
-use App\Http\Resources\CartResource;
-use App\Http\Resources\Customer\ShowOrderResource;
+use App\Http\Resources\Customer\CartResource;
+use App\Http\Resources\Customer\WhishlistResource;
 use App\Models\Cart;
 use App\Models\City;
 use App\Models\Country;
@@ -23,12 +22,7 @@ use App\Notifications\Frontend\Customer\OrderThanksNotification;
 use App\Services\OmnipayService;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Facades\Image;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf as PDF;
-use function Clue\StreamFilter\fun;
 
 class MainController extends Controller
 {
@@ -47,7 +41,7 @@ class MainController extends Controller
         $validator = validator()->make($request->all(),$rules);
         if($validator->fails()){
             $error = $validator->errors()->first();
-            return responseJson(0,'fail',['data'=>$error]);
+            return responseJson(0,'your coupon is not valid',['data'=>$error]);
         }
 
 
@@ -89,7 +83,7 @@ class MainController extends Controller
                 // $shipping = ShippingCompany::find($request->shipping_company_id)->first()->cost;
                 $total = ($subTotal + $tax ) - $discount;
 
-                return responseJson(1,'success',['subTotal' => $subTotal,'total'=>$total,'discount'=>$discount,'tax'=>$tax]);
+                return responseJson(1,'success',['id'=>$coupon->id,'subTotal' => $subTotal,'total'=>$total,'discount'=>$discount,'tax'=>$tax]);
             }else{
                 return responseJson(0,'fail',['data' =>'this code is used and finished or your products price is smaller than the min price']);
             }
@@ -197,8 +191,6 @@ class MainController extends Controller
             $order->tax = $tax;
             $order->save();
 
-//            // make cart empty after creating the order
-//            Cart::where('user_id',$request->user()->id)->delete();
 
             $omniPay = new OmnipayService('PayPal_Express');
             $response = $omniPay->purchase([
@@ -209,12 +201,11 @@ class MainController extends Controller
                 'returnUrl' => $omniPay->getReturnUrl($order->id),
             ]);
 
+
             if ($response->isRedirect()) {
                 $response->redirect();
             }
 
-//            toast($response->getMessage(), 'error');
-//            return redirect()->route('frontend.index');
 
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
@@ -299,16 +290,15 @@ class MainController extends Controller
             $order->tax = $tax;
             $order->save();
 
+
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
 
             return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
-
         }
 
     }
-
 
     //********************************** Canceled Payment **********************************
 
@@ -327,7 +317,7 @@ class MainController extends Controller
 
         return responseJson(200,'success','Cancel');
 
-         redirect()->back();
+//         redirect()->back();
 
 //        toast('You have cancelled your order payment!', 'error');
 //        return redirect()->route('frontend.index');
@@ -390,7 +380,7 @@ class MainController extends Controller
 
             return responseJson(200,'success','Complete');
 
-            redirect()->back();
+//            redirect()->back();
 
 //            toast('Your recent payment is successful with reference code: ' . $response->getTransactionReference(), 'success');
 //            return redirect()->route('frontend.index');
@@ -420,8 +410,10 @@ class MainController extends Controller
 
         $fav_products = $request->user()->products()->with('media')->get();
 
-        if(count($fav_products)){
-            return responseJson(1,'success',['products'=>$fav_products]);
+        $products = WhishlistResource::collection($fav_products);
+
+        if(count($products)){
+            return responseJson(1,'success',['products'=>$products]);
         }else{
             return responseJson(0,'fail',['products'=>'there are no fav products']);
         }
