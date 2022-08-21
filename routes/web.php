@@ -19,7 +19,7 @@ use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerControll
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PaymentController;
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 
 
 Route::get('/',[FrontendController::class ,'index'])->name('frontend.index');
@@ -40,6 +40,7 @@ Route::group(['middleware' => ['roles', 'role:customer']], function () {
         Route::get('/orders', [FrontendCustomerController::class, 'orders'])->name('customer.orders');
 
 Route::group(['middleware'=>'check_cart'],function (){
+
     Route::get('/checkout',[PaymentController::class ,'checkout'])->name('frontend.checkout');
     Route::post('/checkout/payment', [PaymentController::class, 'checkout_now'])->name('checkout.payment');
     Route::get('/checkout/{order_id}/cancelled', [PaymentController::class, 'cancelled'])->name('checkout.cancel');
@@ -60,6 +61,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
     Route::group(['middleware'=>'guest'],function (){
         Route::get('/login',[BackendController::class,'login'])->name('login');
         Route::get('/forget-password',[BackendController::class,'forget_password'])->name('forget_password');
+
     });
 
     Route::group(['middleware'=>['roles','role:admin|supervisor']],function (){
