@@ -39,7 +39,6 @@ import { AddressesComponent } from './components/user/addresses/addresses.compon
 import { OrdersComponent } from './components/user/orders/orders.component';
 import { UserPageComponent } from './components/user/user-page/user-page.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +65,8 @@ import { UserPageComponent } from './components/user/user-page/user-page.compone
     ProfileComponent,
     AddressesComponent,
     OrdersComponent,
-    UserPageComponent
+    UserPageComponent,
+    
   ],
   imports: [
     BrowserModule,

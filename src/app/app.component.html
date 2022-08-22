@@ -10,15 +10,14 @@
     <div class="theme-pink" (click)="setTheme('theme-pink')"></div>
   </div>
 
-  <div class="rightCorner d-flex">
-    <img src="../assets/chat&goToTop/goToTop.png" class="goToUp" title="go to page top" (click)="goToUp()">
-    <a routerLink="/live-chat"> {{'Chat' | translate}} </a>
-  </div>
-
   <div class="container-lg g-1 g-md-2">
     <router-outlet></router-outlet>
   </div>
 
-  <app-footer></app-footer>
+  <img src="../assets/chat&goToTop/goToTop.png" class="goToUp" title="go to page top" (click)="goToUp()">
+  <button id="chat" (click)="showChatBox=!showChatBox">Chat</button>
+  
+  <app-live-chat *ngIf="showChatBox"></app-live-chat>
 
+  <app-footer></app-footer>  
 </div>

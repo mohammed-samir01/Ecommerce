@@ -8,6 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit{
   title = 'market';
   storedTheme: string | null = localStorage.getItem('theme-color');
+  showChatBox: boolean = false;
+
 
   constructor(public translate: TranslateService) { }
   ngOnInit() { }
@@ -20,4 +22,5 @@ export class AppComponent implements OnInit{
   goToUp(){
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
+
 }

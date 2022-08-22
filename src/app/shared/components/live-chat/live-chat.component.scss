@@ -1,50 +1,28 @@
-$background: white;
-$primary: rebeccapurple;
-$shadow: black;
-
-// head of page//
-section {
-    border-radius: 10px;
-    width: 80vw;
-    margin: 0 auto;
-}
-
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    margin-bottom: 0.5rem;
-    font-family: inherit;
-    font-weight: 900;
-    line-height: 1.2;
-    color: #111111;
-    font-size: 1.9rem;
-    letter-spacing: 0.1em;
-}
-
-a{
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: #111111;
-}
-li{
-    font-size: 1.2rem;
-}
-//end of style for head of page//
+$white: #f8f9fa;
+$black: #111;
 
 .container {
+    height: 65vh;
+    width: 30vw;
     display: flex;
     justify-content: center;
     align-items: center;
     height: fit-content;
+    position: fixed;
+    right: 8em;
+    bottom: 0;
+    z-index: 1001;
 }
 
 .card {
-    height: 80vh;
-    width: 100vw;
-    background-color: $background;
-    margin: 10px auto;
-    border-radius: 10px;
+    height: 65vh;
+    width: 30vw;
+    background-color: $white;
+    margin: 0 auto;
+    border: 1px solid $black;
+    border-radius: 0px;
     display: flex;
     flex-direction: column;
-    padding: 8px;
 }
 
 .chat-list {
@@ -62,16 +40,16 @@ li{
             padding: 8px 16px;
             max-width: 80%;
             border-radius: 10px;
-            color: white;
+            color: $white;
         }
         #avatar {
-            background-color: $background;
+            background-color: $white;
             height: 30px;
             width: 30px;
             object-fit: cover;
             border-radius: 50%;
             z-index: 1;
-            border: 5px solid $background;
+            border: 5px solid $white;
         }
         #time-details {
             margin: auto 0;
@@ -84,7 +62,7 @@ li{
         #message-body {
             margin-left: -10px;
             margin-top: 15px;
-            background-color: #111;
+            background-color: $black;
         }
     }
     .right {
@@ -94,8 +72,9 @@ li{
         #message-body {
             margin-right: -10px;
             margin-top: 15px;
-            background-color: #f8f9fa;
-            color: #111;
+            background-color: $white;
+            border: 1px solid $black;
+            color: $black;
             
         }
     }
@@ -112,10 +91,10 @@ li{
         border-radius: 10px;
     }
     #send-button {
-        width: 10%;
-        border: 2px solid black;
-        background-color: #111;
-        color: #f8f9fa;
+        width: 20%;
+        border: 2px solid $black;
+        background-color: $black;
+        color: $white;
         padding: 0 8px;
         border-radius: 10px;
     }

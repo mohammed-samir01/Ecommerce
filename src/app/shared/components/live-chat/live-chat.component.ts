@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-live-chat',
@@ -47,8 +46,9 @@ export class LiveChatComponent implements OnInit {
     this.chatInputMessage = "";
   }
 
+  constructor() { }
 
-  constructor(public translate: TranslateService) { }
   ngOnInit(): void {
   }
+
 }
