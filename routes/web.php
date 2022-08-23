@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\ShippingCompanyController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PaymentController;
@@ -92,6 +93,13 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::resource('shipping_companies',ShippingCompanyController::class);
         Route::resource('payment_methods',PaymentMethodController::class);
 
+    ####################################################################################################################
+
+        Route::get('messages/{id}',[ChatController::class,'getmessages'])->name('messages');
+        Route::get('test',[ChatController::class,'adminrender']);
+
     });
 
 });
+
+

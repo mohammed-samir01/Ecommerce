@@ -30,6 +30,36 @@ class PaymentMethodSeeder extends Seeder
             'sandbox'                   => true,
             'status'                    => true,
         ]);
+        PaymentMethod::create([
+            'name'                      => 'Cash On Delivery',
+            'code'                      => null,
+            'driver_name'               => null,
+            'merchant_email'            => null,
+            'username'                  => null,
+            'password'                  => null,
+            'secret'                    => null,
+            'sandbox_merchant_email'    => null,
+            'sandbox_username'          => null,
+            'sandbox_password'          => null,
+            'sandbox_secret'            => null,
+            'sandbox'                   => true,
+            'status'                    => true,
+        ]);
+        PaymentMethod::create([
+            'name'                      => 'Visa Or Master Card',
+            'code'                      => null,
+            'driver_name'               => null,
+            'merchant_email'            => null,
+            'username'                  => null,
+            'password'                  => null,
+            'secret'                    => null,
+            'sandbox_merchant_email'    => null,
+            'sandbox_username'          => null,
+            'sandbox_password'          => null,
+            'sandbox_secret'            => null,
+            'sandbox'                   => true,
+            'status'                    => true,
+        ]);
 
     }
 }

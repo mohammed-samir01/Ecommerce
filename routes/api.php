@@ -3,8 +3,10 @@
 use App\Http\Controllers\Api\General\GeneralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Backend\PaymentMethodController;
 use App\Http\Controllers\Frontend\CustomerController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Api\Frontend\PaymentApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -43,9 +45,9 @@ Route::get('/shop/tags/{slug}',[GeneralController::class ,'show_products_with_ta
 ################################### Cart,Wishlist  And  Orders ###########################################################
 Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
 
-    Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder']);
-    Route::get('/checkout/{order_id}/cancel', [App\Http\Controllers\Api\Frontend\MainController::class, 'cancel']);
-    Route::get('/checkout/{order_id}/complete', [App\Http\Controllers\Api\Frontend\MainController::class, 'complete']);
+//    Route::post('create-order',[App\Http\Controllers\Api\Frontend\MainController::class, 'createOrder']);
+//    Route::get('/checkout/{order_id}/cancel', [App\Http\Controllers\Api\Frontend\MainController::class, 'cancel']);
+//    Route::get('/checkout/{order_id}/complete', [App\Http\Controllers\Api\Frontend\MainController::class, 'complete']);
     Route::get('apply-coupon',[App\Http\Controllers\Api\Frontend\MainController::class, 'applyCoupon']);
     Route::get('show-cart',[App\Http\Controllers\Api\Frontend\MainController::class, 'showCart']);
     Route::delete('delete-cart-product',[App\Http\Controllers\Api\Frontend\MainController::class, 'deleteProduct']);
@@ -60,10 +62,16 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::get('cities/{state_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'cities']);
 
 
-});
+//    Route::group(['middleware'=>'check_cart'],function (){
+
+        Route::post('/checkout/payment', [PaymentApiController::class, 'checkout_now'])->name('checkout.payment');
+        Route::get('/checkout/{order_id}/cancelled', [PaymentApiController::class, 'cancelled'])->name('checkout.cancel');
+        Route::get('/checkout/{order_id}/completed', [PaymentApiController::class, 'completed'])->name('checkout.complete');
+        Route::get('/checkout/webhook/{order?}/{env?}', [PaymentApiController::class, 'webhook'])->name('checkout.webhook.ipn');
+//    });
 
 
-Route::middleware('auth:api')->group(function (){
+
 });
 
 

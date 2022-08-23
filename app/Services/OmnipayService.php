@@ -38,6 +38,7 @@ class OmnipayService
     {
         $response = $this->gateway->completePurchase($parameter)->send();
         return $response;
+
     }
 
     public function getCancelUrl($order_id)
@@ -55,4 +56,5 @@ class OmnipayService
         $env = config('services.paypal.sandbox') ? 'sandbox' : 'live';
         return route('checkout.webhook.ipn', [$order_id, $env]);
     }
+
 }
