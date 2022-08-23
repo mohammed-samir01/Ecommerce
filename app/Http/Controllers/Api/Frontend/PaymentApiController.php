@@ -16,6 +16,7 @@ use App\Services\OmnipayService;
 use App\Services\OrderApiService;
 use App\Services\OrderService;
 use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf as PDF;
 use Illuminate\Http\Request;
@@ -120,7 +121,9 @@ class PaymentApiController extends Controller
             $order->total = $total_cost;
             $order->tax = $tax;
 
+
             foreach ($products as $item) {
+
                 OrderProduct::create([
                     'order_id' => $order->id,
                     'product_id' => $item->product_id,
@@ -155,7 +158,7 @@ class PaymentApiController extends Controller
 
                 return $this->returnData('url', $url);
 
-//                $response->redirect();
+//               $response->redirect();
             }
 
 
@@ -234,7 +237,6 @@ class PaymentApiController extends Controller
 
 
 
-
             foreach ($products as $item) {
                 OrderProduct::create([
                     'order_id' => $order->id,
@@ -255,6 +257,24 @@ class PaymentApiController extends Controller
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
 
+            User::whereHas('roles', function($query) {
+                $query->whereIn('name', ['admin', 'supervisor']);
+            })->each(function ($admin, $key) use ($order) {
+                $admin->notify(new OrderCreatedNotification($order));
+            });
+
+
+//            $data = $order->toArray();
+//            $data['currency_symbol'] ='USD' ;
+//            $user = Auth::user();
+//            $pdf = PDF::loadView('layouts.invoice_api', $data, compact('user'));
+//            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
+//            $pdf->save($saved_file);
+//
+//            $customer = User::find($order->user_id);
+//            $customer->notify(new OrderThanksNotification($order, $saved_file));
+
+
             return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
         }
@@ -265,7 +285,6 @@ class PaymentApiController extends Controller
 
     public function cancelled($order_id)
     {
-
         $order = Order::find($order_id);
         $order->update([
             'order_status' => Order::CANCELED
@@ -304,21 +323,21 @@ class PaymentApiController extends Controller
             ]);
 
 
-//            User::whereHas('roles', function($query) {
-//                $query->whereIn('name', ['admin', 'supervisor']);
-//            })->each(function ($admin, $key) use ($order) {
-//                $admin->notify(new OrderCreatedNotification($order));
-//            });
+            User::whereHas('roles', function($query) {
+                $query->whereIn('name', ['admin', 'supervisor']);
+            })->each(function ($admin, $key) use ($order) {
+                $admin->notify(new OrderCreatedNotification($order));
+            });
 
 
-//            $data = $order->toArray();
-//            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
-//            $pdf = PDF::loadView('layouts.invoice', $data);
-//            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
-//            $pdf->save($saved_file);
-//
-//            $customer = User::find($order->user_id);
-//            $customer->notify(new OrderThanksNotification($order, $saved_file));
+            $data = $order->toArray();
+            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
+            $pdf = PDF::loadView('layouts.invoice_api', $data);
+            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
+            $pdf->save($saved_file);
+
+            $customer = User::find($order->user_id);
+            $customer->notify(new OrderThanksNotification($order, $saved_file));
 
 
             return responseJson(1,'success',['order'=>$order]);

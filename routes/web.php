@@ -103,3 +103,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
 });
 
 
+Route::get('pay',[\App\Http\Controllers\Api\Frontend\FatoorahController::class ,'payOrder'])->name('payOrder');
+Route::get('callback',function (){
+    return 'Success';
+});
+Route::get('error',function (){
+    return 'Error';
+});

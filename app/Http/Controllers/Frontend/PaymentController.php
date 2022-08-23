@@ -28,6 +28,7 @@ class PaymentController extends Controller
 
     public function checkout_now(Request $request)
     {
+
         $order = (new OrderService)->createOrder($request->except(['_token', 'submit']));
 
         $omniPay = new OmnipayService('PayPal_Express');
