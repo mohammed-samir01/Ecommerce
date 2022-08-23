@@ -25,6 +25,7 @@ use App\Traits\GeneralTrait;
 class PaymentApiController extends Controller
 {
 
+    use GeneralTrait;
 
     public function checkout_now(Request $request){
 
@@ -150,7 +151,10 @@ class PaymentApiController extends Controller
 
             if ($response->isRedirect()) {
 
-                return response()->json($response->getRedirectUrl());
+                $url = $response->getRedirectUrl();
+
+                return $this->returnData('url', $url);
+
 //                $response->redirect();
             }
 
