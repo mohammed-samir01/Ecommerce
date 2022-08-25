@@ -43,12 +43,12 @@ class OmnipayService
 
     public function getCancelUrl($order_id)
     {
-        return route('checkout.cancel', $order_id);
+        return route('checkout.cancelApi', $order_id);
     }
 
     public function getReturnUrl($order_id)
     {
-        return route('checkout.complete', $order_id);
+        return route('checkout.completeApi', $order_id);
     }
 
     public function getNotifyUrl($order_id)

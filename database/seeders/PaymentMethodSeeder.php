@@ -30,6 +30,5 @@ class PaymentMethodSeeder extends Seeder
             'sandbox'                   => true,
             'status'                    => true,
         ]);
-
     }
 }
