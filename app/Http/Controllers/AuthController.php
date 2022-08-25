@@ -141,7 +141,7 @@ class AuthController extends Controller
 
         Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
             function($mail) use ($email, $name, $subject){
-                $mail->from('Halabsa@ecommerce.com',"From User/Company Name Goes Here");
+                $mail->from('Halabsa@ecommerce.com',"Ecommerce");
                 $mail->to($email, $name);
                 $mail->subject($subject);
             });

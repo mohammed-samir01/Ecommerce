@@ -41,5 +41,8 @@ return [
         'client_secret' =>'db28cdbd7e375f4984270d67139d17e9',
         'redirect' => 'https://ecommerce.test/login/facebook/callback',
     ],
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+    ],
 
 ];

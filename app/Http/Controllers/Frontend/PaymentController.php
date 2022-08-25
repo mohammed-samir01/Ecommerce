@@ -15,9 +15,11 @@ use App\Services\OrderService;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf as PDF;
 use Illuminate\Http\Request;
+use Omnipay\Common\CreditCard;
 
 class PaymentController extends Controller
 {
+
 
     public function checkout()
     {
@@ -26,6 +28,7 @@ class PaymentController extends Controller
 
     public function checkout_now(Request $request)
     {
+
         $order = (new OrderService)->createOrder($request->except(['_token', 'submit']));
 
         $omniPay = new OmnipayService('PayPal_Express');
@@ -35,9 +38,12 @@ class PaymentController extends Controller
             'currency' => $order->currency,
             'cancelUrl' => $omniPay->getCancelUrl($order->id),
             'returnUrl' => $omniPay->getReturnUrl($order->id),
+
         ]);
 
+
         if ($response->isRedirect()) {
+
             $response->redirect();
         }
 
