@@ -105,8 +105,6 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     });
     #################################### End Chat ######################################################################
 
-
-
     ###################################### Logout ######################################################################
     Route::get('logout', [AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class, 'refresh']);
@@ -115,20 +113,19 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
 
 });
 
+############################################# Fatoorah Payment #########################################################
 Route::get('callback',[PaymentApiController::class ,'callback']);
 Route::get('error',[PaymentApiController::class ,'error']);
+############################################# End Fatoorah Payment #####################################################
 
 
 
-
-
+############################################# For Testing Only ######################################################
 ############################################# Fatoorah Payment #####################################################
 //Route::post('pay',[FatoorahController::class ,'payOrder']);
 //Route::get('callback',[FatoorahController::class ,'callback']);
 //Route::get('error',[FatoorahController::class ,'error']);
 ############################################# End Fatoorah Payment #################################################
-
-
 //Route::get('stripe',[StripePaymentController::class,'stripe']);
 //Route::post('stripe',[StripePaymentController::class,'stripePost'])->name('stripe.post');
 

@@ -499,10 +499,11 @@ class PaymentApiController extends Controller
         $data['key'] = $request->paymentId;
         $data['keyType'] = 'paymentId';
         $paymentData = $this->fatoorahServices->getPaymentStatus($data);
-        $PaymentId = $paymentData['Data']['InvoiceTransactions'][0]['PaymentId'];
+        $paymentData = json_decode($paymentData->content(), true);
+        $PaymentId = $paymentData['InvoiceTransactions'][0]['PaymentId'];
 
 
-        if($paymentData['Data']['InvoiceStatus'] == "Paid") {
+        if($paymentData['InvoiceStatus'] == "Paid") {
             $order->update(['order_status' => Order::PAYMENT_COMPLETED]);
             $order->transactions()->create([
                 'transaction' => OrderTransaction::PAYMENT_COMPLETED,
