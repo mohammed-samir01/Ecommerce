@@ -1,4 +1,4 @@
-<div wire:poll.50ms>
+<div wire:poll>
     <div class="px-4 d-none d-md-block">
         <div class="d-flex align-items-center">
             <div class="flex-grow-1">
@@ -12,13 +12,11 @@
             <div class="d-flex align-items-start">
                 <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Jennifer Chang" width="40" height="40">
                 <div class="flex-grow-1 ml-3">
-                    {{$chat->first_name}}
-                    <div>@livewire('lastmessage',['chat_id'=>$chat->id])</div>
+                    {{$chat->first_name . ' ' . $chat->last_name}}
                 </div>
             </div>
         </a>
         @endforeach
     </div>
-
     <hr class="d-block d-lg-none mt-1 mb-0">
 </div>

@@ -95,7 +95,8 @@ class MainController extends Controller
     }
 
 
-    //**********************************fav products**********************************
+    //********************************** wishlist products **********************************
+
     public function toggleFav(Request $request){
         // validation
         $rules=[
@@ -112,7 +113,7 @@ class MainController extends Controller
     }
 
 
-    //**********************************get fav**********************************
+    //********************************** Get wishlist **********************************
     public function getFav(Request $request){
 
         $fav_products = $request->user()->products()->with('media')->get();
@@ -126,7 +127,7 @@ class MainController extends Controller
         }
     }
 
-    //**********************************delete fav**********************************
+    //********************************** Delete from wishlist **********************************
     public function deleteFavProduct(Request $request){
         // validation
         $rules=[
@@ -145,7 +146,7 @@ class MainController extends Controller
 
     }
 
-    //********************************** add to wishlist **********************************
+    //********************************** Add to wishlist **********************************
     public function addFavToCart(Request $request){
         // validation
         $rules=[

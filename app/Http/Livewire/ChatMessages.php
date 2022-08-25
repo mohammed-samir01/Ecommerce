@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Livewire;
+use App\Models\chat;
 use App\Models\message;
 use App\Models\User;
-use App\Models\chat;
 use Livewire\Component;
 
 class ChatMessages extends Component

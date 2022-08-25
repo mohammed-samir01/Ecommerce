@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Frontend\ChatController;
+use App\Http\Controllers\Api\Frontend\FatoorahController;
 use App\Http\Controllers\Api\General\GeneralController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthController;
@@ -9,7 +11,9 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Api\Frontend\PaymentApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Frontend\StripePaymentController;
 
 
 ############################################# APi ######################################################################
@@ -71,6 +75,7 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
 
 Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function () {
 
+    ############################################## Dashboard User ######################################################
     Route::get('user-profile',[App\Http\Controllers\Api\Frontend\UserController::class, 'userProfile']);
     Route::post('update_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile']);
     Route::post('update_image_profile', [App\Http\Controllers\Api\Frontend\UserController::class, 'update_profile_image']);
@@ -86,8 +91,37 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::get('show-user-order/{order_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'showUserOrder']);
     Route::get('shipping-compines',[App\Http\Controllers\Api\Frontend\MainController::class, 'shippingCompines']);
     Route::get('payment-methods',[App\Http\Controllers\Api\Frontend\MainController::class, 'paymentMethods']);
+    ############################################## End Of Dashboard User ###############################################
+
+    ##################################### Chat #########################################################################
+    Route::post('sendmessage',[ChatController::class, 'sendmessage']);
+    Route::get('playmessage', [ChatController::class, 'playmessage']);
+    Route::post('createchat', [ChatController::class, 'createchat']);
+    Route::put('status',      [ChatController::class, 'userStatus']);
+    Route::put('typing', function (Request $request) {
+        DB::table('chats')
+            ->where('user_id', $request->user()->id)
+            ->update(['typing' => $request->typing]);
+    });
+    #################################### End Chat ######################################################################
+
+
+
+    ###################################### Logout ######################################################################
     Route::get('logout', [AuthController::class,'logout']);
     Route::post('refresh',[AuthController::class, 'refresh']);
-
+    ###################################### End Logout ##################################################################
 
 });
+
+
+############################################# Fatoorah Payment #####################################################
+Route::post('pay',[FatoorahController::class ,'payOrder']);
+Route::get('callback',[FatoorahController::class ,'callback']);
+Route::get('error',[FatoorahController::class ,'error']);
+############################################# End Fatoorah Payment #################################################
+
+
+//Route::get('stripe',[StripePaymentController::class,'stripe']);
+//Route::post('stripe',[StripePaymentController::class,'stripePost'])->name('stripe.post');
+

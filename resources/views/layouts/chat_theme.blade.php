@@ -81,11 +81,6 @@
     </main>
 
     @livewireScripts
-    <!-- <script>
- setInterval( function myFunction() {
-  var element = document.getElementById('toscroll');
-  element.scrollTop += 10000000;
-},1000);
-</script> -->
+
 </body>
 </html>

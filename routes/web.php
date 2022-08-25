@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\Frontend\FatoorahController;
+use App\Http\Controllers\Api\Frontend\StripePaymentController;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\ChatController;
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\CustomerAddressController;
@@ -15,12 +18,10 @@ use App\Http\Controllers\Backend\ShippingCompanyController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\SupervisorController;
 use App\Http\Controllers\Backend\TagController;
-use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PaymentController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 
 Route::get('/',[FrontendController::class ,'index'])->name('frontend.index');
@@ -51,7 +52,6 @@ Route::group(['middleware'=>'check_cart'],function (){
 });
 
 });
-
 
 
 Auth::routes(['verify'=>true]);
@@ -93,20 +93,18 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::resource('shipping_companies',ShippingCompanyController::class);
         Route::resource('payment_methods',PaymentMethodController::class);
 
-    ####################################################################################################################
-
+    ######################################### Chat ###################################################################
         Route::get('messages/{id}',[ChatController::class,'getmessages'])->name('messages');
-        Route::get('test',[ChatController::class,'adminrender']);
+        Route::get('chat',[ChatController::class,'adminrender']);
 
     });
 
 });
 
 
-Route::get('pay',[\App\Http\Controllers\Api\Frontend\FatoorahController::class ,'payOrder'])->name('payOrder');
-Route::get('callback',function (){
-    return 'Success';
-});
-Route::get('error',function (){
-    return 'Error';
-});
+
+############################################# Stripe Payment ###########################################################
+
+Route::get('stripe',[StripePaymentController::class,'stripe']);
+Route::post('stripe',[StripePaymentController::class,'stripePost'])->name('stripe.post');
+############################################# End Stripe Payment #######################################################

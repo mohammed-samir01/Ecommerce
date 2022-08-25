@@ -31,7 +31,8 @@
         "predis/predis": "^2.0",
         "psr/log": "v2.*",
         "pusher/pusher-php-server": "^7.0",
-        "realrashid/sweet-alert": "^5.1"
+        "realrashid/sweet-alert": "^5.1",
+        "stripe/stripe-php": "^9.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

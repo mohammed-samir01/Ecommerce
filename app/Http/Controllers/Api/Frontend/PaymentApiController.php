@@ -156,7 +156,7 @@ class PaymentApiController extends Controller
 
                 $url = $response->getRedirectUrl();
 
-                return $this->returnData('url', $url);
+                return $this->returnData('InvoiceURL', $url,$order);
 
 //               $response->redirect();
             }
@@ -296,7 +296,7 @@ class PaymentApiController extends Controller
             ]);
         });
 
-        return responseJson(1,'Cancelled',['order'=>$order]);
+        return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Order Canceled');
 
     }
 
@@ -339,9 +339,9 @@ class PaymentApiController extends Controller
             $customer = User::find($order->user_id);
             $customer->notify(new OrderThanksNotification($order, $saved_file));
 
+//            return responseJson(1,'success',['order'=>$order]);
 
-            return responseJson(1,'success',['order'=>$order]);
-
+            return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Payment Successful');
 
         }
     }
