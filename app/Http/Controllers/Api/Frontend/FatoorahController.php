@@ -40,16 +40,12 @@ class FatoorahController extends Controller
         $data['keyType'] = 'paymentId';
         $paymentData = $this->fatoorahServices->getPaymentStatus($data);
         return $paymentData;
-//        return $paymentData['Data']['InvoiceStatus'];
     }
 
     public function error(Request $request)
     {
-        $data = [];
-        $data['key'] = $request->paymentId;
-        $data['keyType'] = 'paymentId';
-        $paymentData = $this->fatoorahServices->getPaymentStatus($data);
-        return $paymentData;
+        return $request->all();
 //        return $paymentData['Data']['InvoiceStatus'];
+
     }
 }

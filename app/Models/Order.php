@@ -51,10 +51,10 @@ class Order extends Model
     const RETURNED = 7;
     const REFUNDED = 8;
 
-    public function currency(): string
-    {
-        return $this->currency == 'USD' ? '$' : $this->currency;
-    }
+//    public function currency(): string
+//    {
+//        return $this->currency == 'USD' ? '$' : $this->currency;
+//    }
 
     public function user(): BelongsTo
     {

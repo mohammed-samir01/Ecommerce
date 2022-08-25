@@ -36,7 +36,7 @@ class FatoorahServices
         if($response->getStatusCode() != 200)
             return false;
         $response = json_decode($response->getBody(), true);
-        return $response;
+        return response()->json($response['Data'],200, );
     }
 
     public function sendPayment($data)

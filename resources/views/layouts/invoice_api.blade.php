@@ -139,9 +139,9 @@
                         </td>
                         <td></td>
                         <td>
-                            {{ $user['full_name'] }}<br />
-                            {{ $user['mobile'] }}<br />
-                            {{ $user['email'] }}
+                            {{ auth()->user()->full_name}}<br />
+                            {{ auth()->user()->mobile }}<br />
+                            {{ auth()->user()->email }}
                         </td>
                     </tr>
                 </table>
@@ -155,7 +155,7 @@
         </tr>
 
         <tr class="details">
-            <td>{{ $payment_method['name'] }}</td>
+            <td>{{ $payment_name }}</td>
             <td></td>
             <td>{{ $currency_symbol . number_format($total, 2) }}</td>
         </tr>

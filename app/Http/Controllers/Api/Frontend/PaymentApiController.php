@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\OrderTransaction;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\ProductCoupon;
 use App\Models\ShippingCompany;
 use App\Models\User;
 use App\Notifications\Frontend\Customer\OrderCreatedNotification;
 use App\Notifications\Frontend\Customer\OrderThanksNotification;
+use App\Services\FatoorahServices;
 use App\Services\OmnipayService;
 use App\Services\OrderApiService;
 use App\Services\OrderService;
@@ -27,6 +29,13 @@ class PaymentApiController extends Controller
 {
 
     use GeneralTrait;
+
+    private $fatoorahServices;
+
+    public function __construct(FatoorahServices $fatoorahServices)
+    {
+        $this->fatoorahServices = $fatoorahServices;
+    }
 
     public function checkout_now(Request $request){
 
@@ -44,6 +53,8 @@ class PaymentApiController extends Controller
         }
 
 
+        ############################### Checkout Paypal ###############################
+
         if ($request->payment_method_id == 1 ){       // Paypal
 
             $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
@@ -60,8 +71,6 @@ class PaymentApiController extends Controller
 
             if($request->payment_method_id == 1){
                 $order->order_status = 1;
-            }else{
-                $order->order_status = 0;
             }
 
             $pureCost = 0;  //cost without shipping , tax , discount
@@ -162,7 +171,129 @@ class PaymentApiController extends Controller
             }
 
 
-        }else{
+        }
+        ############################### End Checkout Paypal ###############################
+
+        ############################### Checkout Fatoorah ###############################
+        elseif($request->payment_method_id == 2){  // Fatoorah
+
+            $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
+
+            // store order
+            $order = $request->user()->orders()->create([
+                'ref_id' => 'ORD-' . Str::random(15),
+                'user_address_id' => $request->user_address_id,
+                'shipping_company_id' => $request->shipping_company_id,
+                'payment_method_id'=> $request->payment_method_id,
+                'shipping' => $shippingCost,
+                'order_status' => Order::NEW_ORDER,
+            ]);
+
+            if($request->payment_method_id == 1){
+                $order->order_status = 1;
+            }
+
+            $pureCost = 0;  //cost without shipping , tax , discount
+            $discount = 0;
+
+            $products = Cart::where('user_id',$request->user()->id)->get();
+
+
+            foreach($products as $p){
+                $product = Product::find($p['product_id']);
+                $pureCost += $p['quantity'] * $product->price;
+            }
+
+
+            if($request->has('coupon_id')){
+                $productCoupon = ProductCoupon::find($request->coupon_id);
+
+                if($productCoupon){
+
+                    $startDate =$productCoupon->start_date;
+                    $startDateAfterEdit =date_create($startDate);
+
+                    $expireDate =$productCoupon->expire_date;
+                    $expireDateAfterEdit =date_create($expireDate);
+
+                    $nowDate = date_create("now");
+
+
+                    if($nowDate >= $startDateAfterEdit  && $nowDate <= $expireDateAfterEdit && $pureCost >= $productCoupon->greater_than && $productCoupon->used_times+1 <= $productCoupon->use_times){
+                        $productCoupon->used_times += 1 ;
+                        $productCoupon->save();
+
+
+                        $code_type = $productCoupon->type;
+
+                        if($code_type == 'percentage'){
+                            $discount = $pureCost*($productCoupon->value/100);
+                            $order->discount = $discount;
+
+                        }else{
+                            $discount =  $productCoupon->value;
+                            $order->discount = $discount;
+                        }
+
+                        $coupon_code = $productCoupon->code;
+                        $order->discount_code =$coupon_code;
+
+                    }
+                }
+            }
+
+
+            $tax = ($pureCost-$discount)*(15/100);
+            $total_cost = ($pureCost + $tax + $shippingCost) - $discount;
+
+            $order->subtotal = $pureCost + $tax + $shippingCost;
+            $order->total = $total_cost;
+            $order->tax = $tax;
+
+
+            foreach ($products as $item) {
+
+                OrderProduct::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity
+                ]);
+                $product = Product::find($item->id);
+                $product->update(['quantity' => $product->quantity - $item->quantity]);
+            }
+
+            $order->transactions()->create([
+                'transaction' => OrderTransaction::NEW_ORDER
+            ]);
+
+            $order->save();
+
+
+            // make cart empty after creating the order
+            Cart::where('user_id',$request->user()->id)->delete();
+
+            $data = [
+                'CustomerName'       => auth()->user()->full_name,
+                'NotificationOption' => 'Lnk', //'SMS', 'EML', or 'ALL'
+                'InvoiceValue'       => $order->total,
+                'CustomerEmail'      => auth()->user()->email,
+                'CallBackUrl'        => env('success_url'),
+                'ErrorUrl'           => env('error_url'),
+                'Language'           => 'en', //or 'ar'
+                'DisplayCurrencyIso' => 'USD',
+
+
+            ];
+
+            return  $this->fatoorahServices->sendPayment($data);
+
+
+
+        }
+        ################################# End Checkout Fatoorah ##############################
+
+        ############################### Checkout Cash on Delivery ###############################
+        else{
 
             $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
 
@@ -264,22 +395,29 @@ class PaymentApiController extends Controller
             });
 
 
-//            $data = $order->toArray();
-//            $data['currency_symbol'] ='USD' ;
-//            $user = Auth::user();
-//            $pdf = PDF::loadView('layouts.invoice_api', $data, compact('user'));
-//            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
-//            $pdf->save($saved_file);
-//
-//            $customer = User::find($order->user_id);
-//            $customer->notify(new OrderThanksNotification($order, $saved_file));
+            $payment_name = PaymentMethod::where('id',$order->payment_method_id)->get('name')->first();
+            $products = $order->products;
+            $products = $order->toArray();
+            $data = $order->toArray();
+            $data['payment_name'] = $payment_name;
+
+
+            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
+            $pdf = PDF::loadView('layouts.invoice_api', $data,$products,$payment_name);
+            $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
+            $pdf->save($saved_file);
+
+            $customer = User::find($order->user_id);
+            $customer->notify(new OrderThanksNotification($order, $saved_file));
 
 
             return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
 
         }
 
-        return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
+        ################################## End Cash On Delivery##############################
+
+        return responseJson(1,'Error',['message'=>'Error']);
 
     }
 
@@ -330,25 +468,110 @@ class PaymentApiController extends Controller
             });
 
 
+            $payment_name = PaymentMethod::where('id',$order->payment_method_id)->get('name')->first();
+            $products = $order->products;
+            $products = $order->toArray();
             $data = $order->toArray();
+            $data['payment_name'] = $payment_name;
+
+
             $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
-            $pdf = PDF::loadView('layouts.invoice_api', $data);
+            $pdf = PDF::loadView('layouts.invoice_api', $data,$products,$payment_name);
             $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
             $pdf->save($saved_file);
 
             $customer = User::find($order->user_id);
             $customer->notify(new OrderThanksNotification($order, $saved_file));
 
-//            return responseJson(1,'success',['order'=>$order]);
 
             return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Payment Successful');
 
         }
     }
 
-    public function webhook($order, $env)
+
+    public function callback(Request $request)
     {
-        //
+        $user = Auth::user();
+        $order= Order::where('user_id',$user->id)->latest()->first();
+
+        $data = [];
+        $data['key'] = $request->paymentId;
+        $data['keyType'] = 'paymentId';
+        $paymentData = $this->fatoorahServices->getPaymentStatus($data);
+        $PaymentId = $paymentData['Data']['InvoiceTransactions'][0]['PaymentId'];
+
+
+        if($paymentData['Data']['InvoiceStatus'] == "Paid") {
+            $order->update(['order_status' => Order::PAYMENT_COMPLETED]);
+            $order->transactions()->create([
+                'transaction' => OrderTransaction::PAYMENT_COMPLETED,
+                'transaction_number' => $PaymentId,
+                'payment_result' => 'success'
+            ]);
+        }
+
+        User::whereHas('roles', function($query) {
+            $query->whereIn('name', ['admin', 'supervisor']);
+        })->each(function ($admin, $key) use ($order) {
+            $admin->notify(new OrderCreatedNotification($order));
+        });
+
+        $payment_name = PaymentMethod::where('id',$order->payment_method_id)->get('name')->first();
+        $products = $order->products;
+        $products = $order->toArray();
+        $data = $order->toArray();
+        $data['payment_name'] = $payment_name;
+
+
+        $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
+        $pdf = PDF::loadView('layouts.invoice_api', $data,$products,$payment_name);
+        $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
+        $pdf->save($saved_file);
+
+        $customer = User::find($order->user_id);
+        $customer->notify(new OrderThanksNotification($order, $saved_file));
+
+
+        return 'success';
+//        return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Payment Successful');
+
+
+    }
+
+    public function error(Request $request)
+    {
+        $user = Auth::user();
+        $order= Order::where('user_id',$user->id)->latest()->first();
+        $data = [];
+        $data['key'] = $request->paymentId;
+        $data['keyType'] = 'paymentId';
+        $paymentData = $this->fatoorahServices->getPaymentStatus($data);
+        $PaymentId = $paymentData['Data']['InvoiceTransactions'][0]['PaymentId'];
+        $TransactionStatus = $paymentData['Data']['InvoiceTransactions'][0]['TransactionStatus'];
+
+        $order->update([
+            'order_status' => Order::CANCELED
+        ]);
+        $order->products()->each(function ($order_product) {
+            $product = Product::whereId($order_product->pivot->product_id)->first();
+            $product->update([
+                'quantity' => $product->quantity + $order_product->pivot->quantity
+            ]);
+        });
+
+        if($TransactionStatus == "Failed") {
+            $order->transactions()->create([
+                'transaction' => OrderTransaction::CANCELED,
+                'transaction_number' => $PaymentId,
+                'payment_result' => 'Failed'
+            ]);
+        }
+
+
+
+//        return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Order Canceled');
+
     }
 
 }

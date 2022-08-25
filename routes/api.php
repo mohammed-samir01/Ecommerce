@@ -112,13 +112,20 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::post('refresh',[AuthController::class, 'refresh']);
     ###################################### End Logout ##################################################################
 
+
 });
+
+Route::get('callback',[PaymentApiController::class ,'callback']);
+Route::get('error',[PaymentApiController::class ,'error']);
+
+
+
 
 
 ############################################# Fatoorah Payment #####################################################
-Route::post('pay',[FatoorahController::class ,'payOrder']);
-Route::get('callback',[FatoorahController::class ,'callback']);
-Route::get('error',[FatoorahController::class ,'error']);
+//Route::post('pay',[FatoorahController::class ,'payOrder']);
+//Route::get('callback',[FatoorahController::class ,'callback']);
+//Route::get('error',[FatoorahController::class ,'error']);
 ############################################# End Fatoorah Payment #################################################
 
 
