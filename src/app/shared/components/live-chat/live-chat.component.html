@@ -1,0 +1,67 @@
+<div class="container-lg g-1 g-md-2">
+  <section class="col-12 py-5 bg-light">
+    <div class="row py-5 px-4 px-lg-5 align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <h1 class="text-uppercase mb-0">{{ "Chat" | translate }}</h1>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end">
+            <li class="breadcrumb-item">
+              <a class="hero" routerLink="">{{ "home" | translate }}</a>
+            </li>
+            <li class="breadcrumb-item text-muted" aria-current="page">
+              {{ "Chat" | translate }}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="row py-5 my-5 position-relative">
+    <div class="card w-100 position-relative">
+      <div class="chat-list w-100" id="chat-list" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <ng-container *ngFor="let item of messages; let i = index">
+          <div class="chat-item d-flex my-2" [ngClass]="{
+              right: item.user_id != 1,
+              left: item.user_id == 1
+            }">
+            <div class="message-parent d-flex w-100">
+              <div class="message-child d-flex py-2 ">
+                <img id="avatar" src="../../../../assets/images/users/avatar.svg" class="px-2" />
+                <!-- [src]="item?.user?.profileImageUrl" -->
+                <span class="message-body p-1">{{ item.content }}</span>
+                <!-- <span class="onDelete">ssss</span> -->
+              </div>
+              <div class="time-details px-2">
+                <span>{{
+                  item.created_at | date: "shortTime"
+                  }}</span>
+              </div>
+
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <form [formGroup]="chatForm" (ngSubmit)="onSubmit()" class="w-100 mx-0 my-3 d-flex justify-content-between">
+      <div class="col-11">
+        <input type="text" formControlName="content" placeholder="Type a message" class="form-control"
+          maxlength="500"  (focus)="typing()" (blur)="notTyping()">
+
+        <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.content.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-dark">
+        send
+      </button>
+    </form>
+    <!-- </div> -->
+  </section>

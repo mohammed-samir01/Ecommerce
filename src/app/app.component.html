@@ -1,3 +1,21 @@
 <app-navbar></app-navbar>
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
+
+ <div class="rightCorner mx-2" *ngIf="isLoggedIn" (click)="onClickChat()">
+ <!-- <div class="parent">
+    <div class="d-flex justify-content-between align-items-center bg-dark text-light px-3 py-2" (click)="onClickChat()">
+      <span class="">
+        Messages
+      </span>
+    </div>
+    <div class="chat col-12 bg-light py-2" *ngIf="isDisplay">
+      <app-live-chat class="w-100"></app-live-chat>
+    </div>
+  </div>-->
+    <a routerLink="/chat">
+      <i class="fa-solid fa-comment-dots text-dark"></i>
+    </a>  
+</div> 
+
+
 <app-footer *ngIf="isLoggedIn"></app-footer>

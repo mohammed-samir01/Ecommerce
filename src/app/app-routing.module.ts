@@ -15,24 +15,65 @@ import { NewPasswordComponent } from './components/auth/new-password/new-passwor
 import { VerifyResetComponent } from './components/auth/verify-reset/verify-reset.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { UserPageComponent } from './user/components/user-page/user-page.component';
+import { CheckoutComponent } from './carts/components/checkout/checkout.component';
+import { LiveChatComponent } from './shared//components/live-chat/live-chat.component';
+
+import { UserAuthGuard } from './guards/user-auth.guard';
 
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'product-details/:slug', component: ProductDetailsComponent },
-  { path: 'shop', component: ShopComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'favorite', component: FavoritesComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'verify', component: VerifyRegisterComponent },
-  { path: 'new-password/:id', component: NewPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'product-details/:slug',
+    component: ProductDetailsComponent,
+    canActivate: [UserAuthGuard],
+  },
+  { path: 'shop', component: ShopComponent, canActivate: [UserAuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [UserAuthGuard] },
+  {
+    path: 'favorite',
+    component: FavoritesComponent,
+    canActivate: [UserAuthGuard],
+  },
+  { path: '', component: LoginComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'verify',
+    component: VerifyRegisterComponent,
+  },
+  {
+    path: 'new-password/:id',
+    component: NewPasswordComponent,
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
+  },
+  {
+    path: 'chat',
+    component: LiveChatComponent,
+    canActivate: [UserAuthGuard],
+  },
   { path: 'reset-verify', component: VerifyResetComponent },
-  { path: 'profile-page', component: UserPageComponent },
-
-  { path: '**', component: PageNotFoundComponent, pathMatch: 'full' },
+  {
+    path: 'profile-page',
+    component: UserPageComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [UserAuthGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

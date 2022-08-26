@@ -102,7 +102,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    localStorage.setItem('data', JSON.stringify(this.registerForm.value, null, 4));
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -143,8 +142,6 @@ export class RegisterComponent implements OnInit {
           this.toastrService.error(this.result.error.mobile);
         }
       } else {
-        localStorage.setItem('token', this.token);
-        localStorage.setItem('status', this.result.status);
 
         this.router.navigate(['/verify']);
         this.toastrService.info(this.result.message);

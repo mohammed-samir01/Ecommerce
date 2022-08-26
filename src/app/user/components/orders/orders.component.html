@@ -1,25 +1,3 @@
-<!-- HERO SECTION -->
-
-<!-- <section class="col-12 py-5 bg-light">
-      <div class="row py-5 px-4 px-lg-5 align-items-center">
-        <div class="col-lg-6 col-md-6">
-          <h1 class="text-uppercase mb-0">ORDERS</h1>
-        </div>
-        <div class="col-lg-6 col-md-6">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-end">
-              <li class="breadcrumb-item">
-                <a class="hero" routerLink="">Home</a>
-              </li>
-              <li class="breadcrumb-item text-muted" aria-current="page">
-                ORDERS
-              </li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </section> -->
-
 <section class="my-5">
   <div class="d-flex">
     <h2 class="h5 text-uppercase mb-4">Orders</h2>
@@ -30,35 +8,87 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Order Ref.</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th class="col-2">Action</th>
+            <th class="text-center">Order Ref.</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Date</th>
+            <th class="text-center col-2">Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td>$0</td>
-            <td>New order</td>
-            <td>16-8-2022</td>
-            <td class="text-right">
-              <button type="button" class="btn btn-success btn-sm">
+        <tbody *ngIf="orders.status == 1">
+          <tr *ngFor="let item of orders.data.data">
+            <td class="text-center">{{ item.ref_id}}</td>
+            <td class="text-center">{{ item.total }}</td>
+
+            <td class="text-center text-success" *ngIf="item.order_status == 0">
+              New order
+            </td>
+            <td class="text-center text-warning" *ngIf="item.order_status == 1">
+              Paid
+            </td>
+            <td class="text-center text-info" *ngIf="item.order_status == 2">
+              Under process
+            </td>
+            <td class="text-center text-primary" *ngIf="item.order_status == 3">
+              Finished
+            </td>
+            <td class="text-center text-danger" *ngIf="item.order_status == 4">
+              Rejected
+            </td>
+            <td class="text-center text-dark" *ngIf="item.order_status == 5">
+              Canceled
+            </td>
+            <td class="text-center text-muted" *ngIf="item.order_status == 6">
+              Refund requested
+            </td>
+            <td class="text-center text-slate" *ngIf="item.order_status == 7">
+              Returned order
+            </td>
+            <td class="text-center text-dark" *ngIf="item.order_status == 8">
+              Refunded order
+            </td>
+
+            <td class="text-center">{{ item.created_at | date}}</td>
+            <td class="text-center">
+              <button
+                type="button"
+                class="btn btn-success btn-sm"
+                (click)="getOrderDetails(item.id)"
+              >
                 <i class="fa fa-eye"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="deleteOrder(item.id)"
+              >
+                <i class="fa fa-trash"></i>
               </button>
             </td>
           </tr>
+        </tbody>
+        <tfoot *ngIf="orders.status == 0">
           <tr>
-            <td colspan="5">
+            <td colspan="5" >
               <p class="text-center">No orders found.</p>
             </td>
           </tr>
-        </tbody>
+        </tfoot>
       </table>
+      <div class="col-12 d-flex justify-content-end mb-4" *ngIf="orders.status == 1">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="deleteAllOrders()"
+        >
+          Delete All Orders <i class="fa fa-trash"></i>
+        </button>
+      </div>
     </div>
 
-    <div class="border rounded shadow p-4">
+
+
+    <div class="border rounded shadow p-4" *ngIf="isDisplay">
       <div class="table-responsive mb-4">
         <table class="table">
           <thead class="bg-light">
@@ -78,41 +108,41 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <tr *ngFor="let product of oneOrder.products">
+              <td>{{ product.name }}</td>
+              <td>$ {{ product.price }}</td>
+              <td>{{ product.pivot.quantity }}</td>
+              <td>$ {{(product.price * product.pivot.quantity)}}</td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: end">
                 <strong>Subtotal</strong>
               </td>
-              <td>$0.00</td>
+              <td>${{ oneOrder.subtotal }}</td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: end">
                 <strong>Discount </strong>
               </td>
-              <td>$0.00</td>
+              <td>${{ oneOrder.discount }}</td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: end">
                 <strong>Tax</strong>
               </td>
-              <td>$0.00</td>
+              <td>${{ oneOrder.tax }}</td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: end">
                 <strong>Shipping</strong>
               </td>
-              <td>$0.00</td>
+              <td>${{ oneOrder.shipping }}</td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: end">
                 <strong>Amount</strong>
               </td>
-              <td>$0.00</td>
+              <td>${{ oneOrder.total }}</td>
             </tr>
           </tbody>
         </table>
@@ -132,16 +162,38 @@
                   >Date</strong
                 >
               </th>
-              <th class="border-0" scope="col"></th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+            <td class="text-success" *ngIf="oneOrder.order_status == 0">
+              New order
+            </td>
+            <td class="text-warning" *ngIf="oneOrder.order_status == 1">
+              Paid
+            </td>
+            <td class="text-info" *ngIf="oneOrder.order_status == 2">
+              Under process
+            </td>
+            <td class="text-primary" *ngIf="oneOrder.order_status == 3">
+              Finished
+            </td>
+            <td class="text-danger" *ngIf="oneOrder.order_status == 4">
+              Rejected
+            </td>
+            <td class="text-dark" *ngIf="oneOrder.order_status == 5">
+              Canceled
+            </td>
+            <td class="text-muted" *ngIf="oneOrder.order_status == 6">
+              Refund requested
+            </td>
+            <td class="text-slate" *ngIf="oneOrder.order_status == 7">
+              Returned order
+            </td>
+            <td class="text-dark" *ngIf="oneOrder.order_status == 8">
+              Refunded order
+            </td>
+            <td class="text-small text-uppercase d-flex justify-content-end">{{oneOrder.created_at | date}}</td>
             </tr>
           </tbody>
         </table>

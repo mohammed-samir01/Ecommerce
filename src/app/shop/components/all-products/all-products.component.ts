@@ -129,24 +129,5 @@ export class AllProductsComponent implements OnInit {
     this.shopservice;
   }
 
-  addToCart(event: any) {
-    if ('cart' in localStorage) {
-      this.cartProducts = JSON.parse(localStorage.getItem('cart')!) || [];
-      let exist = this.cartProducts.find(
-        (item: any) => item.item.slug == event.item.slug
-      );
 
-      if (exist) {
-        // window.print('error')
-        alert('Product is already in your cart');
-        //  return( '<div class="alert alert-primary" role="alert"> This is a primary alert—check it out!</div>')
-      } else {
-        this.cartProducts.push(event);
-        localStorage.setItem('cart', JSON.stringify(this.cartProducts));
-      }
-    } else {
-      this.cartProducts.push(event);
-      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
-    }
-  }
 }

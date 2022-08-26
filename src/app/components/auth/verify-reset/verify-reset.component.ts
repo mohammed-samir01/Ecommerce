@@ -42,11 +42,9 @@ export class VerifyResetComponent implements OnInit {
       verify: ['', []],
     });
 
-    this.storageData = localStorage.getItem('data');
     this.userData = JSON.parse(this.storageData);
     this.email = this.userData.email;
 
-    this.token = localStorage.getItem('token');
   }
 
   get f() {
@@ -54,11 +52,7 @@ export class VerifyResetComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.submitted = true;
-    // // localStorage.setItem(
-    // //   'data',
-    // //   JSON.stringify(this.verfiyForm.value, null, 4)
-    // // );
+    this.submitted = true;
 
     // // stop here if form is invalid
     // // if (this.verfiyForm.invalid) {

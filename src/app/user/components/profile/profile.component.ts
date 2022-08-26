@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { UpdateProfile } from './../../../models/profile';
 import { Component, OnInit } from '@angular/core';
 import {FormControl,FormGroup,Validators,FormBuilder,} from '@angular/forms';
@@ -13,19 +14,22 @@ import { UserService } from './../../services/user.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  imageURL: any;
   userForm: any = FormGroup;
   submitted = false;
   result: any;
+  respons:any;
   userData: any;
   delete: any;
+  image_name!: File;
+  id: any;
 
   constructor(
     private formBuilder: FormBuilder,
     public translate: TranslateService,
     private userService: UserService,
     public router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private http:HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +37,7 @@ export class ProfileComponent implements OnInit {
 
     this.userForm = this.formBuilder.group(
       {
+        User_Id: ['', []],
         first_name: [
           '',
           [
@@ -73,7 +78,7 @@ export class ProfileComponent implements OnInit {
         ],
         password: ['', [Validators.minLength(8), Validators.maxLength(64)]],
         password_confirmation: [''],
-        user_image: ['', []],
+        file: ['', []],
       },
       {
         validator: MustMatch('password', 'password_confirmation'),
@@ -89,6 +94,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserData().subscribe((res) => {
       this.result = res;
       this.userData = this.result.user;
+
       console.log(this.userData);
       this.userForm.patchValue({
         username: this.userData.username,
@@ -96,8 +102,11 @@ export class ProfileComponent implements OnInit {
         last_name: this.userData.last_name,
         email: this.userData.email,
         mobile: this.userData.mobile,
-        user_image: this.userData.user_image,
+        User_id: this.userData.User_Id,
+        // user_image: this.userData.user_image,
       });
+         this.id = this.userData.User_Id;
+         console.log(this.id);
     });
   }
 
@@ -119,38 +128,65 @@ export class ProfileComponent implements OnInit {
       data.mobile,
       data.password,
       data.confirmation_password,
-      data.user_image
+      // data.user_image
     );
+    // console.log(data.user_image);
 
-    console.log(data.user_image);
     this.userService.updateUserData(updataData).subscribe((res) => {
-      console.log(res);
+      this.respons = res;
+      if (this.respons.success == true) {
+          this.toastrService.success(this.respons.message);
+          this.getUserData();
+        }else{
+          this.toastrService.error('Please change username');
+        }
     });
 
-    //     if (this.result.success == false) {
-    //   //       this.toastrService.error(
-    //   //         'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'
-    //   //       );
-    //   //     } else {
-    //   //       console.log(res);
-    //   //       this.toastrService.success('Login Sucessfully');
-    //   //       this.router.navigateByUrl('/').then(() => {
-    //   //         window.location.reload();
-    //   //         localStorage.removeItem('data');
-    //   //       });
-    //   //       let token = this.result.data.token;
-    //   //       localStorage.setItem('token', token);
-    //   //       console.log(res);
-    //   //     }
-    //   //   });
   }
 
   deleteImage() {
-    this.userService.deleteUserImage().subscribe((res) => {
+    this.userService.deleteUserImage(this.id).subscribe((res) => {
       console.log(res);
       this.delete = res;
-      this.toastrService.success(this.delete.message);
+      this.toastrService.success(this.delete.messsage);
+      this.getUserData();
     });
   }
+
+  // addImage(event) {
+  //   this.img = <File>event.target.files[0];
+  //   console.log(this.img);
+  // }
+
+  // data = new FormData();
+
+  // onFileChange(event: any) {
+  //   // console.log(this.addproperity.value.file);
+  //   console.log(event.target.files);
+  //   console.log(event.target.files[0]['name']);
+
+  //   if (event.target.files && event.target.files[0]) {
+  //     var filesAmount = event.target.files.length;
+  //     for (let i = 0; i < filesAmount; i++) {
+  //       let imagename = event.target.files[i];
+  //       console.log(imagename);
+  //       this.data.append('image_name[]', imagename, imagename.name);
+  //       // this.image_name.push(imagename);
+  //       var reader = new FileReader();
+
+  //       reader.onload = (event: any) => {
+  //         // console.log(event.target.files +'fillllle');
+  //         //  this.image_name.push(event.target.result);
+  //         //  this.image_name.patchValue({
+  //         //     fileSource: this.images
+  //         //  });
+  //       };
+
+  //       // reader.readAsArrayBuffer(event.target.files[i]);
+  //     }
+  //   }
+  //   console.log('array' + this.image_name);
+  // }
+
 }
 

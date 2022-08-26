@@ -63,10 +63,6 @@ export class NewPasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    localStorage.setItem(
-      'data',
-      JSON.stringify(this.NewPassForm.value, null, 4)
-    );
 
     // stop here if form is invalid
     if (this.NewPassForm.invalid) {
@@ -85,11 +81,11 @@ export class NewPasswordComponent implements OnInit {
 
 
       if (this.result == 'success') {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
           this.toastrService.success("Password Sucessfully Changed");
       }
       else {
-            this.toastrService.error("err");
+            this.toastrService.error("Type new password");
         }
     });
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.NewPassForm.value, null, 4));

@@ -5,14 +5,19 @@ import { ShopService } from '../../services/shop.service';
 import { ProductDetailsService } from './../../../product-details/services/product-details.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartsService } from 'src/app/carts/services/cart.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
+  isLoggedIn: Boolean = false;
   isFavorite: boolean = false;
-
+  count = 0;
+  result: any;
+  data: any;
   @Input() Product: any = [];
 
   @Input() Images: any = [];
@@ -21,13 +26,9 @@ export class ProductItemComponent implements OnInit {
 
   @Output() item = new EventEmitter();
 
-  result :any;
+  cart: any = [];
 
-  data :any
-
-  cart : any = []
-
-  singleProduct :any=[]
+  singleProduct: any = [];
   productData: any;
 
   constructor(
@@ -36,23 +37,22 @@ export class ProductItemComponent implements OnInit {
     private shop: ShopService,
     private productDetails: ProductDetailsService,
     private toastr: ToastrService,
-    private cartservice: CartsService
+    private cartservice: CartsService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {}
 
-
-  getSingleProductDetails(keyword :any){
-    this.productDetails.getSingleProduct(keyword).subscribe(res=>{
-      this.productData = res
+  getSingleProductDetails(keyword: any) {
+    this.productDetails.getSingleProduct(keyword).subscribe((res) => {
+      this.productData = res;
       this.singleProduct = this.productData.Product;
       console.log(this.singleProduct);
-    })
+    });
   }
 
   add(product: any) {
     this.shop.addToCart(product).subscribe((res) => {
-
       this.cart.push(product);
       console.log(this.cart);
       this.result = res;
@@ -61,19 +61,21 @@ export class ProductItemComponent implements OnInit {
       if (this.result.status == 0) {
         this.toastr.error(this.data.data);
       } else {
-        this.toastr.success(this.data.messsage);
+        this.toastr.success('Product added successfully');
       }
     });
   }
 
-  onFavoriteClick(Product: any) {
-    this.isFavorite = !this.isFavorite;
-    this.favorite.addToFavorite(Product);
-    console.log(Product);
-  }
-
-  removeFromFavorite(Product: any) {
-    this.isFavorite = this.isFavorite;
-    this.favorite.removeFromFavorite(Product);
+  addFav(Product: any) {
+    if (!this.isLoggedIn) {
+      this.isFavorite = !this.isFavorite;
+      this.shop.addToFav(Product).subscribe((res) => {
+        console.log(res);
+      });
+    } else {
+      this.router.navigate(['/login']).then(() => {
+        window.location.reload();
+      });
+    }
   }
 }

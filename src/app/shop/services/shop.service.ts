@@ -14,9 +14,7 @@ import {
   providedIn: 'root',
 })
 export class ShopService {
-  constructor(private httpClient: HttpClient) {
-
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getAllProducts(page?: any) {
     // const params = new HttpParams().set('pagenum', num);
@@ -65,6 +63,12 @@ export class ShopService {
     return this.httpClient.get('http://127.0.0.1:8000/api/all_categories_sub');
   }
 
+
+  getProductsByFilters(keyword: string) {
+    console.log(keyword);
+    return this.httpClient.get('http://127.0.0.1:8000/api/shop/' + keyword);
+  }
+
   //add to cart
   addToCart(product_id: any) {
     let params = new HttpParams().set('product_id', product_id);
@@ -73,9 +77,12 @@ export class ShopService {
       params
     );
   }
-
-  getProductsByFilters(keyword: string) {
-    console.log(keyword);
-    return this.httpClient.get('http://127.0.0.1:8000/api/shop/' + keyword);
+  getCart() {
+    return this.httpClient.get('http://127.0.0.1:8000/api/show-cart');
+  }
+  
+  addToFav(product_id: any) {
+    let params = new HttpParams().set('product_id', product_id);
+    return this.httpClient.post('http://127.0.0.1:8000/api/toggle-fav', params);
   }
 }

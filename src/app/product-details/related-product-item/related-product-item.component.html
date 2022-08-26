@@ -1,35 +1,63 @@
 <app-modal></app-modal>
 
 <div class="product text-center">
-    <div class="position-relative mb-3">
+  <div class="position-relative mb-3">
+    <a
+      class="d-block"
+      routerLink="../../product-details/{{ relatedProduct.slug }}"
+    >
+      <img
+        class="img-fluid w-100"
+        alt=""
+        src="../../../assets/images/products/{{relatedProduct.Media.file_name}}"
+        (click)="getSingleRelated()"
+      />
+    </a>
 
-        <a class="d-block" routerLink="../../product-details/{{relatedProduct.slug}}">
-            <img class="img-fluid w-100" alt="" src="../../../assets/images/products/{{relatedProduct.Media.file_name}}" (click)="getSingleRelated()">
-        </a>
-
-        <div class="product-overlay">
-            <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0">
-                    <a class="btn btn-sm btn-outline-dark" routerLink="#">
-                        <i class="far fa-heart"></i>
-                    </a>
-                </li>
-                <li class="list-inline-item mx-2 p-0">
-                    <a class="btn btn-sm btn-dark" routerLink="cart.html"> {{'Add to cart' | translate}} </a>
-                </li>
-
-                <li class="list-inline-item ">
-                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        <i class="fas fa-expand"></i>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
+    <div class="product-overlay">
+      <ul class="mb-0 list-inline">
+        <li class="list-inline-item m-0 p-0">
+          <a
+            class="btn btn-sm"
+            [class.btn-outline-dark]="!isFavorite"
+            [class.btn-dark]="isFavorite"
+          >
+            <i
+              class="fa-heart"
+              [class.far]="!isFavorite"
+              [class.fa]="isFavorite"
+              (click)="addFav(relatedProduct.id)"
+            >
+            </i>
+          </a>
+        </li>
+        <li class="list-inline-item mx-2 p-0">
+          <a class="btn btn-sm btn-dark" (click)="add(relatedProduct.id)">
+            {{ "Add to cart" | translate }}
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a
+            class="btn btn-sm btn-outline-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            <i class="fas fa-expand"></i>
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <h3> <a class="reset-anchor" routerLink="../product-details/{{relatedProduct.slug}}">{{relatedProduct.name}}</a>
-    </h3>
-    <p class="small text-muted fa-1x">{{relatedProduct.product_category.name}}</p>
-    <p class="small text-muted fa-1x">${{relatedProduct.price}}</p>
+  <h3>
+    <a
+      class="reset-anchor"
+      routerLink="../product-details/{{ relatedProduct.slug }}"
+      >{{ relatedProduct.name }}</a
+    >
+  </h3>
+  <p class="small text-muted fa-1x">
+    {{ relatedProduct.product_category.name }}
+  </p>
+  <p class="small text-muted fa-1x">${{ relatedProduct.price }}</p>
 </div>

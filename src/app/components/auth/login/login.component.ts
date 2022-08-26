@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
       if (this.result.success == true) {
         this.toastrService.success('Login Sucessfully');
-        this.router.navigateByUrl('/').then(() => {
+        this.router.navigateByUrl('home').then(() => {
           window.location.reload();
           localStorage.removeItem('data');
         });

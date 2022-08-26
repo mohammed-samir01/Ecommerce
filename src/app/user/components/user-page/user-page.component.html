@@ -22,13 +22,13 @@
   <!-- profile, addresses & orders components -->
   <main class="row d-flex justify-content-between">
     <div class="col-8">
-      <div *ngIf="asideName == 'Profile'">
+      <div *ngIf="asideName == 'Profile'" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
         <app-profile></app-profile>
       </div>
-      <div *ngIf="asideName == 'Addresses'">
+      <div *ngIf="asideName == 'Addresses'" [routerLinkActive]="'active'">
         <app-addresses></app-addresses>
       </div>
-      <div *ngIf="asideName == 'Orders'">
+      <div *ngIf="asideName == 'Orders'" [routerLinkActive]="'active'">
         <app-orders></app-orders>
       </div>
     </div>
@@ -50,6 +50,12 @@
                 (click)="onClick(item)"
               />
             </li>
+            <li class="nav-item active py-2 px-4 mb-3 bg-light" (click)="onLogOut()">
+              <input
+                class="text-muted cate small text-uppercase font-weight-bold"
+                readonly
+                value="Logout"
+              /></li>
           </ul>
         </nav>
       </aside>

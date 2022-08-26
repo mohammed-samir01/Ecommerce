@@ -41,6 +41,7 @@
     "ngx-pagination": "^6.0.2",
     "ngx-star-rating": "^2.1.0",
     "ngx-toastr": "^15.0.0",
+    "pusher": "^5.1.1-beta",
     "rxjs": "~7.5.0",
     "rxjs-compat": "^6.6.7",
     "tslib": "^2.4.0",

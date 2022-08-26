@@ -41,11 +41,6 @@ export class ResetPasswordComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
     });
 
-    // this.storageData = localStorage.getItem('data');
-    // this.userData = JSON.parse(this.storageData);
-    // this.email = this.userData.email;
-
-    // this.token = localStorage.getItem('token');
   }
 
   get f() {
@@ -63,7 +58,7 @@ export class ResetPasswordComponent implements OnInit {
       console.log(res);
 
       if (this.result.user_id) {
-        this.toastrService.success(this.result.Message);
+        this.toastrService.success(this.result.message);
 
       } else {
 

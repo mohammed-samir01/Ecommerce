@@ -2,14 +2,14 @@
   <div class="d-flex justify-content-between">
     <h2 class="h5 text-uppercase mb-4">Addresses</h2>
     <div class="ml-auto">
-      <button type="button" class="rounded shadow" id="addButton">
+      <button type="button" class="rounded shadow" id="addButton" (click)="onClickOpenForm()">
         Add new address
       </button>
     </div>
   </div>
 
-  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
-    <!-- <input type="hidden" wire:model="address_id" class="form-control" /> -->
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()"  *ngIf="isDisplay">
+    <input type="hidden" class="form-control" formControlName="id"/>
 
     <div class="row">
       <div class="col-lg-8 form-group my-3">
@@ -20,7 +20,17 @@
           class="form-control"
           type="text"
           formControlName="address_title"
+          [ngClass]="{ 'is-invalid': submitted && f.address_title.errors }"
         />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.address_title.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.address_title.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
       </div>
 
       <div class="col-lg-4 form-group">
@@ -156,7 +166,17 @@
           class="form-control"
           type="text"
           formControlName="address"
+          [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
         />
+        <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.address.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.address.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div>  
       </div>
 
       <div class="col-lg-6 form-group my-3">
@@ -167,16 +187,26 @@
           class="form-control"
           type="text"
           formControlName="address2"
+        [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
         />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.address2.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.address2.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
       </div>
 
       <div class="col-lg-4 form-group my-3">
         <label class="text-small text-uppercase my-1" for="country_id"
           >Country</label
         ><span class="text-danger p-1">*</span>
-        <select class="form-control" formControlName="country_id">
+        <select class="form-control" formControlName="country_id" (change)="getStates($event)">
           <option value="">Select Country</option>
-          <option value="country">country</option>
+          <option value="{{country.id}}" *ngFor="let country of countries.Cities">{{country.name}}</option>
         </select>
       </div>
 
@@ -184,9 +214,9 @@
         <label class="text-small text-uppercase my-1" for="state_id"
           >State</label
         ><span class="text-danger p-1">*</span>
-        <select class="form-control" formControlName="state_id">
+        <select class="form-control" formControlName="state_id" (change)="getCities($event)">
           <option value="">Select State</option>
-          <option value="state">state</option>
+          <option value="{{state.id}}" *ngFor="let state of states.Cities">{{state.name}}</option>
         </select>
       </div>
 
@@ -195,7 +225,7 @@
         ><span class="text-danger p-1">*</span>
         <select class="form-control" formControlName="city_id">
           <option value="">Select City</option>
-          <option value="city">city</option>
+          <option value="{{city.id}}" *ngFor="let city of cities.Cities">{{city.name}}</option>
         </select>
         <span class="text-danger"></span>
       </div>
@@ -208,7 +238,17 @@
           class="form-control"
           type="text"
           formControlName="zip_code"
-          />
+          [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
+        />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.zip_code.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.zip_code.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
       </div>
 
       <div class="col-lg-6 form-group my-3">
@@ -219,14 +259,25 @@
           class="form-control"
           formControlName="po_box"
           type="text"
-          placeholder="Enter your last name"
+        [ngClass]="{ 'is-invalid': submitted && f.po_box.errors }"
         />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.po_box.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.po_box.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
       </div>
 
       <div class="col-lg-12 form-group my-3">
-        <button class="btn btn-dark" type="submit">Add Address</button>
+        <button class="btn btn-dark" type="submit" 
+        >Add Address</button>
       </div>
     </div>
+
   </form>
 
   <div class="my-4">
@@ -246,17 +297,20 @@
           <tr *ngFor="let item of usrAddresses.data.data">
             <td class="text-center">{{ item.address_title }}</td>
             <td class="text-center" *ngIf="item.default_address == 1">
-              Default Address
+              Default Address 
+            </td>
+            <td class="text-center" *ngIf="item.default_address == 0">
+              -
             </td>
             <td class="text-center">
               <div class="btn-group btn-group-sm">
-                <button
+                <!-- <button
                   type="button"
                   class="btn btn-success"
-                >
+                  (click)="getSingleAddress(item.id)" >
                   <i class="fa fa-edit"></i>
-                </button>
-                <button (click) ="removeAddress()"
+                </button> -->
+                <button (click) ="removeAddress(item.id)"
                   type="button"
                   class="btn btn-danger"
                 >

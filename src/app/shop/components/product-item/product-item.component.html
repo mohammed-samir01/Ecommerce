@@ -11,23 +11,24 @@
         <div class="product-overlay">
             <ul class="mb-0 list-inline">
 
-                <li class="list-inline-item m-0 p-0">
-                    <a class="btn btn-sm btn-outline-dark">
+                <li class="list-inline-item m-0 p-0" >
+                    <a class="btn btn-sm " [class.btn-outline-dark]="!isFavorite" [class.btn-dark]="isFavorite" >
                         <i class="fa-heart" [class.far]="!isFavorite" [class.fa]="isFavorite"
-                            (click)="onFavoriteClick(Product)">
+                            (click)="addFav(Product.id)" >
                         </i>
                     </a>
                 </li>
-                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" (click)="add(Product.product_id)"> {{'Add to cart' |
+
+                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" (click)="add(Product.id)"> {{'Add to cart' |
                         translate}} </a>
                 </li>
 
 
-                <li class="list-inline-item ">
+                <!-- <li class="list-inline-item ">
                     <a class="btn btn-sm btn-outline-dark" (click)="getSingleProductDetails(Product.slug)">
                         <i class="fas fa-expand" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

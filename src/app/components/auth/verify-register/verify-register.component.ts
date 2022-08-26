@@ -67,10 +67,6 @@ export class VerifyRegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    localStorage.setItem(
-      'data',
-      JSON.stringify(this.verfiyForm.value, null, 4)
-    );
 
     if (this.verfiyForm.invalid) {
       return;
@@ -88,7 +84,7 @@ export class VerifyRegisterComponent implements OnInit {
       } else {
         console.log(this.result.success + 'sss');
         this.toastrService.success(this.result.message + ' Please Login');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
       }
     });
 

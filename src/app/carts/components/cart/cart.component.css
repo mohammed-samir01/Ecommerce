@@ -4,7 +4,8 @@
   width: 1rem;
   outline: none;
 }
-.fa, .fas {
+i{
+  cursor: pointer;
   font-weight: 900;
 }
 .text-gray {

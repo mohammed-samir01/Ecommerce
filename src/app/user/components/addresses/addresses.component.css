@@ -30,3 +30,10 @@ a {
   padding: 10px 20px;
   font-size: larger;
 }
+
+label{
+    font-size: 1rem;
+}
+input , option , select{
+    font-size: 0.8rem;
+}
