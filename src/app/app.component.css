@@ -4,7 +4,7 @@
     z-index: 1000;
     position: fixed;
     right: 0.5rem;
-    bottom: 0.5rem;
+    bottom: 1rem;
     flex-direction: column;
 }
 
@@ -30,5 +30,17 @@ a {
 
 
 i{
+    cursor: pointer;
     font-size: 1.5rem;
 }
+
+/* go to up button */
+.goToUp {
+    transition: 0.25s;
+    border-radius: 50%;
+    padding: 1rem;
+    background-color: #F8F9FA;
+}
+/* .goToUp:hover {
+    padding: 0px;
+} */

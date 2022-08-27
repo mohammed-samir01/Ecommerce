@@ -41,4 +41,8 @@ export class AppComponent {
       console.log(res);
     });
   }
+
+  goToUp(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
 }
