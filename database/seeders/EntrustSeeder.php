@@ -304,6 +304,18 @@ class EntrustSeeder extends Seeder
         $updatePaymentMethods = Permission::create([ 'name' => 'update_payment_methods', 'display_name' => 'Update Payment Method', 'route' => 'payment_methods/{payment_methods}/edit', 'module' => 'payment_methods', 'as' => 'payment_methods.edit', 'icon' => null, 'parent' => $managePaymentMethods->id, 'parent_show' => $managePaymentMethods->id, 'parent_original' => $managePaymentMethods->id, 'appear' => '0', 'ordering' => '0', ]);
         $destroyPaymentMethods = Permission::create([ 'name' => 'delete_payment_methods', 'display_name' => 'Delete Payment Method', 'route' => 'payment_methods/{payment_methods}', 'module' => 'payment_methods', 'as' => 'payment_methods.delete', 'icon' => null, 'parent' => $managePaymentMethods->id, 'parent_show' => $managePaymentMethods->id, 'parent_original' => $managePaymentMethods->id, 'appear' => '0', 'ordering' => '0', ]);
 
+
+        #######################            Chats                  ###################################
+        $manageChats = Permission::create([ 'name' => 'manage_chats', 'display_name' => 'Chats', 'route' => 'chats', 'module' => 'chats', 'as' => 'chats.index', 'icon' => 'fas fa-comment-dots', 'parent' => '0', 'parent_original' => '0', 'appear' => '1', 'ordering' => '200', ]);
+        $manageChats->parent_show = $manageChats->id; $manageChats->save();
+        $showChats = Permission::create([ 'name' => 'show_chats', 'display_name' => 'Chats', 'route' => 'chats', 'module' => 'chats', 'as' => 'chats.index', 'icon' => 'fas fa-comment-dots', 'parent' => $manageChats->id, 'parent_show' => $manageChats->id, 'parent_original' => $manageChats->id, 'appear' => '1', 'ordering' => '0', ]);
+        $createChats = Permission::create([ 'name' => 'create_chats', 'display_name' => 'Create Chats', 'route' => 'chats/create', 'module' => 'chats', 'as' => 'chats.create', 'icon' => null, 'parent' => $manageChats->id, 'parent_show' => $manageChats->id, 'parent_original' => $manageChats->id, 'appear' => '0', 'ordering' => '0',]);
+        $displayPChats = Permission::create([ 'name' => 'display_chats', 'display_name' => 'Show Chats', 'route' => 'chats/{chats}', 'module' => 'chats', 'as' => 'chats.show', 'icon' => null, 'parent' => $manageChats->id, 'parent_show' => $manageChats->id, 'parent_original' => $manageChats->id, 'appear' => '0', 'ordering' => '0',]);
+        $updateChats = Permission::create([ 'name' => 'update_chats', 'display_name' => 'Update Chats', 'route' => 'chats/{chats}/edit', 'module' => 'chats', 'as' => 'chats.edit', 'icon' => null, 'parent' => $manageChats->id, 'parent_show' => $manageChats->id, 'parent_original' => $manageChats->id, 'appear' => '0', 'ordering' => '0',]);
+        $destroyChats = Permission::create([ 'name' => 'delete_chats', 'display_name' => 'Delete Chats', 'route' => 'chats/{chats}', 'module' => 'chats', 'as' => 'chats.delete', 'icon' => null, 'parent' => $manageChats->id, 'parent_show' => $manageChats->id, 'parent_original' => $manageChats->id, 'appear' => '0', 'ordering' => '0', ]);
+
+
+
         ########################              SUPERVISORS                   ###############################
         $mangeSupervisors = Permission::create(['name' => 'manage_supervisors', 'display_name' => 'supervisors', 'route' => 'supervisors', 'module' => 'supervisors', 'as' => 'supervisors.index', 'icon' => 'fas fa-user', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '0', 'appear' => '1', 'ordering' => '1000',]);
         $mangeSupervisors->parent_show = $mangeSupervisors->id; $mangeSupervisors->save();

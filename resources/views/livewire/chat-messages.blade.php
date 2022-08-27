@@ -1,4 +1,4 @@
-<div wire:poll.10ms>
+<div wire:poll.10ms class="position-relative">
     <div class="py-2 px-4 border-bottom d-none d-lg-block">
 
         <div class="d-flex align-items-center py-1">
@@ -15,8 +15,8 @@
         </div>
     </div>
 
-    <div class="position-relative">
-        <div class="chat-messages p-4" style="height:430px;" id="toscroll">
+    <div class="position-relative" style="height: 80%">
+        <div class="chat-messages p-4" style="height:100%;" id="toscroll">
             @foreach($messages as $m)
             @if($m->user_id==1)
             <div class="chat-message-right mb-4">

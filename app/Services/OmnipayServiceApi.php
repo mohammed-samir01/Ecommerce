@@ -6,7 +6,7 @@ namespace App\Services;
 
 use Omnipay\Omnipay;
 
-class OmnipayService
+class OmnipayServiceApi
 {
     protected $gateway = '';
 

@@ -62,11 +62,6 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::get('states/{country_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'states']);
     Route::get('cities/{state_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'cities']);
     Route::post('/checkout/payment', [PaymentApiController::class, 'checkout_now'])->name('checkout.payment');
-    Route::get('/checkout/{order_id}/cancelled', [PaymentApiController::class, 'cancelled'])->name('checkout.cancelApi');
-    Route::get('/checkout/{order_id}/completed', [PaymentApiController::class, 'completed'])->name('checkout.completeApi');
-    Route::get('/checkout/webhook/{order?}/{env?}', [PaymentApiController::class, 'webhook'])->name('checkout.webhook.ipn');
-
-
 });
 
 
@@ -91,6 +86,7 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::get('show-user-order/{order_id}',[App\Http\Controllers\Api\Frontend\MainController::class, 'showUserOrder']);
     Route::get('shipping-compines',[App\Http\Controllers\Api\Frontend\MainController::class, 'shippingCompines']);
     Route::get('payment-methods',[App\Http\Controllers\Api\Frontend\MainController::class, 'paymentMethods']);
+
     ############################################## End Of Dashboard User ###############################################
 
     ##################################### Chat #########################################################################
@@ -110,22 +106,18 @@ Route::group(['middleware' => ['roles', 'role:customer','auth:api']], function (
     Route::post('refresh',[AuthController::class, 'refresh']);
     ###################################### End Logout ##################################################################
 
-
 });
+
+
+##############################################  Paypal #################################################################
+Route::get('/checkout/{order_id}/cancelled', [PaymentApiController::class, 'cancelled'])->name('checkout.cancelApi');
+Route::get('/checkout/{order_id}/completed', [PaymentApiController::class, 'completed'])->name('checkout.completeApi');
+Route::get('/checkout/webhook/{order?}/{env?}', [PaymentApiController::class, 'webhook'])->name('checkout.webhook.ipn');
+############################################### End Of Paypal ##########################################################
 
 ############################################# Fatoorah Payment #########################################################
 Route::get('callback',[PaymentApiController::class ,'callback']);
 Route::get('error',[PaymentApiController::class ,'error']);
 ############################################# End Fatoorah Payment #####################################################
 
-
-
-############################################# For Testing Only ######################################################
-############################################# Fatoorah Payment #####################################################
-//Route::post('pay',[FatoorahController::class ,'payOrder']);
-//Route::get('callback',[FatoorahController::class ,'callback']);
-//Route::get('error',[FatoorahController::class ,'error']);
-############################################# End Fatoorah Payment #################################################
-//Route::get('stripe',[StripePaymentController::class,'stripe']);
-//Route::post('stripe',[StripePaymentController::class,'stripePost'])->name('stripe.post');
 

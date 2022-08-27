@@ -14,7 +14,7 @@ use App\Models\User;
 use App\Notifications\Frontend\Customer\OrderCreatedNotification;
 use App\Notifications\Frontend\Customer\OrderThanksNotification;
 use App\Services\FatoorahServices;
-use App\Services\OmnipayService;
+use App\Services\OmnipayServiceApi;
 use App\Services\OrderApiService;
 use App\Services\OrderService;
 use App\Models\Cart;
@@ -152,7 +152,7 @@ class PaymentApiController extends Controller
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
 
-            $omniPay = new OmnipayService('PayPal_Express');
+            $omniPay = new OmnipayServiceApi('PayPal_Express');
             $response = $omniPay->purchase([
                 'amount' => $order->total,
                 'transactionId' => $order->ref_id,
@@ -177,6 +177,7 @@ class PaymentApiController extends Controller
         ############################### Checkout Fatoorah ###############################
         elseif($request->payment_method_id == 2){  // Fatoorah
 
+
             $shippingCost = ShippingCompany::find($request->shipping_company_id)->first()->cost;
 
             // store order
@@ -189,7 +190,7 @@ class PaymentApiController extends Controller
                 'order_status' => Order::NEW_ORDER,
             ]);
 
-            if($request->payment_method_id == 1){
+            if($request->payment_method_id == 2){
                 $order->order_status = 1;
             }
 
@@ -272,6 +273,8 @@ class PaymentApiController extends Controller
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
 
+
+
             $data = [
                 'CustomerName'       => auth()->user()->full_name,
                 'NotificationOption' => 'Lnk', //'SMS', 'EML', or 'ALL'
@@ -284,6 +287,7 @@ class PaymentApiController extends Controller
 
 
             ];
+
 
             return  $this->fatoorahServices->sendPayment($data);
 
@@ -308,12 +312,10 @@ class PaymentApiController extends Controller
 
             ]);
 
-
             $pureCost = 0;  //cost without shipping , tax , discount
             $discount = 0;
 
             $products = Cart::where('user_id',$request->user()->id)->get();
-
 
             foreach($products as $p){
                 $product = Product::find($p['product_id']);
@@ -333,6 +335,7 @@ class PaymentApiController extends Controller
                     $expireDateAfterEdit =date_create($expireDate);
 
                     $nowDate = date_create("now");
+
 
 
                     if($nowDate >= $startDateAfterEdit  && $nowDate <= $expireDateAfterEdit && $pureCost >= $productCoupon->greater_than && $productCoupon->used_times+1 <= $productCoupon->use_times){
@@ -367,7 +370,6 @@ class PaymentApiController extends Controller
             $order->tax = $tax;
 
 
-
             foreach ($products as $item) {
                 OrderProduct::create([
                     'order_id' => $order->id,
@@ -379,11 +381,13 @@ class PaymentApiController extends Controller
             }
 
             $order->transactions()->create([
-                'transaction' => OrderTransaction::NEW_ORDER
+                'transaction' => OrderTransaction::PAYMENT_COMPLETED,
+                'transaction_number' => random_int(100000000, 999999999),
+                'payment_result' => 'success'
             ]);
 
-            $order->save();
 
+            $order->save();
 
             // make cart empty after creating the order
             Cart::where('user_id',$request->user()->id)->delete();
@@ -400,29 +404,32 @@ class PaymentApiController extends Controller
             $products = $order->toArray();
             $data = $order->toArray();
             $data['payment_name'] = $payment_name;
+            $data['currency_symbol'] = 'USD';
+            $data['discount'] = $discount;
 
-
-            $data['currency_symbol'] = $order->currency == 'USD' ? '$' : $order->currency;
             $pdf = PDF::loadView('layouts.invoice_api', $data,$products,$payment_name);
             $saved_file = storage_path('app/pdf/files/' . $data['ref_id'] . '.pdf');
             $pdf->save($saved_file);
 
+
             $customer = User::find($order->user_id);
             $customer->notify(new OrderThanksNotification($order, $saved_file));
 
+//            return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Order Canceled');
 
-            return responseJson(1,'success',['order'=>$order,'discount'=>$discount]);
-
+            return response()->json(['status'=>true,'message' => 'Order Created Successfully','order'=>$order]);
         }
 
-        ################################## End Cash On Delivery##############################
 
-        return responseJson(1,'Error',['message'=>'Error']);
-
+        return response()->json(['status'=>false,'message' => 'Failed to create order']);
     }
+
+    ################################## End Cash On Delivery##############################
+
 
     public function cancelled($order_id)
     {
+
         $order = Order::find($order_id);
         $order->update([
             'order_status' => Order::CANCELED
@@ -434,15 +441,16 @@ class PaymentApiController extends Controller
             ]);
         });
 
-        return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Order Canceled');
+        return response()->redirectTo('http://localhost:4200/home')->with('success', 'Order Canceled');
 
     }
 
     public function completed($order_id)
     {
+
         $order = Order::with('products', 'user', 'payment_method')->find($order_id);
 
-        $omniPay = new OmnipayService('PayPal_Express');
+        $omniPay = new OmnipayServiceApi('PayPal_Express');
         $response = $omniPay->complete([
             'amount' => $order->total,
             'transactionId' => $order->ref_id,
@@ -484,16 +492,18 @@ class PaymentApiController extends Controller
             $customer->notify(new OrderThanksNotification($order, $saved_file));
 
 
-            return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Payment Successful');
+            return response()->redirectTo('http://localhost:4200/home')->with('success', 'Payment Successful');
 
         }
+        return response()->json('Payment Failed', 500);
     }
 
 
     public function callback(Request $request)
     {
-        $user = Auth::user();
-        $order= Order::where('user_id',$user->id)->latest()->first();
+
+//        $user = Auth::user();
+//        $order= Order::where('user_id',$user->id)->latest()->first();
 
         $data = [];
         $data['key'] = $request->paymentId;
@@ -501,6 +511,7 @@ class PaymentApiController extends Controller
         $paymentData = $this->fatoorahServices->getPaymentStatus($data);
         $paymentData = json_decode($paymentData->content(), true);
         $PaymentId = $paymentData['InvoiceTransactions'][0]['PaymentId'];
+        $order = Order::latest()->first();
 
 
         if($paymentData['InvoiceStatus'] == "Paid") {
@@ -534,22 +545,23 @@ class PaymentApiController extends Controller
         $customer->notify(new OrderThanksNotification($order, $saved_file));
 
 
-        return 'success';
-//        return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Payment Successful');
+        return response()->redirectTo('http://localhost:4200/home',)->with('success', 'Payment Successful');
 
 
     }
 
     public function error(Request $request)
     {
-        $user = Auth::user();
-        $order= Order::where('user_id',$user->id)->latest()->first();
+//        $user = Auth::user();
+//        $order= Order::where('user_id',$user->id)->latest()->first();
         $data = [];
         $data['key'] = $request->paymentId;
         $data['keyType'] = 'paymentId';
         $paymentData = $this->fatoorahServices->getPaymentStatus($data);
-        $PaymentId = $paymentData['Data']['InvoiceTransactions'][0]['PaymentId'];
-        $TransactionStatus = $paymentData['Data']['InvoiceTransactions'][0]['TransactionStatus'];
+        $paymentData = json_decode($paymentData->content(), true);
+        $PaymentId = $paymentData['InvoiceTransactions'][0]['PaymentId'];
+        $TransactionStatus = $paymentData['InvoiceTransactions'][0]['TransactionStatus'];
+        $order = Order::latest()->first();
 
         $order->update([
             'order_status' => Order::CANCELED
@@ -571,7 +583,7 @@ class PaymentApiController extends Controller
 
 
 
-//        return response()->redirectTo('http://localhost:4200/home',200)->with('success', 'Order Canceled');
+        return response()->redirectTo('http://localhost:4200/home')->with('success', 'Order Canceled');
 
     }
 

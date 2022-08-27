@@ -139,9 +139,9 @@
                         </td>
                         <td></td>
                         <td>
-                            {{ auth()->user()->full_name}}<br />
-                            {{ auth()->user()->mobile }}<br />
-                            {{ auth()->user()->email }}
+                            {{ $user['full_name'] }}<br />
+                            {{ $user['mobile'] }}<br />
+                            {{ $user['email'] }}
                         </td>
                     </tr>
                 </table>

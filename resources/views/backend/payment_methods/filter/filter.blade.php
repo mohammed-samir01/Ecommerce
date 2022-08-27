@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ route('admin.countries.index') }}" method="get">
+    <form action="{{ route('admin.payment_methods.index') }}" method="get">
         <div class="row">
             <div class="col-2">
                 <div class="form-group">

@@ -41,6 +41,7 @@ class FatoorahServices
 
     public function sendPayment($data)
     {
+
         $response = $this->buildRequest('/v2/SendPayment', 'POST', $data);
         return $response;
     }

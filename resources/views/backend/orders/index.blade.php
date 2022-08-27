@@ -25,7 +25,8 @@
                 @forelse($orders as $order)
                     <tr>
                         <td>{{ $order->ref_id }}</td>
-                        <td>{{ $order->user->full_name }}</td>
+                        <td>{{ 'Hooksha' }}</td>
+{{--                        <td>{{ $order->users->full_name }}</td>--}}
                         <td>{{ $order->payment_method->name }}</td>
                         <td>{{ $order->currency() . $order->total }}</td>
                         <td>{!! $order->statusWithLabel() !!}</td>

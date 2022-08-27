@@ -92,8 +92,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.'],function (){
         Route::resource('cities', CityController::class);
         Route::resource('shipping_companies',ShippingCompanyController::class);
         Route::resource('payment_methods',PaymentMethodController::class);
+        Route::resource('chats',ChatController::class);
 
-    ######################################### Chat ###################################################################
+
+        ######################################### Chat ###################################################################
         Route::get('messages/{id}',[ChatController::class,'getmessages'])->name('messages');
         Route::get('chat',[ChatController::class,'adminrender']);
 

@@ -11,7 +11,7 @@
     Did you forget your password?
     <br>
     Please   your browser to confirm your email address
-    <a href="https://ecommerce.test/api/updatePassword/{{$user_id}}">forget password</a>
+    <a href="http://localhost:4200/new-password/{{$user_id}}">forget password</a>
     <br/>
 </div>
 

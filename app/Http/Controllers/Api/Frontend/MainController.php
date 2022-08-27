@@ -142,7 +142,7 @@ class MainController extends Controller
 
 
         $request->user()->products()->detach($request->product_id);
-        return responseJson(1,'success',['message'=>Product::find($request->product_id)->name .'is deleted from your fav']);
+        return responseJson(1,'success',['message'=>'Product deleted successfully']);
 
     }
 
