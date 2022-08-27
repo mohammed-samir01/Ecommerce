@@ -1,0 +1,59 @@
+
+/* modal */
+.product-view{
+  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.close{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}
+.close:hover{
+  color:#DC3545;
+}
+
+.quantity {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: inherit;
+}
+
+.quantity input {
+  width: 2rem;
+  text-align: center;
+}
+
+.quantity button {
+  background: none;
+  border: none;
+  width: 1.5rem;
+  outline: none;
+}
+
+.modalTwo img{
+  height: 32rem ;
+}
+
+.carousel-control-prev , .carousel-control-next{
+  position: absolute;
+  top: 12rem ;
+}
+
+.closeTwo{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}
+.closeTwo:hover{
+  color:#DC3545;
+}

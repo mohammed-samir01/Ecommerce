@@ -1,0 +1,39 @@
+section {
+  border-radius: 10px;
+}
+h1 {
+  color: #111;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+a.hero {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #111111;
+}
+li {
+  font-size: 1.2rem;
+}
+a {
+  text-decoration: none;
+}
+@media (max-width: 992px) {
+  .imgParent {
+    display: none !important;
+  }
+}
+
+#addButton {
+  background-color: #dcb14a;
+  border: 0;
+  color: #111;
+  padding: 10px 20px;
+  font-size: larger;
+}
+
+label{
+    font-size: 1rem;
+}
+input , option , select{
+    font-size: 0.8rem;
+}

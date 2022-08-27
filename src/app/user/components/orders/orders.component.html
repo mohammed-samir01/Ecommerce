@@ -1,0 +1,206 @@
+<section class="my-5">
+  <div class="d-flex">
+    <h2 class="h5 text-uppercase mb-4">Orders</h2>
+  </div>
+
+  <div class="my-4">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center">Order Ref.</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Date</th>
+            <th class="text-center col-2">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="orders.status == 1">
+          <tr *ngFor="let item of orders.data.data">
+            <td class="text-center">{{ item.ref_id}}</td>
+            <td class="text-center">{{ item.total }}</td>
+
+            <td class="text-center text-success" *ngIf="item.order_status == 0">
+              New order
+            </td>
+            <td class="text-center text-warning" *ngIf="item.order_status == 1">
+              Paid
+            </td>
+            <td class="text-center text-info" *ngIf="item.order_status == 2">
+              Under process
+            </td>
+            <td class="text-center text-primary" *ngIf="item.order_status == 3">
+              Finished
+            </td>
+            <td class="text-center text-danger" *ngIf="item.order_status == 4">
+              Rejected
+            </td>
+            <td class="text-center text-dark" *ngIf="item.order_status == 5">
+              Canceled
+            </td>
+            <td class="text-center text-muted" *ngIf="item.order_status == 6">
+              Refund requested
+            </td>
+            <td class="text-center text-slate" *ngIf="item.order_status == 7">
+              Returned order
+            </td>
+            <td class="text-center text-dark" *ngIf="item.order_status == 8">
+              Refunded order
+            </td>
+
+            <td class="text-center">{{ item.created_at | date}}</td>
+            <td class="text-center">
+              <button
+                type="button"
+                class="btn btn-success btn-sm"
+                (click)="getOrderDetails(item.id)"
+              >
+                <i class="fa fa-eye"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="deleteOrder(item.id)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot *ngIf="orders.status == 0">
+          <tr>
+            <td colspan="5" >
+              <p class="text-center">No orders found.</p>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="col-12 d-flex justify-content-end mb-4" *ngIf="orders.status == 1">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="deleteAllOrders()"
+        >
+          Delete All Orders <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    </div>
+
+
+
+    <div class="border rounded shadow p-4" *ngIf="isDisplay">
+      <div class="table-responsive mb-4">
+        <table class="table">
+          <thead class="bg-light">
+            <tr>
+              <th class="border-0" scope="col">
+                <strong class="text-small text-uppercase">Product</strong>
+              </th>
+              <th class="border-0" scope="col">
+                <strong class="text-small text-uppercase">Price</strong>
+              </th>
+              <th class="border-0" scope="col">
+                <strong class="text-small text-uppercase">Quantity</strong>
+              </th>
+              <th class="border-0" scope="col">
+                <strong class="text-small text-uppercase">Total</strong>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of oneOrder.products">
+              <td>{{ product.name }}</td>
+              <td>$ {{ product.price }}</td>
+              <td>{{ product.pivot.quantity }}</td>
+              <td>$ {{(product.price * product.pivot.quantity)}}</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: end">
+                <strong>Subtotal</strong>
+              </td>
+              <td>${{ oneOrder.subtotal }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: end">
+                <strong>Discount </strong>
+              </td>
+              <td>${{ oneOrder.discount }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: end">
+                <strong>Tax</strong>
+              </td>
+              <td>${{ oneOrder.tax }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: end">
+                <strong>Shipping</strong>
+              </td>
+              <td>${{ oneOrder.shipping }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="text-align: end">
+                <strong>Amount</strong>
+              </td>
+              <td>${{ oneOrder.total }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="h5 text-uppercase">Transactions</h2>
+      <div class="table-responsive mb-4">
+        <table class="table">
+          <thead class="bg-light">
+            <tr>
+              <th class="border-0" scope="col">
+                <strong class="text-small text-uppercase">Transaction</strong>
+              </th>
+              <th class="border-0" scope="col">
+                <strong
+                  class="text-small text-uppercase d-flex justify-content-end"
+                  >Date</strong
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td class="text-success" *ngIf="oneOrder.order_status == 0">
+              New order
+            </td>
+            <td class="text-warning" *ngIf="oneOrder.order_status == 1">
+              Paid
+            </td>
+            <td class="text-info" *ngIf="oneOrder.order_status == 2">
+              Under process
+            </td>
+            <td class="text-primary" *ngIf="oneOrder.order_status == 3">
+              Finished
+            </td>
+            <td class="text-danger" *ngIf="oneOrder.order_status == 4">
+              Rejected
+            </td>
+            <td class="text-dark" *ngIf="oneOrder.order_status == 5">
+              Canceled
+            </td>
+            <td class="text-muted" *ngIf="oneOrder.order_status == 6">
+              Refund requested
+            </td>
+            <td class="text-slate" *ngIf="oneOrder.order_status == 7">
+              Returned order
+            </td>
+            <td class="text-dark" *ngIf="oneOrder.order_status == 8">
+              Refunded order
+            </td>
+            <td class="text-small text-uppercase d-flex justify-content-end">{{oneOrder.created_at | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="col-lg-4"></div>
+</section>

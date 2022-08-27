@@ -1,0 +1,52 @@
+section {
+    border-radius: 10px;
+  }
+  
+  ul{
+    display: flex;
+    flex-direction: column;
+}
+.cate{
+    transition: all 0.3s;
+    text-decoration: none;
+    font-size: 0.9rem !important;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    color: #dcb14a !important;
+    letter-spacing: 0.1rem;
+}
+.cate:hover{
+  color: #111 !important;
+  text-decoration: underline;
+  transition: all 0.3s
+}
+  h1 {
+    color: #111;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  a.hero {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #111111;
+    font-weight: 600;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  @media (max-width: 992px) {
+    .imgParent {
+      display: none !important;
+    }
+  }
+
+  div.active{
+    color: #111111;
+    font-size: .9rem;
+    border-bottom:3px solid;
+    cursor: pointer;
+}
+  

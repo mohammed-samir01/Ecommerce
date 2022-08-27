@@ -1,0 +1,64 @@
+<section class="col-12 py-5 bg-light">
+    <div class="row py-5 px-4 px-lg-5 align-items-center">
+        <div class="col-lg-6 col-md-6">
+            <h1 class="text-uppercase mb-0"> {{'email verification' | translate}} </h1>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-end">
+                    <li class="breadcrumb-item"><a class="hero" routerLink="">{{'home' | translate}}</a></li>
+                    <li class="breadcrumb-item text-muted" aria-current="page">{{'Email verification' | translate}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<div class="container w-100 d-flex justify-content-center">
+    <section class="row my-5 w-50 align-items-center justify-content-center">
+
+        <p class="mt-4 text-center h6">A code was sent to your Email, check your mail and insert the code here.</p>
+
+        <form [formGroup]="verfiyForm" (ngSubmit)="onSubmit()" class="w-75">
+
+            <div class="form-outline my-2">
+                <label class="form-label my-3" for="email"> {{'Your email' | translate}}
+                </label>
+
+                <input id="email" type="email" class="form-control form-control-lg" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                    placeholder=" {{'Enter your email address' | translate}} ">
+
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <h3 class="text-danger" *ngIf="f.email.errors.required"> {{'Required' | translate}} </h3>
+                    <h3 class="text-danger" *ngIf="f.email.errors.email"> {{'Email is not valid' | translate}}
+                    </h3>
+                    <h3 class="text-danger" *ngIf="f.email.errors.pattern"> {{'Email must be this (example@example.com)'
+                        |
+                        translate}}
+                    </h3>
+                </div>
+            </div>
+
+            <div class="form-outline my-2">
+                <label class="form-label my-3" for="verification_code"> {{'Verification verify' | translate}}
+                </label>
+
+                <input id="code" type="email" class="form-control form-control-lg" formControlName="verification_code"
+                    placeholder=" {{'Enter verification code' | translate}}" minlength="6" maxlength="6" [ngClass]="{ 'is-invalid': submitted && f.email.errors}">
+            </div>
+
+                <div *ngIf="submitted && f.verification_code.errors" class="invalid-feedback">
+                    <h3 class="text-danger" *ngIf="f.verification_code.errors.required"> {{'Required' | translate}} </h3>
+                    <h3 class="text-danger" *ngIf="f.verification_code.errors.minlength"> {{'Verification code must be 6 number' | translate}} </h3>
+                    <h3 class="text-danger" *ngIf="f.email.verification_code.pattern"> {{'Verification code not valid  '
+                        |
+                        translate}}
+                    </h3>
+                </div>
+
+            <button type="submit" class="btn btn-dark w-100  mt-4 mb-4 d-block">Verify</button>
+        </form>
+
+    </section>
+</div>

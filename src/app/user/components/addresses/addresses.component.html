@@ -1,0 +1,329 @@
+<section class="my-5">
+  <div class="d-flex justify-content-between">
+    <h2 class="h5 text-uppercase mb-4">Addresses</h2>
+    <div class="ml-auto">
+      <button type="button" class="rounded shadow" id="addButton" (click)="onClickOpenForm()">
+        Add new address
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()"  *ngIf="isDisplay">
+    <input type="hidden" class="form-control" formControlName="id"/>
+
+    <div class="row">
+      <div class="col-lg-8 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="address_title"
+          >Address title</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          formControlName="address_title"
+          [ngClass]="{ 'is-invalid': submitted && f.address_title.errors }"
+        />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.address_title.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.address_title.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
+      </div>
+
+      <div class="col-lg-4 form-group">
+        <label class="text-small text-uppercase my-1">&nbsp;</label>
+        <div class="form-check mt-4">
+          <input
+            class="form-check-input"
+            id="default_address"
+            type="checkbox"
+            formControlName="default_address"
+          />
+          <label class="form-check-label" for="default_address"
+            >Default address?</label
+          >
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="first_name"
+          >First name</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="text"
+            formControlName="first_name"
+            [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
+            minlength="3"
+            maxlength="32"
+            pattern="[a-zA-Z ]*"
+                    />
+        <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.first_name.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.first_name.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.first_name.errors.minlength">
+            {{ "Minimum length is 3 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.first_name.errors.pattern">
+            {{ "First name is not valid" | translate }}
+          </h3>
+        </div>      
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="last_name"
+          >Last name</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="last_name"
+          pattern="[a-zA-Z ]*"
+          minlength="3"
+          maxlength="32"
+          [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
+        />
+        <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.last_name.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.last_name.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.last_name.errors.minlength">
+            {{ "Minimum length is 3 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.last_name.errors.pattern">
+            {{ "Last name is not valid" | translate }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="email"
+          >Email address</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.email.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.email.errors.email">
+            {{ "Email is not valid" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.email.errors.pattern">
+            {{ "Email must be this (example@example.com)" | translate }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="mobile"
+          >Mobile number</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="tel"
+          formControlName="mobile"
+          maxlength="11"
+          minlength="11"
+          [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+        />
+
+                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.mobile.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.mobile.errors.pattern">
+            {{
+              "Number Only , Minimum length is 11 characters and starts with 010 or 011 or 012"
+                | translate
+            }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="address"
+          >address</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="address"
+          [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+        />
+        <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.address.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.address.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div>  
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="address2"
+          >address2</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="address2"
+        [ngClass]="{ 'is-invalid': submitted && f.address2.errors }"
+        />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.address2.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.address2.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
+      </div>
+
+      <div class="col-lg-4 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="country_id"
+          >Country</label
+        ><span class="text-danger p-1">*</span>
+        <select class="form-control" formControlName="country_id" (change)="getStates($event)">
+          <option value="">Select Country</option>
+          <option value="{{country.id}}" *ngFor="let country of countries.Cities">{{country.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-4 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="state_id"
+          >State</label
+        ><span class="text-danger p-1">*</span>
+        <select class="form-control" formControlName="state_id" (change)="getCities($event)">
+          <option value="">Select State</option>
+          <option value="{{state.id}}" *ngFor="let state of states.Cities">{{state.name}}</option>
+        </select>
+      </div>
+
+      <div class="col-lg-4 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="city_id">City</label
+        ><span class="text-danger p-1">*</span>
+        <select class="form-control" formControlName="city_id">
+          <option value="">Select City</option>
+          <option value="{{city.id}}" *ngFor="let city of cities.Cities">{{city.name}}</option>
+        </select>
+        <span class="text-danger"></span>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="zip_code"
+          >ZIP Code</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="zip_code"
+          [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
+        />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.zip_code.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.zip_code.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="po_box"
+          >P.O.Box</label
+        ><span class="text-danger p-1">*</span>
+        <input
+          class="form-control"
+          formControlName="po_box"
+          type="text"
+        [ngClass]="{ 'is-invalid': submitted && f.po_box.errors }"
+        />
+                <div
+          class="form-text text-danger"
+          *ngIf="submitted && f.po_box.errors"
+          class="invalid-feedback"
+        >
+          <h3 class="text-danger" *ngIf="f.po_box.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+        </div> 
+      </div>
+
+      <div class="col-lg-12 form-group my-3">
+        <button class="btn btn-dark" type="submit" 
+        >Add Address</button>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="my-4">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr class="h6">
+            <th class="text-center">Address title</th>
+            <th class="text-center">Default</th>
+            <th class="text-center col-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="usrAddresses.status == 0">
+            <td colspan="3" class="text-center h6">{{ data }}</td>
+          </tr>
+          <tr *ngFor="let item of usrAddresses.data.data">
+            <td class="text-center">{{ item.address_title }}</td>
+            <td class="text-center" *ngIf="item.default_address == 1">
+              Default Address 
+            </td>
+            <td class="text-center" *ngIf="item.default_address == 0">
+              -
+            </td>
+            <td class="text-center">
+              <div class="btn-group btn-group-sm">
+                <!-- <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="getSingleAddress(item.id)" >
+                  <i class="fa fa-edit"></i>
+                </button> -->
+                <button (click) ="removeAddress(item.id)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="col-lg-4"></div>
+</section>

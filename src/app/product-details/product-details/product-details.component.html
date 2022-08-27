@@ -1,9 +1,9 @@
+<div class="container-lg px-lg-4 bg bg-light">
 
-<div class="container-lg px-lg-4 bg bg-light"> 
+        <app-details [data]="data" [images]="images" [currentRate]="currentRate" [DefaultImage]="DefaultImage">
+        </app-details>
 
-        <app-details></app-details>
+        <app-desc-review [data]="data" [Reviews]="Reviews" [ReviewsLength]="ReviewsLength"></app-desc-review>
 
-        <app-desc-review></app-desc-review>
-
-        <app-related-products></app-related-products>
-</div> 
+        <app-related-products [RelatedProducts]="RelatedProducts" (getSingleProductOfRalated)="getSingleProductOfRalated()"></app-related-products>
+</div>

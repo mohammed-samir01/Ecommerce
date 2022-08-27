@@ -1,0 +1,12 @@
+<section class="py-5">
+    <header>
+        <p class="small text-muted small text-uppercase mb-1"> {{'Made your way' | translate}} </p>
+        <h2 class="h5 text-uppercase mb-4"> {{'Top trending products' | translate}} </h2>
+    </header>
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-sm-6 mb-3" *ngFor="let Product of TopTrend ; let i = index">
+            <!-- <app-modal></app-modal> -->
+            <app-top-trend-item [Product]="Product"></app-top-trend-item>
+        </div>
+    </div>
+</section>

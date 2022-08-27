@@ -1,1 +1,118 @@
-<p>cart works!</p>
+<div class="container">
+    <app-hero></app-hero>
+
+<section class="py-5">
+    <h2 class="h5 text-uppercase mb-4">Shopping cart</h2>
+    <div class="row">
+        <div class="col-lg-8 mb-4 mb-lg-0">
+            <!-- CART TABLE-->
+            <div class="table-responsive ">
+                <table class="table">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="border-0" scope="col">
+                                <strong class="text-small text-uppercase">Product</strong>
+                            </th>
+                            <th class="border-0" scope="col">
+                                <strong class="text-small text-uppercase">Price</strong>
+                            </th>
+                            <th class="border-0" scope="col">
+                                <strong class="text-small text-uppercase">Quantity</strong>
+                            </th>
+                            <th class="border-0" scope="col">
+                                <strong class="text-small text-uppercase">Total</strong>
+                            </th>
+                            <th class="border-0" scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="result.status == true">
+                        <tr *ngFor="let item of cartProduct; let index = index">
+                            <td class="pl-0 border-0" scope="row">
+                                <div class="media d-flex justify-content-between align-items-center">
+                                    <a class="reset-anchor d-block animsition-link">
+                                        <img src="../../../../assets/images/products/{{item.image.file_name}}"
+                                        alt="..." width="70" />
+                                    </a>
+                                    <span>{{item.product[0].name}} </span>
+                                </div>
+                            </td>
+                            <td class="align-middle border-0">
+                                <p class="mb-0 small">${{ item.price }}</p>
+                            </td>
+                            <td class="align-middle border-0">
+                                <div class="border d-flex align-items-center justify-content-between px-3">
+                                    <span class="small text-uppercase text-gray headings-font-family">Quantity</span>
+                                    <div class="quantity">
+                                      <button class="dec-btn p-0" (click)="minusAmount(item.product_id,index)">
+                                          <i class="fas fa-caret-left"></i>
+                                      </button>
+                                      <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text"
+
+                                          [value]="item.quantity" min="1" />
+                                      <button class="inc-btn p-0" (click)="addAmount(item.product_id,index)">
+                                          <i class="fas fa-caret-right"></i>
+                                      </button>
+                                  </div>
+                                </div>
+                            </td>
+                            <td class="align-middle border-0">
+                                <p class="mb-0 small">
+                                    ${{ item.price * item.quantity }}
+                                </p>
+                            </td>
+                            <td class="align-middle border-0">
+                                <a class="reset-anchor" (click)="deleteProduct(item.product_id)"><i
+                                        class="fas fa-trash-alt small text-muted"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot *ngIf="result.status == false">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <th class="text-center">{{result.msg}}</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- CART NAV-->
+            
+            <div class="bg-light px-4 py-3">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-md-3 mb-3 mb-md-0 text-md-left">
+                        <a class="btn btn-link p-0 text-dark btn-sm d-flex justify-content-evenly align-items-center" routerLink="/shop">
+                            <i class="fas fa-long-arrow-alt-left mr-2"></i>
+                            <span>Continue shopping</span>
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-end text-right">
+                        <a class="btn btn-outline-dark btn-sm w-100 d-flex justify-content-evenly align-items-center" [routerLink]="'../checkout'"> 
+                            <span>Procceed to checkout</span> 
+                            <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ORDER TOTAL-->
+        <div class="col-lg-4">
+            <div class="card border-0 rounded-0 p-lg-4 bg-light">
+                <div class="card-body">
+                    <h5 class="text-uppercase mb-4">Cart total</h5>
+                    <ul class="list-unstyled mb-0">
+
+                        <li class="border-bottom my-2"></li>
+                        <li class="d-flex align-items-center justify-content-between mb-4">
+                            <strong class="text-uppercase small font-weight-bold">Total</strong><span>
+                              ${{total}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>

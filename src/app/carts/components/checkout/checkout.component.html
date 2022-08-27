@@ -1,0 +1,133 @@
+<div class="container">
+  <form [formGroup]="checkoutForm" (ngSubmit)="sendOrder(checkoutForm)" *ngIf="order">
+    <div class="row">
+      <div class="col-lg-8 pt-4">
+
+        <div class="my-4">
+        <h3 class="h6 text-uppercase">Sipping addresses</h3>
+        <div class="row">
+            <div class="form-check col-6 mx-1 my-2" *ngFor="let check of addresses">
+
+              <input class="form-check-input mx-2" type="radio" value="{{check.id}}" 
+              name="user_address_id" formControlName="user_address_id" 
+              id="flexRadioDefault{{check.id}}" />
+
+              <label class="form-check-label" for="flexRadioDefault{{check.id}}">
+                {{check.address}}
+              </label>
+
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="my-4">
+
+          <h3 class="h6 text-uppercase my-4">Sipping way</h3>
+
+          <div class="row">
+            <div class="form-check col-6 mx-1 my-2" *ngFor="let check of shipping">
+
+              <input class="form-check-input mx-2" type="radio" 
+              name="shipping_company_id" value="{{check.id}}" (change)="shippingCost(check)" 
+              formControlName="shipping_company_id" id="flexRadioDefault{{check.id}}" />
+
+              <label class="form-check-label" for="flexRadioDefault{{check.id}}">
+                {{ check.name }}
+              </label>
+
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="my-4">
+          <h3 class="h6 text-uppercase my-4">Payment way</h3>
+
+          <div class="row">
+            <div class="form-check col-6 mx-1 mt-2" *ngFor="let check of payment">
+
+              <input class="form-check-input mx-2" type="radio" 
+              name="payment_method_id" formControlName="payment_method_id" 
+              value="{{check.id}}" id="flexRadioDefault{{check.id}}"/>
+<!-- (change)="paypal(check)" -->
+
+              <label class="form-check-label" for="flexRadioDefault{{check.id}}">
+                {{ check.name }}
+              </label>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 py-5">
+        <div class="card border-0 rounded-0 p-lg-4 bg-light">
+
+          <div class="card-body">
+            <h5 class="text-uppercase mb-4">Your order</h5>
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex align-items-center justify-content-between">
+                <strong class="small font-weight-bold">Subtotal</strong>
+                <span class="text-muted small">${{ subTotal }}</span>
+              </li>
+
+              <li class="d-flex align-items-center justify-content-between my-3">
+                <strong class="small font-weight-bold">Discount</strong>
+                <span class="text-muted small">${{ discount }}</span>
+              </li>
+
+              <li class="border-bottom my-3"></li>
+
+              <li class="d-flex align-items-center justify-content-between my-3">
+                <strong class="small font-weight-bold">Tax</strong>
+                <span class="text-muted small">${{ tax }}</span>
+              </li>
+
+              <li class="border-bottom my-3"></li>
+
+              <li class="d-flex align-items-center justify-content-between my-3">
+                <strong class="small font-weight-bold">Shipping</strong>
+                
+                <span class="text-muted small">${{ shippingcost }}</span>
+              </li>
+
+              <li class="d-flex align-items-center justify-content-between my-3">
+                <strong class="small font-weight-bold">Total</strong>
+                <span class="text-muted small">${{ total }}</span>
+              </li>
+
+              <li class="border-bottom my-3"></li>
+
+              <li>
+
+                <form #couponForm="ngForm" (ngSubmit)="couponSend(couponForm.value)">
+                  <div class="form-group my-3 d-flex justify-content-between align-items-center">
+                    <input ngModel #couponModel="ngModel" name="couponModel" class="form-control my-3 me-3" type="text"
+                      placeholder="Enter your coupon"/>
+                        <i class="fa fa-trash text-danger" *ngIf="!coupon" (click)="removeCoupon()"></i>
+                      </div>
+                    <button class="btn btn-dark btn-sm btn-block w-100" type="submit">
+                      <i class="fas fa-gift me-2"></i> Apply coupon
+                    </button>
+                </form>
+                <!-- <button class="btn btn-danger btn-sm btn-block w-100" (clik)="removeCoupon()" *ngIf="!coupon">
+                  remove
+                </button> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+    <button type="submit" class="btn btn-dark mb-5">
+      send order
+    </button>
+  </form>
+
+</div>
+

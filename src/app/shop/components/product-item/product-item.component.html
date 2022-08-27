@@ -1,34 +1,39 @@
+<app-modal [singleProduct]="singleProduct"></app-modal>
+
+
 <div class="product text-center">
     <div class="position-relative mb-3">
-        <ng-container [ngSwitch]="true">
-            <div class="badge text-bg-warning px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sale'">
-                Sale</div>
-            <div class="badge text-bg-danger px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'sold'">
-                Sold
-            </div>
-            <div class="badge text-bg-info px-3 py-2 fa-1x" *ngSwitchCase="Product.status === 'new'">New
-            </div>
-            <div *ngSwitchDefault></div>
-        </ng-container>
-        <a class="d-block" routerLink="../product-details/{{Product.id}}">
-            <img class="img-fluid" src="{{Product.image}}" alt="..."></a>
+
+        <a class="d-block" routerLink="../product-details/{{Product.slug}}">
+            <img class="img-fluid" src="../../../../assets/images/products/{{Product.first_media.file_name}}" alt="">
+        </a>
 
         <div class="product-overlay">
             <ul class="mb-0 list-inline">
 
-                <li class="list-inline-item m-0 p-0">
-                    <a class="btn btn-sm btn-outline-dark">
-
+                <li class="list-inline-item m-0 p-0" >
+                    <a class="btn btn-sm " [class.btn-outline-dark]="!isFavorite" [class.btn-dark]="isFavorite" >
                         <i class="fa-heart" [class.far]="!isFavorite" [class.fa]="isFavorite"
-                            (click)="onFavoriteClick(Product)"></i>
+                            (click)="addFav(Product.id)" >
+                        </i>
                     </a>
                 </li>
-                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" [routerLink]="'cart'">Add
-                        to cart</a></li>
+
+                <li class="list-inline-item mx-2 p-0"><a class="btn btn-sm btn-dark" (click)="add(Product.id)"> {{'Add to cart' |
+                        translate}} </a>
+                </li>
+
+
+                <!-- <li class="list-inline-item ">
+                    <a class="btn btn-sm btn-outline-dark" (click)="getSingleProductDetails(Product.slug)">
+                        <i class="fas fa-expand" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+                    </a>
+                </li> -->
             </ul>
         </div>
     </div>
-    <h4> <a class="reset-anchor" [routerLink]="'product-details'">{{Product.title}}</a></h4>
-    <p class="small text-muted fa-1x">{{Product.price}}</p>
-    <p class="small text-muted fa-1x">{{Product.subcategory}}</p>
+    <h4> <a class="reset-anchor" routerLink="../product-details/{{Product.slug}}">{{Product.name}}</a></h4>
+    <p class="small text-muted fa-1x">{{Product.product_id}}</p>
+    <!-- <p class="small text-muted fa-1x">{{Product.tags.name}}</p> -->
+    <p class="small text-muted fa-1x">${{Product.price}}</p>
 </div>

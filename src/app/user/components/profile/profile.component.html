@@ -1,0 +1,160 @@
+<section class="my-5">
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-4">
+        <img src="../../../../assets/images/users/{{userData.user_image}}" alt="full_name" class="img-thumbnail"
+          width="120" />
+        <div class="mt-2">
+          <!-- <label class="text-small text-uppercase my-1" >Image</label> -->
+          <input class="form-control" id="user_image" name="user_image" formControlName="user_image" type="file"
+            hidden />
+          <label class="btn btn-sm btn-outline-info" for="user_image">Upload image</label>
+        </div>
+        <div class="mt-2">
+          <a class="btn btn-sm btn-outline-danger" (click)="deleteImage()">Remove image</a>
+        </div>
+      </div>
+
+      <div class="col-lg-12 form-group">
+
+        <input class="form-control" type="hidden" formControlName="User_Id" />
+
+      </div>
+      <div class="col-lg-12 form-group">
+        <label class="text-small text-uppercase my-1" for="username">Username </label>
+
+        <input class="form-control" name="username" type="text" formControlName="username" minlength="3" maxlength="32"
+          pattern="[a-zA-Z0-9]*" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div class="form-text text-danger" *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.username.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="userForm.controls['username'].errors?.['minLength']">
+            {{ "Minimum length is 8 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="userForm.controls['username'].errors?.['pattern']">
+            {{ "Name is not valid" | translate }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group mt-3">
+        <label class="text-small text-uppercase my-1" for="first_name">First name</label>
+        <input class="form-control" name="first_name" type="text" formControlName="first_name"
+          [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" minlength="3" maxlength="32"
+          pattern="[a-zA-Z ]*" />
+        <div class="form-text text-danger" *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.first_name.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.first_name.errors.minlength">
+            {{ "Minimum length is 3 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.first_name.errors.pattern">
+            {{ "First name is not valid" | translate }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group mt-3">
+        <label class="text-small text-uppercase my-1" for="last_name">Last name</label>
+        <input class="form-control" name="last_name" type="text" formControlName="last_name" pattern="[a-zA-Z ]*"
+          minlength="3" maxlength="32" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+        <div class="form-text text-danger" *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.last_name.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.last_name.errors.minlength">
+            {{ "Minimum length is 3 characters" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.last_name.errors.pattern">
+            {{ "Last name is not valid" | translate }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="email">Email address</label>
+        <input class="form-control" name="email" type="email" formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.email.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.email.errors.email">
+            {{ "Email is not valid" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.email.errors.pattern">
+            {{ "Email must be this (example@example.com)" | translate }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="mobile">Mobile number</label>
+        <input class="form-control" name="mobile" type="tel" formControlName="mobile" maxlength="11" minlength="11"
+          [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="f.mobile.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 class="text-danger" *ngIf="f.mobile.errors.pattern">
+            {{
+            "Number Only , Minimum length is 11 characters and starts with 010 or 011 or 012"
+            | translate
+            }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group">
+        <label class="text-small text-uppercase d-flex my-1 justify-content-between"
+          for="password"><span>Password</span>
+          <small class="ml-auto text-danger"> (Optional) </small></label>
+        <input class="form-control" name="password" type="password" formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <h3 class="text-danger" *ngIf="userForm.controls['password'].errors?.['pattern']">
+            {{
+            "Minimum 8 characters, Max 64 characters. at least one letter, one number and one special character"
+            | translate
+            }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="col-lg-6 form-group">
+        <label class="text-small text-uppercase d-flex my-1 justify-content-between"
+          for="password_confirmation"><span>Re-Password</span>
+          <small class="ml-auto text-danger"> (Optional) </small></label>
+        <input class="form-control" name="password_confirmation" type="password" formControlName="password_confirmation"
+          minlength="8" maxlength="64" [ngClass]="{
+            'is-invalid': submitted && f.password_confirmation.errors
+          }" />
+
+        <div *ngIf="submitted && f.password_confirmation.errors" class="invalid-feedback">
+          <h3 *ngIf="f.password_confirmation.errors.required">
+            {{ "Required" | translate }}
+          </h3>
+          <h3 *ngIf="f.password_confirmation.errors.mustMatch">
+            Passwords must match
+          </h3>
+        </div>
+      </div>
+
+      <!-- <div class="col-lg-12 form-group my-3">
+        <label class="text-small text-uppercase my-1" for="user_image"
+          >Image</label
+        >
+        <input class="form-control" id="user_image" name="user_image" formControlName="user_image"  type="file" />
+        <span class="text-danger"> </span>
+      </div> -->
+
+      <div class="col-lg-12 form-group my-3">
+        <button class="btn btn-dark" type="submit">Update profile</button>
+      </div>
+    </div>
+  </form>
+
+</section>

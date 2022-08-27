@@ -1,0 +1,33 @@
+/* Start Shpping */
+
+h6{
+    letter-spacing: 0.1em;
+    font-size:1.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: black;
+}
+p{
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+}
+i{
+    font-size:2rem;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+/* End Shpping */
+
+
+/* Start Newsletter */
+
+h5{
+    letter-spacing: 0.1em;
+    font-size:1.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: black;
+}
+
+/* End Newsletter */

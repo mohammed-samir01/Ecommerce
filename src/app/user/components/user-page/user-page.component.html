@@ -1,0 +1,64 @@
+<div class="container-lg g-1 g-md-2">
+  <section class="col-12 py-5 bg-light">
+    <div class="row py-5 px-4 px-lg-5 align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <h1 class="text-uppercase mb-0">Dashboard</h1>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end">
+            <li class="breadcrumb-item">
+              <a class="hero" routerLink="">Home</a>
+            </li>
+            <li class="breadcrumb-item text-muted" aria-current="page">
+              Dashboard
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- profile, addresses & orders components -->
+  <main class="row d-flex justify-content-between">
+    <div class="col-8">
+      <div *ngIf="asideName == 'Profile'" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+        <app-profile></app-profile>
+      </div>
+      <div *ngIf="asideName == 'Addresses'" [routerLinkActive]="'active'">
+        <app-addresses></app-addresses>
+      </div>
+      <div *ngIf="asideName == 'Orders'" [routerLinkActive]="'active'">
+        <app-orders></app-orders>
+      </div>
+    </div>
+
+    <!-- Aside bar navigation -->
+    <div class="col-4">
+      <aside class="card border-0 rounded-0 p-lg-4 bg-light my-5">
+        <nav class="card-body">
+          <ul class="navbar-nav">
+            <h1 class="text-uppercase px-4 mb-4">NAVIGATION</h1>
+            <li
+              class="nav-item active py-2 px-4 mb-3 bg-light"
+              *ngFor="let item of Aside"
+            >
+              <input
+                class="text-muted cate small text-uppercase font-weight-bold"
+                readonly
+                value="{{ item }}"
+                (click)="onClick(item)"
+              />
+            </li>
+            <li class="nav-item active py-2 px-4 mb-3 bg-light" (click)="onLogOut()">
+              <input
+                class="text-muted cate small text-uppercase font-weight-bold"
+                readonly
+                value="Logout"
+              /></li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+  </main>
+</div>

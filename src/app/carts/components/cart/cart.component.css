@@ -1,0 +1,29 @@
+.quantity button {
+  background: none;
+  border: none;
+  width: 1rem;
+  outline: none;
+}
+i{
+  cursor: pointer;
+  font-weight: 900;
+}
+.text-gray {
+  color: #aaa !important;
+}
+.quantity {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: inherit;
+}
+
+
+.quantity input {
+    width: 2rem;
+    text-align: center;
+}
+input , button{
+  border-radius: unset;
+}

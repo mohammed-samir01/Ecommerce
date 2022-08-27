@@ -1,57 +1,54 @@
-<div class="container-lg px-lg-4 g-1 g-md-2">
-  <div class="container-lg px-lg-4 g-1 g-md-2">
+<div class="px-lg-4 g-1 g-md-2">
+  <div class="px-lg-4 g-1 g-md-2">
     <nav class="navbar navbar-expand-lg bg-white">
-        <a class="navbar-brand brand" routerLink="">Boutique</a>
+      <a class="navbar-brand brand" [routerLink]="'/home'">Market</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0 " routerLink="home"> {{'home' | translate}} </a>
+          </li>
+          <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" [routerLink]="'/shop'"> {{'SHOP' | translate}} </a>
+          </li>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
-              <a class="nav-link py-0 " routerLink="">Home</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" [routerLink]="'/shop'">Shop</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/product-details">Product Details</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link py-0 dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Pages
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item transition-link" routerLink="/">Home</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/shop">Category</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/product-details">Product Details</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/cart">Shopping Cart</a></li>
-                <li><a class="dropdown-item transition-link" routerLink="/checkout">Checkout</a></li>
-              </ul>
-            </li>
-          </ul>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" routerLink="/cart">
+              <i class="fa-solid fa-cart-arrow-down"></i>
+              <!-- <small class="text-gray"> {{ cartLength }} </small> -->
+            </a>
+          </li>
+          <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" routerLink="/favorite">
+              <i class="far fa-heart me-1 text-gray"></i>
+              <!-- <small class="text-gray">{{totalItem}}</small> -->
+            </a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link py-0" routerLink=""> {{'LOGIN' | translate}} </a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item" [routerLinkActive]="'active'">
+            <a class="nav-link py-0" routerLink="/register"> {{'REGISTER' | translate}} </a>
+          </li>
 
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/cart"><i class="fas fa-dolly-flatbed text-gray"></i> Cart <small
-                  class="text-gray">(2)</small></a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/favorite"><i class="far fa-heart me-1 text-gray"></i> <small
-                  class="text-gray">{{totalItem}}</small></a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/login">Login</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="'active'">
-              <a class="nav-link py-0" routerLink="/register">Register</a>
-            </li>
-          </ul>
-        </div>
+          <li *ngIf="isLoggedIn" class="nav-item dropdown">
+            <a class="nav-link py-0 dropdown-toggle text-uppercase" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+              {{username | translate}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item transition-link" routerLink="/profile-page"><i class="fa fa-user me-3"></i> {{'Profile' | translate}}</a></li>
+              <li><a class="dropdown-item transition-link" (click)="onLogOut()"> <i class="fa fa-right-from-bracket me-3"></i> {{'Logout' | translate}} </a></li>
+            </ul>
+          </li>
+          <!-- <app-change-language></app-change-language> -->
+
+        </ul>
+      </div>
     </nav>
   </div>
-
 </div>
-

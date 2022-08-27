@@ -1,0 +1,14 @@
+<section class="pt-5">
+    <header class="text-center">
+        <p class="small text-muted small text-uppercase mb-1">
+            {{'Carefully created collections' | translate}}
+        </p>
+        <h2 class="h5 text-uppercase mb-4"> {{'Browse our categories' | translate}} </h2>
+    </header>
+
+    <div class="row">
+        <div class="col-md-3 mb-4 mb-md-0" *ngFor="let category of  categories ; let i = index">
+            <app-category-card [category]="category"></app-category-card>
+        </div>
+    </div>
+</section>

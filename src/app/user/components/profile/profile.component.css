@@ -1,0 +1,33 @@
+label{
+    font-size: 1rem;
+}
+input{
+    font-size: 0.8rem;
+}
+
+.uploadImage{
+    width: 87%;
+    position: absolute;
+    bottom: 0;
+    /* display: none; */
+    justify-content: space-between;
+}
+
+/* .uploadImage:hover{
+    display: flex;
+} */
+/* img:hover + .uploadImage{
+    display: flex;
+} */
+
+i{
+    cursor: pointer;
+    font-size: 0.9rem;    
+}
+.content 
+{
+    flex-direction: column;
+}
+
+
+

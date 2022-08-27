@@ -1,0 +1,89 @@
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"
+    data-bs-keyboard="false" aria-labelledby="staticBackdropLabel">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a class="product-view d-block h-100 bg-cover bg-center" title="Red digital smartwatch"
+                            (click)="openModal()">
+                        </a>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span>
+                        </button>
+                        <div class="p-5 my-md-4">
+                            <ngb-rating [(rate)]="singleProduct.currentRate" [readonly]="true" [max]="5" class="p-0 my-3" style="font-size: 1.5rem">
+                            </ngb-rating>
+                            <h2 class="h4">{{singleProduct.name}}</h2>
+                            <p class="text-muted">$ {{singleProduct.price}}</p>
+                            <p class="text-small mb-4">{{singleProduct.description}}
+                            </p>
+
+                            <div class="row mb-4 justify-content-between">
+
+                                <div class="col-sm-7">
+                                    <div class="d-flex  py-2 bg-white">
+                                        <span class="text-uppercase text-gray me-4 no-select"> {{'Quantity' |
+                                            translate}} </span>
+                                        <div class="quantity">
+                                            <button class="dec-btn p-0" (click)="minus()"><i
+                                                    class="fas fa-caret-left"></i></button>
+                                            <input class="form-control border-0 shadow-0 p-0" type="text"
+                                                [value]="quentity">
+                                            <button class="inc-btn p-0" (click)="plus()"><i
+                                                    class="fas fa-caret-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5 px-4">
+                                    <a class="btn btn-dark btn-md" >{{'Add to cart' | translate}}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-link text-dark p-0 mb-4" href="#">
+                                <i class="far fa-heart fa-1x me-2"></i>
+                                {{'Add to Favorite' | translate}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="myModal" class="modal justify-content-center align-items-center modalTwo " [class.d-flex]="modal"
+    [class.d-none]="!modal">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../../../assets/images/product-1.jpg" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../../../../assets/images/product-2.jpg" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../../../../assets/images/product-3.jpg" class="d-block" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev h-25" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next h-25" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        <button class="closeTwo" type="button" data-bs-dismiss="modal" aria-label="Close" (click)="close()"><span
+                aria-hidden="true">×</span>
+        </button>
+    </div>
+
+</div>

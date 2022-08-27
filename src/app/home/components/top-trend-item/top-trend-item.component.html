@@ -1,0 +1,34 @@
+<div class="product text-center">
+    <div class="position-relative mb-3">
+
+        <a class="d-block" routerLink="../product-details/{{Product.slug}}">
+            <img class="img-fluid w-100" src="../../../../assets/images/products/{{Product.first_media.file_name}}" alt="...">
+        </a>
+
+        <div class="product-overlay">
+            <ul class="mb-0 list-inline">
+                <li class="list-inline-item m-0 p-0" >
+                <a class="btn btn-sm " [class.btn-outline-dark]="!isFavorite" [class.btn-dark]="isFavorite" >
+                    <i class="fa-heart" [class.far]="!isFavorite" [class.fa]="isFavorite"
+                        (click)="addFav(Product.id)" >
+                    </i>
+                </a>
+            </li>
+                <li class="list-inline-item mx-2 p-0">
+                    <a class="btn btn-sm btn-dark"  (click)="add(Product.id)"> {{'Add to cart' | translate}} </a>
+                </li>
+
+                <!-- <li class="list-inline-item ">
+                    <a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                        <i class="fas fa-expand"></i>
+                    </a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+
+    <h3> <a class="reset-anchor" routerLink="../product-details/{{Product.id}}">{{Product.name}}</a></h3>
+    <p class="small text-muted fa-1x">{{Product.product_category.name}}</p>
+    <p class="small text-muted fa-1x">${{Product.price}}</p>
+</div>
