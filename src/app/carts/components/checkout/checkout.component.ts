@@ -22,12 +22,14 @@ export class CheckoutComponent implements OnInit {
   order: boolean = true;
   coupon: boolean = true;
 
-  subtotal: any = 0;
+  subTotal: any = 0;
   tot: any = 0;
   total: any = 0;
   select: any = 0;
-
-  couponId: number = 1;
+  calTotal: any = 0;
+  allTotal: any = 0;
+  shippingcost: number = 0;
+  couponId: number = 0;
   isShipping: boolean = false;
   cartProduct: any[] = [];
   result: any = [];
@@ -64,21 +66,20 @@ export class CheckoutComponent implements OnInit {
     this.getPayment();
   }
 
-  ///checkout
   getAddress() {
     this.checkoutservice.getUserAddress().subscribe((res) => {
       this.result = res;
       this.addresses = this.result.data.data;
     });
   }
-
+  ///shipping
   getShipping() {
     this.checkoutservice.getShipping().subscribe((res) => {
       this.result = res;
       this.shipping = this.result.Shipping_compines;
     });
   }
-
+  ////payment
   getPayment() {
     this.checkoutservice.getPayment().subscribe((res) => {
       this.result = res;
@@ -89,49 +90,46 @@ export class CheckoutComponent implements OnInit {
   displayCart() {
     this.checkoutservice.getCart().subscribe((res) => {
       this.result = res;
+      console.log(res);
       this.cartProduct = this.result.Products;
       console.log(this.cartProduct);
-
-      this.subtotal = 0;
       for (let x in this.cartProduct) {
-        this.subtotal +=
-          this.cartProduct[x].price * this.cartProduct[x].quantity;
+        this.subTotal += parseInt(this.cartProduct[x].total);
       }
-
-      this.tax = this.subtotal * 0.15;
-      this.total = this.subtotal + this.tax;
+      console.log(this.subTotal);
+      this.tax = Math.floor(this.subTotal * 0.15);
     });
   }
 
-  totalPrice(event: any) {
-    this.isShipping = true;
-    this.select = parseInt(event.cost);
-    this.tot = this.subtotal + this.select + this.tax;
-    this.total = this.tot;
-  }
-
+  ///coupon
   couponSend(couponForm: any) {
     this.checkoutservice.getCoupon(couponForm.couponModel).subscribe((res) => {
       this.result = res;
+      console.log(res);
+      this.couponId = this.result.data.id;
       this.discount = this.result.data.discount;
 
       if (this.result.status == 1) {
-        this.total = this.tot - this.discount;
+        this.coupon = false;
         this.toastr.success('Coupon Success');
-        this.coupon = !this.coupon;
+        // this.coupon = !this.coupon;
       } else {
         this.discount = 0;
-        this.total = this.tot - this.discount;
         this.toastr.error(this.result.messsage);
       }
+      ///coupon
     });
   }
 
   removeCoupon() {
-    this.coupon = !this.coupon;
+    this.coupon = true;
     this.discount = 0;
-    this.total = this.tot - this.discount;
-    this.couponForm.reset();
+  }
+
+  shippingCost(event: any) {
+    this.shippingcost = parseInt(event.cost);
+    this.calTotal = this.subTotal + this.shippingcost + this.tax;
+    this.total = this.calTotal - this.discount;
   }
 
   sendOrder(form: any) {
@@ -149,11 +147,30 @@ export class CheckoutComponent implements OnInit {
       .subscribe((res) => {
         this.orderStatus = res;
 
-        if (this.orderStatus.msg.payment_method_id == '1') {
-          window.location.replace(this.orderStatus.InvoiceURL);
-        } else {
-          this.router.navigate(['/shop']);
-        }
+          if (this.orderStatus.InvoiceURL) {
+            window.location.replace(this.orderStatus.InvoiceURL);
+          } 
+          
+          else {
+            this.router.navigate(['/shop']);
+            this.toastr.success(this.orderStatus.message);
+          } 
+
       });
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
